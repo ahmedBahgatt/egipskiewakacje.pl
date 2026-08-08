@@ -39,10 +39,14 @@ export function whatsappLink(message?: string): string {
   return `${base}?text=${encodeURIComponent(message)}`;
 }
 
-/** Absolute URL helper for canonical tags, sitemap, JSON-LD. */
+/** Absolute URL helper for canonical tags, sitemap, JSON-LD, assets. */
 export function absoluteUrl(path = "/"): string {
   const clean = path.startsWith("/") ? path : `/${path}`;
   if (clean === "/") return `${siteConfig.url}/`;
-  // Enforce trailingSlash parity with next.config.ts (trailingSlash: true).
-  return `${siteConfig.url}${clean.endsWith("/") ? clean : `${clean}/`}`;
+  // Files (last segment has an extension, e.g. .jpg/.xml) keep their exact path.
+  const lastSegment = clean.split("/").pop() ?? "";
+  const isFile = lastSegment.includes(".");
+  if (isFile || clean.endsWith("/")) return `${siteConfig.url}${clean}`;
+  // Routes enforce trailingSlash parity with next.config.ts (trailingSlash: true).
+  return `${siteConfig.url}${clean}/`;
 }
