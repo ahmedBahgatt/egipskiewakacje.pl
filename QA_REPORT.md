@@ -101,6 +101,25 @@ Full-page captures were produced at desktop and mobile widths:
 - Sanity runs in local mode; the schema + seed are prepared but not yet applied (no write token). See SANITY_SETUP.md.
 - Dependency note: `sharp` and `postcss` are pinned via `overrides` to patched versions so `npm audit` is clean; both are build-time only and never ship in the static output.
 
-## Production verification (post-deploy)
+## Production verification (live: https://egipskiewakacje.pl)
 
-After the GitHub Actions deployment, verify on https://egipskiewakacje.pl : HTTPS, homepage and all public routes, assets, canonical URLs, sitemap/robots, WhatsApp button, booking form, mobile navigation, no console errors, and re-run Lighthouse against the live URL for authoritative Performance.
+Deployed via GitHub Actions (Pages source = GitHub Actions). Custom domain and HTTPS preserved. Verified on the live site:
+
+- HTTPS 200 on homepage and all public routes (tours, destinations, cennik, poradnik + article, rezerwacja, sitemap.xml, robots.txt, 404.html).
+- Serving the new site (correct H1, Organization/WebSite JSON-LD, canonical, OG/Twitter tags), not the old placeholder.
+- Assets 200: hero poster (AVIF), hero video (MP4), favicon, icon.svg, OG images, manifest.
+- Live tour prices correct (Hurghada 60/30 USD, infant free, "od 60 USD").
+- No console errors on home, a tour page, or /rezerwacja/.
+
+Authoritative Lighthouse (mobile) against the live HTTP/2 + CDN URL:
+
+| Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Home | 87 | 100 | 100 | 100 | 3.4 s | 0 | 100 ms |
+| Tour (Hurghada) | 99 | 96 | 100 | 100 | 1.7 s | 0.004 | 10 ms |
+
+All targets met (Performance >=85, Accessibility >=95, Best Practices >=95, SEO >=95, CLS <0.1). The ~6.6 s LCP seen under local Lantern simulate was a test-harness artifact (HTTP/1.1 single-connection server); production LCP is 1.7-3.4 s.
+
+## Post-deploy fix applied
+
+A production check found `og:image` (and JSON-LD image) URLs were emitted as `/media/og/default.jpg/` (trailing slash) which 404s on GitHub Pages. `absoluteUrl()` now keeps file paths slash-free; redeployed and verified (`/media/og/default.jpg` returns 200, meta corrected).
