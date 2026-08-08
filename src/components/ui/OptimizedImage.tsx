@@ -13,9 +13,10 @@ interface Props {
 }
 
 /**
- * Static-export friendly responsive image. Serves AVIF -> WebP -> JPG from the
- * pre-generated variants (see scripts/generate-media.mjs). Explicit width/height
- * reserve space so there is no layout shift.
+ * Static-export friendly responsive image. Serves AVIF -> WebP -> JPG. Sources are
+ * either the pre-generated local variants (scripts/generate-media.mjs) or, for
+ * Sanity-hosted images, ready CDN transform URLs on `image.sources`. Explicit
+ * width/height reserve space so there is no layout shift.
  */
 export function OptimizedImage({
   image,
@@ -24,13 +25,16 @@ export function OptimizedImage({
   className,
   rounded = false,
 }: Props) {
-  const { src, alt, width, height } = image;
+  const { src, alt, width, height, sources } = image;
+  const avif = sources?.avif ?? `${src}.avif`;
+  const webp = sources?.webp ?? `${src}.webp`;
+  const jpg = sources?.jpg ?? `${src}.jpg`;
   return (
     <picture className={`${styles.picture}${className ? ` ${className}` : ""}`}>
-      <source srcSet={`${src}.avif`} type="image/avif" />
-      <source srcSet={`${src}.webp`} type="image/webp" />
+      <source srcSet={avif} type="image/avif" />
+      <source srcSet={webp} type="image/webp" />
       <img
-        src={`${src}.jpg`}
+        src={jpg}
         alt={alt}
         width={width}
         height={height}

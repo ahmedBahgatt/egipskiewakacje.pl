@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
+import { imageField, imageMember } from "../objects/imageWithAlt";
+
 /**
  * Mirrors `Tour` in src/content/types.ts.
  *
@@ -9,10 +11,8 @@ import { defineArrayMember, defineField, defineType } from "sanity";
  *   priceLastVerifiedAt/priceVariable  -> Tour.price
  *   guideLanguageLabel/guidePolishConfirmed -> Tour.guide
  *   pickupTime -> pickupLabel, returnTime -> returnLabel
- *   extraFees  -> transferSupplements
- *   FAQs       -> faqs
- *   relatedArticles[0] -> relatedPostSlug
- *   seoTitle/seoDescription/ogImage + route -> Tour.seo
+ *   relatedPost-> relatedPostSlug
+ *   seoTitle/seoDescription/canonicalPath/ogImage -> Tour.seo
  * Renaming any of these without editing queries.ts breaks sanity mode silently.
  *
  * Honesty rules baked into the schema:
@@ -66,7 +66,7 @@ export const tour = defineType({
       type: "string",
       group: "content",
       description:
-        'Razem z bazą kierunku, BEZ slasha na końcu, np. "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie". Frontend dokłada slash w adresie kanonicznym.',
+        'Razem z bazą kierunku, BEZ slasha na końcu, np. "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie".',
       validation: (rule) =>
         rule.required().regex(/^\/[a-z0-9]+(-[a-z0-9]+)*\/[a-z0-9]+(-[a-z0-9]+)*$/, {
           name: '"/kierunek/slug-wycieczki"',
@@ -140,19 +140,22 @@ export const tour = defineType({
     }),
 
     // --- Media ---------------------------------------------------------------
-    defineField({
+    imageField({
       name: "heroImage",
       title: "Obraz główny",
-      type: "mediaImage",
       group: "media",
-      validation: (rule) => rule.required(),
+      required: true,
+      description:
+        "Przeciągnij zdjęcie. Ustaw punkt ostrości (hotspot) na najważniejszym elemencie - kadr na telefonie jest węższy niż na komputerze.",
     }),
     defineField({
       name: "gallery",
       title: "Galeria",
       type: "array",
       group: "media",
-      of: [defineArrayMember({ type: "mediaImage" })],
+      of: [imageMember()],
+      options: { layout: "grid" },
+      description: "Kilka zdjęć z trasy. Każde wymaga własnego opisu alt.",
     }),
     defineField({
       name: "previewVideo",
@@ -250,7 +253,7 @@ export const tour = defineType({
       initialValue: true,
     }),
     defineField({
-      name: "extraFees",
+      name: "transferSupplements",
       title: "Dopłaty za transfer",
       type: "array",
       group: "pricing",
@@ -389,12 +392,11 @@ export const tour = defineType({
       validation: (rule) => rule.required().min(40),
     }),
     defineField({
-      name: "FAQs",
+      name: "faqs",
       title: "FAQ wycieczki",
       type: "array",
       group: "program",
       of: [defineArrayMember({ type: "faqItem" })],
-      description: "Nazwa pola musi pozostać „FAQs” - tak odczytuje ją queries.ts.",
       validation: (rule) => rule.min(1),
     }),
 
@@ -417,12 +419,13 @@ export const tour = defineType({
       of: [defineArrayMember({ type: "reference", to: [{ type: "tour" }], weak: true })],
     }),
     defineField({
-      name: "relatedArticles",
-      title: "Powiązane artykuły",
-      type: "array",
+      name: "relatedPost",
+      title: "Polecany artykuł",
+      type: "reference",
       group: "relations",
-      of: [defineArrayMember({ type: "reference", to: [{ type: "blogPost" }], weak: true })],
-      description: "Pierwsza pozycja trafia na stronę wycieczki jako polecany poradnik.",
+      to: [{ type: "blogPost" }],
+      weak: true,
+      description: "Jeden artykuł poradnika pokazywany na stronie wycieczki. Może zostać pusty.",
     }),
 
     // --- SEO i publikacja ----------------------------------------------------
@@ -442,13 +445,22 @@ export const tour = defineType({
       validation: (rule) => rule.required().min(50).max(175),
     }),
     defineField({
-      name: "ogImage",
-      title: "Obraz Open Graph (ścieżka)",
+      name: "canonicalPath",
+      title: "Ścieżka kanoniczna",
       type: "string",
       group: "seo",
-      description: 'Ścieżka z rozszerzeniem, np. "/media/og/hurghada.jpg".',
+      description: 'Ścieżka z pola wyżej, ale ZE slashem na końcu, np. "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/".',
       validation: (rule) =>
-        rule.regex(/^\/[a-z0-9\-/]+\.(jpg|jpeg|png|webp)$/i, { name: "ścieżka do pliku obrazu" }),
+        rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
+          name: 'ścieżka zaczynająca i kończąca się "/"',
+        }),
+    }),
+    imageField({
+      name: "ogImage",
+      title: "Obraz Open Graph (opcjonalnie)",
+      group: "seo",
+      description:
+        "Obraz pokazywany przy udostępnianiu linku (Facebook, WhatsApp). Najlepiej kadr poziomy 1200x630. Puste = obraz główny wycieczki.",
     }),
     defineField({
       name: "published",
@@ -484,12 +496,14 @@ export const tour = defineType({
       adultPrice: "adultPrice",
       currency: "currency",
       published: "published",
+      media: "heroImage",
     },
-    prepare: ({ title, departure, adultPrice, currency, published }) => ({
+    prepare: ({ title, departure, adultPrice, currency, published, media }) => ({
       title: published === false ? `${title} (ukryta)` : title,
       subtitle: [departure, adultPrice != null ? `od ${adultPrice} ${currency ?? "USD"}` : null]
         .filter(Boolean)
         .join(" - "),
+      media,
     }),
   },
 });

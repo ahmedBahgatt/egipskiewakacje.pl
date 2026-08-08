@@ -28,10 +28,12 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default async function HomePage() {
-  const [featured, faqs, post] = await Promise.all([
+  const [featured, faqs, post, destinations, allTours] = await Promise.all([
     content.getFeaturedTours(),
     content.getSiteFaqs(),
     content.getPost("co-zabrac-na-wycieczke-do-kairu"),
+    content.getDestinations(),
+    content.getTours(),
   ]);
 
   const homeFaqs = faqs.slice(0, 8);
@@ -45,10 +47,10 @@ export default async function HomePage() {
         ]}
       />
 
-      <Hero />
+      <Hero destinations={destinations} />
       <TrustStrip />
-      <EgyptMap />
-      <DestinationCards />
+      <EgyptMap destinations={destinations} tours={allTours} />
+      <DestinationCards destinations={destinations} />
 
       <section className="section" style={{ background: "var(--bg-paper)" }}>
         <div className="container">

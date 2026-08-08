@@ -22,7 +22,7 @@ export const destinations: Destination[] = [
     practical: [
       "Odbiór z hotelu w Hurghadzie i strefach sąsiednich - godzinę podajemy przed wyjazdem.",
       "Przejazd klimatyzowanym autokarem, z postojami w drodze powrotnej.",
-      "Wyprawa do Kairu i Gizy trwa cały dzień - to najdłuższa z naszych jednodniowych tras.",
+      "Wyprawa do Kairu i Gizy trwa cały dzień - wyjazd wypada w nocy, a powrót wieczorem lub w nocy.",
       "Dopłaty za transfer dotyczą tylko wybranych, bardziej oddalonych stref hotelowych.",
     ],
     faqs: [

@@ -67,7 +67,7 @@ export function DestinationPage({
             </Button>
             <Button
               href={contactWhatsappUrl(
-                `Cześć! Interesują mnie wycieczki z ${destination.name}.`,
+                `Cześć! Interesują mnie wycieczki z ${destination.nameGenitive}.`,
               )}
               external
               variant="whatsapp"
@@ -201,7 +201,7 @@ export function DestinationPage({
             Napisz na WhatsApp - potwierdzimy dostępność, godzinę odbioru i cenę dla Twojego hotelu.
           </p>
           <Button
-            href={contactWhatsappUrl(`Cześć! Mam pytanie o wycieczki z ${destination.name}.`)}
+            href={contactWhatsappUrl(`Cześć! Mam pytanie o wycieczki z ${destination.nameGenitive}.`)}
             external
             variant="whatsapp"
             size="lg"

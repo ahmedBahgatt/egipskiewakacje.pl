@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
-import { postBodyMembers } from "../objects/postBlocks";
+
+import { legalBodyMembers } from "../objects/postBlocks";
 
 /**
  * Mirrors `LegalPage` in src/content/types.ts (regulamin, polityka
@@ -9,6 +10,10 @@ import { postBodyMembers } from "../objects/postBlocks";
  * no payments, no booking data stored, WhatsApp handover. Do not paste generic
  * templates - the operator's legal identity fields are still missing and are
  * flagged inside the seeded content with a warning callout.
+ *
+ * `body` is deliberately limited to the TEXT blocks (heading / paragraph /
+ * list / callout). Images, promo buttons and tour cards do not belong in a
+ * legal document.
  */
 export const legalPage = defineType({
   name: "legalPage",
@@ -47,7 +52,8 @@ export const legalPage = defineType({
       name: "body",
       title: "Treść",
       type: "array",
-      of: postBodyMembers,
+      of: legalBodyMembers(),
+      description: "Tylko bloki tekstowe: nagłówek, akapit, lista, wyróżnienie.",
       validation: (rule) => rule.required().min(1),
     }),
     defineField({
@@ -62,6 +68,16 @@ export const legalPage = defineType({
       type: "text",
       rows: 3,
       validation: (rule) => rule.required().min(50).max(175),
+    }),
+    defineField({
+      name: "canonicalPath",
+      title: "Ścieżka kanoniczna",
+      type: "string",
+      description: 'Ścieżka z pola "Ścieżka URL", ale ZE slashem na końcu, np. "/regulamin/".',
+      validation: (rule) =>
+        rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
+          name: 'ścieżka zaczynająca i kończąca się "/"',
+        }),
     }),
   ],
   preview: {

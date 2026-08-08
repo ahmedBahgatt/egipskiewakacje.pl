@@ -17,6 +17,18 @@
  * Document ids are DETERMINISTIC ("tour.kair-gem-piramidy", ...) so re-running
  * the seed replaces the same documents instead of creating duplicates.
  *
+ * IMAGES
+ * `img()` does NOT return a finished image value - it returns a marker holding
+ * a path relative to /public/media. seed.mjs walks the payload, uploads each
+ * distinct file to Sanity once (deduplicated by SHA-1, so re-runs reuse the
+ * same asset id) and swaps the marker for a real image value:
+ *
+ *   { _type: "image", _upload: "tours/hurghada-kair.jpg", alt: "..." }
+ *     -> { _type: "image", alt: "...", asset: { _type: "reference", _ref: "image-..." } }
+ *
+ * Hotspot/crop are left unset: editors set them in the Studio, and an unset
+ * hotspot means "centre", which is what the current site already does.
+ *
  * NOT seeded on purpose:
  *   - review: zero documents. No invented names, ratings or quotes. The
  *     reviews section stays hidden until a real, verified review is added.
@@ -29,7 +41,13 @@ const slug = (current) => ({ _type: "slug", current });
 const ref = (id) => ({ _type: "reference", _ref: id });
 /** Editorial cross-link: weak so deleting the target never blocks the owner. */
 const weakRef = (id) => ({ _type: "reference", _ref: id, _weak: true });
-const img = (src, alt, width, height) => ({ _type: "mediaImage", src, alt, width, height });
+
+/**
+ * Image to upload. `file` is relative to /public/media (WITH the extension);
+ * `alt` is the Polish description stored on the image itself.
+ */
+const img = (file, alt) => ({ _type: "image", _upload: file, alt });
+
 const faqItem = (question, answer) => ({ _type: "faqItem", question, answer });
 const step = (time, title, description) => ({
   _type: "itineraryStep",
@@ -40,12 +58,23 @@ const step = (time, title, description) => ({
 const fee = (zone, amount) => ({ _type: "transferSupplement", zone, amount });
 const note = (label, noteText) => ({ _type: "labelledNote", label, note: noteText });
 
-// Body blocks carry BOTH `_type` (Sanity) and `type` (the frontend's PostBlock
-// discriminator). See studio/schemas/objects/postBlocks.ts for why.
-const heading = (id, text) => ({ _type: "blockHeading", type: "heading", id, text });
-const paragraph = (text) => ({ _type: "blockParagraph", type: "paragraph", text });
-const list = (ordered, items) => ({ _type: "blockList", type: "list", ordered, items });
-const callout = (tone, text) => ({ _type: "blockCallout", type: "callout", tone, text });
+// Body blocks. The block's Sanity `_type` IS the discriminator - there is no
+// second hand-written `type` field. See studio/schemas/objects/postBlocks.ts.
+const heading = (anchor, text) => ({ _type: "blockHeading", text, anchor: slug(anchor) });
+const paragraph = (text) => ({ _type: "blockParagraph", text });
+const list = (ordered, items) => ({ _type: "blockList", ordered, items });
+const callout = (tone, text) => ({ _type: "blockCallout", tone, text });
+const imageBlock = (file, alt, caption) => ({
+  _type: "blockImage",
+  image: img(file, alt),
+  ...(caption ? { caption } : {}),
+});
+const table = (caption, headers, rows) => ({
+  _type: "blockTable",
+  ...(caption ? { caption } : {}),
+  headers,
+  rows: rows.map((cells) => ({ _type: "tableRow", cells })),
+});
 
 /** Date the operator's prices and programmes were last verified. */
 const VERIFIED = "2026-08-08";
@@ -132,10 +161,8 @@ export const destinations = [
     shortIntro:
       "Hurghada to najkrótsza droga znad Morza Czerwonego do Kairu i piramid. Autokary ruszają spod hoteli nocą, dzięki czemu cały dzień spędzasz przy zabytkach, a nie w drodze. To wygodna baza na pierwszą wyprawę do stolicy.",
     heroImage: img(
-      "/media/destinations/hurghada",
+      "destinations/hurghada.jpg",
       "Panorama wybrzeża Hurghady nad turkusowym Morzem Czerwonym o poranku",
-      1600,
-      1000,
     ),
     practical: [
       "Odbiór z hotelu w Hurghadzie i strefach sąsiednich - godzinę podajemy przed wyjazdem.",
@@ -157,15 +184,15 @@ export const destinations = [
         "Dopłata dotyczy stref bardziej oddalonych od centrum: El Gouna, Safaga, Soma Bay, Abu Soma - 10 USD od osoby, oraz Makadi Bay i Sahl Hasheesh - 5 USD od osoby. Hotele w samej Hurghadzie są bez dopłaty.",
       ),
     ],
-    seo: {
-      _type: "seoMeta",
-      title: "Wycieczki z Hurghady do Kairu i piramid | Egipskie Wakacje",
-      description:
-        "Wycieczki fakultatywne z Hurghady: Kair, piramidy w Gizie i Muzeum Egipskie. Odbiór z hotelu, przejrzysta cena od 60 USD, rezerwacja przez WhatsApp.",
-      canonicalPath: "/wycieczki-z-hurghady/",
-      ogImage: "/media/og/hurghada.jpg",
-    },
     primaryQuery: "wycieczki z Hurghady",
+    seoTitle: "Wycieczki z Hurghady do Kairu i piramid | Egipskie Wakacje",
+    seoDescription:
+      "Wycieczki fakultatywne z Hurghady: Kair, piramidy w Gizie i Muzeum Egipskie. Odbiór z hotelu, przejrzysta cena od 60 USD, rezerwacja przez WhatsApp.",
+    canonicalPath: "/wycieczki-z-hurghady/",
+    ogImage: img(
+      "og/hurghada.jpg",
+      "Piramidy w Gizie z podpisem Wycieczki z Hurghady do Kairu",
+    ),
   },
   {
     _id: IDS.destinations.marsaAlam,
@@ -177,10 +204,8 @@ export const destinations = [
     shortIntro:
       "Marsa Alam leży najdalej na południe, dlatego droga do Kairu jest tu najdłuższa, a program - najbardziej rozbudowany. Do klasycznej Gizy dokładamy Stary Kair z jego kościołami, meczetem i synagogą. To wyprawa dla osób, które chcą zobaczyć wiele naraz.",
     heroImage: img(
-      "/media/destinations/marsa-alam",
+      "destinations/marsa-alam.jpg",
       "Spokojna zatoka Marsa Alam z rafą koralową widoczną przez czystą wodę",
-      1600,
-      1000,
     ),
     practical: [
       "Początek trasy to przejazd z hotelu w Marsa Alam do Hurghady minibusem lub samochodem.",
@@ -202,15 +227,15 @@ export const destinations = [
         "Kościół Wiszący, kościół świętego Sergiusza, meczet Amr ibn al-As oraz synagogę Ben Ezra. To dzielnica, w której obok siebie stoją miejsca trzech religii - stąd jej wyjątkowy charakter.",
       ),
     ],
-    seo: {
-      _type: "seoMeta",
-      title: "Wycieczki z Marsa Alam do Kairu | Stary Kair i piramidy",
-      description:
-        "Wycieczki fakultatywne z Marsa Alam: Stary Kair, piramidy w Gizie i Sfinks. Odbiór z hotelu, cena od 80 USD, rezerwacja i potwierdzenie przez WhatsApp.",
-      canonicalPath: "/wycieczki-z-marsa-alam/",
-      ogImage: "/media/og/marsa-alam.jpg",
-    },
     primaryQuery: "wycieczki z Marsa Alam",
+    seoTitle: "Wycieczki z Marsa Alam do Kairu | Stary Kair i piramidy",
+    seoDescription:
+      "Wycieczki fakultatywne z Marsa Alam: Stary Kair, piramidy w Gizie i Sfinks. Odbiór z hotelu, cena od 80 USD, rezerwacja i potwierdzenie przez WhatsApp.",
+    canonicalPath: "/wycieczki-z-marsa-alam/",
+    ogImage: img(
+      "og/marsa-alam.jpg",
+      "Zabytki Starego Kairu z podpisem Wycieczki z Marsa Alam do Kairu",
+    ),
   },
   {
     _id: IDS.destinations.sharm,
@@ -222,10 +247,8 @@ export const destinations = [
     shortIntro:
       "Sharm el Sheikh leży po drugiej stronie, na Synaju, dlatego droga do Kairu prowadzi inną trasą i jest krótsza niż znad Morza Czerwonego. Program obejmuje nowoczesne Wielkie Muzeum Egipskie (GEM) oraz płaskowyż w Gizie.",
     heroImage: img(
-      "/media/destinations/sharm-el-sheikh",
+      "destinations/sharm-el-sheikh.jpg",
       "Wybrzeże Sharm el Sheikh na Synaju z górami w tle i turkusową zatoką",
-      1600,
-      1000,
     ),
     practical: [
       "Przejazd klimatyzowanym autokarem z Synaju do Kairu i z powrotem.",
@@ -247,15 +270,15 @@ export const destinations = [
         "Język przewodnika na tej trasie potwierdzamy przed rezerwacją. Niezależnie od tego cała obsługa rezerwacji i kontakt z naszą ekipą odbywa się po polsku.",
       ),
     ],
-    seo: {
-      _type: "seoMeta",
-      title: "Wycieczki z Sharm el Sheikh do Kairu | GEM i piramidy",
-      description:
-        "Wycieczki fakultatywne z Sharm el Sheikh: Wielkie Muzeum Egipskie (GEM), piramidy w Gizie i Sfinks. Cena od 93 USD, rezerwacja przez WhatsApp.",
-      canonicalPath: "/wycieczki-z-sharm-el-sheikh/",
-      ogImage: "/media/og/sharm-el-sheikh.jpg",
-    },
     primaryQuery: "wycieczki z Sharm el Sheikh",
+    seoTitle: "Wycieczki z Sharm el Sheikh do Kairu | GEM i piramidy",
+    seoDescription:
+      "Wycieczki fakultatywne z Sharm el Sheikh: Wielkie Muzeum Egipskie (GEM), piramidy w Gizie i Sfinks. Cena od 93 USD, rezerwacja przez WhatsApp.",
+    canonicalPath: "/wycieczki-z-sharm-el-sheikh/",
+    ogImage: img(
+      "og/sharm-el-sheikh.jpg",
+      "Wielkie Muzeum Egipskie z podpisem Wycieczki z Sharm el Sheikh do Kairu",
+    ),
   },
 ];
 
@@ -280,16 +303,14 @@ export const tours = [
       "To klasyczna, jednodniowa wyprawa z Hurghady do serca starożytnego Egiptu. Odwiedzasz Muzeum Egipskie w centrum Kairu, a następnie płaskowyż w Gizie z trzema piramidami i Sfinksem. Trasa jest długa, bo obejmuje dojazd w obie strony, dlatego wyruszamy nocą - dzięki temu na miejscu masz cały dzień na zwiedzanie.",
     highlights: ["Muzeum Egipskie", "Piramidy w Gizie", "Sfinks", "Obiad"],
     heroImage: img(
-      "/media/tours/hurghada-kair",
+      "tours/hurghada-kair.jpg",
       "Piramidy w Gizie o złotej godzinie, widok z płaskowyżu",
-      1600,
-      1000,
     ),
     gallery: [
-      img("/media/tours/hurghada-kair", "Piramidy w Gizie o złotej godzinie", 1600, 1000),
-      img("/media/cairo/giza", "Trzy piramidy w Gizie z pustynnym pierwszym planem", 1200, 800),
-      img("/media/cairo/museum", "Wnętrze Muzeum Egipskiego z eksponatami starożytnego Egiptu", 1200, 800),
-      img("/media/cairo/sphinx", "Wielki Sfinks z piramidą w tle", 1200, 800),
+      img("tours/hurghada-kair.jpg", "Piramidy w Gizie o złotej godzinie"),
+      img("cairo/giza.jpg", "Trzy piramidy w Gizie z pustynnym pierwszym planem"),
+      img("cairo/museum.jpg", "Wnętrze Muzeum Egipskiego z eksponatami starożytnego Egiptu"),
+      img("cairo/sphinx.jpg", "Wielki Sfinks z piramidą w tle"),
     ],
     currency: "USD",
     adultPrice: 60,
@@ -299,7 +320,7 @@ export const tours = [
     childAgeMaximum: 11,
     priceLastVerifiedAt: VERIFIED,
     priceVariable: true,
-    extraFees: [
+    transferSupplements: [
       fee("Safaga, Soma Bay, Abu Soma, El Gouna", 10),
       fee("Makadi Bay", 5),
       fee("Sahl Hasheesh", 5),
@@ -376,7 +397,7 @@ export const tours = [
     ],
     cancellationPolicy:
       "Rezerwacja jest wstępna do czasu potwierdzenia przez naszą ekipę na WhatsApp. Na tym etapie ustalamy dostępność, godzinę odbioru i ostateczną cenę. Nie pobieramy płatności online.",
-    FAQs: [
+    faqs: [
       faqItem(
         "Czy przewodnik mówi po polsku?",
         "Tak, na trasie z Hurghady zapewniamy polskojęzycznego przewodnika.",
@@ -392,11 +413,12 @@ export const tours = [
     ],
     featured: true,
     relatedTours: [weakRef(IDS.tours.marsaAlam), weakRef(IDS.tours.sharm)],
-    relatedArticles: [weakRef(IDS.post)],
+    relatedPost: weakRef(IDS.post),
     seoTitle: "Wycieczka z Hurghady do Kairu | Piramidy i Muzeum",
     seoDescription:
       "Jednodniowa wycieczka z Hurghady do Kairu: Muzeum Egipskie, piramidy w Gizie i Sfinks. Cena od 60 USD, odbiór z hotelu, polski przewodnik, rezerwacja przez WhatsApp.",
-    ogImage: "/media/og/hurghada.jpg",
+    canonicalPath: "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/",
+    ogImage: img("og/hurghada.jpg", "Piramidy w Gizie z podpisem Wycieczka z Hurghady do Kairu"),
     published: true,
     updatedAt: VERIFIED,
   },
@@ -419,16 +441,14 @@ export const tours = [
       "Wyprawa z Marsa Alam łączy dwie twarze Kairu. Rano poznajesz Stary Kair - dzielnicę, w której obok siebie stoją kościół Wiszący, meczet Amr ibn al-As i synagoga Ben Ezra. Po południu jedziesz na płaskowyż w Gizie, do piramid i Sfinksa. Ponieważ Marsa Alam leży daleko na południu, dzień jest długi, a program - naprawdę pełny.",
     highlights: ["Stary Kair", "Piramidy w Gizie", "Sfinks", "Obiad"],
     heroImage: img(
-      "/media/tours/marsa-alam-kair",
+      "tours/marsa-alam-kair.jpg",
       "Kościół Wiszący w Starym Kairze z charakterystyczną fasadą",
-      1600,
-      1000,
     ),
     gallery: [
-      img("/media/tours/marsa-alam-kair", "Stary Kair - zabytkowa dzielnica", 1600, 1000),
-      img("/media/cairo/giza", "Trzy piramidy w Gizie", 1200, 800),
-      img("/media/cairo/sphinx", "Wielki Sfinks z piramidą w tle", 1200, 800),
-      img("/media/cairo/nile", "Nil w Kairze o zachodzie słońca", 1200, 800),
+      img("tours/marsa-alam-kair.jpg", "Stary Kair - zabytkowa dzielnica"),
+      img("cairo/giza.jpg", "Trzy piramidy w Gizie"),
+      img("cairo/sphinx.jpg", "Wielki Sfinks z piramidą w tle"),
+      img("cairo/nile.jpg", "Nil w Kairze o zachodzie słońca"),
     ],
     currency: "USD",
     adultPrice: 80,
@@ -438,7 +458,7 @@ export const tours = [
     childAgeMaximum: 11,
     priceLastVerifiedAt: VERIFIED,
     priceVariable: true,
-    extraFees: [
+    transferSupplements: [
       fee(
         "Hotele oddalone: Wadi Lahmy Azur, Lahami Bay, Shams Alam, Gorgonia, Fantazia, Sirena Beach, Reef Oasis, Sunrise Anjum, Gemma Resort, Blue Lagoon, Dream Lagoon, Emerald Lagoon, True Beach, Aurora Bay",
         10,
@@ -508,7 +528,7 @@ export const tours = [
     ],
     cancellationPolicy:
       "Rezerwacja jest wstępna do czasu potwierdzenia przez naszą ekipę na WhatsApp. Ustalamy wtedy dostępność w danym tygodniu, godzinę odbioru i ostateczną cenę. Nie pobieramy płatności online.",
-    FAQs: [
+    faqs: [
       faqItem(
         "Czym różni się ta trasa od wyjazdu z Hurghady?",
         "Program z Marsa Alam dodatkowo obejmuje Stary Kair, a droga jest dłuższa, bo najpierw jedziesz do Hurghady na przesiadkę.",
@@ -524,11 +544,15 @@ export const tours = [
     ],
     featured: true,
     relatedTours: [weakRef(IDS.tours.hurghada), weakRef(IDS.tours.sharm)],
-    relatedArticles: [weakRef(IDS.post)],
+    relatedPost: weakRef(IDS.post),
     seoTitle: "Wycieczka z Marsa Alam do Kairu | Stary Kair i Piramidy",
     seoDescription:
       "Wycieczka z Marsa Alam do Kairu: Stary Kair, piramidy w Gizie i Sfinks. Cena od 80 USD, odbiór z hotelu, polski przewodnik, rezerwacja przez WhatsApp.",
-    ogImage: "/media/og/marsa-alam.jpg",
+    canonicalPath: "/wycieczki-z-marsa-alam/kair-stary-kair-piramidy/",
+    ogImage: img(
+      "og/marsa-alam.jpg",
+      "Zabytki Starego Kairu z podpisem Wycieczka z Marsa Alam do Kairu",
+    ),
     published: true,
     updatedAt: VERIFIED,
   },
@@ -551,16 +575,14 @@ export const tours = [
       "Wyprawa z Sharm el Sheikh prowadzi z Synaju do Kairu inną, krótszą trasą niż znad Morza Czerwonego. W programie jest Wielkie Muzeum Egipskie (GEM) - najnowocześniejsza placówka tego typu w kraju - oraz płaskowyż w Gizie z piramidami i Sfinksem. Dzień kończy się obiadem i czasem na zdjęcia, a dla chętnych opcjonalnym rejsem po Nilu.",
     highlights: ["Wielkie Muzeum Egipskie (GEM)", "Piramidy w Gizie", "Sfinks", "Obiad"],
     heroImage: img(
-      "/media/tours/sharm-kair",
+      "tours/sharm-kair.jpg",
       "Nowoczesna bryła Wielkiego Muzeum Egipskiego (GEM) przy Gizie",
-      1600,
-      1000,
     ),
     gallery: [
-      img("/media/tours/sharm-kair", "Wielkie Muzeum Egipskie (GEM)", 1600, 1000),
-      img("/media/cairo/giza", "Trzy piramidy w Gizie", 1200, 800),
-      img("/media/cairo/sphinx", "Wielki Sfinks z piramidą w tle", 1200, 800),
-      img("/media/cairo/nile", "Nil w Kairze o zachodzie słońca", 1200, 800),
+      img("tours/sharm-kair.jpg", "Wielkie Muzeum Egipskie (GEM)"),
+      img("cairo/giza.jpg", "Trzy piramidy w Gizie"),
+      img("cairo/sphinx.jpg", "Wielki Sfinks z piramidą w tle"),
+      img("cairo/nile.jpg", "Nil w Kairze o zachodzie słońca"),
     ],
     currency: "USD",
     adultPrice: 93,
@@ -570,7 +592,7 @@ export const tours = [
     childAgeMaximum: 11,
     priceLastVerifiedAt: VERIFIED,
     priceVariable: true,
-    extraFees: [],
+    transferSupplements: [],
     extras: [note("Rejs po Nilu", "ok. 10-12 USD od osoby, płatny na miejscu")],
     availabilityLabel: "Codziennie (wg dostępności)",
     availabilityDays: ["Codziennie"],
@@ -629,7 +651,7 @@ export const tours = [
     ],
     cancellationPolicy:
       "Rezerwacja jest wstępna do czasu potwierdzenia przez naszą ekipę na WhatsApp. Potwierdzamy dostępność, godzinę odbioru, język przewodnika i ostateczną cenę. Nie pobieramy płatności online.",
-    FAQs: [
+    faqs: [
       faqItem(
         "W jakim języku mówi przewodnik?",
         "Język przewodnika na tej trasie potwierdzamy przed rezerwacją. Cała obsługa rezerwacji odbywa się po polsku.",
@@ -645,11 +667,15 @@ export const tours = [
     ],
     featured: true,
     relatedTours: [weakRef(IDS.tours.hurghada), weakRef(IDS.tours.marsaAlam)],
-    relatedArticles: [weakRef(IDS.post)],
+    relatedPost: weakRef(IDS.post),
     seoTitle: "Wycieczka z Sharm el Sheikh do Kairu | GEM i Piramidy",
     seoDescription:
       "Wycieczka z Sharm el Sheikh do Kairu: Wielkie Muzeum Egipskie (GEM), piramidy w Gizie i Sfinks. Cena od 93 USD, odbiór z hotelu, rezerwacja przez WhatsApp.",
-    ogImage: "/media/og/sharm-el-sheikh.jpg",
+    canonicalPath: "/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/",
+    ogImage: img(
+      "og/sharm-el-sheikh.jpg",
+      "Wielkie Muzeum Egipskie z podpisem Wycieczka z Sharm el Sheikh do Kairu",
+    ),
     published: true,
     updatedAt: VERIFIED,
   },
@@ -670,10 +696,8 @@ export const posts = [
     directAnswer:
       "Na wycieczkę do Kairu zabierz: paszport, wygodne buty, nakrycie głowy i krem z filtrem, wodę i przekąski na długą drogę, gotówkę w USD na napoje i opcjonalne atrakcje, powerbank oraz lekki, skromniejszy ubiór na wizyty w miejscach kultu. Wyprawa trwa cały dzień i zaczyna się nocą, dlatego liczy się wygoda.",
     featuredImage: img(
-      "/media/blog/co-zabrac-na-wycieczke-do-kairu",
+      "blog/co-zabrac-na-wycieczke-do-kairu.jpg",
       "Spakowany plecak podróżny z kapeluszem i butelką wody na tle pustyni",
-      1600,
-      900,
     ),
     category: "Przed wyjazdem",
     author: ref(IDS.author),
@@ -713,6 +737,12 @@ export const posts = [
         "Okulary przeciwsłoneczne.",
         "Krem z wysokim filtrem - na płaskowyżu w Gizie nie ma gdzie schować się w cieniu.",
       ]),
+      // Demonstrates the `blockImage` type: image asset + alt + visible caption.
+      imageBlock(
+        "cairo/giza.jpg",
+        "Trzy piramidy w Gizie z pustynnym pierwszym planem",
+        "Płaskowyż w Gizie to otwarta pustynia - cienia praktycznie nie ma, dlatego nakrycie głowy i krem z filtrem są tu ważniejsze niż gdziekolwiek indziej na trasie.",
+      ),
       heading("woda-i-przekaski", "Woda i przekąski"),
       paragraph(
         "Obiad jest w cenie wycieczki, ale bez napojów. Zabierz wodę na drogę i drobne przekąski - przydadzą się w długim przejeździe, szczególnie dzieciom. Większa butelka wody i coś energetycznego (baton, owoce, orzechy) realnie poprawiają komfort.",
@@ -749,8 +779,34 @@ export const posts = [
       paragraph(
         "Z Hurghady jedziesz na klasyczną trasę: Muzeum Egipskie, piramidy i Sfinks. Z Marsa Alam program jest szerszy o Stary Kair, dlatego przyda się skromniejszy ubiór. Z Sharm el Sheikh zwiedzasz nowoczesne Wielkie Muzeum Egipskie (GEM) i Gizę, a dzień jest nieco krótszy. Dopłaty za transfer dotyczą tylko wybranych, bardziej oddalonych hoteli - warto to potwierdzić przy rezerwacji.",
       ),
+      // Demonstrates the `blockTable` type. Prices verified on 2026-08-08 - keep
+      // them in step with the tour documents above.
+      table(
+        "Porównanie tras do Kairu z trzech kurortów. Ceny dla osoby dorosłej, zweryfikowane 8 sierpnia 2026 r.",
+        ["Kurort", "Program", "Czas trwania", "Cena od (dorosły)"],
+        [
+          [
+            "Hurghada",
+            "Muzeum Egipskie, piramidy w Gizie, Sfinks",
+            "ok. 20-22 godzin",
+            "60 USD",
+          ],
+          [
+            "Marsa Alam",
+            "Stary Kair, piramidy w Gizie, Sfinks",
+            "cała doba, dzień intensywny",
+            "80 USD",
+          ],
+          [
+            "Sharm el Sheikh",
+            "Wielkie Muzeum Egipskie (GEM), piramidy w Gizie",
+            "cały dzień, powrót ok. 22:00-23:00",
+            "93 USD",
+          ],
+        ],
+      ),
     ],
-    FAQ: [
+    faqs: [
       faqItem(
         "Czy na wycieczkę do Kairu potrzebny jest paszport?",
         "Na trasę do Kairu zabierz paszport. Aktualne wymagania dokumentowe warto potwierdzić przed wyjazdem u biura, w hotelu lub w oficjalnym źródle.",
@@ -773,7 +829,11 @@ export const posts = [
     seoTitle: "Co zabrać na wycieczkę do Kairu? Praktyczna lista | Poradnik",
     seoDescription:
       "Praktyczna lista rzeczy na jednodniową wycieczkę do Kairu z Hurghady, Marsa Alam lub Sharm el Sheikh: dokumenty, ubranie, woda, gotówka i wskazówki na długą drogę.",
-    ogImage: "/media/og/poradnik.jpg",
+    canonicalPath: "/poradnik/co-zabrac-na-wycieczke-do-kairu/",
+    ogImage: img(
+      "og/poradnik.jpg",
+      "Spakowany plecak podróżny z podpisem Co zabrać na wycieczkę do Kairu",
+    ),
     published: true,
   },
 ];
@@ -819,6 +879,7 @@ export const legalPages = [
     seoTitle: "Polityka prywatności | Egipskie Wakacje",
     seoDescription:
       "Polityka prywatności serwisu egipskiewakacje.pl. Strona statyczna, brak płatności online, formularz rezerwacji działa lokalnie i otwiera WhatsApp.",
+    canonicalPath: "/polityka-prywatnosci/",
   },
   {
     _id: "legalPage.polityka-cookies",
@@ -848,6 +909,7 @@ export const legalPages = [
     seoTitle: "Polityka cookies | Egipskie Wakacje",
     seoDescription:
       "Polityka cookies serwisu egipskiewakacje.pl. Obecnie strona nie stosuje cookies śledzących ani zewnętrznych skryptów analitycznych.",
+    canonicalPath: "/polityka-cookies/",
   },
   {
     _id: "legalPage.regulamin",
@@ -885,6 +947,7 @@ export const legalPages = [
     seoTitle: "Regulamin | Egipskie Wakacje",
     seoDescription:
       "Regulamin serwisu egipskiewakacje.pl. Rezerwacja przez WhatsApp, brak płatności online, ceny w USD, potwierdzenie szczegółów przez ekipę.",
+    canonicalPath: "/regulamin/",
   },
 ];
 

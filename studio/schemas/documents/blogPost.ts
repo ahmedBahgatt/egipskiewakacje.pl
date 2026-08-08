@@ -1,12 +1,18 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+
+import { imageField } from "../objects/imageWithAlt";
 import { postBodyMembers } from "../objects/postBlocks";
 
 /**
  * Mirrors `BlogPost` in src/content/types.ts.
  *
  * queries.ts flattens: author->name, relatedDestination->slug.current,
- * relatedTours[]->slug.current, FAQ -> faqs, seoTitle/seoDescription/ogImage +
- * route -> BlogPost.seo. Keep the names as they are.
+ * relatedTours[]->slug.current, seoTitle/seoDescription/canonicalPath/ogImage
+ * -> BlogPost.seo. Keep the names as they are.
+ *
+ * `body` accepts the full block set (see ../objects/postBlocks.ts): heading,
+ * paragraph, list, callout, image, gallery, quote, table, link button and a
+ * related-tour card. There is still no rich-text or HTML field anywhere.
  */
 export const blogPost = defineType({
   name: "blogPost",
@@ -72,12 +78,13 @@ export const blogPost = defineType({
         "Zwięzła odpowiedź na pytanie z tytułu, pokazywana na górze artykułu (pod kątem wyników z odpowiedzią). Pełne zdania, konkrety.",
       validation: (rule) => rule.required().min(80),
     }),
-    defineField({
+    imageField({
       name: "featuredImage",
       title: "Obraz wyróżniający",
-      type: "mediaImage",
       group: "content",
-      validation: (rule) => rule.required(),
+      required: true,
+      description:
+        "Zdjęcie na listingu poradnika i na górze artykułu. Ustaw punkt ostrości - kadr na karcie jest szerszy niż na stronie artykułu.",
     }),
     defineField({
       name: "category",
@@ -94,18 +101,18 @@ export const blogPost = defineType({
       title: "Treść",
       type: "array",
       group: "body",
-      of: postBodyMembers,
+      of: postBodyMembers(),
       description:
-        "Zamknięty zestaw bloków (nagłówek, akapit, lista, wyróżnienie). Bez HTML - frontend renderuje bloki bezpiecznie.",
+        "Zamknięty zestaw bloków: nagłówek, akapit, lista, wyróżnienie, obraz, galeria, cytat, tabela, przycisk i polecana wycieczka. Bez HTML - frontend renderuje bloki bezpiecznie.",
       validation: (rule) => rule.required().min(1),
     }),
     defineField({
-      name: "FAQ",
+      name: "faqs",
       title: "FAQ artykułu",
       type: "array",
       group: "body",
       of: [defineArrayMember({ type: "faqItem" })],
-      description: "Nazwa pola musi pozostać „FAQ” - tak odczytuje ją queries.ts.",
+      description: "Pytania i odpowiedzi renderowane jako FAQPage JSON-LD.",
     }),
     defineField({
       name: "sources",
@@ -161,12 +168,22 @@ export const blogPost = defineType({
       validation: (rule) => rule.required().min(50).max(175),
     }),
     defineField({
-      name: "ogImage",
-      title: "Obraz Open Graph (ścieżka)",
+      name: "canonicalPath",
+      title: "Ścieżka kanoniczna",
       type: "string",
       group: "seo",
+      description: 'Ścieżka z pola "Pełna ścieżka URL", ale ZE slashem na końcu.',
       validation: (rule) =>
-        rule.regex(/^\/[a-z0-9\-/]+\.(jpg|jpeg|png|webp)$/i, { name: "ścieżka do pliku obrazu" }),
+        rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
+          name: 'ścieżka zaczynająca i kończąca się "/"',
+        }),
+    }),
+    imageField({
+      name: "ogImage",
+      title: "Obraz Open Graph (opcjonalnie)",
+      group: "seo",
+      description:
+        "Obraz pokazywany przy udostępnianiu linku (Facebook, WhatsApp). Najlepiej kadr poziomy 1200x630. Puste = obraz wyróżniający.",
     }),
     defineField({
       name: "publishedAt",
@@ -207,10 +224,16 @@ export const blogPost = defineType({
     },
   ],
   preview: {
-    select: { title: "title", subtitle: "publishedAt", published: "published" },
-    prepare: ({ title, subtitle, published }) => ({
+    select: {
+      title: "title",
+      subtitle: "publishedAt",
+      published: "published",
+      media: "featuredImage",
+    },
+    prepare: ({ title, subtitle, published, media }) => ({
       title: published === false ? `${title} (ukryty)` : title,
       subtitle,
+      media,
     }),
   },
 });

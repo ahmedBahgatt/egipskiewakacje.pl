@@ -22,8 +22,13 @@ import { structure } from "./structure";
  *
  * FIELD NAMES ARE A CONTRACT
  * The frontend GROQ projections live in src/content/sanity/queries.ts. Renaming
- * a field here (e.g. `adultPrice`, `extraFees`, `FAQs`) silently breaks sanity
- * mode. Change both files together.
+ * a field here (e.g. `adultPrice`, `transferSupplements`, `faqs`) silently
+ * breaks sanity mode. Change both files together.
+ *
+ * IMAGES
+ * Every image is a native Sanity asset with hotspot/crop plus a required Polish
+ * `alt` (studio/schemas/objects/imageWithAlt.ts). Editors never type a path,
+ * an extension or a pixel size; GROQ builds the CDN URLs from `asset->`.
  */
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "ej04dib0";
 const dataset = process.env.SANITY_STUDIO_DATASET || "production";

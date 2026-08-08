@@ -1,11 +1,17 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
+import { imageField } from "../objects/imageWithAlt";
+
 /**
  * Mirrors `Destination` in src/content/types.ts.
  *
  * The slug is constrained to the three values of the `DestinationSlug` union.
  * Adding a fourth destination requires a frontend change (types.ts + routes),
  * so the list is intentionally closed here rather than free text.
+ *
+ * SEO fields are FLAT (seoTitle / seoDescription / canonicalPath / ogImage),
+ * the same way `tour` and `blogPost` store them. GROQ assembles `SeoMeta` from
+ * them - see src/content/sanity/queries.ts.
  */
 export const destination = defineType({
   name: "destination",
@@ -74,6 +80,37 @@ export const destination = defineType({
       validation: (rule) => rule.required().min(80),
     }),
     defineField({
+      name: "practical",
+      title: "Informacje praktyczne",
+      type: "array",
+      group: "content",
+      of: [defineArrayMember({ type: "string" })],
+      description: "Krótkie punkty: odbiór, transport, czas trwania, dopłaty.",
+      validation: (rule) => rule.min(1),
+    }),
+
+    // --- Media ---------------------------------------------------------------
+    imageField({
+      name: "heroImage",
+      title: "Obraz główny",
+      group: "media",
+      required: true,
+      description:
+        "Przeciągnij zdjęcie kierunku. Punkt ostrości (hotspot) ustaw na tym, co musi zostać widoczne po przycięciu na wąskich ekranach.",
+    }),
+
+    // --- FAQ -----------------------------------------------------------------
+    defineField({
+      name: "faqs",
+      title: "FAQ kierunku",
+      type: "array",
+      group: "faq",
+      of: [defineArrayMember({ type: "faqItem" })],
+      validation: (rule) => rule.min(1),
+    }),
+
+    // --- SEO -----------------------------------------------------------------
+    defineField({
       name: "primaryQuery",
       title: "Główna fraza docelowa",
       type: "string",
@@ -83,38 +120,42 @@ export const destination = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "heroImage",
-      title: "Obraz główny",
-      type: "mediaImage",
-      group: "media",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "practical",
-      title: "Informacje praktyczne",
-      type: "array",
-      group: "content",
-      of: [defineArrayMember({ type: "string" })],
-      description: "Krótkie punkty: odbiór, transport, czas trwania, dopłaty.",
-      validation: (rule) => rule.min(1),
-    }),
-    defineField({
-      name: "faqs",
-      title: "FAQ kierunku",
-      type: "array",
-      group: "faq",
-      of: [defineArrayMember({ type: "faqItem" })],
-      validation: (rule) => rule.min(1),
-    }),
-    defineField({
-      name: "seo",
-      title: "SEO",
-      type: "seoMeta",
+      name: "seoTitle",
+      title: "SEO - tytuł",
+      type: "string",
       group: "seo",
-      validation: (rule) => rule.required(),
+      description: "Do ok. 60 znaków, żeby nie był ucinany w wynikach wyszukiwania.",
+      validation: (rule) => rule.required().max(70),
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO - opis",
+      type: "text",
+      group: "seo",
+      rows: 3,
+      description: "Do ok. 160 znaków.",
+      validation: (rule) => rule.required().min(50).max(175),
+    }),
+    defineField({
+      name: "canonicalPath",
+      title: "Ścieżka kanoniczna",
+      type: "string",
+      group: "seo",
+      description: 'Ze slashem na końcu, np. "/wycieczki-z-hurghady/".',
+      validation: (rule) =>
+        rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
+          name: 'ścieżka zaczynająca i kończąca się "/"',
+        }),
+    }),
+    imageField({
+      name: "ogImage",
+      title: "Obraz Open Graph (opcjonalnie)",
+      group: "seo",
+      description:
+        "Obraz pokazywany przy udostępnianiu linku (Facebook, WhatsApp). Najlepiej kadr poziomy 1200x630. Puste = obraz domyślny serwisu.",
     }),
   ],
   preview: {
-    select: { title: "name", subtitle: "routeBase" },
+    select: { title: "name", subtitle: "routeBase", media: "heroImage" },
   },
 });

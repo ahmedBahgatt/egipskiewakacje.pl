@@ -43,3 +43,57 @@
 }
 .info { background: rgba(14, 131, 120, 0.08); border-color: var(--accent); color: var(--ink-700); }
 .warning { background: rgba(201, 146, 47, 0.12); border-color: var(--gold-500); color: var(--ink-700); }
+
+/* --- rich blocks --------------------------------------------------------- */
+.figure { margin: 0.4rem 0; }
+.figMedia { aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius); }
+.caption { margin-top: 0.5rem; font-size: 0.86rem; color: var(--text-muted); text-align: center; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.7rem;
+}
+.galleryItem { aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius); }
+
+.quote {
+  margin: 0.4rem 0;
+  padding: 1rem 1.4rem;
+  border-left: 4px solid var(--accent);
+  background: rgba(14, 131, 120, 0.06);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.quote p { font-family: var(--font-display); font-size: var(--step-1); color: var(--text); font-style: italic; }
+.cite { display: block; margin-top: 0.5rem; font-size: 0.86rem; color: var(--text-muted); font-style: normal; }
+
+.tableWrap { margin: 0.4rem 0; }
+
+.linkRow { margin: 0.2rem 0; }
+.linkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+  text-decoration: none;
+  padding: 0.5rem 0;
+}
+.linkBtn:hover { gap: 0.6rem; text-decoration: underline; }
+
+.relatedTour {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.2rem 1.4rem;
+  margin: 0.4rem 0;
+  background: var(--bg-paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.relatedTour:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.relatedKicker { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
+.relatedTitle { font-family: var(--font-display); font-size: var(--step-1); color: var(--text); }
+.relatedMeta { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--accent-strong); }

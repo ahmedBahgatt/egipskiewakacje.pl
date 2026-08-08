@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 /**
  * Mirrors `TransferSupplement` in src/content/types.ts.
- * Stored on `tour.extraFees` and projected to `transferSupplements` by GROQ.
+ * Stored on `tour.transferSupplements`, same name on both sides.
  */
 export const transferSupplement = defineType({
   name: "transferSupplement",

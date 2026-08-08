@@ -8,28 +8,30 @@ import {
   useSpring,
   useReducedMotion,
 } from "motion/react";
-import { destinations } from "@/content/local/destinations";
-import { tours } from "@/content/local/tours";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { IconArrowRight, IconClock, IconCalendar, IconGlobe } from "@/components/ui/icons";
 import { priceLabel } from "@/lib/format";
 import { track } from "@/lib/analytics";
-import type { DestinationSlug } from "@/content/types";
+import type { Destination, DestinationSlug, Tour } from "@/content/types";
 import styles from "./EgyptMap.module.css";
 
 interface Point {
   slug: DestinationSlug;
   name: string;
+  nameGenitive: string;
   x: number;
   y: number;
 }
 
 const CAIRO = { x: 150, y: 116, label: "Kair / Giza" };
-const POINTS: Point[] = [
-  { slug: "hurghada", name: "Hurghada", x: 214, y: 214 },
-  { slug: "sharm-el-sheikh", name: "Sharm el Sheikh", x: 268, y: 170 },
-  { slug: "marsa-alam", name: "Marsa Alam", x: 236, y: 322 },
-];
+
+// Presentation-only pin coordinates and their render order (z-order of labels).
+const COORDS: Record<DestinationSlug, { x: number; y: number }> = {
+  hurghada: { x: 214, y: 214 },
+  "sharm-el-sheikh": { x: 268, y: 170 },
+  "marsa-alam": { x: 236, y: 322 },
+};
+const RENDER_ORDER: DestinationSlug[] = ["hurghada", "sharm-el-sheikh", "marsa-alam"];
 
 function routePath(p: Point): string {
   // gentle quadratic curve towards Cairo
@@ -38,9 +40,23 @@ function routePath(p: Point): string {
   return `M ${p.x} ${p.y} Q ${mx} ${my} ${CAIRO.x} ${CAIRO.y}`;
 }
 
-export function EgyptMap() {
+export function EgyptMap({
+  destinations,
+  tours,
+}: {
+  destinations: Destination[];
+  tours: Tour[];
+}) {
   const reduce = useReducedMotion();
-  const [selected, setSelected] = useState<DestinationSlug>("hurghada");
+
+  // Join CMS/content destinations with pin coordinates, in a stable order.
+  const points: Point[] = RENDER_ORDER.map((slug) => {
+    const d = destinations.find((x) => x.slug === slug);
+    if (!d) return null;
+    return { slug, name: d.name, nameGenitive: d.nameGenitive, ...COORDS[slug] };
+  }).filter((p): p is Point => p !== null);
+
+  const [selected, setSelected] = useState<DestinationSlug>(points[0]?.slug ?? "hurghada");
 
   const parX = useMotionValue(0);
   const parY = useMotionValue(0);
@@ -48,10 +64,10 @@ export function EgyptMap() {
   const sY = useSpring(parY, { stiffness: 50, damping: 18 });
 
   const data = useMemo(() => {
-    const dest = destinations.find((d) => d.slug === selected)!;
-    const tour = tours.find((t) => t.destination === selected)!;
+    const dest = destinations.find((d) => d.slug === selected);
+    const tour = tours.find((t) => t.destination === selected);
     return { dest, tour };
-  }, [selected]);
+  }, [selected, destinations, tours]);
 
   function select(slug: DestinationSlug, source: string) {
     if (slug === selected) return;
@@ -70,7 +86,7 @@ export function EgyptMap() {
     parY.set(0);
   }
 
-  const selPoint = POINTS.find((p) => p.slug === selected)!;
+  const { dest, tour } = data;
 
   return (
     <section className={`${styles.section} on-dark`} aria-label="Interaktywna mapa kierunków">
@@ -124,7 +140,7 @@ export function EgyptMap() {
               </m.g>
 
               {/* routes (faint for all, bright for selected) */}
-              {POINTS.map((p) => (
+              {points.map((p) => (
                 <path
                   key={`r-${p.slug}`}
                   d={routePath(p)}
@@ -142,7 +158,7 @@ export function EgyptMap() {
               </g>
 
               {/* departure points */}
-              {POINTS.map((p) => {
+              {points.map((p) => {
                 const active = p.slug === selected;
                 return (
                   <g key={p.slug}>
@@ -169,7 +185,7 @@ export function EgyptMap() {
                       className={styles.hit}
                       role="button"
                       tabIndex={0}
-                      aria-label={`Pokaż wycieczkę z ${p.name}`}
+                      aria-label={`Pokaż wycieczkę z ${p.nameGenitive}`}
                       aria-pressed={active}
                       onMouseEnter={() => select(p.slug, "map-hover")}
                       onFocus={() => select(p.slug, "map-focus")}
@@ -190,7 +206,7 @@ export function EgyptMap() {
           {/* --- details panel (info never hover-only) --- */}
           <div className={styles.panel}>
             <div className={styles.tabs} role="tablist" aria-label="Wybierz kurort">
-              {POINTS.map((p) => (
+              {points.map((p) => (
                 <button
                   key={p.slug}
                   type="button"
@@ -204,38 +220,40 @@ export function EgyptMap() {
               ))}
             </div>
 
-            <div className={styles.card} aria-live="polite">
-              <span className={styles.cardKicker}>Wycieczka z {selPoint.name}</span>
-              <h3 className={styles.cardTitle}>{data.tour.title}</h3>
-              <p className={styles.cardDesc}>{data.tour.shortDescription}</p>
+            {tour && dest && (
+              <div className={styles.card} aria-live="polite">
+                <span className={styles.cardKicker}>Wycieczka z {dest.nameGenitive}</span>
+                <h3 className={styles.cardTitle}>{tour.title}</h3>
+                <p className={styles.cardDesc}>{tour.shortDescription}</p>
 
-              <ul className={styles.facts}>
-                <li>
-                  <IconClock /> {data.tour.durationLabel}
-                </li>
-                <li>
-                  <IconCalendar /> {data.tour.availabilityLabel}
-                </li>
-                <li>
-                  <IconGlobe /> Przewodnik:{" "}
-                  {data.tour.guide.polishConfirmed ? "polski" : data.tour.guide.label.toLowerCase()}
-                </li>
-              </ul>
+                <ul className={styles.facts}>
+                  <li>
+                    <IconClock /> {tour.durationLabel}
+                  </li>
+                  <li>
+                    <IconCalendar /> {tour.availabilityLabel}
+                  </li>
+                  <li>
+                    <IconGlobe /> Przewodnik:{" "}
+                    {tour.guide.polishConfirmed ? "polski" : tour.guide.label.toLowerCase()}
+                  </li>
+                </ul>
 
-              <div className={styles.cardFoot}>
-                <div className={styles.cardPrice}>
-                  <span className={styles.priceValue}>{priceLabel(data.tour.price)}</span>
-                  <span className={styles.priceUnit}>/ dorosły</span>
+                <div className={styles.cardFoot}>
+                  <div className={styles.cardPrice}>
+                    <span className={styles.priceValue}>{priceLabel(tour.price)}</span>
+                    <span className={styles.priceUnit}>/ dorosły</span>
+                  </div>
+                  <Link
+                    href={`${tour.route}/`}
+                    className={styles.cardCta}
+                    onClick={() => track("tour_details_click", { tour_slug: tour.slug, destination: selected })}
+                  >
+                    Zobacz wycieczkę <IconArrowRight />
+                  </Link>
                 </div>
-                <Link
-                  href={`${data.tour.route}/`}
-                  className={styles.cardCta}
-                  onClick={() => track("tour_details_click", { tour_slug: data.tour.slug, destination: selected })}
-                >
-                  Zobacz wycieczkę <IconArrowRight />
-                </Link>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -3,22 +3,15 @@
  *
  * Two modes, selected by NEXT_PUBLIC_CONTENT_SOURCE:
  *   - "local"  (default): typed source files in ./local. No network, no secrets.
- *   - "sanity"         : GROQ over the public read-only Sanity CDN (post-seed).
+ *   - "sanity"         : GROQ over the public read-only Sanity CDN, mapped and
+ *                        validated at build time (see ./sanity/adapter).
  *
- * Every accessor is async so the two modes share one call signature. The public
- * site ships in "local" mode; "sanity" activates once the dataset is seeded with
- * the new schema (see SANITY_SETUP.md). If sanity mode is selected but returns
- * nothing, we fall back to local so the site never breaks.
+ * Sanity mode is authoritative: it never silently falls back to local content, so
+ * a broken query or an incomplete document fails the build instead of shipping
+ * stale local prices. Flip production by setting the repo variable
+ * NEXT_PUBLIC_CONTENT_SOURCE=sanity once the dataset is seeded (see SANITY_SETUP.md).
  */
-import type {
-  BlogPost,
-  Destination,
-  FaqItem,
-  LegalPage,
-  Review,
-  SiteSettings,
-  Tour,
-} from "@/content/types";
+import type { ContentApi } from "@/content/api";
 
 import { destinations as localDestinations } from "@/content/local/destinations";
 import {
@@ -28,25 +21,9 @@ import {
 import { posts as localPosts } from "@/content/local/posts";
 import { legalPages as localLegal } from "@/content/local/legal";
 import { siteSettings, siteFaqs, reviews as localReviews } from "@/content/local/site";
-import { fetchFromSanity } from "@/content/sanity/adapter";
+import { sanityApi } from "@/content/sanity/adapter";
 
 const MODE = (process.env.NEXT_PUBLIC_CONTENT_SOURCE ?? "local").toLowerCase();
-
-export interface ContentApi {
-  getSiteSettings(): Promise<SiteSettings>;
-  getSiteFaqs(): Promise<FaqItem[]>;
-  getReviews(): Promise<Review[]>;
-  getDestinations(): Promise<Destination[]>;
-  getDestination(slug: string): Promise<Destination | undefined>;
-  getTours(): Promise<Tour[]>;
-  getFeaturedTours(): Promise<Tour[]>;
-  getTour(slug: string): Promise<Tour | undefined>;
-  getToursByDestination(slug: string): Promise<Tour[]>;
-  getPosts(): Promise<BlogPost[]>;
-  getPost(slug: string): Promise<BlogPost | undefined>;
-  getLegalPages(): Promise<LegalPage[]>;
-  getLegalPage(slug: string): Promise<LegalPage | undefined>;
-}
 
 const localApi: ContentApi = {
   async getSiteSettings() {
@@ -90,25 +67,5 @@ const localApi: ContentApi = {
   },
 };
 
-/**
- * Sanity mode wraps local mode: any collection the dataset does not yet provide
- * transparently falls back to the local content, so a partially-seeded dataset
- * still yields a complete site.
- */
-const sanityApi: ContentApi = {
-  ...localApi,
-  async getTours() {
-    const remote = await fetchFromSanity<Tour[]>("tours");
-    return remote && remote.length ? remote : localTours;
-  },
-  async getTour(slug) {
-    const remote = await fetchFromSanity<Tour[]>("tours");
-    return (remote ?? localTours).find((t) => t.slug === slug);
-  },
-  async getPosts() {
-    const remote = await fetchFromSanity<BlogPost[]>("posts");
-    return remote && remote.length ? remote : localPosts;
-  },
-};
-
 export const content: ContentApi = MODE === "sanity" ? sanityApi : localApi;
+export type { ContentApi };

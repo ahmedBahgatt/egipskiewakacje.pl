@@ -5,7 +5,7 @@ import { defineField, defineType } from "sanity";
  * src/content/local/site.ts (`siteFaqs`).
  *
  * Tour-specific and destination-specific questions live INSIDE those documents
- * (tour.FAQs, destination.faqs). Use `scope` here to keep the site-wide set
+ * (tour.faqs, destination.faqs). Use `scope` here to keep the site-wide set
  * separate from anything added later.
  */
 export const faq = defineType({

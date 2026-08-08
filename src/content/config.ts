@@ -24,7 +24,7 @@ export const siteConfig = {
   currency: "USD" as const,
 
   description:
-    "Wycieczki fakultatywne w Egipcie dla polskich turystow. Kair i piramidy z Hurghady, Marsa Alam i Sharm el Sheikh. Przejrzyste ceny, odbior z hotelu, rezerwacja przez WhatsApp.",
+    "Wycieczki fakultatywne w Egipcie dla polskich turystów. Kair i piramidy z Hurghady, Marsa Alam i Sharm el Sheikh. Przejrzyste ceny, odbiór z hotelu, rezerwacja przez WhatsApp.",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

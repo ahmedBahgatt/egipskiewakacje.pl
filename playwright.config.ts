@@ -23,6 +23,9 @@ export default defineConfig({
   },
   projects: [
     { name: "desktop-chromium", use: { ...devices["Desktop Chrome"] } },
+    // Mobile Chromium (Pixel 5) - runs in CI without a separate WebKit download.
+    { name: "mobile-chromium", use: { ...devices["Pixel 5"] } },
+    // Mobile WebKit - run locally for real Safari-engine coverage.
     { name: "mobile-safari", use: { ...devices["iPhone 13"] } },
   ],
   webServer: {

@@ -4,6 +4,13 @@ Analytics on egipskiewakacje.pl is a thin, privacy-first abstraction in `src/lib
 
 That is why the site currently ships **without a cookie banner**. The absence of the banner is a consequence of the absence of tracking, not an omission.
 
+## Current status (production)
+
+- No GA4 or GTM ID is configured, so **no analytics loader is installed** and no ID is invented.
+- Every `track()` call - including `booking_whatsapp_open` - is **prepared but not currently transmitted anywhere**. The event fires the abstraction, which is a no-op with no platform configured.
+- **No conversion is currently recorded** in GA4, Google Ads or any other platform. Conversion tracking is not active.
+- Enabling any of this requires setting `NEXT_PUBLIC_GA4_ID` / `NEXT_PUBLIC_GTM_ID`, adding the loader, implementing consent **before** any non-essential tracking, and publishing an updated privacy/cookie policy plus a consent banner.
+
 ---
 
 ## Table of contents

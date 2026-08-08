@@ -304,7 +304,7 @@ export function TourDetail({
           <section className={`${styles.block} ${styles.related}`}>
             <Link href={`${destination.routeBase}/`} className={styles.relatedCard}>
               <span className={styles.relatedKicker}>Kierunek</span>
-              <span className={styles.relatedTitle}>Wycieczki z {destination.name}</span>
+              <span className={styles.relatedTitle}>Wycieczki z {destination.nameGenitive}</span>
               <span className={styles.relatedMore}>
                 Zobacz kierunek <IconArrowRight />
               </span>

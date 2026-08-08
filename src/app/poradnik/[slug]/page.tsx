@@ -10,7 +10,7 @@ import {
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
-import { PostBody, tableOfContents } from "@/components/content/PostBody";
+import { PostBody, tableOfContents, relatedTourSlugsInBody } from "@/components/content/PostBody";
 import { ToursGrid } from "@/components/tour/ToursGrid";
 import { Button } from "@/components/ui/Button";
 import { IconArrowRight, IconWhatsApp } from "@/components/ui/icons";
@@ -41,9 +41,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const post = await content.getPost(slug);
   if (!post) notFound();
 
-  const relatedTours = (
-    await Promise.all(post.relatedTourSlugs.map((s) => content.getTour(s)))
+  // Resolve tours referenced both in the related list AND inline in the body blocks.
+  const referencedSlugs = Array.from(
+    new Set([...post.relatedTourSlugs, ...relatedTourSlugsInBody(post.body)]),
+  );
+  const resolvedTours = (
+    await Promise.all(referencedSlugs.map((s) => content.getTour(s)))
   ).filter((t): t is Tour => Boolean(t));
+  const relatedTours = resolvedTours.filter((t) => post.relatedTourSlugs.includes(t.slug));
 
   const toc = tableOfContents(post.body);
   const crumbs = [
@@ -103,7 +108,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             </nav>
           )}
 
-          <PostBody blocks={post.body} />
+          <PostBody blocks={post.body} tours={resolvedTours} />
 
           {post.sources.length > 0 && (
             <section className={styles.sources}>

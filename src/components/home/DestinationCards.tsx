@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { destinations } from "@/content/local/destinations";
+import type { Destination } from "@/content/types";
 import { Tilt } from "@/components/motion/Tilt";
 import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -10,7 +10,7 @@ import { IconArrowRight } from "@/components/ui/icons";
 import { track } from "@/lib/analytics";
 import styles from "./DestinationCards.module.css";
 
-export function DestinationCards() {
+export function DestinationCards({ destinations }: { destinations: Destination[] }) {
   return (
     <section className={`section ${styles.section}`}>
       <div className="container">
@@ -33,7 +33,7 @@ export function DestinationCards() {
                     <div className={styles.scrim} />
                     <div className={styles.caption}>
                       <span className={styles.kicker}>Wycieczki z</span>
-                      <h3 className={styles.name}>{d.name}</h3>
+                      <h3 className={styles.name}>{d.nameGenitive}</h3>
                     </div>
                   </div>
                   <p className={styles.more}>

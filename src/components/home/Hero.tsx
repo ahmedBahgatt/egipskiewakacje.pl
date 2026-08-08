@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/Button";
 import { IconArrowRight, IconPause, IconPlay, IconWhatsApp } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { track } from "@/lib/analytics";
-import type { DestinationSlug } from "@/content/types";
+import type { Destination } from "@/content/types";
 import styles from "./Hero.module.css";
 
 const HERO_POSTER = {
@@ -24,13 +24,14 @@ const HERO_POSTER = {
   height: 1080,
 };
 
-const DEPARTURES: { slug: DestinationSlug; label: string; href: string }[] = [
-  { slug: "hurghada", label: "Hurghada", href: "/wycieczki-z-hurghady/" },
-  { slug: "marsa-alam", label: "Marsa Alam", href: "/wycieczki-z-marsa-alam/" },
-  { slug: "sharm-el-sheikh", label: "Sharm el Sheikh", href: "/wycieczki-z-sharm-el-sheikh/" },
-];
+export function Hero({ destinations }: { destinations: Destination[] }) {
+  // Destination selector is CMS-driven (from the content adapter, via props).
+  const departures = destinations.map((d) => ({
+    slug: d.slug,
+    label: d.name,
+    href: `${d.routeBase}/`,
+  }));
 
-export function Hero() {
   // Preload the LCP image (AVIF) at high priority so it is not queued behind
   // other resources on throttled mobile. Emitted into <head> during SSR.
   preload(`${HERO_POSTER.src}.avif`, {
@@ -190,7 +191,7 @@ export function Hero() {
             Skąd wyjeżdżasz?
           </span>
           <div className={styles.chips}>
-            {DEPARTURES.map((d) => (
+            {departures.map((d) => (
               <Link
                 key={d.slug}
                 href={d.href}

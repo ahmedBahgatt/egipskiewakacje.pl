@@ -8,14 +8,24 @@ export type Currency = "USD";
 
 export type DestinationSlug = "hurghada" | "marsa-alam" | "sharm-el-sheikh";
 
-/** A responsive image described by its base asset. Variants are generated. */
+/**
+ * A responsive image. Two provenances share one shape:
+ * - Local: `src` is a base path under /public (no extension); format variants are
+ *   pre-generated (.avif/.webp/.jpg) and `sources` is undefined.
+ * - Sanity: `src` is the canonical JPG CDN URL and `sources` holds ready AVIF/WebP/
+ *   JPG CDN transform URLs (hotspot/crop applied). No files are committed.
+ */
 export interface MediaImage {
-  /** Path under /public, e.g. "/media/destinations/hurghada". Extension added per format. */
+  /** Local: base path e.g. "/media/destinations/hurghada". Sanity: absolute JPG URL. */
   src: string;
   /** Accurate Polish alt text. Empty string only for purely decorative images. */
   alt: string;
   width: number;
   height: number;
+  /** Present for Sanity-hosted images: per-format CDN URLs. */
+  sources?: { avif: string; webp: string; jpg: string };
+  /** Optional low-quality image placeholder (Sanity blur data URL). */
+  lqip?: string;
 }
 
 export interface GuideLanguage {
@@ -144,7 +154,13 @@ export type PostBlock =
   | { type: "heading"; id: string; text: string }
   | { type: "paragraph"; text: string }
   | { type: "list"; ordered: boolean; items: string[] }
-  | { type: "callout"; tone: "info" | "warning"; text: string };
+  | { type: "callout"; tone: "info" | "warning"; text: string }
+  | { type: "image"; image: MediaImage; caption?: string }
+  | { type: "gallery"; images: MediaImage[] }
+  | { type: "quote"; text: string; cite?: string }
+  | { type: "table"; caption?: string; headers: string[]; rows: string[][] }
+  | { type: "linkButton"; label: string; href: string; external: boolean }
+  | { type: "relatedTour"; tourSlug: string };
 
 export interface SeoMeta {
   title: string;

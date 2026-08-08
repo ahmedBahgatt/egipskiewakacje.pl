@@ -123,3 +123,79 @@ All targets met (Performance >=85, Accessibility >=95, Best Practices >=95, SEO 
 ## Post-deploy fix applied
 
 A production check found `og:image` (and JSON-LD image) URLs were emitted as `/media/og/default.jpg/` (trailing slash) which 404s on GitHub Pages. `absoluteUrl()` now keeps file paths slash-free; redeployed and verified (`/media/og/default.jpg` returns 200, meta corrected).
+
+---
+
+# Correction + CMS-completion pass (2026-08-09)
+
+Branch: `fix/production-cms-and-polish` (from main 87abde0). No redesign; identity,
+routes, animations, prices and WhatsApp behavior preserved.
+
+## Polish language hotfix
+
+- Fixed `siteConfig.description`: `turystow` -> `turystów`, `odbior` -> `odbiór`.
+- Fixed genitive after "z" everywhere it was built from a place name, now using
+  `Destination.nameGenitive`:
+  - DestinationCards heading: "Wycieczki z **Hurghady**" (was "Hurghada").
+  - EgyptMap panel + hit-target aria-label: "Wycieczka z **Hurghady**".
+  - DestinationPage WhatsApp/contact messages; TourDetail related-destination card.
+- Removed the longest-route contradiction: Hurghada no longer claims "najdłuższa";
+  Marsa Alam remains the longest.
+- New e2e spec `content-polish.spec.ts` fails if `z Hurghada`, `Wycieczka z Hurghada`,
+  `Wycieczki z Hurghada`, `turystow` or `odbior z hotelu` appear in rendered HTML on
+  10 key pages; asserts the correct genitive is present. Passing.
+
+## Sanity as a real content source (code complete)
+
+- Every `ContentApi` method is Sanity-backed via full GROQ + typed projections:
+  siteSettings, siteFaqs, reviews, destinations, destination, tours, featuredTours,
+  tour, toursByDestination, posts, post, legalPages, legalPage.
+- Removed all `@/content/local` imports from UI: DestinationCards, EgyptMap and the
+  Hero destination selector now receive typed props fetched in server pages. A unit
+  test (`no-local-imports`) enforces this going forward.
+- Native Sanity image assets: `@sanity/image-url` builder produces responsive
+  AVIF (auto=format) / WebP / JPG CDN URLs with hotspot/crop; OptimizedImage serves
+  local OR Sanity `sources`; intrinsic width/height keep CLS at 0. No hotlinking.
+- Blog editor blocks: image (+caption), gallery, quote, table, link button and
+  related-tour CTA added to the safe closed `PostBlock` union and the renderer
+  (no raw HTML, allow-listed). generateStaticParams reads the adapter, so a new
+  Sanity article/tour produces a static route.
+- Strict production mode: `sanity` mode validates required content and FAILS the
+  build with a clear error on a broken query or incomplete document - it never
+  silently falls back to local (verified: a sanity-mode build against the current
+  unseeded dataset fails with "[content:sanity] No published tours found").
+- New unit tests (`sanity-content`) prove mappers + adapter with mocked data:
+  CMS price flows through, CMS tour appears on its destination, CMS article resolves
+  to a route, new blocks map, unknown blocks are dropped, images become CDN URLs.
+
+## Structured data, analytics, legal
+
+- Removed hardcoded `availability: InStock` from TouristTrip JSON-LD (no live
+  inventory). Offer keeps only the honest adult from-price. Fixed OG/JSON-LD image
+  URLs to work for both local and Sanity images.
+- ANALYTICS.md now states explicitly: no GA4/GTM configured, `booking_whatsapp_open`
+  is prepared but not transmitted, and no conversion is currently recorded anywhere.
+- Legal pages: replaced developer-style "needs review before production" warnings
+  with honest, user-appropriate notes; still no invented legal identity.
+
+## CI / config
+
+- Workflow env now reads GitHub **repository variables**
+  (`NEXT_PUBLIC_CONTENT_SOURCE` default local, plus Sanity project/dataset/version)
+  instead of a hardcoded value - flipping to the CMS is a one-variable change.
+- CI now runs secret scan (`scripts/secret-scan.sh`), `npm audit --audit-level=high`,
+  and e2e on **desktop + mobile Chromium**. repository_dispatch `sanity-publish`
+  retained.
+
+## Test + build results (this pass)
+
+- Type check PASS; Lint PASS; Unit 28/28 (Vitest); E2E 56 passed / 2 skipped
+  (desktop + mobile Chromium); local build PASS; secret scan clean;
+  `npm audit` 0 vulnerabilities; no horizontal overflow at 360/390/768/1440.
+
+## BLOCKED (owner action)
+
+The live CMS publish loop (seed dataset, deploy studio, CORS, webhook, flip to
+`sanity`, and the end-to-end "publish an article with an uploaded image and see it
+live" proof) requires a **Sanity Editor token**, which only the owner can create.
+All code is done and CI is ready; see CONTENT_REQUIRED.md / SANITY_SETUP.md.

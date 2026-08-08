@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig, absoluteUrl } from "@/content/config";
 import type { BlogPost, Destination, FaqItem, Tour } from "@/content/types";
+import { imageJpgUrl, ogImageUrl } from "@/lib/media";
 
 const DEFAULT_OG = "/media/og/default.jpg";
 
@@ -15,7 +16,7 @@ export interface PageSeo {
 /** Build a complete, canonical, OG/Twitter-ready Next Metadata object. */
 export function buildMetadata(seo: PageSeo): Metadata {
   const url = absoluteUrl(seo.canonicalPath);
-  const ogImage = absoluteUrl(seo.ogImage ?? DEFAULT_OG);
+  const ogImage = ogImageUrl(seo.ogImage ?? DEFAULT_OG);
   return {
     title: seo.title,
     description: seo.description,
@@ -100,8 +101,9 @@ export function itemListJsonLd(items: { name: string; path: string }[]) {
 }
 
 /**
- * TouristTrip for a tour. Price is represented honestly via a low-price Offer
- * (adult from-price, USD). No fake priceValidUntil / availability quantity.
+ * TouristTrip for a tour. Price is represented honestly via an Offer carrying only
+ * the adult from-price in USD. There is NO live inventory (availability is confirmed
+ * on WhatsApp), so no `availability`, `priceValidUntil` or quantity is emitted.
  */
 export function tourJsonLd(tour: Tour) {
   return {
@@ -110,7 +112,7 @@ export function tourJsonLd(tour: Tour) {
     name: tour.title,
     description: tour.shortDescription,
     url: absoluteUrl(tour.seo.canonicalPath),
-    image: absoluteUrl(`${tour.heroImage.src}.jpg`),
+    image: imageJpgUrl(tour.heroImage),
     touristType: "Wycieczka jednodniowa",
     itinerary: {
       "@type": "ItemList",
@@ -125,7 +127,6 @@ export function tourJsonLd(tour: Tour) {
       price: tour.price.adult,
       priceCurrency: tour.price.currency,
       url: absoluteUrl(tour.seo.canonicalPath),
-      availability: "https://schema.org/InStock",
     },
     provider: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
   };
@@ -147,7 +148,7 @@ export function blogPostingJsonLd(post: BlogPost) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: absoluteUrl(`${post.featuredImage.src}.jpg`),
+    image: imageJpgUrl(post.featuredImage),
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     inLanguage: "pl-PL",

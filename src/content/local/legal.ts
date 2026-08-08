@@ -20,8 +20,8 @@ export const legalPages: LegalPage[] = [
     body: [
       {
         type: "callout",
-        tone: "warning",
-        text: "Dokument wymaga uzupełnienia pełnych danych operatora (nazwa podmiotu, adres, dane rejestrowe) oraz weryfikacji przez właściciela lub prawnika przed publikacją produkcyjną. Poniższa treść opisuje faktyczne działanie strony.",
+        tone: "info",
+        text: "Pełne dane rejestrowe operatora (nazwa podmiotu, adres, numer rejestrowy) zostaną podane po ich potwierdzeniu. Poniższa treść opisuje faktyczny sposób działania serwisu i przetwarzania danych.",
       },
       { type: "heading", id: "administrator", text: "1. Administrator danych" },
       {
@@ -98,8 +98,8 @@ export const legalPages: LegalPage[] = [
     body: [
       {
         type: "callout",
-        tone: "warning",
-        text: "Regulamin wymaga uzupełnienia pełnych danych operatora oraz weryfikacji prawnej przed publikacją produkcyjną. Poniższa treść opisuje faktyczny sposób działania serwisu i rezerwacji.",
+        tone: "info",
+        text: "Pełne dane rejestrowe operatora zostaną podane po ich potwierdzeniu. Poniższy regulamin opisuje faktyczny sposób działania serwisu i rezerwacji.",
       },
       { type: "heading", id: "postanowienia", text: "1. Postanowienia ogólne" },
       {

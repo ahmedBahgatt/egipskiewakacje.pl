@@ -149,3 +149,42 @@ If the owner wants analytics, the sequence is fixed: implement consent first (de
 5. **Record the answer where the code reads it, not only here.** Prices carry `lastVerifiedAt`; the guide flag is `polishConfirmed`; reviews carry `verified`. Update the data, then update this file.
 
 When an item is resolved, change its status here from **OPEN** to **CONFIRMED (date, source)** and update the linked documents in the same change.
+
+---
+
+## CMS activation - single owner action required (added 2026-08-09)
+
+All code for a real Sanity-backed CMS is in place (full read adapter, native image
+assets, richer blog blocks, build-time validation, CI wired to repo variables).
+The remaining steps need a **Sanity Editor token**, which only the account owner can
+create. They cannot be automated from here.
+
+To go live on the CMS (steps detailed in SANITY_SETUP.md):
+
+1. Create an **Editor token** at https://www.sanity.io/manage (project `ej04dib0`).
+2. From `studio/`, run `SANITY_WRITE_TOKEN=<token> npm run seed` - deploys schema,
+   uploads images as Sanity assets, and seeds the three destinations, three tours,
+   the article, site FAQs, legal pages and author (deterministic IDs, idempotent).
+3. Add CORS origins in Sanity manage: `https://egipskiewakacje.pl` and
+   `http://localhost:3000`.
+4. Create a fine-grained GitHub PAT (contents:read + metadata) and a Sanity webhook
+   that POSTs `repository_dispatch` (event type `sanity-publish`) on publish.
+5. Flip the GitHub repo **variable** `NEXT_PUBLIC_CONTENT_SOURCE` from `local` to
+   `sanity` (Settings -> Secrets and variables -> Actions -> Variables). No code
+   change is needed - the workflow already reads this variable.
+
+Until step 5, production intentionally stays in local mode (identical content),
+because a `sanity`-mode build against an unseeded dataset fails fast by design
+rather than shipping stale data.
+
+## Legal / business information still required from the owner
+
+- Registered operator/legal entity name.
+- Registered address.
+- Registration numbers (NIP / KRS or local equivalent).
+- Egyptian tour-operator licence details, if applicable.
+- An official business email (currently none is shown; contact is WhatsApp only).
+- Confirmation of the Sharm el Sheikh guide language (source is contradictory; the
+  site honestly says "potwierdzamy przed rezerwacją").
+- Real owned photos/video to replace the original generated artwork.
+- Any verified customer reviews before an Opinie section is enabled.
