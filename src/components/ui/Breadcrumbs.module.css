@@ -1,0 +1,13 @@
+.wrap { padding-block: 0.5rem; }
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--step--1);
+}
+.item { display: inline-flex; align-items: center; gap: 0.4rem; }
+.link { color: var(--text-muted); text-decoration: none; }
+.link:hover { color: var(--accent-strong); text-decoration: underline; }
+.current { color: var(--text); font-weight: 600; }
+.sep { color: var(--ink-400); }

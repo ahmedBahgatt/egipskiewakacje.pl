@@ -1,0 +1,24 @@
+.tourLink { font-weight: 700; color: var(--text); text-decoration: none; }
+.tourLink:hover { color: var(--accent-strong); text-decoration: underline; }
+.rowActions { display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+.details {
+  font-weight: 700;
+  color: var(--accent-strong);
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+.details:hover { text-decoration: underline; }
+.wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #04331a;
+  background: var(--whatsapp);
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.wa:hover { background: var(--whatsapp-dark); color: #fff; }
+.note { margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem; }

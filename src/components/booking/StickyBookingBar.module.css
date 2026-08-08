@@ -1,0 +1,38 @@
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 140;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem max(16px, env(safe-area-inset-left)) calc(0.7rem + env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--bg-paper) 94%, transparent);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 16px rgba(10, 25, 34, 0.08);
+}
+.price { display: flex; align-items: baseline; gap: 0.3rem; }
+.value { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--text); }
+.unit { font-size: 0.82rem; color: var(--text-muted); }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  padding: 0.8rem 1.3rem;
+  border-radius: 999px;
+  min-height: 48px;
+  white-space: nowrap;
+}
+.cta:hover { background: var(--primary-hover); }
+
+/* Desktop uses the sticky in-column card instead. */
+@media (min-width: 960px) {
+  .bar { display: none; }
+}

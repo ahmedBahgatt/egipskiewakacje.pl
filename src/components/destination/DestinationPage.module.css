@@ -1,0 +1,88 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: clamp(2rem, 6vw, 4rem);
+  overflow: hidden;
+}
+.heroMedia { position: absolute; inset: 0; z-index: -1; }
+.heroImg { width: 100%; height: 100%; object-fit: cover; }
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 16, 22, 0.88) 6%, rgba(6, 16, 22, 0.3) 55%, rgba(6, 16, 22, 0.55));
+}
+.heroInner { position: relative; max-width: 780px; }
+.heroInner :global(nav) { margin-bottom: 0.6rem; }
+.heroInner :global(.link),
+.heroInner :global([aria-current]) { color: rgba(255, 255, 255, 0.85); }
+.title { color: #fff; font-size: var(--step-5); margin-bottom: 0.8rem; text-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+.intro { font-size: var(--step-1); color: rgba(255, 255, 255, 0.92); max-width: 640px; margin-bottom: 1.5rem; }
+.heroCtas { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+.practical { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.practicalItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 1.2rem;
+  background: var(--bg-paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink-700);
+}
+.pIcon { color: var(--teal-600); flex: none; margin-top: 3px; font-size: 1.2rem; }
+
+.detailGrid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+/* Let the overflow-auto tables inside scroll instead of stretching the track. */
+.detailGrid > * { min-width: 0; }
+.h2 { font-size: var(--step-2); margin-bottom: 0.9rem; }
+.para { color: var(--ink-700); line-height: 1.75; margin-top: 0.9rem; }
+
+.highlightRow { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0 1.5rem; }
+.highlightRow li {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink-700);
+  background: var(--sand-200);
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+}
+
+.guideCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.guideCard:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.guideMedia { aspect-ratio: 16 / 9; overflow: hidden; }
+.guideImg { transition: transform 0.5s ease; }
+.guideCard:hover .guideImg { transform: scale(1.03); }
+.guideBody { padding: 1.6rem; display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+.guideKicker { font-size: 0.76rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
+.guideTitle { font-size: var(--step-2); }
+.guideMore { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--accent-strong); }
+
+.finalCta { color: #fff; padding-block: clamp(3rem, 7vw, 5rem); }
+.finalInner { position: relative; z-index: 1; text-align: center; max-width: 640px; margin-inline: auto; }
+.finalTitle { color: #fff; font-size: var(--step-3); }
+.finalText { color: rgba(255, 255, 255, 0.86); margin: 0.9rem auto 1.6rem; }
+
+@media (min-width: 640px) {
+  .practical { grid-template-columns: 1fr 1fr; }
+  .detailGrid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 760px) {
+  .guideCard { grid-template-columns: 1.1fr 1fr; }
+  .guideMedia { aspect-ratio: auto; height: 100%; }
+}

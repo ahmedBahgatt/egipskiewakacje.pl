@@ -1,0 +1,17 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  line-height: 1;
+}
+.mark {
+  flex: none;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.24rem;
+  letter-spacing: -0.01em;
+  color: inherit;
+  white-space: nowrap;
+}

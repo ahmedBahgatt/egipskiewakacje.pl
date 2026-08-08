@@ -1,0 +1,50 @@
+.float {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: calc(16px + var(--float-offset, 0px) + env(safe-area-inset-bottom));
+  z-index: 150;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 56px;
+  padding: 0;
+  background: var(--whatsapp);
+  color: #04331a;
+  border-radius: 999px;
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+  overflow: hidden;
+  transition: gap 0.2s ease, padding 0.2s ease, background-color 0.2s ease, bottom 0.2s ease;
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 1.7rem;
+  flex: none;
+}
+.label {
+  max-width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: 0.98rem;
+  transition: max-width 0.25s ease, opacity 0.2s ease, padding 0.2s ease;
+}
+.float:hover,
+.float:focus-visible {
+  background: var(--whatsapp-dark);
+  color: #fff;
+  gap: 0;
+}
+/* Reveal the label on hover/focus (desktop). Mobile stays a compact icon. */
+@media (min-width: 700px) and (hover: hover) {
+  .float:hover .label,
+  .float:focus-visible .label {
+    max-width: 220px;
+    opacity: 1;
+    padding-right: 1.1rem;
+  }
+}

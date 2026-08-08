@@ -1,0 +1,52 @@
+.page { padding-top: 1rem; padding-bottom: 3rem; }
+.head { max-width: 820px; padding-top: 0.5rem; }
+.cat { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
+.title { font-size: var(--step-4); margin: 0.5rem 0 0.8rem; }
+.excerpt { font-size: var(--step-1); color: var(--text-muted); }
+.meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; color: var(--ink-400); font-size: 0.88rem; }
+
+.featured { margin-block: 1.8rem; }
+.featured :global(picture) { aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); display: block; }
+
+.layout { display: block; }
+.content { max-width: 760px; margin-inline: auto; }
+
+.answer {
+  background: rgba(14, 131, 120, 0.07);
+  border: 1px solid rgba(14, 131, 120, 0.2);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.6rem;
+}
+.answerLabel { display: block; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-strong); margin-bottom: 0.4rem; }
+.answer p { color: var(--ink-700); }
+
+.toc {
+  background: var(--bg-paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1.8rem;
+}
+.tocTitle { display: block; font-weight: 800; margin-bottom: 0.6rem; font-size: 0.9rem; }
+.toc ol { list-style: decimal; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.toc a { color: var(--link); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+.sources {
+  margin-top: 2rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--sand-200);
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+}
+.sourcesTitle { font-size: var(--step-1); margin-bottom: 0.6rem; }
+.sources ul { display: flex; flex-direction: column; gap: 0.5rem; color: var(--ink-700); }
+
+.relatedTitle { font-size: var(--step-2); margin-bottom: 1.4rem; }
+
+.cta { color: #fff; padding-block: clamp(3rem, 7vw, 4.5rem); }
+.ctaInner { position: relative; z-index: 1; text-align: center; max-width: 640px; margin-inline: auto; }
+.ctaTitle { color: #fff; font-size: var(--step-3); }
+.ctaText { color: rgba(255, 255, 255, 0.86); margin: 0.8rem auto 1.6rem; }
+.ctaButtons { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }

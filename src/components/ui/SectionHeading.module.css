@@ -1,0 +1,10 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 720px;
+  margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+}
+.center { align-items: center; text-align: center; margin-inline: auto; }
+.title { font-size: var(--step-3); }
+.intro { color: var(--text-muted); font-size: var(--step-1); }

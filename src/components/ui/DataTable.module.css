@@ -1,0 +1,37 @@
+.wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-paper);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 420px;
+}
+.caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.9rem 1rem 0;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.table th,
+.table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.table th {
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  background: var(--sand-200);
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--sand-100) 55%, transparent); }

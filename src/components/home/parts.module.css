@@ -1,0 +1,134 @@
+/* --- trust strip --------------------------------------------------------- */
+.trustWrap {
+  background: var(--bg-paper);
+  border-block: 1px solid var(--line);
+  padding-block: 1.1rem;
+}
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 2rem;
+}
+.trustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.94rem;
+  color: var(--ink-700);
+}
+.trustIcon { display: inline-flex; color: var(--accent-strong); font-size: 1.15rem; }
+
+/* --- steps --------------------------------------------------------------- */
+.stepsSection { background: var(--bg); }
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  counter-reset: step;
+}
+.step {
+  background: var(--bg-paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  height: 100%;
+}
+.stepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy-900);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.stepTitle { font-size: var(--step-1); margin-bottom: 0.4rem; }
+.stepText { color: var(--text-muted); }
+
+/* --- why ----------------------------------------------------------------- */
+.whySection { background: var(--bg-paper); }
+.whyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+.whyCard {
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.whyIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: rgba(14, 131, 120, 0.1);
+  color: var(--accent-strong);
+  font-size: 1.4rem;
+  margin-bottom: 0.9rem;
+}
+.whyTitle { font-size: var(--step-1); margin-bottom: 0.35rem; }
+.whyText { color: var(--text-muted); }
+
+/* --- about --------------------------------------------------------------- */
+.about { background: var(--bg); }
+.aboutInner { display: grid; }
+.aboutText { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; max-width: 760px; }
+.aboutTitle { font-size: var(--step-3); }
+.aboutText p { color: var(--text-muted); }
+
+/* --- guide --------------------------------------------------------------- */
+.guide { background: var(--bg-paper); }
+.guideCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.guideCard:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.guideMedia { aspect-ratio: 16 / 9; overflow: hidden; }
+.guideImg { transition: transform 0.5s ease; }
+.guideCard:hover .guideImg { transform: scale(1.03); }
+.guideBody { padding: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+.guideCat {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+.guideCardTitle { font-size: var(--step-2); }
+.guideExcerpt { color: var(--text-muted); }
+.guideDate { font-size: 0.85rem; color: var(--ink-400); }
+.guideMore { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--accent-strong); }
+
+/* --- final CTA ----------------------------------------------------------- */
+.finalCta { color: #fff; padding-block: clamp(3.5rem, 8vw, 6rem); }
+.finalInner { position: relative; z-index: 1; text-align: center; max-width: 720px; margin-inline: auto; }
+.finalTitle { color: #fff; font-size: var(--step-4); }
+.finalText { color: rgba(255, 255, 255, 0.86); font-size: var(--step-1); margin: 1rem auto 1.8rem; }
+.finalCtas { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+
+@media (min-width: 720px) {
+  .steps { grid-template-columns: repeat(3, 1fr); }
+  .whyGrid { grid-template-columns: repeat(3, 1fr); }
+  .guideCard { grid-template-columns: 1.1fr 1fr; align-items: stretch; }
+  .guideMedia { aspect-ratio: auto; height: 100%; }
+}

@@ -1,0 +1,35 @@
+.grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 2rem;
+  background: var(--navy-900);
+  color: #fff;
+  border-radius: var(--radius-lg);
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  background: var(--whatsapp);
+  color: #04331a;
+  font-size: 1.8rem;
+}
+.cardTitle { color: #fff; font-size: var(--step-2); }
+.cardText { color: rgba(255, 255, 255, 0.82); }
+.number { font-size: var(--step-1); font-weight: 800; color: var(--teal-400); margin: 0.4rem 0 0.8rem; }
+
+.info { display: flex; flex-direction: column; gap: 1.2rem; padding: 1.6rem; background: var(--bg-paper); border: 1px solid var(--line); border-radius: var(--radius-lg); }
+.infoItem { display: flex; gap: 0.9rem; align-items: flex-start; }
+.infoIcon { display: inline-flex; color: var(--accent-strong); font-size: 1.4rem; flex: none; margin-top: 2px; }
+.infoItem h3 { font-size: var(--step-1); margin-bottom: 0.2rem; }
+.infoItem p { color: var(--text-muted); }
+.note { padding: 1rem 1.2rem; background: var(--sand-200); border-radius: var(--radius); }
+.note p { color: var(--ink-700); font-size: 0.92rem; }
+
+@media (min-width: 820px) { .grid { grid-template-columns: 1fr 1fr; align-items: start; } }

@@ -1,0 +1,194 @@
+/* ==========================================================================
+   Egipskie Wakacje - global tokens & base styles
+   Bespoke cinematic Egyptian identity. Single refined light theme with deep
+   navy contrast sections. No utility-class sprawl; components use CSS Modules.
+   ========================================================================== */
+
+:root {
+  /* --- raw palette ------------------------------------------------------- */
+  --navy-900: #0a1922;
+  --navy-800: #0f2634;
+  --navy-700: #163a4d;
+  --teal-700: #0b675f;
+  --teal-600: #0e8378;
+  --teal-500: #17a597;
+  --teal-400: #37c2b2;
+  --gold-600: #b07d24;
+  --gold-500: #c9922f;
+  --gold-400: #e0b256;
+  --terracotta-600: #a8482a;
+  --terracotta-500: #c25c3a;
+  --sand-50: #fffdf8;
+  --sand-100: #faf4e9;
+  --sand-200: #f2e7d3;
+  --sand-300: #e6d8bd;
+  --ink-900: #1b1a16;
+  --ink-700: #3b382f;
+  --ink-500: #615b4b;
+  --ink-400: #837c69;
+  --line: #e7dcc7;
+  --white: #ffffff;
+
+  /* --- semantic ---------------------------------------------------------- */
+  --bg: var(--sand-100);
+  --bg-paper: var(--sand-50);
+  --bg-contrast: var(--navy-900);
+  --bg-contrast-soft: var(--navy-800);
+
+  --text: var(--ink-900);
+  --text-muted: var(--ink-500);
+  --text-on-dark: #f2ece0;
+  --text-on-dark-muted: #a7bcc7;
+
+  --primary: var(--terracotta-600);       /* main "Zarezerwuj" CTA */
+  --primary-hover: #93401f;
+  --accent: var(--teal-600);              /* selected states, links accent */
+  --accent-strong: var(--teal-700);
+  --gold: var(--gold-500);
+  --link: var(--teal-700);
+  --link-on-dark: var(--teal-400);
+  --whatsapp: #25d366;
+  --whatsapp-dark: #1da851;
+
+  --focus: #0e8378;
+  --danger: #b3261e;
+
+  /* --- shape & depth ----------------------------------------------------- */
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --shadow-sm: 0 1px 2px rgba(16, 38, 52, 0.06), 0 2px 6px rgba(16, 38, 52, 0.05);
+  --shadow: 0 6px 18px rgba(16, 38, 52, 0.09), 0 2px 6px rgba(16, 38, 52, 0.06);
+  --shadow-lg: 0 20px 48px rgba(10, 25, 34, 0.16), 0 6px 16px rgba(10, 25, 34, 0.08);
+
+  /* --- layout ------------------------------------------------------------ */
+  --container: 1200px;
+  --container-narrow: 820px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --header-h: 72px;
+
+  /* --- typography -------------------------------------------------------- */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-manrope), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --step--1: clamp(0.83rem, 0.79rem + 0.2vw, 0.94rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.13rem);
+  --step-1: clamp(1.2rem, 1.11rem + 0.45vw, 1.5rem);
+  --step-2: clamp(1.44rem, 1.28rem + 0.8vw, 2rem);
+  --step-3: clamp(1.73rem, 1.48rem + 1.25vw, 2.66rem);
+  --step-4: clamp(2.07rem, 1.68rem + 1.95vw, 3.55rem);
+  --step-5: clamp(2.49rem, 1.9rem + 2.95vw, 4.5rem);
+}
+
+/* --- reset (minimal, modern) --------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+* { margin: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, picture, svg, video { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: none; }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+ul, ol { list-style: none; padding: 0; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 560;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-wrap: balance;
+}
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-2); }
+p { text-wrap: pretty; }
+
+/* --- accessibility helpers ----------------------------------------------- */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed;
+  top: 8px; left: 8px;
+  z-index: 1000;
+  padding: 0.6rem 1rem;
+  background: var(--navy-900);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  transform: translateY(-160%);
+  transition: transform 0.18s ease;
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* --- layout primitives --------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container-narrow { max-width: var(--container-narrow); }
+
+.section { padding-block: clamp(3rem, 7vw, 6rem); }
+.section-tight { padding-block: clamp(2rem, 5vw, 3.5rem); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Subtle Egyptian geometric motif for dark sections / dividers. */
+.motif-dark { background-color: var(--navy-900); position: relative; }
+.motif-dark::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 6 54 30 30 54 6 30Z' fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3Cpath d='M30 18 42 30 30 42 18 30Z' fill='none' stroke='%23e0b256' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* --- motion safety ------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

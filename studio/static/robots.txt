@@ -1,0 +1,6 @@
+# The deployed Studio (https://<name>.sanity.studio) must NEVER be indexed.
+# Files in studio/static/ are served from the root of the deployed Studio,
+# so this file becomes https://<name>.sanity.studio/robots.txt.
+# Keep it. Removing it would expose an editing UI to search engines.
+User-agent: *
+Disallow: /

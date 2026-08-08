@@ -1,0 +1,58 @@
+.wrap {
+  position: relative;
+}
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding-left: 2.4rem;
+}
+.rail {
+  position: absolute;
+  left: 11px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.railFill {
+  position: absolute;
+  inset: 0;
+  transform-origin: top;
+  background: linear-gradient(to bottom, var(--teal-500), var(--gold-500));
+}
+.step { position: relative; }
+.dot {
+  position: absolute;
+  left: -2.4rem;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-paper);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 4px var(--bg);
+}
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.content { padding-bottom: 0.2rem; }
+.time {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--accent-strong);
+  background: rgba(14, 131, 120, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-bottom: 0.35rem;
+}
+.stepTitle { font-size: var(--step-1); margin-bottom: 0.2rem; }
+.stepText { color: var(--text-muted); }

@@ -1,0 +1,87 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.panel { gap: 0.85rem; }
+
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
+.row { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+.field label,
+.ages legend {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+.req { color: var(--primary); }
+.hint { font-size: 0.8rem; color: var(--text-muted); }
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--text);
+  min-height: 46px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field textarea { min-height: auto; resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(14, 131, 120, 0.16);
+}
+.field input[aria-invalid="true"],
+.ages input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.ages {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.ageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.6rem;
+}
+.ageItem { display: flex; flex-direction: column; gap: 0.25rem; }
+.ageItem label { font-size: 0.82rem; font-weight: 600; }
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  background: var(--whatsapp);
+  color: #04331a;
+  font-weight: 800;
+  font-size: var(--step-0);
+  padding: 0.95rem 1.4rem;
+  border-radius: 999px;
+  min-height: 52px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.submit:hover { background: var(--whatsapp-dark); color: #fff; transform: translateY(-1px); }
+.submit svg { font-size: 1.3rem; }
+.disclaimer { font-size: 0.84rem; color: var(--text-muted); text-align: center; }
+
+@media (min-width: 560px) {
+  .row { grid-template-columns: 1fr 1fr; }
+}
