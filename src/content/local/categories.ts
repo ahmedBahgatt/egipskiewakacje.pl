@@ -36,13 +36,13 @@ export const categories: TourCategory[] = [
       },
     ],
     seo: {
-      title: "Wycieczki do Kairu i piramid z Egiptu | Egipskie Wakacje",
+      title: "Wycieczki do Kairu i piramid w Egipcie | Egipskie Wakacje",
       description:
-        "Wszystkie wycieczki do Kairu z Hurghady, Marsa Alam i Sharm el Sheikh: piramidy, Sfinks, Muzeum Egipskie i GEM. Autokarem lub samolotem, rezerwacja przez WhatsApp.",
+        "Wycieczka do Kairu z Hurghady, Marsa Alam i Sharm el Sheikh: piramidy w Gizie, Sfinks, Muzeum Egipskie w Kairze i nowe GEM. Autokarem lub samolotem, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/kair-i-piramidy/",
       ogImage: "/media/og/default.jpg",
     },
-    primaryQuery: "wycieczki do Kairu",
+    primaryQuery: "wycieczka do Kairu",
   },
   {
     slug: "luksor",
@@ -210,13 +210,13 @@ export const categories: TourCategory[] = [
       },
     ],
     seo: {
-      title: "Atrakcje i rozrywka w Egipcie | Akwarium, delfiny, aquapark",
+      title: "Atrakcje w Egipcie - Hurghada i Marsa Alam | Akwarium, delfiny",
       description:
-        "Krótsze atrakcje blisko kurortu: wielkie akwarium, pokazy delfinów, aquaparki, łódź seascope, parasailing i zwiedzanie miasta. Rezerwacja przez WhatsApp.",
+        "Atrakcje blisko kurortu w Hurghadzie i Marsa Alam: Hurghada Grand Aquarium, delfinarium, aquaparki, łódź seascope, parasailing i zwiedzanie miasta. Rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/atrakcje-i-rozrywka/",
       ogImage: "/media/og/default.jpg",
     },
-    primaryQuery: "atrakcje Egipt dla dzieci",
+    primaryQuery: "atrakcje Hurghada Marsa Alam",
   },
   {
     slug: "prywatne",

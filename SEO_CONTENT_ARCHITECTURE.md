@@ -49,3 +49,52 @@ Tag-only (no landing page - too thin): Synaj (2 tours), Wycieczki międzynarodow
 - Najlepsze wycieczki z Marsa Alam dla rodzin
 - Ile trwa dojazd: Hurghada, Marsa Alam, Sharm - do Kairu i Luksoru
 - Nurkowanie na próbę vs kurs PADI Open Water
+
+---
+
+## SEMrush Keyword Gap analysis (2026-08-09)
+
+Source: SEMrush Keyword Gap export (sekretyegiptu.pl vs dziendobryegipt.pl,
+czwartapiramida.pl, hurghada.pl, wycieczkipopolsku.pl). 2,581 keywords -> 456
+Egypt-relevant after removing weather/logistics noise and other destinations
+(Dubai, Cyprus, Albania, Turkey, Canaries, Tunisia) that the general-travel
+competitors rank for. The raw paid export is NOT committed; derived, page-mapped
+keywords are in SEO_KEYWORD_MAP.csv. Volumes are Polish (pl) monthly.
+
+### Priority commercial targets (applied to on-page metadata this pass)
+- "wycieczki fakultatywne" (2900) / "wycieczki fakultatywne egipt" (1000) /
+  "wycieczka fakultatywna" (720) -> homepage + all-tours + destination intros.
+- "hurghada wycieczki" / "wycieczki hurghada" (1900 + 1300) -> Hurghada destination.
+- "marsa alam wycieczki fakultatywne" (1600, KD 3 - highly winnable) /
+  "wycieczki z marsa alam" (1000) -> Marsa Alam destination.
+- "sharm el sheikh wycieczki fakultatywne" (720) -> Sharm destination.
+- "orange bay" (2400) -> Orange Bay tour. "hurghada grand aquarium" /
+  "aquarium hurghada" (1600 + 1300) -> Wielkie Akwarium tour (title updated to
+  include "Hurghada Grand Aquarium").
+- "egipt piramidy" / "piramidy w egipcie" (1900 + 1900) / "muzeum egipskie w
+  kairze" (880) / "wycieczka do kairu" (320) -> Kair category.
+- "hurghada atrakcje" (1000) / "marsa alam atrakcje" (1300) / "egipt atrakcje"
+  (720) -> Atrakcje category.
+- "abu dabbab" (1300), "paradise island" (720), "sharm el luli" (480, KD 2),
+  "ras mohamed", "wyspa tiran", "blue hole", "dolina królów luksor" (320),
+  "delfinarium hurghada" (260) -> matching tour pages (titles already carry the
+  entity name).
+
+### Blog plan (Phase 2 - informational gaps, highest volume first)
+- "hurghada czy marsa alam" (320) - comparison, links to both destinations.
+- "el gouna" (4400) / "makadi bay" (2400) / "sahl hasheesh" (1300) / "el quseir"
+  (1300) - Hurghada-area resort guides (we serve these zones; transfer supplements).
+- "marsa alam kair odleglosc" (260) / journey-time guide (Hurghada/Marsa Alam ->
+  Kair & Luksor by coach vs plane).
+- "egipt piramidy" / "piramidy w egipcie" - piramidy explainer linking to Kair tours.
+- "co zabrać / na co uważać w marsa alam" - practical guides.
+- "rafa koralowa marsa alam" (480) / "rafa nurkowanie" (320) - snorkeling/reef guide.
+Do NOT mass-produce; implement the 2-3 highest-value comparison/guide pieces that
+close a real gap and strengthen a commercial page.
+
+### Notes / discipline
+- Head informational terms like "hurghada" (40500) and "egipt hurghada" (12100)
+  are dominated by weather/general-info sites; we target the commercial modifier
+  ("wycieczki", "atrakcje", "fakultatywne") rather than the bare resort name.
+- Hotel/accommodation queries ("hurghada hotels", "hotel egipt hurghada") are
+  out of product scope - excluded.

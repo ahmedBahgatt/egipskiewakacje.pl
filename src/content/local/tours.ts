@@ -3856,7 +3856,7 @@ export const tours: Tour[] = [
       }
     ],
     "seo": {
-      "title": "Wielkie Akwarium w Hurghadzie | Bilet i transfer",
+      "title": "Hurghada Grand Aquarium - Wielkie Akwarium w Hurghadzie",
       "description": "Hurghada Grand Aquarium: podwodny tunel, ryby Morza Czerwonego, mini zoo i terrarium. Bilet i transfer z hotelu, cena od 40 USD. Rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-hurghady/wielkie-akwarium/",
       "ogImage": "/media/og/hurghada.jpg"

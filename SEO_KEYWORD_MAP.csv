@@ -1,98 +1,457 @@
-keyword,normalized_cluster,intent,destination,assigned_page,page_type,role,cannibalization_note
-wycieczki z Hurghady,destination-H,commercial,Hurghada,/wycieczki-z-hurghady/,destination,primary,broad departure intent - no tour cannibalization
-wycieczki fakultatywne Hurghada,destination-H,commercial,Hurghada,/wycieczki-z-hurghady/,destination,secondary,
-wycieczki z Marsa Alam,destination-MA,commercial,Marsa Alam,/wycieczki-z-marsa-alam/,destination,primary,broad departure intent - no tour cannibalization
-wycieczki fakultatywne Marsa Alam,destination-MA,commercial,Marsa Alam,/wycieczki-z-marsa-alam/,destination,secondary,
-wycieczki z Sharm el Sheikh,destination-S,commercial,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/,destination,primary,broad departure intent - no tour cannibalization
-wycieczki fakultatywne Sharm el Sheikh,destination-S,commercial,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/,destination,secondary,
-wycieczki fakultatywne w Egipcie,home,commercial,all,/,home,primary,broad Egypt intent
-wycieczki w Egipcie dla Polaków,home,commercial,all,/,home,secondary,
-wycieczki do Kairu,cat-kair,commercial,all,/wycieczki/kair-i-piramidy/,category,primary,category cluster - distinct from single-tour intent
-wycieczki do Luksoru,cat-luksor,commercial,all,/wycieczki/luksor/,category,primary,category cluster - distinct from single-tour intent
-rejsy i wyspy Egipt,cat-rejsy-wyspy,commercial,all,/wycieczki/rejsy-i-wyspy/,category,primary,category cluster - distinct from single-tour intent
-snorkeling z delfinami Egipt,cat-snorkeling-delfiny,commercial,all,/wycieczki/snorkeling-i-delfiny/,category,primary,category cluster - distinct from single-tour intent
-nurkowanie Egipt,cat-nurkowanie,commercial,all,/wycieczki/nurkowanie/,category,primary,category cluster - distinct from single-tour intent
-safari quady Egipt,cat-safari,commercial,all,/wycieczki/safari-i-quady/,category,primary,category cluster - distinct from single-tour intent
-atrakcje Egipt,cat-atrakcje,commercial,all,/wycieczki/atrakcje-i-rozrywka/,category,primary,category cluster - distinct from single-tour intent
-prywatne wycieczki Egipt,cat-prywatne,commercial,all,/wycieczki/wycieczki-prywatne/,category,primary,category cluster - distinct from single-tour intent
-kair piramidy muzeum egipskie Hurghady,tour-kair-piramidy-muzeum-egipskie,transactional,Hurghada,/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/,tour,primary,one specific bookable offer
-kair wielkie muzeum gem Hurghady,tour-kair-wielkie-muzeum-gem,transactional,Hurghada,/wycieczki-z-hurghady/kair-wielkie-muzeum-gem/,tour,primary,one specific bookable offer
-super kair piramidy rejs po nilu Hurghady,tour-super-kair-piramidy-rejs-po-nilu,transactional,Hurghada,/wycieczki-z-hurghady/super-kair-piramidy-rejs-po-nilu/,tour,primary,one specific bookable offer
-kair samolotem Hurghady,tour-kair-samolotem,transactional,Hurghada,/wycieczki-z-hurghady/kair-samolotem/,tour,primary,one specific bookable offer
-prywatna wycieczka do kairu Hurghady,tour-prywatna-wycieczka-do-kairu,transactional,Hurghada,/wycieczki-z-hurghady/prywatna-wycieczka-do-kairu/,tour,primary,one specific bookable offer
-luksor dolina krolow Hurghady,tour-luksor-dolina-krolow,transactional,Hurghada,/wycieczki-z-hurghady/luksor-dolina-krolow/,tour,primary,one specific bookable offer
-prywatna wycieczka luksor dendera Hurghady,tour-prywatna-wycieczka-luksor-dendera,transactional,Hurghada,/wycieczki-z-hurghady/prywatna-wycieczka-luksor-dendera/,tour,primary,one specific bookable offer
-luksor lot balonem Hurghady,tour-luksor-lot-balonem,transactional,Hurghada,/wycieczki-z-hurghady/luksor-lot-balonem/,tour,primary,one specific bookable offer
-luksor 2 dni lot balonem Hurghady,tour-luksor-2-dni-lot-balonem,transactional,Hurghada,/wycieczki-z-hurghady/luksor-2-dni-lot-balonem/,tour,primary,one specific bookable offer
-orange bay Hurghady,tour-orange-bay,transactional,Hurghada,/wycieczki-z-hurghady/orange-bay/,tour,primary,one specific bookable offer
-wyspa paradise Hurghady,tour-wyspa-paradise,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-paradise/,tour,primary,one specific bookable offer
-wyspa mahmya Hurghady,tour-wyspa-mahmya,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-mahmya/,tour,primary,one specific bookable offer
-wyspa eden Hurghady,tour-wyspa-eden,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-eden/,tour,primary,one specific bookable offer
-wyspa bianca lodz szklane dno Hurghady,tour-wyspa-bianca-lodz-szklane-dno,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-bianca-lodz-szklane-dno/,tour,primary,one specific bookable offer
-wyspa hula hula Hurghady,tour-wyspa-hula-hula,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-hula-hula/,tour,primary,one specific bookable offer
-wyspa magawish Hurghady,tour-wyspa-magawish,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-magawish/,tour,primary,one specific bookable offer
-sharm el naga snorkeling Hurghady,tour-sharm-el-naga-snorkeling,transactional,Hurghada,/wycieczki-z-hurghady/sharm-el-naga-snorkeling/,tour,primary,one specific bookable offer
-dom delfinow snorkeling Hurghady,tour-dom-delfinow-snorkeling,transactional,Hurghada,/wycieczki-z-hurghady/dom-delfinow-snorkeling/,tour,primary,one specific bookable offer
-dom delfinow nurkowanie Hurghady,tour-dom-delfinow-nurkowanie,transactional,Hurghada,/wycieczki-z-hurghady/dom-delfinow-nurkowanie/,tour,primary,one specific bookable offer
-delfinarium dolphin show Hurghady,tour-delfinarium-dolphin-show,transactional,Hurghada,/wycieczki-z-hurghady/delfinarium-dolphin-show/,tour,primary,one specific bookable offer
-nurkowanie na probe Hurghady,tour-nurkowanie-na-probe,transactional,Hurghada,/wycieczki-z-hurghady/nurkowanie-na-probe/,tour,primary,one specific bookable offer
-abu dabbab snorkeling Hurghady,tour-abu-dabbab-snorkeling,transactional,Hurghada,/wycieczki-z-hurghady/abu-dabbab-snorkeling/,tour,primary,one specific bookable offer
-plaza orange ozirea Hurghady,tour-plaza-orange-ozirea,transactional,Hurghada,/wycieczki-z-hurghady/plaza-orange-ozirea/,tour,primary,one specific bookable offer
-prywatny speedboat Hurghady,tour-prywatny-speedboat,transactional,Hurghada,/wycieczki-z-hurghady/prywatny-speedboat/,tour,primary,one specific bookable offer
-lodz seascope Hurghady,tour-lodz-seascope,transactional,Hurghada,/wycieczki-z-hurghady/lodz-seascope/,tour,primary,one specific bookable offer
-wielkie akwarium Hurghady,tour-wielkie-akwarium,transactional,Hurghada,/wycieczki-z-hurghady/wielkie-akwarium/,tour,primary,one specific bookable offer
-aquapark makadi water world Hurghady,tour-aquapark-makadi-water-world,transactional,Hurghada,/wycieczki-z-hurghady/aquapark-makadi-water-world/,tour,primary,one specific bookable offer
-mini egypt park Hurghady,tour-mini-egypt-park,transactional,Hurghada,/wycieczki-z-hurghady/mini-egypt-park/,tour,primary,one specific bookable offer
-dzien rodzinny Hurghady,tour-dzien-rodzinny,transactional,Hurghada,/wycieczki-z-hurghady/dzien-rodzinny/,tour,primary,one specific bookable offer
-family safari Hurghady,tour-family-safari,transactional,Hurghada,/wycieczki-z-hurghady/family-safari/,tour,primary,one specific bookable offer
-super safari sahara park Hurghady,tour-super-safari-sahara-park,transactional,Hurghada,/wycieczki-z-hurghady/super-safari-sahara-park/,tour,primary,one specific bookable offer
-quad safari 3h Hurghady,tour-quad-safari-3h,transactional,Hurghada,/wycieczki-z-hurghady/quad-safari-3h/,tour,primary,one specific bookable offer
-quad safari 5h Hurghady,tour-quad-safari-5h,transactional,Hurghada,/wycieczki-z-hurghady/quad-safari-5h/,tour,primary,one specific bookable offer
-buggy safari Hurghady,tour-buggy-safari,transactional,Hurghada,/wycieczki-z-hurghady/buggy-safari/,tour,primary,one specific bookable offer
-jazda konno kapiel w morzu Hurghady,tour-jazda-konno-kapiel-w-morzu,transactional,Hurghada,/wycieczki-z-hurghady/jazda-konno-kapiel-w-morzu/,tour,primary,one specific bookable offer
-jazda na wielbladzie Hurghady,tour-jazda-na-wielbladzie,transactional,Hurghada,/wycieczki-z-hurghady/jazda-na-wielbladzie/,tour,primary,one specific bookable offer
-parasailing Hurghady,tour-parasailing,transactional,Hurghada,/wycieczki-z-hurghady/parasailing/,tour,primary,one specific bookable offer
-city tour Hurghady,tour-city-tour,transactional,Hurghada,/wycieczki-z-hurghady/city-tour/,tour,primary,one specific bookable offer
-el gouna Hurghady,tour-el-gouna,transactional,Hurghada,/wycieczki-z-hurghady/el-gouna/,tour,primary,one specific bookable offer
-kurs padi open water Hurghady,tour-kurs-padi-open-water,transactional,Hurghada,/wycieczki-z-hurghady/kurs-padi-open-water/,tour,primary,one specific bookable offer
-kurs padi advanced open water Hurghady,tour-kurs-padi-advanced-open-water,transactional,Hurghada,/wycieczki-z-hurghady/kurs-padi-advanced-open-water/,tour,primary,one specific bookable offer
-kair stary kair piramidy Marsa Alam,tour-kair-stary-kair-piramidy,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kair-stary-kair-piramidy/,tour,primary,one specific bookable offer
-kair wielkie muzeum gem Marsa Alam,tour-kair-wielkie-muzeum-gem,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kair-wielkie-muzeum-gem/,tour,primary,one specific bookable offer
-kair samolotem Marsa Alam,tour-kair-samolotem,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kair-samolotem/,tour,primary,one specific bookable offer
-prywatna wycieczka do kairu Marsa Alam,tour-prywatna-wycieczka-do-kairu,transactional,Marsa Alam,/wycieczki-z-marsa-alam/prywatna-wycieczka-do-kairu/,tour,primary,one specific bookable offer
-luksor dolina krolow Marsa Alam,tour-luksor-dolina-krolow,transactional,Marsa Alam,/wycieczki-z-marsa-alam/luksor-dolina-krolow/,tour,primary,one specific bookable offer
-prywatna wycieczka luksor dendera Marsa Alam,tour-prywatna-wycieczka-luksor-dendera,transactional,Marsa Alam,/wycieczki-z-marsa-alam/prywatna-wycieczka-luksor-dendera/,tour,primary,one specific bookable offer
-sataya dom delfinow Marsa Alam,tour-sataya-dom-delfinow,transactional,Marsa Alam,/wycieczki-z-marsa-alam/sataya-dom-delfinow/,tour,primary,one specific bookable offer
-samadai dom delfinow Marsa Alam,tour-samadai-dom-delfinow,transactional,Marsa Alam,/wycieczki-z-marsa-alam/samadai-dom-delfinow/,tour,primary,one specific bookable offer
-abu dabbab Marsa Alam,tour-abu-dabbab,transactional,Marsa Alam,/wycieczki-z-marsa-alam/abu-dabbab/,tour,primary,one specific bookable offer
-marsa mubarak snorkeling Marsa Alam,tour-marsa-mubarak-snorkeling,transactional,Marsa Alam,/wycieczki-z-marsa-alam/marsa-mubarak-snorkeling/,tour,primary,one specific bookable offer
-wyspy hamata Marsa Alam,tour-wyspy-hamata,transactional,Marsa Alam,/wycieczki-z-marsa-alam/wyspy-hamata/,tour,primary,one specific bookable offer
-rejs nefertari Marsa Alam,tour-rejs-nefertari,transactional,Marsa Alam,/wycieczki-z-marsa-alam/rejs-nefertari/,tour,primary,one specific bookable offer
-lodz seascope Marsa Alam,tour-lodz-seascope,transactional,Marsa Alam,/wycieczki-z-marsa-alam/lodz-seascope/,tour,primary,one specific bookable offer
-sharm el lulli ras hankorab Marsa Alam,tour-sharm-el-lulli-ras-hankorab,transactional,Marsa Alam,/wycieczki-z-marsa-alam/sharm-el-lulli-ras-hankorab/,tour,primary,one specific bookable offer
-nurkowanie z plazy Marsa Alam,tour-nurkowanie-z-plazy,transactional,Marsa Alam,/wycieczki-z-marsa-alam/nurkowanie-z-plazy/,tour,primary,one specific bookable offer
-nurkowanie z lodzi Marsa Alam,tour-nurkowanie-z-lodzi,transactional,Marsa Alam,/wycieczki-z-marsa-alam/nurkowanie-z-lodzi/,tour,primary,one specific bookable offer
-kurs padi open water Marsa Alam,tour-kurs-padi-open-water,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kurs-padi-open-water/,tour,primary,one specific bookable offer
-kurs padi advanced open water Marsa Alam,tour-kurs-padi-advanced-open-water,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kurs-padi-advanced-open-water/,tour,primary,one specific bookable offer
-kurs padi rescue diver Marsa Alam,tour-kurs-padi-rescue-diver,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kurs-padi-rescue-diver/,tour,primary,one specific bookable offer
-super safari quady Marsa Alam,tour-super-safari-quady,transactional,Marsa Alam,/wycieczki-z-marsa-alam/super-safari-quady/,tour,primary,one specific bookable offer
-quad safari 5h Marsa Alam,tour-quad-safari-5h,transactional,Marsa Alam,/wycieczki-z-marsa-alam/quad-safari-5h/,tour,primary,one specific bookable offer
-quad safari 2h Marsa Alam,tour-quad-safari-2h,transactional,Marsa Alam,/wycieczki-z-marsa-alam/quad-safari-2h/,tour,primary,one specific bookable offer
-jeep safari Marsa Alam,tour-jeep-safari,transactional,Marsa Alam,/wycieczki-z-marsa-alam/jeep-safari/,tour,primary,one specific bookable offer
-kair gem piramidy Sharm el Sheikh,tour-kair-gem-piramidy,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/,tour,primary,one specific bookable offer
-kair samolotem Sharm el Sheikh,tour-kair-samolotem,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/kair-samolotem/,tour,primary,one specific bookable offer
-gora mojzesza klasztor sw katarzyny Sharm el Sheikh,tour-gora-mojzesza-klasztor-sw-katarzyny,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/gora-mojzesza-klasztor-sw-katarzyny/,tour,primary,one specific bookable offer
-blue hole kolorowy kanion Sharm el Sheikh,tour-blue-hole-kolorowy-kanion,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/blue-hole-kolorowy-kanion/,tour,primary,one specific bookable offer
-jordania petra morze martwe Sharm el Sheikh,tour-jordania-petra-morze-martwe,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/jordania-petra-morze-martwe/,tour,primary,one specific bookable offer
-white island ras mohamed Sharm el Sheikh,tour-white-island-ras-mohamed,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/white-island-ras-mohamed/,tour,primary,one specific bookable offer
-ras mohamed snorkeling Sharm el Sheikh,tour-ras-mohamed-snorkeling,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/ras-mohamed-snorkeling/,tour,primary,one specific bookable offer
-wyspa tiran snorkeling Sharm el Sheikh,tour-wyspa-tiran-snorkeling,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/wyspa-tiran-snorkeling/,tour,primary,one specific bookable offer
-wyspa tiran nurkowanie Sharm el Sheikh,tour-wyspa-tiran-nurkowanie,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/wyspa-tiran-nurkowanie/,tour,primary,one specific bookable offer
-dolphin show Sharm el Sheikh,tour-dolphin-show,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/dolphin-show/,tour,primary,one specific bookable offer
-lodz seascope Sharm el Sheikh,tour-lodz-seascope,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/lodz-seascope/,tour,primary,one specific bookable offer
-parasailing Sharm el Sheikh,tour-parasailing,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/parasailing/,tour,primary,one specific bookable offer
-quad safari 3h Sharm el Sheikh,tour-quad-safari-3h,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/quad-safari-3h/,tour,primary,one specific bookable offer
-quad safari 5h Sharm el Sheikh,tour-quad-safari-5h,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/quad-safari-5h/,tour,primary,one specific bookable offer
-sunset safari teleskop Sharm el Sheikh,tour-sunset-safari-teleskop,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/sunset-safari-teleskop/,tour,primary,one specific bookable offer
-buggy safari Sharm el Sheikh,tour-buggy-safari,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/buggy-safari/,tour,primary,one specific bookable offer
-jazda na wielbladzie Sharm el Sheikh,tour-jazda-na-wielbladzie,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/jazda-na-wielbladzie/,tour,primary,one specific bookable offer
+keyword,volume,kd,intent,our_rank,assigned_page,page_type
+hurghada,40500,34,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada,12100,39,Informational,not ranking,/wycieczki-z-hurghady/,destination
+el gouna,4400,18,Informational,not ranking,BLOG,blog
+hurghada egipt,2900,37,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wycieczki egipt,2900,35,Informational,not ranking,/,home
+egipt wycieczki,2900,35,Informational,not ranking,/,home
+hurghada temperatura,2900,28,Informational,not ranking,/wycieczki-z-hurghady/,destination
+makadi bay,2400,16,Informational,not ranking,BLOG,blog
+orange bay,2400,9,Informational,#46,/wycieczki-z-hurghady/orange-bay/,tour
+egipt piramidy,1900,25,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+el gouna egipt,1900,24,Informational,not ranking,BLOG,blog
+piramidy w egipcie,1900,23,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada wycieczki,1900,10,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+piramide egipt,1600,27,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada grand aquarium,1600,8,Informational,not ranking,/wycieczki-z-hurghady/wielkie-akwarium/,tour
+marsa alam wycieczki fakultatywne,1600,3,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+temperatura hurghada,1300,26,Informational,not ranking,/wycieczki-z-hurghady/,destination
+sahl hasheesh hurghada,1300,24,Informational,not ranking,/wycieczki-z-hurghady/,destination
+marsa alam atrakcje,1300,18,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+el quseir,1300,18,Informational,not ranking,BLOG,blog
+hurghada temperatura wody,1300,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+abu dabbab,1300,12,Informational,not ranking,/wycieczki-z-marsa-alam/abu-dabbab/,tour
+wycieczki hurghada,1300,10,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada aquarium,1300,8,Informational,not ranking,/wycieczki-z-hurghady/wielkie-akwarium/,tour
+aquarium hurghada,1300,8,Informational,not ranking,/wycieczki-z-hurghady/wielkie-akwarium/,tour
+sahl hasheesh,1000,24,Informational,not ranking,BLOG,blog
+hurghada atrakcje,1000,19,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+hurghada mapa,1000,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada godzina,1000,15,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+wycieczki marsa alam,1000,9,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+wycieczki z marsa alam,1000,6,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+wycieczki fakultatywne egipt,1000,5,Informational,not ranking,/,home
+muzeum egipskie w kairze,880,21,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+soma bay egipt,880,18,Informational,not ranking,BLOG,blog
+marsa alam godzina,880,10,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/,destination
+na co uważać w marsa alam,880,9,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+marsa alam wycieczki,880,8,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/,destination
+wyspy qulaan,880,8,Informational,not ranking,/wycieczki/rejsy-i-wyspy/,category
+paradise island,720,25,Informational,not ranking,/wycieczki-z-hurghady/wyspa-paradise/,tour
+hurghada hotels,720,23,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hotels in hurghada,720,19,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+sharm el sheikh wycieczki fakultatywne,720,10,"Commercial, Informational",not ranking,/wycieczki-z-sharm-el-sheikh/,destination
+wycieczki z hurghady,720,10,Informational,not ranking,/wycieczki-z-hurghady/,destination
+kair piramidy,720,10,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hamata,720,9,Informational,not ranking,BLOG,blog
+hurghada city center,590,28,Informational,not ranking,/wycieczki-z-hurghady/,destination
+temperatura w hurghadzie,590,25,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt el gouna,590,23,Informational,not ranking,BLOG,blog
+hurghada miasto,590,19,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt luxor,590,17,Informational,not ranking,/wycieczki/luksor/,category
+snurkowanie w egipcie,590,5,Informational,not ranking,/wycieczki/nurkowanie/,category
+wycieczki fakultatywne hurghada,590,5,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt wycieczki fakultatywne,590,5,Informational,not ranking,/,home
+hurghada kair odległość,590,3,Informational,#19,/wycieczki-z-hurghady/,destination
+wycieczki fakultatywne marsa alam,590,2,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+nowy kair,480,32,Informational,not ranking,BLOG,blog
+egipt luksor,480,21,"Commercial, Informational",not ranking,/wycieczki/luksor/,category
+muzeum w kairze,480,21,Informational,not ranking,BLOG,blog
+gdzie są piramidy w egipcie,480,20,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+sataya,480,20,Informational,not ranking,/wycieczki-z-marsa-alam/sataya-dom-delfinow/,tour
+hotel hurghada,480,19,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+egipt kair,480,19,Informational,not ranking,BLOG,blog
+muzeum kair,480,18,"Commercial, Informational",not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada co warto zobaczyć,480,17,Informational,not ranking,/wycieczki-z-hurghady/,destination
+rafa koralowa marsa alam,480,15,"Informational, Transactional",not ranking,/wycieczki/nurkowanie/,category
+wycieczki sharm el sheikh,480,14,Informational,#63,/wycieczki-z-sharm-el-sheikh/,destination
+temperatura wody hurghada,480,14,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+rafa marsa alam,480,13,"Informational, Transactional",not ranking,/wycieczki/nurkowanie/,category
+jeep safari,480,10,Informational,not ranking,/wycieczki/safari-i-quady/,category
+marsa alam luksor odległość,480,10,Informational,not ranking,/wycieczki/luksor/,category
+orange bay hurghada,480,7,Informational,#48,/wycieczki-z-hurghady/orange-bay/,tour
+rejs katamaranem,480,7,"Commercial, Informational",not ranking,/wycieczki/rejsy-i-wyspy/,category
+rejs po nilu kair i wielkie piramidy,480,6,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada wycieczki fakultatywne,480,5,Informational,not ranking,/wycieczki-z-hurghady/,destination
+sharm el luli,480,2,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/sharm-el-lulli-ras-hankorab/,tour
+marsa alam wycieczki fakultatywne po polsku,480,1,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada egypt,390,34,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+hurghada wakacje,390,24,Informational,not ranking,/wycieczki-z-hurghady/,destination
+gdzie są piramidy,390,22,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada al bahr al ahmar egipt,390,22,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada hotel,390,21,Transactional,not ranking,/wycieczki-z-hurghady/,destination
+nowe muzeum w kairze,390,21,Informational,not ranking,BLOG,blog
+hurghada hotele 5 gwiazdkowe,390,20,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada wycieczki fakultatywne po polsku,390,19,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada co zobaczyć,390,17,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hotel egipt hurghada,390,15,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+wakacje hurghada,390,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+el gouna wakacje,390,14,"Informational, Transactional",not ranking,BLOG,blog
+egipt hurghada mapa,390,12,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wycieczki fakultatywne sharm el sheikh,390,11,Informational,not ranking,/wycieczki-z-sharm-el-sheikh/,destination
+hurghada hotel 5 gwiazdkowy,390,11,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+wyspa orange bay,390,6,Informational,#35,/wycieczki-z-hurghady/orange-bay/,tour
+orange bay island,390,6,Informational,not ranking,/wycieczki-z-hurghady/orange-bay/,tour
+dolina królów luksor,320,22,Commercial,not ranking,/wycieczki-z-hurghady/luksor-dolina-krolow/,tour
+hurghada piramide,320,16,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+mapa egiptu marsa alam,320,13,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada czy marsa alam,320,13,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+rafa nurkowanie,320,11,"Commercial, Navigational",not ranking,/wycieczki/nurkowanie/,category
+kair godzina,320,10,"Commercial, Informational",not ranking,BLOG,blog
+luksor piramidy,320,10,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+wycieczka do kairu,320,7,"Commercial, Informational",#55,/wycieczki/kair-i-piramidy/,category
+kair wycieczka,320,5,"Informational, Transactional",#64,/wycieczki/kair-i-piramidy/,category
+hurghada sheraton street,260,26,Transactional,not ranking,/wycieczki-z-hurghady/,destination
+sheraton street hurghada,260,24,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+temp hurghada,260,22,Informational,not ranking,/wycieczki-z-hurghady/,destination
+coral travel egipt wycieczki fakultatywne,260,19,"Navigational, Transactional",not ranking,/,home
+pod piramidą,260,19,"Informational, Transactional",not ranking,/wycieczki/kair-i-piramidy/,category
+egipt piramidy wycieczka,260,18,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hotele w hurghadzie,260,17,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+atrakcje w marsa alam,260,16,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+kair atrakcje,260,15,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+godzina hurghada,260,15,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada wycieczki,260,15,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+piramidy kair,260,14,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+pod piramida,260,12,"Informational, Transactional",not ranking,/wycieczki/kair-i-piramidy/,category
+wycieczki egipt hurghada,260,12,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+delfinarium hurghada,260,7,Commercial,not ranking,/wycieczki-z-hurghady/delfinarium-dolphin-show/,tour
+orange bay egipt,260,6,"Informational, Transactional",#29,/wycieczki-z-hurghady/orange-bay/,tour
+marsa alam kair odleglosc,260,6,"Commercial, Informational",#21,/wycieczki-z-marsa-alam/,destination
+hamata island,260,6,"Informational, Transactional",not ranking,BLOG,blog
+wyspa hamata,260,5,Informational,not ranking,/wycieczki/rejsy-i-wyspy/,category
+wycieczki z hurghady do kairu,260,3,Informational,#42,/wycieczki-z-hurghady/,destination
+wycieczki z hurghady do piramid,260,1,Informational,#33,/wycieczki/kair-i-piramidy/,category
+hurghada 24,210,32,Navigational,not ranking,/wycieczki-z-hurghady/,destination
+hurghadzie,210,30,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+kair z lotu ptaka,210,21,Informational,not ranking,BLOG,blog
+coral travel wycieczki fakultatywne egipt,210,19,"Navigational, Transactional",not ranking,/,home
+hurghada plaża,210,19,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada temperatura,210,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+atrakcje hurghada,210,17,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+centrum hurghada,210,17,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+kair muzeum,210,16,"Commercial, Informational",not ranking,BLOG,blog
+luksor dolina królów,210,16,Commercial,not ranking,/wycieczki-z-hurghady/luksor-dolina-krolow/,tour
+egipt wycieczki objazdowe,210,15,Informational,not ranking,/,home
+egipt mapa marsa alam,210,15,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+muzeum egipskie kair,210,15,"Commercial, Informational",not ranking,/wycieczki/kair-i-piramidy/,category
+dolina królów luxor egipt,210,15,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/luksor-dolina-krolow/,tour
+marsa alam co warto zobaczyć,210,14,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+marsa alam czy hurghada,210,14,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+hurghady,210,14,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+hurghada centrum miasta,210,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+kair ulice,210,13,Informational,not ranking,BLOG,blog
+czy w hurghadzie jest bezpiecznie,210,13,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada paradise island,210,12,Informational,#21,/wycieczki-z-hurghady/wyspa-paradise/,tour
+luxor dolina królów,210,12,Commercial,not ranking,/wycieczki-z-hurghady/luksor-dolina-krolow/,tour
+hurghada temperatura wody luty,210,11,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wycieczki egipt marsa alam,210,11,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada centrum,210,11,Informational,not ranking,/wycieczki-z-hurghady/,destination
+paradise island egipt,210,11,Informational,not ranking,/wycieczki-z-hurghady/wyspa-paradise/,tour
+hurghada luksor odległość,210,10,"Commercial, Informational",#5,/wycieczki/luksor/,category
+nurkowanie hurghada,210,10,Commercial,not ranking,/wycieczki/nurkowanie/,category
+egipt łódź podwodna hurghada,210,8,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+buggy safari,210,7,Informational,not ranking,/wycieczki/safari-i-quady/,category
+paradise island hurghada,210,7,Informational,not ranking,/wycieczki-z-hurghady/wyspa-paradise/,tour
+hamata egipt,210,7,Informational,not ranking,BLOG,blog
+hurghada jakie morze,210,6,Informational,not ranking,/wycieczki-z-hurghady/,destination
+sharm el naga,210,6,Commercial,not ranking,/wycieczki-z-sharm-el-sheikh/,destination
+hurghada kair,210,5,"Commercial, Informational",#83,/wycieczki-z-hurghady/,destination
+hurghada piramidy odległość,210,5,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+marsa alam piramidy,210,3,Informational,#59,/wycieczki/kair-i-piramidy/,category
+wycieczki fakultatywne z marsa alam,210,3,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+marsa alam nurkowanie,210,1,"Commercial, Informational",not ranking,/wycieczki/nurkowanie/,category
+koszt wycieczki z hurghady do piramid,210,0,Informational,#58,/wycieczki/kair-i-piramidy/,category
+hurghada google maps,170,36,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada temperatura luty,170,26,Informational,not ranking,/wycieczki-z-hurghady/,destination
+temperatura egipt hurghada,170,24,Informational,not ranking,/wycieczki-z-hurghady/,destination
+sahl hasheesh egipt,170,23,Informational,not ranking,BLOG,blog
+hurghada temperatura grudzień,170,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+gdzie jest hurghada,170,21,Informational,not ranking,/wycieczki-z-hurghady/,destination
+el gouna egypt,170,19,Informational,not ranking,BLOG,blog
+sahl hasheesh egypt,170,18,Informational,not ranking,BLOG,blog
+gdzie leży hurghada,170,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada wycieczki fakultatywne tui,170,17,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+piramidy w egipcie mapa,170,17,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hotele w centrum hurghady,170,17,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+co zwiedzić w hurghadzie,170,16,Informational,not ranking,/wycieczki-z-hurghady/,destination
+co zobaczyć w hurghadzie,170,16,Informational,not ranking,/wycieczki-z-hurghady/,destination
+abu dabbab beach,170,15,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/abu-dabbab/,tour
+hurghada giza odległość,170,15,Informational,not ranking,/wycieczki-z-hurghady/,destination
+marsa alam czy hurghada zimą,170,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+piramidy w egipcie gdzie sa,170,14,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada wschód słońca,170,14,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hotel hurghada egipt,170,14,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada najlepsze hotele,170,14,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+el gouna city,170,14,"Commercial, Informational",not ranking,BLOG,blog
+jaki hotel w hurghadzie polecacie,170,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada atrakcje,170,14,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+zachód słońca hurghada,170,12,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+marsa alam co zwiedzać,170,12,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+abu dabbab marsa alam,170,12,Commercial,not ranking,/wycieczki-z-marsa-alam/abu-dabbab/,tour
+el gouna mapa,170,11,Informational,not ranking,BLOG,blog
+zachod slonca hurghada,170,10,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+godzina marsa alam,170,10,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/,destination
+grand aquarium,170,10,Informational,not ranking,/wycieczki-z-hurghady/wielkie-akwarium/,tour
+hurghada luksor,170,10,Informational,not ranking,/wycieczki/luksor/,category
+wycieczka na safari cena,170,8,Informational,not ranking,/wycieczki/safari-i-quady/,category
+hurghada nurkowanie,170,8,Commercial,not ranking,/wycieczki/nurkowanie/,category
+zatoka abu dabbab,170,8,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/abu-dabbab/,tour
+rafa koralowa egipt hurghada,170,7,Informational,not ranking,/wycieczki/nurkowanie/,category
+godzina w marsa alam,170,6,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/,destination
+wycieczki fakultatywne egipt hurghada,170,6,Informational,not ranking,/wycieczki-z-hurghady/,destination
+rafa koralowa hurghada,170,5,Informational,not ranking,/wycieczki/nurkowanie/,category
+wycieczka kair,170,5,"Commercial, Informational",not ranking,BLOG,blog
+hurghada luxor,170,5,Informational,not ranking,/wycieczki/luksor/,category
+wycieczki fakultatywne z hurghady,170,3,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wycieczka do kairu z hurghady,170,3,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+wycieczki z marsa alam do luksoru,170,3,Informational,not ranking,/wycieczki/luksor/,category
+hurghada łódź podwodna,170,2,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+safari egipt,170,2,Informational,not ranking,/wycieczki/safari-i-quady/,category
+google maps hurghada,140,32,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada maps,140,30,Informational,not ranking,/wycieczki-z-hurghady/,destination
+dahar hurghada,140,27,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada mapa google,140,26,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada temperatura w styczniu,140,25,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada koronawirus,140,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada miasto zdjęcia,140,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+piramidy w gizie opinie,140,18,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada temperatura marzec,140,17,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada luxor odległość,140,16,Informational,#5,/wycieczki/luksor/,category
+atrakcje marsa alam,140,16,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+co zobaczyc w hurghadzie,140,16,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wyspy hamata,140,14,"Commercial, Informational",#59,/wycieczki/rejsy-i-wyspy/,category
+makadi bay mapa,140,14,Informational,not ranking,BLOG,blog
+najlepsze hotele hurghada,140,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+marsa alam abu dabbab,140,14,Informational,not ranking,/wycieczki-z-marsa-alam/abu-dabbab/,tour
+egipt zwiedzanie piramid,140,14,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada map,140,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt marsa alam atrakcje,140,13,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+marsa alam rafa koralowa,140,12,"Informational, Transactional",not ranking,/wycieczki/nurkowanie/,category
+wycieczka egipt piramidy,140,12,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+co warto zobaczyć w hurghadzie,140,11,Informational,#88,/wycieczki-z-hurghady/,destination
+sharm el sheikh co warto zobaczyć,140,11,Informational,not ranking,/wycieczki-z-sharm-el-sheikh/,destination
+godzina w hurghadzie,140,10,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+stary kair,140,9,"Commercial, Informational",#25,BLOG,blog
+quad safari,140,9,Commercial,not ranking,/wycieczki/safari-i-quady/,category
+czy hurghada jest bezpieczna,140,7,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wycieczka do kairu z polski,140,7,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+qulaan,140,7,Informational,not ranking,BLOG,blog
+safari hurghada egypt,140,7,Commercial,not ranking,/wycieczki/safari-i-quady/,category
+quady egipt,140,6,"Commercial, Informational",not ranking,/wycieczki/safari-i-quady/,category
+safari hurghada,140,6,Commercial,not ranking,/wycieczki/safari-i-quady/,category
+qulaan island,140,5,Informational,not ranking,BLOG,blog
+hurghada wycieczka piramidy,140,4,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+ile kosztuje wycieczka z marsa alam do luksoru,140,3,Informational,not ranking,/wycieczki/luksor/,category
+wycieczka do luksoru z marsa alam,140,3,Informational,not ranking,/wycieczki/luksor/,category
+ile kosztuje wycieczka z hurghady do luksoru,140,3,Informational,not ranking,/wycieczki/luksor/,category
+wycieczka z marsa alam do kairu,140,1,Informational,#46,/wycieczki-z-marsa-alam/,destination
+wycieczki z marsa alam do kairu,140,1,Informational,#41,/wycieczki-z-marsa-alam/,destination
+wycieczka z hurghady do luksoru,140,0,Informational,#22,/wycieczki/luksor/,category
+egipt makadi bay,140,-1,"Informational, Transactional",not ranking,BLOG,blog
+muzeum w kairze nowe,140,-1,"Informational, Transactional",not ranking,BLOG,blog
+centrum hurghady,140,-1,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+nowe muzeum egipskie w kairze,110,32,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+sfinks biuro podróży,110,31,Navigational,not ranking,BLOG,blog
+meczet hurghada,110,27,Informational,not ranking,/wycieczki-z-hurghady/,destination
+muzeum w gizie,110,26,"Informational, Transactional",#22,BLOG,blog
+hurghada temperatura maj,110,25,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada temperatura listopad,110,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+ile stopni jest w hurghadzie,110,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+jaka temperatura w hurghadzie,110,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+plaza hurghada,110,23,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+loty do kairu z warszawy,110,22,Informational,not ranking,BLOG,blog
+piramidy egipt mapa,110,22,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+el gouna hurghada,110,22,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada plaza,110,21,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+wycieczka do hurghady,110,21,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt soma bay,110,19,Informational,not ranking,BLOG,blog
+hurghada luty,110,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+gdzie w egipcie są piramidy,110,17,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+egipt hurghada hotele przy plaży,110,16,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+piramidy w kairze,110,16,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada city,110,16,Informational,not ranking,/wycieczki-z-hurghady/,destination
+marsa alam czy sharm el sheikh,110,15,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/,destination
+ile piramid jest w egipcie,110,15,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+kair wakacje,110,15,"Informational, Transactional",not ranking,BLOG,blog
+co zwiedzić w marsa alam,110,15,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+marsa alam to luxor,110,15,Informational,not ranking,/wycieczki/luksor/,category
+plaze hurghada,110,15,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+hurghada egipt mapa,110,15,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada w lutym,110,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt hotel hurghada,110,14,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada co warto kupić,110,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt wycieczka piramidy,110,14,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+sataya reef,110,14,Commercial,not ranking,/wycieczki-z-marsa-alam/sataya-dom-delfinow/,tour
+hurghada mapa hoteli,110,13,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+piramidy w egipcie gdzie są,110,12,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+kair zwiedzanie,110,12,Informational,not ranking,BLOG,blog
+marsa alam tours,110,11,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+egipt marsa alam wycieczki,110,11,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada morze,110,11,Informational,not ranking,/wycieczki-z-hurghady/,destination
+co zwiedzać w marsa alam,110,10,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+temperatura morza hurghada,110,10,Informational,not ranking,/wycieczki-z-hurghady/,destination
+temperatura wody w hurghadzie,110,10,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+wycieczka do egiptu piramidy,110,10,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+marsa alam luxor,110,10,Informational,not ranking,/wycieczki/luksor/,category
+hurghada hotel red sea,110,9,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada czy sharm gdzie jest ciekawiej,110,9,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada temperatura wody w styczniu,110,9,Informational,not ranking,/wycieczki-z-hurghady/,destination
+qulaan islands,110,9,Informational,not ranking,BLOG,blog
+ktora godzina w marsa alam,110,8,"Commercial, Informational",not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada bezpieczenstwo,110,8,Informational,not ranking,/wycieczki-z-hurghady/,destination
+kair hurghada odległość,110,7,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+hurghada zwiedzanie miasta,110,7,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada delfinarium,110,6,Commercial,not ranking,/wycieczki-z-hurghady/delfinarium-dolphin-show/,tour
+czy kair jest bezpieczny,110,6,"Informational, Transactional",not ranking,BLOG,blog
+dahab wycieczki fakultatywne,110,5,Informational,not ranking,/,home
+wycieczki fakultatywne z sharm el sheikh,110,5,Informational,not ranking,/wycieczki-z-sharm-el-sheikh/,destination
+skąd najbliżej do piramid,110,5,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+luksor wycieczka,110,5,"Commercial, Informational",not ranking,/wycieczki/luksor/,category
+hurgada grand aquarium,110,5,Informational,not ranking,/wycieczki-z-hurghady/wielkie-akwarium/,tour
+wycieczka do luksoru,110,5,"Commercial, Informational",not ranking,/wycieczki/luksor/,category
+hurghada grand aquarium opinie,110,5,Informational,not ranking,/wycieczki-z-hurghady/wielkie-akwarium/,tour
+marsa alam plaze,110,4,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+sharm el sheikh piramidy,110,4,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+marsa alam plaże,110,4,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+quady hurghada,110,4,"Commercial, Informational",not ranking,/wycieczki/safari-i-quady/,category
+wycieczki fakultatywne egipt marsa alam,110,4,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+ania wycieczki hurghada,110,3,Informational,not ranking,/wycieczki-z-hurghady/,destination
+sataya dolphin reef,110,3,"Informational, Transactional",not ranking,/wycieczki-z-marsa-alam/sataya-dom-delfinow/,tour
+pływanie z delfinami egipt,110,2,Informational,not ranking,/wycieczki/snorkeling-i-delfiny/,category
+egipt quady,110,1,Informational,not ranking,/wycieczki/safari-i-quady/,category
+zatoka żółwi marsa alam,110,0,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+egipt wycieczki fakultatywne marsa alam,110,0,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+wycieczki z sharm el sheikh do kairu,110,-1,Informational,not ranking,/wycieczki-z-sharm-el-sheikh/,destination
+piramidy w gizie z lotu ptaka,90,26,"Informational, Transactional",not ranking,/wycieczki/kair-i-piramidy/,category
+maps hurghada,90,26,Informational,not ranking,/wycieczki-z-hurghady/,destination
+temperatura hurghada styczeń,90,25,Informational,not ranking,/wycieczki-z-hurghady/,destination
+rejs czarna perła,90,25,"Informational, Navigational",not ranking,/wycieczki/rejsy-i-wyspy/,category
+itaka wycieczki fakultatywne egipt marsa alam,90,24,"Informational, Transactional",not ranking,/wycieczki-z-marsa-alam/,destination
+kair rainbow,90,23,"Navigational, Transactional",not ranking,BLOG,blog
+hurghada zdjęcia,90,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada temperatura w grudniu,90,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada egypt map,90,22,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada temperatura w lutym,90,22,Informational,not ranking,/wycieczki-z-hurghady/,destination
+atrakcje w egipcie hurghada,90,22,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+rejs egipt,90,21,Informational,not ranking,/wycieczki/rejsy-i-wyspy/,category
+paradise hurghada,90,19,Commercial,#36,/wycieczki-z-hurghady/,destination
+nil i piramidy,90,19,"Informational, Transactional",not ranking,/wycieczki/kair-i-piramidy/,category
+mamsha hurghada,90,19,Transactional,not ranking,/wycieczki-z-hurghady/,destination
+hurghada w styczniu,90,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada temperatura styczeń,90,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt potęga południa z marsa alam,90,15,"Informational, Transactional",not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada marsa alam,90,15,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada jaki kontynent,90,15,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada styczeń,90,15,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada soma bay,90,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+el quseir egipt,90,14,Informational,not ranking,BLOG,blog
+hurghada wschód i zachód słońca,90,14,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+luxor piramidy,90,14,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+marsa alam a hurghada,90,14,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada mapa egiptu,90,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada soma bay,90,13,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+safaga hurghada egypt,90,12,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada czy jest bezpiecznie,90,12,Informational,not ranking,/wycieczki-z-hurghady/,destination
+temp wody hurghada,90,12,Informational,not ranking,/wycieczki-z-hurghady/,destination
+temperatura wody w hurghadzie dzisiaj,90,11,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada jakie morze,90,10,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada marsa alam odległość,90,9,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada snorkeling,90,9,Commercial,not ranking,/wycieczki/snorkeling-i-delfiny/,category
+rejs po jeziorze koman,90,9,Informational,not ranking,/wycieczki/rejsy-i-wyspy/,category
+seascope hurghada,90,8,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+zwiedzanie piramid egipt,90,8,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada paradise,90,6,Informational,#31,/wycieczki-z-hurghady/,destination
+hurghada orange bay,90,6,"Informational, Transactional",#29,/wycieczki-z-hurghady/orange-bay/,tour
+plaża abu dabbab,90,6,Informational,not ranking,/wycieczki-z-marsa-alam/abu-dabbab/,tour
+wycieczka piramidy egipt,90,6,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+mapa hurghady z hotelami,90,6,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada co warto wiedzieć,90,5,Informational,#87,/wycieczki-z-hurghady/,destination
+orange beach hurghada,90,5,Informational,#25,/wycieczki-z-hurghady/,destination
+egipt orange bay,90,5,Informational,#21,/wycieczki-z-hurghady/orange-bay/,tour
+wycieczki fakultatywne egipt sharm el sheikh,90,5,Informational,not ranking,/wycieczki-z-sharm-el-sheikh/,destination
+wycieczki w marsa alam,90,5,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+marsa alam luxor odległość,90,5,"Commercial, Informational",not ranking,/wycieczki/luksor/,category
+marsa alam quady,90,3,Informational,not ranking,/wycieczki/safari-i-quady/,category
+wycieczki hurghada kair,90,3,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wycieczka z hurghady do kairu cena,90,2,Informational,#41,/wycieczki-z-hurghady/,destination
+snorkeling egipt,90,2,Informational,not ranking,/wycieczki/snorkeling-i-delfiny/,category
+piramidy hurghada,90,2,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+marsa alam safari,90,1,"Informational, Transactional",not ranking,/wycieczki/safari-i-quady/,category
+dom delfinów marsa alam,90,0,"Informational, Transactional",#45,/wycieczki/snorkeling-i-delfiny/,category
+wycieczka na piramidy z hurghady,90,0,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+marsa alam tour,90,-1,Informational,#48,/wycieczki-z-marsa-alam/,destination
+hurghada marzec,90,-1,Informational,not ranking,/wycieczki-z-hurghady/,destination
+bazar hurghada,90,-1,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+hurghada meczet,90,-1,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada a marsa alam,90,-1,Informational,not ranking,/wycieczki-z-hurghady/,destination
+czarna perła rejs,90,-1,"Informational, Navigational",not ranking,/wycieczki/rejsy-i-wyspy/,category
+egipt hurghada miasto,70,26,Informational,not ranking,/wycieczki-z-hurghady/,destination
+polskie biuro podróży hurghada,70,25,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+wycieczki w hurghadzie,70,24,Informational,not ranking,/wycieczki-z-hurghady/,destination
+temperatura hurghada grudzień,70,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+piramidy pod woda,70,22,"Informational, Transactional",not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada holiday tour,70,19,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+hurghada opinie,70,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada port,70,18,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+gdzie jest kair,70,17,Informational,not ranking,BLOG,blog
+hurghada temperatura kwiecień,70,17,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada zabytki,70,16,Informational,not ranking,/wycieczki-z-hurghady/,destination
+atrakcje w hurghadzie,70,15,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+co warto zobaczyć w egipcie hurghada,70,15,Informational,not ranking,/wycieczki-z-hurghady/,destination
+mapa egiptu hurghada,70,15,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hotele w egipcie hurghada,70,14,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+luxor hurghada,70,14,"Commercial, Informational",not ranking,/wycieczki/luksor/,category
+makadi bay rafa koralowa,70,13,Informational,not ranking,/wycieczki/nurkowanie/,category
+hurghada w listopadzie,70,12,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada bezpieczeństwo,70,12,Informational,not ranking,/wycieczki-z-hurghady/,destination
+hurghada hotele dla dorosłych,70,12,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada atrakcje turystyczne,70,12,Informational,not ranking,/wycieczki/atrakcje-i-rozrywka/,category
+kurort marsa alam,70,11,Commercial,not ranking,/wycieczki-z-marsa-alam/,destination
+z piramidami,70,11,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+język w kairze,70,9,Informational,not ranking,BLOG,blog
+hurghada nad jakim morzem,70,8,Informational,not ranking,/wycieczki-z-hurghady/,destination
+zwiedzanie piramid cena,70,8,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+marsa alam luksor,70,8,"Informational, Transactional",not ranking,/wycieczki/luksor/,category
+ceny w egipcie hurghada,70,6,Informational,not ranking,/wycieczki-z-hurghady/,destination
+delfinarium sharm el sheikh,70,5,Informational,not ranking,/wycieczki-z-hurghady/delfinarium-dolphin-show/,tour
+luksor marsa alam,70,5,"Commercial, Informational",not ranking,/wycieczki/luksor/,category
+luksor czy kair,70,4,Informational,not ranking,/wycieczki/luksor/,category
+hurghada kair samolotem,70,3,"Commercial, Informational",#55,/wycieczki-z-hurghady/,destination
+egipt safari,70,3,Informational,not ranking,/wycieczki/safari-i-quady/,category
+super safari,70,2,Informational,not ranking,/wycieczki/safari-i-quady/,category
+marsa alam wycieczki fakultatywne ceny,70,0,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada kair wycieczka,70,0,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+biuro podróży hurghada,50,31,Commercial,not ranking,/wycieczki-z-hurghady/,destination
+lot hurghada kair,50,22,Informational,not ranking,/wycieczki-z-hurghady/,destination
+wakacje z delfinem,50,20,"Informational, Navigational",not ranking,/wycieczki/snorkeling-i-delfiny/,category
+kair muzeum egipskie,50,18,"Commercial, Informational",not ranking,/wycieczki/kair-i-piramidy/,category
+mapa hurghada,50,18,Informational,not ranking,/wycieczki-z-hurghady/,destination
+coral travel wycieczki fakultatywne hurghada,50,16,"Navigational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hurghada hotele 4 gwiazdkowe,50,12,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+wakacje el gouna,50,11,"Informational, Transactional",not ranking,BLOG,blog
+el gouna egipt mapa,50,11,Informational,not ranking,BLOG,blog
+gdzie kupić złoto w hurghadzie,50,11,Transactional,not ranking,/wycieczki-z-hurghady/,destination
+gdzie do egiptu zeby zobaczyc piramidy,50,11,"Commercial, Informational",not ranking,/wycieczki/kair-i-piramidy/,category
+hurghada temperatura wody w maju,50,9,"Commercial, Informational",not ranking,/wycieczki-z-hurghady/,destination
+hurghada rafy koralowe,50,8,Informational,not ranking,/wycieczki-z-hurghady/,destination
+lot balonem pamukkale,50,6,Informational,not ranking,/wycieczki-z-hurghady/luksor-lot-balonem/,tour
+luxor marsa alam,50,2,"Informational, Transactional",not ranking,/wycieczki/luksor/,category
+kair na własną rękę,50,-1,Informational,not ranking,BLOG,blog
+lot balonem egipt,50,-1,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/luksor-lot-balonem/,tour
+hurghada giza,40,15,"Informational, Transactional",#67,/wycieczki-z-hurghady/,destination
+hamata port,40,5,Informational,not ranking,BLOG,blog
+marsa alam zatoka,40,4,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+zatoka żółwi marsa alam hotele,40,-1,"Informational, Transactional",not ranking,/wycieczki-z-marsa-alam/,destination
+temperatura w hurghadzie w styczniu,30,23,Informational,not ranking,/wycieczki-z-hurghady/,destination
+marsa alam pustynia,30,14,"Informational, Transactional",not ranking,/wycieczki-z-marsa-alam/,destination
+muzeum w hurghadzie,30,14,Informational,not ranking,/wycieczki-z-hurghady/,destination
+egipt hurghada hotele z aquaparkiem,30,9,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+pustynia marsa alam,30,7,"Informational, Transactional",not ranking,/wycieczki-z-marsa-alam/,destination
+egipt hurghada co warto wiedzieć,30,7,"Informational, Transactional",not ranking,/wycieczki-z-hurghady/,destination
+hamata marsa alam,30,7,Informational,not ranking,/wycieczki-z-marsa-alam/,destination
+hurghada rafa,30,6,Informational,not ranking,/wycieczki/nurkowanie/,category
+hurghada wycieczka do kairu,30,0,Informational,#44,/wycieczki/kair-i-piramidy/,category
+z hurghady do kairu,30,0,Informational,#21,/wycieczki-z-hurghady/,destination
+wycieczka z hurghady na piramidy,30,0,Informational,not ranking,/wycieczki/kair-i-piramidy/,category
+wycieczka hurghada giza,30,0,Informational,not ranking,/wycieczki-z-hurghady/,destination

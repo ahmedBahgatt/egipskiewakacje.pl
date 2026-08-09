@@ -12,7 +12,7 @@ export const destinations: Destination[] = [
     name: "Hurghada",
     nameGenitive: "Hurghady",
     shortIntro:
-      "Hurghada to najkrótsza droga znad Morza Czerwonego do Kairu i piramid. Autokary ruszają spod hoteli nocą, dzięki czemu cały dzień spędzasz przy zabytkach, a nie w drodze. To wygodna baza na pierwszą wyprawę do stolicy.",
+      "Hurghada to najlepsza baza wypadowa nad Morzem Czerwonym. Stąd pojedziesz na wycieczki fakultatywne w każdą stronę: Kair i piramidy, Luksor, rejsy na wyspy takie jak Orange Bay i Mahmya, snorkeling z delfinami, safari quadami i buggy oraz lokalne atrakcje jak Wielkie Akwarium. Odbiór z hotelu w cenie, a szczegóły potwierdzamy po polsku.",
     heroImage: {
       src: "/media/destinations/hurghada",
       alt: "Panorama wybrzeża Hurghady nad turkusowym Morzem Czerwonym o poranku",
@@ -43,9 +43,9 @@ export const destinations: Destination[] = [
       },
     ],
     seo: {
-      title: "Wycieczki z Hurghady do Kairu i piramid | Egipskie Wakacje",
+      title: "Wycieczki z Hurghady - fakultatywne, Kair, morze, safari",
       description:
-        "Wycieczki fakultatywne z Hurghady: Kair, piramidy w Gizie i Muzeum Egipskie. Odbiór z hotelu, przejrzysta cena od 60 USD, rezerwacja przez WhatsApp.",
+        "Wycieczki fakultatywne z Hurghady: Kair i piramidy, Luksor, rejsy na wyspy, snorkeling, delfiny, nurkowanie i safari. Odbiór z hotelu, ceny od 12 USD, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki-z-hurghady/",
       ogImage: "/media/og/hurghada.jpg",
     },
@@ -57,7 +57,7 @@ export const destinations: Destination[] = [
     name: "Marsa Alam",
     nameGenitive: "Marsa Alam",
     shortIntro:
-      "Marsa Alam leży najdalej na południe, dlatego droga do Kairu jest tu najdłuższa, a program - najbardziej rozbudowany. Do klasycznej Gizy dokładamy Stary Kair z jego kościołami, meczetem i synagogą. To wyprawa dla osób, które chcą zobaczyć wiele naraz.",
+      "Marsa Alam to raj dla miłośników morza. To najlepsze miejsce na wycieczki fakultatywne ze snorkelingiem i pływaniem z dzikimi delfinami - Sataya, Samadai i zatoka Abu Dabbab ze żółwiami. Z Marsa Alam pojedziesz też do Kairu i Luksoru, na rejsy, nurkowanie i pustynne safari. Odbiór z hotelu, obsługa po polsku.",
     heroImage: {
       src: "/media/destinations/marsa-alam",
       alt: "Spokojna zatoka Marsa Alam z rafą koralową widoczną przez czystą wodę",
@@ -88,9 +88,9 @@ export const destinations: Destination[] = [
       },
     ],
     seo: {
-      title: "Wycieczki z Marsa Alam do Kairu | Stary Kair i piramidy",
+      title: "Wycieczki z Marsa Alam - fakultatywne, delfiny, snorkeling",
       description:
-        "Wycieczki fakultatywne z Marsa Alam: Stary Kair, piramidy w Gizie i Sfinks. Odbiór z hotelu, cena od 80 USD, rezerwacja i potwierdzenie przez WhatsApp.",
+        "Wycieczki fakultatywne z Marsa Alam: pływanie z delfinami (Sataya, Samadai), snorkeling, Abu Dabbab, rejsy, Kair, Luksor i safari. Odbiór z hotelu, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki-z-marsa-alam/",
       ogImage: "/media/og/marsa-alam.jpg",
     },
@@ -102,7 +102,7 @@ export const destinations: Destination[] = [
     name: "Sharm el Sheikh",
     nameGenitive: "Sharm el Sheikh",
     shortIntro:
-      "Sharm el Sheikh leży po drugiej stronie, na Synaju, dlatego droga do Kairu prowadzi inną trasą i jest krótsza niż znad Morza Czerwonego. Program obejmuje nowoczesne Wielkie Muzeum Egipskie (GEM) oraz płaskowyż w Gizie.",
+      "Sharm el Sheikh na Synaju łączy najlepsze rafy świata z bliskością wyjątkowych miejsc. Stąd wybierzesz wycieczki fakultatywne na snorkeling w Ras Mohammed i na wyspę Tiran, nurkowanie w Blue Hole, nocne wejście na Górę Mojżesza, wyprawę do Kairu z Wielkim Muzeum GEM, a nawet do Jordanii (Petra). Do tego safari i atrakcje dla rodzin.",
     heroImage: {
       src: "/media/destinations/sharm-el-sheikh",
       alt: "Wybrzeże Sharm el Sheikh na Synaju z górami w tle i turkusową zatoką",
@@ -133,9 +133,9 @@ export const destinations: Destination[] = [
       },
     ],
     seo: {
-      title: "Wycieczki z Sharm el Sheikh do Kairu | GEM i piramidy",
+      title: "Wycieczki z Sharm el Sheikh - fakultatywne, Ras Mohammed, Kair",
       description:
-        "Wycieczki fakultatywne z Sharm el Sheikh: Wielkie Muzeum Egipskie (GEM), piramidy w Gizie i Sfinks. Cena od 93 USD, rezerwacja przez WhatsApp.",
+        "Wycieczki fakultatywne z Sharm el Sheikh: Ras Mohammed, wyspa Tiran, Blue Hole, Góra Mojżesza, Kair z GEM, Jordania (Petra) i safari. Odbiór z hotelu, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki-z-sharm-el-sheikh/",
       ogImage: "/media/og/sharm-el-sheikh.jpg",
     },
