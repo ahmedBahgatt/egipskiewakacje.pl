@@ -2,16 +2,9 @@ import Link from "next/link";
 import type { TourCategory } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
+import { pluralTours } from "@/lib/polish";
 import { IconArrowRight } from "@/components/ui/icons";
 import styles from "./CategoryBrowse.module.css";
-
-function tourWord(n: number): string {
-  if (n === 1) return "wycieczka";
-  const m10 = n % 10;
-  const m100 = n % 100;
-  if (m10 >= 2 && m10 <= 4 && !(m100 >= 12 && m100 <= 14)) return "wycieczki";
-  return "wycieczek";
-}
 
 export function CategoryBrowse({
   categories,
@@ -38,7 +31,7 @@ export function CategoryBrowse({
                   <span className={styles.desc}>{c.description}</span>
                   <span className={styles.foot}>
                     <span className={styles.count}>
-                      {n} {tourWord(n)}
+                      {n} {pluralTours(n)}
                     </span>
                     <IconArrowRight className={styles.arrow} />
                   </span>

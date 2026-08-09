@@ -1,0 +1,13 @@
+.section { margin-bottom: 3.2rem; }
+.section:last-child { margin-bottom: 0; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.3rem;
+}
+@media (min-width: 620px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 980px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}

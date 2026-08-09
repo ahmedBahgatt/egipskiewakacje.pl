@@ -167,8 +167,8 @@ export function Hero({ destinations }: { destinations: Destination[] }) {
         <p className={`eyebrow ${styles.eyebrow}`}>Egipt dla polskich turystów</p>
         <h1 className={styles.title}>Wycieczki fakultatywne w Egipcie dla polskich turystów</h1>
         <p className={styles.lead}>
-          Odkrywaj Egipt z Hurghady, Marsa Alam i Sharm el Sheikh. Przejrzyste ceny, odbiór z
-          hotelu i szybka rezerwacja przez WhatsApp.
+          Dziesiątki wycieczek z Hurghady, Marsa Alam i Sharm el Sheikh - morze, historia, pustynia
+          i atrakcje dla rodzin. Przejrzyste ceny, odbiór z hotelu i rezerwacja przez WhatsApp.
         </p>
 
         <div className={styles.ctas}>

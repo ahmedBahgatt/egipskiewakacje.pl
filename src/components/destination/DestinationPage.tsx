@@ -3,19 +3,13 @@ import type { BlogPost, Destination, Tour } from "@/content/types";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ToursFilter } from "@/components/tour/ToursFilter";
-import { categoryLabel, categoryRoute } from "@/lib/categories";
-import type { CategorySlug } from "@/content/types";
 import { DataTable } from "@/components/ui/DataTable";
 import { Faq } from "@/components/ui/Faq";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/motion/Reveal";
-import {
-  IconArrowRight,
-  IconCheck,
-  IconWhatsApp,
-} from "@/components/ui/icons";
+import { DestinationExperience } from "./DestinationExperience";
+import { IconArrowRight, IconCheck, IconWhatsApp } from "@/components/ui/icons";
 import { formatMoney } from "@/lib/format";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import {
@@ -39,12 +33,19 @@ export function DestinationPage({
     { name: "Strona główna", path: "/" },
     { name: `Wycieczki z ${destination.nameGenitive}`, path: `${destination.routeBase}/` },
   ];
-  const mainTour = tours.find((t) => t.category === "kair") ?? tours[0];
-  const transfers = mainTour?.transferSupplements ?? [];
-  const departureFilter = destination.slug;
-  // categories that both exist for this destination and have a landing page
-  const presentCats = new Set(tours.map((t) => t.category));
-  const catChips = (Object.keys(categoryRoute) as CategorySlug[]).filter((c) => presentCats.has(c));
+
+  // Aggregate the distinct transfer-supplement zones across THIS resort's tours
+  // (the lowest per-person amount seen for each zone). This is destination-level
+  // and honest - it never promises one universal pickup time or fee; exact times
+  // and fees live on each tour page.
+  const zoneMap = new Map<string, number>();
+  for (const t of tours) {
+    for (const ts of t.transferSupplements) {
+      const cur = zoneMap.get(ts.zone);
+      if (cur == null || ts.amount < cur) zoneMap.set(ts.zone, ts.amount);
+    }
+  }
+  const transferRows = [...zoneMap.entries()].sort((a, b) => a[1] - b[1]);
 
   return (
     <article>
@@ -86,7 +87,7 @@ export function DestinationPage({
         </div>
       </header>
 
-      {/* practical */}
+      {/* practical (destination-level) */}
       <section className="section">
         <div className="container">
           <SectionHeading
@@ -104,82 +105,44 @@ export function DestinationPage({
         </div>
       </section>
 
-      {/* tours */}
-      <section className="section" id="wycieczki" style={{ background: "var(--bg-paper)" }}>
-        <div className="container">
-          <SectionHeading
-            eyebrow="Dostępne wycieczki"
-            title={`Wycieczki z ${destination.nameGenitive}`}
-            intro={`W ofercie mamy ${tours.length} ${
-              tours.length < 5 ? "wycieczki" : "wycieczek"
-            } z ${destination.nameGenitive}. Filtruj po rodzaju, żeby szybciej znaleźć to, czego szukasz.`}
-          />
-          {catChips.length > 1 && (
-            <nav className={styles.catChips} aria-label="Rodzaje wycieczek">
-              {catChips.map((c) => (
-                <Link key={c} href={`${categoryRoute[c]}/`} className={styles.catChip}>
-                  {categoryLabel[c]}
-                </Link>
-              ))}
-            </nav>
+      {/* grouped experience sections + quick finder */}
+      <DestinationExperience destination={destination} tours={tours} />
+
+      {/* pickup + transfers (destination-level, not one universal promise) */}
+      <section className="section">
+        <div className={`container ${styles.detailGrid}`}>
+          <div>
+            <h2 className={styles.h2}>Odbiór z hotelu i transfery</h2>
+            <p className={styles.para}>
+              Prawie każda wycieczka z {destination.nameGenitive} obejmuje odbiór spod hotelu i
+              powrót w to samo miejsce. Godzina odbioru zależy od konkretnej wyprawy i strefy hotelu
+              - przy krótkich atrakcjach jest to zwykle poranek lub popołudnie, przy dalekich trasach
+              (Kair, Luksor) często noc. Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem, a
+              precyzyjne dane znajdziesz na stronie każdej wycieczki.
+            </p>
+            <Button href="#wycieczki" variant="outline" iconRight={<IconArrowRight />}>
+              Wybierz wycieczkę
+            </Button>
+          </div>
+
+          {transferRows.length > 0 && (
+            <div>
+              <h2 className={styles.h2}>Przykładowe dopłaty za transfer</h2>
+              <DataTable
+                columns={["Strefa / hotele", "Dopłata od osoby"]}
+                rows={transferRows.map(([zone, amount]) => [zone, `od ${formatMoney(amount, "USD")}`])}
+              />
+              <p className={styles.note}>
+                Dopłaty dotyczą wybranych, bardziej oddalonych stref i różnią się w zależności od
+                wycieczki. Ostateczną kwotę dla Twojego hotelu potwierdzamy przy rezerwacji.
+              </p>
+            </div>
           )}
-          <ToursFilter tours={tours} initialDeparture={departureFilter} hideDeparture />
         </div>
       </section>
 
-      {/* price + pickup + transfers */}
-      {mainTour && (
-        <section className="section">
-          <div className={`container ${styles.detailGrid}`}>
-            <div>
-              <h2 className={styles.h2}>Przykładowe ceny i odbiór ({mainTour.title})</h2>
-              <DataTable
-                columns={["Wariant", "Cena"]}
-                rows={mainTour.price.options.map((opt) => [
-                  opt.note ? `${opt.label} (${opt.note})` : opt.label,
-                  opt.free ? "bezpłatnie" : formatMoney(opt.amount, opt.currency),
-                ])}
-              />
-              <p className={styles.para}>
-                Odbiór i powrót odbywają się pod hotel. Planowany odbiór: {mainTour.pickupLabel}.
-                Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem. Ceny pozostałych wycieczek
-                znajdziesz na kartach ofert i w cenniku.
-              </p>
-            </div>
-
-            {transfers.length > 0 && (
-              <div>
-                <h2 className={styles.h2}>Dopłaty za transfer</h2>
-                <DataTable
-                  columns={["Strefa / hotele", "Dopłata (od osoby)"]}
-                  rows={transfers.map((t) => [t.zone, formatMoney(t.amount, mainTour.price.currency)])}
-                />
-              </div>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* how it looks */}
-      {mainTour && (
-        <section className="section" style={{ background: "var(--bg-paper)" }}>
-          <div className="container container-narrow">
-            <h2 className={styles.h2}>Jak wygląda wycieczka?</h2>
-            <p className={styles.para}>{mainTour.overview}</p>
-            <ul className={styles.highlightRow}>
-              {mainTour.highlights.map((h) => (
-                <li key={h}>{h}</li>
-              ))}
-            </ul>
-            <Button href={`${mainTour.route}/`} variant="outline" iconRight={<IconArrowRight />}>
-              Pełny plan dnia
-            </Button>
-          </div>
-        </section>
-      )}
-
       {/* FAQ */}
-      <section className="section">
+      <section className="section" style={{ background: "var(--bg-paper)" }}>
         <div className="container container-narrow">
           <SectionHeading eyebrow="FAQ" title={`Pytania o wycieczki z ${destination.nameGenitive}`} />
           <Faq items={destination.faqs} />
@@ -188,7 +151,7 @@ export function DestinationPage({
 
       {/* related guide */}
       {relatedPost && (
-        <section className="section" style={{ background: "var(--bg-paper)" }}>
+        <section className="section">
           <div className="container">
             <Link href={`${relatedPost.route}/`} className={styles.guideCard}>
               <div className={styles.guideMedia}>

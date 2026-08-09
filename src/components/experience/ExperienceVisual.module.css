@@ -1,0 +1,44 @@
+.visual {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  /* Decoration only - never intercept a pointer. */
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wave {
+    animation: drift 7s ease-in-out infinite alternate;
+  }
+  .dune {
+    animation: drift 11s ease-in-out infinite alternate;
+  }
+  .floatA {
+    animation: rise 4.5s ease-in-out infinite alternate;
+  }
+  .floatB {
+    animation: rise 6s ease-in-out infinite alternate;
+  }
+  .trail {
+    stroke-dasharray: 8 6;
+    animation: march 3.5s linear infinite;
+  }
+  .route {
+    stroke-dashoffset: 0;
+    animation: march 6s linear infinite;
+  }
+}
+
+@keyframes drift {
+  from { transform: translateX(-4px); }
+  to { transform: translateX(4px); }
+}
+@keyframes rise {
+  from { transform: translateY(2px); opacity: 0.35; }
+  to { transform: translateY(-4px); opacity: 0.7; }
+}
+@keyframes march {
+  to { stroke-dashoffset: -18; }
+}

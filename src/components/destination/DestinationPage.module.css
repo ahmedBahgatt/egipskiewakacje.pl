@@ -40,7 +40,8 @@
 /* Let the overflow-auto tables inside scroll instead of stretching the track. */
 .detailGrid > * { min-width: 0; }
 .h2 { font-size: var(--step-2); margin-bottom: 0.9rem; }
-.para { color: var(--ink-700); line-height: 1.75; margin-top: 0.9rem; }
+.para { color: var(--ink-700); line-height: 1.75; margin-top: 0.9rem; margin-bottom: 1.2rem; }
+.note { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.6; }
 
 .highlightRow { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0 1.5rem; }
 .highlightRow li {

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { CategorySlug, Tour } from "@/content/types";
 import { categoryLabel } from "@/lib/categories";
+import { pluralTours } from "@/lib/polish";
 import { TourCard } from "./TourCard";
 import { track } from "@/lib/analytics";
 import styles from "./ToursFilter.module.css";
@@ -16,14 +17,6 @@ const DEPARTURES: { value: Departure; label: string }[] = [
   { value: "marsa-alam", label: "Marsa Alam" },
   { value: "sharm-el-sheikh", label: "Sharm el Sheikh" },
 ];
-
-function tourWord(n: number): string {
-  if (n === 1) return "wycieczka";
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) return "wycieczki";
-  return "wycieczek";
-}
 
 /**
  * Client-side filtering only (no URL query params) so no indexable filter
@@ -117,7 +110,7 @@ export function ToursFilter({
         </div>
 
         <p className={styles.count} aria-live="polite">
-          {filtered.length} {tourWord(filtered.length)}
+          {filtered.length} {pluralTours(filtered.length)}
         </p>
       </div>
 

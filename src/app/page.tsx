@@ -5,7 +5,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/home/Hero";
 import { EgyptMap } from "@/components/home/EgyptMap";
 import { DestinationCards } from "@/components/home/DestinationCards";
-import { CairoStory } from "@/components/home/CairoStory";
+import { ThreeFacesStory } from "@/components/home/ThreeFacesStory";
+import { HelpMeChoose } from "@/components/home/HelpMeChoose";
 import {
   AboutPreview,
   BookingSteps,
@@ -24,7 +25,7 @@ import { IconArrowRight } from "@/components/ui/icons";
 export const metadata: Metadata = buildMetadata({
   title: "Egipskie Wakacje - wycieczki fakultatywne w Egipcie dla polskich turystów",
   description:
-    "Wycieczki fakultatywne w Egipcie dla polskich turystów. Kair i piramidy z Hurghady, Marsa Alam i Sharm el Sheikh. Przejrzyste ceny, odbiór z hotelu, rezerwacja przez WhatsApp.",
+    "Wycieczki fakultatywne w Egipcie z Hurghady, Marsa Alam i Sharm el Sheikh: Kair i piramidy, Luksor, rejsy na wyspy, snorkeling z delfinami, nurkowanie i pustynne safari. Przejrzyste ceny, odbiór z hotelu, rezerwacja przez WhatsApp.",
   canonicalPath: "/",
 });
 
@@ -54,10 +55,10 @@ export default async function HomePage() {
 
       <Hero destinations={destinations} />
       <TrustStrip />
-      <EgyptMap destinations={destinations} tours={allTours} />
-      <DestinationCards destinations={destinations} />
 
       <CategoryBrowse categories={categories} counts={catCounts} />
+      <EgyptMap destinations={destinations} tours={allTours} />
+      <DestinationCards destinations={destinations} />
 
       <section className="section" style={{ background: "var(--bg-paper)" }}>
         <div className="container">
@@ -75,7 +76,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <CairoStory />
+      <ThreeFacesStory />
+      <HelpMeChoose />
       <BookingSteps />
       <WhyUs />
       <AboutPreview />

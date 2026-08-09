@@ -2,17 +2,14 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  m,
-  useMotionValue,
-  useSpring,
-  useReducedMotion,
-} from "motion/react";
+import { m, useMotionValue, useSpring, useReducedMotion } from "motion/react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { IconArrowRight, IconClock, IconCalendar, IconGlobe } from "@/components/ui/icons";
-import { priceLabel } from "@/lib/format";
+import { IconArrowRight } from "@/components/ui/icons";
+import { categoryLabel } from "@/lib/categories";
+import { orderedPresentCategories } from "@/lib/grouping";
+import { formatTourCount } from "@/lib/polish";
 import { track } from "@/lib/analytics";
-import type { Destination, DestinationSlug, Tour } from "@/content/types";
+import type { CategorySlug, Destination, DestinationSlug, Tour } from "@/content/types";
 import styles from "./EgyptMap.module.css";
 
 interface Point {
@@ -23,37 +20,35 @@ interface Point {
   y: number;
 }
 
-const CAIRO = { x: 150, y: 116, label: "Kair / Giza" };
+// Target destinations reachable from the coast (the sea + desert are local to
+// each resort and covered in the panel chips).
+const CAIRO = { x: 150, y: 110, label: "Kair / Giza" };
+const LUKSOR = { x: 150, y: 300, label: "Luksor" };
 
-// Presentation-only pin coordinates and their render order (z-order of labels).
 const COORDS: Record<DestinationSlug, { x: number; y: number }> = {
   hurghada: { x: 214, y: 214 },
-  "sharm-el-sheikh": { x: 268, y: 170 },
-  "marsa-alam": { x: 236, y: 322 },
+  "sharm-el-sheikh": { x: 272, y: 150 },
+  "marsa-alam": { x: 236, y: 330 },
 };
 const RENDER_ORDER: DestinationSlug[] = ["hurghada", "sharm-el-sheikh", "marsa-alam"];
 
-function routePath(p: Point): string {
-  // gentle quadratic curve towards Cairo
-  const mx = (p.x + CAIRO.x) / 2 + 18;
-  const my = (p.y + CAIRO.y) / 2 - 22;
-  return `M ${p.x} ${p.y} Q ${mx} ${my} ${CAIRO.x} ${CAIRO.y}`;
+function curve(
+  from: { x: number; y: number },
+  to: { x: number; y: number },
+  bendX: number,
+  bendY: number,
+): string {
+  const mx = (from.x + to.x) / 2 + bendX;
+  const my = (from.y + to.y) / 2 + bendY;
+  return `M ${from.x} ${from.y} Q ${mx} ${my} ${to.x} ${to.y}`;
 }
 
-export function EgyptMap({
-  destinations,
-  tours,
-}: {
-  destinations: Destination[];
-  tours: Tour[];
-}) {
+export function EgyptMap({ destinations, tours }: { destinations: Destination[]; tours: Tour[] }) {
   const reduce = useReducedMotion();
 
-  // Join CMS/content destinations with pin coordinates, in a stable order.
   const points: Point[] = RENDER_ORDER.map((slug) => {
     const d = destinations.find((x) => x.slug === slug);
-    if (!d) return null;
-    return { slug, name: d.name, nameGenitive: d.nameGenitive, ...COORDS[slug] };
+    return d ? { slug, name: d.name, nameGenitive: d.nameGenitive, ...COORDS[slug] } : null;
   }).filter((p): p is Point => p !== null);
 
   const [selected, setSelected] = useState<DestinationSlug>(points[0]?.slug ?? "hurghada");
@@ -65,8 +60,11 @@ export function EgyptMap({
 
   const data = useMemo(() => {
     const dest = destinations.find((d) => d.slug === selected);
-    const tour = tours.find((t) => t.destination === selected);
-    return { dest, tour };
+    const destTours = tours.filter((t) => t.destination === selected);
+    const cats = orderedPresentCategories(selected, destTours).slice(0, 6);
+    const countByCat = new Map<CategorySlug, number>();
+    for (const t of destTours) countByCat.set(t.category, (countByCat.get(t.category) ?? 0) + 1);
+    return { dest, total: destTours.length, cats, countByCat };
   }, [selected, destinations, tours]);
 
   function select(slug: DestinationSlug, source: string) {
@@ -86,15 +84,15 @@ export function EgyptMap({
     parY.set(0);
   }
 
-  const { dest, tour } = data;
+  const { dest, total, cats, countByCat } = data;
 
   return (
     <section className={`${styles.section} on-dark`} aria-label="Interaktywna mapa kierunków">
       <div className="container">
         <SectionHeading
-          eyebrow="Trzy kurorty"
-          title="Trzy kurorty. Jeden niezwykły Egipt."
-          intro="Wszystkie wyprawy prowadzą do Kairu i Gizy - wybierz punkt startowy i zobacz szczegóły."
+          eyebrow="Trzy kurorty, cały Egipt"
+          title="Dokąd pojedziesz z Twojego kurortu?"
+          intro="Wybierz kurort, w którym się zatrzymujesz - pokażemy, co możesz stąd zobaczyć: od Kairu i Luksoru po rafy, wyspy i pustynię."
         />
 
         <div className={styles.layout}>
@@ -104,7 +102,7 @@ export function EgyptMap({
               className={styles.map}
               viewBox="0 0 400 460"
               role="img"
-              aria-label="Mapa Egiptu z zaznaczonymi kurortami: Hurghada, Marsa Alam, Sharm el Sheikh oraz Kairem"
+              aria-label="Mapa Egiptu z kurortami Hurghada, Marsa Alam i Sharm el Sheikh oraz kierunkami Kair i Luksor"
             >
               <defs>
                 <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
@@ -114,23 +112,20 @@ export function EgyptMap({
               </defs>
 
               <m.g style={reduce ? undefined : { x: sX, y: sY }}>
-                {/* mainland Egypt (stylised) */}
                 <path
                   d="M60 70 L190 66 L196 150 L172 250 L150 360 L120 400 L96 360 L104 250 L86 160 Z"
                   fill="url(#land)"
                   stroke="rgba(255,255,255,0.08)"
                   strokeWidth="1"
                 />
-                {/* Sinai peninsula */}
                 <path
                   d="M214 96 L292 120 L268 176 L236 150 L214 120 Z"
                   fill="url(#land)"
                   stroke="rgba(255,255,255,0.08)"
                   strokeWidth="1"
                 />
-                {/* Nile */}
                 <path
-                  d="M150 118 C 146 170, 152 240, 150 320 L150 360"
+                  d="M150 112 C 146 170, 152 240, 150 320 L150 360"
                   fill="none"
                   stroke="var(--teal-500)"
                   strokeOpacity="0.5"
@@ -139,23 +134,34 @@ export function EgyptMap({
                 />
               </m.g>
 
-              {/* routes (faint for all, bright for selected) */}
-              {points.map((p) => (
-                <path
-                  key={`r-${p.slug}`}
-                  d={routePath(p)}
-                  className={`${styles.route} ${p.slug === selected ? styles.routeActive : ""}`}
-                  fill="none"
-                />
-              ))}
+              {/* routes: every resort reaches Kair and Luksor; the selected one is bright */}
+              {points.map((p) => {
+                const active = p.slug === selected;
+                return (
+                  <g key={`r-${p.slug}`}>
+                    <path
+                      d={curve(p, CAIRO, 18, -24)}
+                      className={`${styles.route} ${active ? styles.routeActive : ""}`}
+                      fill="none"
+                    />
+                    <path
+                      d={curve(p, LUKSOR, -14, 10)}
+                      className={`${styles.route} ${active ? styles.routeActive : ""}`}
+                      fill="none"
+                    />
+                  </g>
+                );
+              })}
 
-              {/* Cairo destination marker */}
-              <g className={styles.cairo}>
-                <circle cx={CAIRO.x} cy={CAIRO.y} r="7" />
-                <text x={CAIRO.x - 12} y={CAIRO.y - 12} className={styles.cairoLabel}>
-                  {CAIRO.label}
-                </text>
-              </g>
+              {/* target markers */}
+              {[CAIRO, LUKSOR].map((t) => (
+                <g key={t.label} className={styles.cairo}>
+                  <circle cx={t.x} cy={t.y} r="6.5" />
+                  <text x={t.x - 11} y={t.y - 10} className={styles.cairoLabel}>
+                    {t.label}
+                  </text>
+                </g>
+              ))}
 
               {/* departure points */}
               {points.map((p) => {
@@ -176,7 +182,6 @@ export function EgyptMap({
                     >
                       {p.name}
                     </text>
-                    {/* transparent hit-target button overlay */}
                     <circle
                       cx={p.x}
                       cy={p.y}
@@ -185,7 +190,7 @@ export function EgyptMap({
                       className={styles.hit}
                       role="button"
                       tabIndex={0}
-                      aria-label={`Pokaż wycieczkę z ${p.nameGenitive}`}
+                      aria-label={`Pokaż, co można zwiedzić z ${p.nameGenitive}`}
                       aria-pressed={active}
                       onMouseEnter={() => select(p.slug, "map-hover")}
                       onFocus={() => select(p.slug, "map-focus")}
@@ -220,36 +225,32 @@ export function EgyptMap({
               ))}
             </div>
 
-            {tour && dest && (
+            {dest && (
               <div className={styles.card} aria-live="polite">
-                <span className={styles.cardKicker}>Wycieczka z {dest.nameGenitive}</span>
-                <h3 className={styles.cardTitle}>{tour.title}</h3>
-                <p className={styles.cardDesc}>{tour.shortDescription}</p>
+                <span className={styles.cardKicker}>Z {dest.nameGenitive}</span>
+                <h3 className={styles.cardTitle}>{formatTourCount(total)} w jednym miejscu</h3>
+                <p className={styles.cardLead}>
+                  Wybierz rodzaj wyprawy, żeby przejść prosto do wycieczek, albo zobacz całą ofertę.
+                </p>
 
-                <ul className={styles.facts}>
-                  <li>
-                    <IconClock /> {tour.durationLabel}
-                  </li>
-                  <li>
-                    <IconCalendar /> {tour.availabilityLabel}
-                  </li>
-                  <li>
-                    <IconGlobe /> Przewodnik:{" "}
-                    {tour.guide.polishConfirmed ? "polski" : tour.guide.label.toLowerCase()}
-                  </li>
+                <ul className={styles.expList}>
+                  {cats.map((c) => (
+                    <li key={c}>
+                      <Link href={`${dest.routeBase}/#sekcja-${c}`} className={styles.expChip}>
+                        {categoryLabel[c]}
+                        <span className={styles.expCount}>{countByCat.get(c)}</span>
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className={styles.cardFoot}>
-                  <div className={styles.cardPrice}>
-                    <span className={styles.priceValue}>{priceLabel(tour.price)}</span>
-                    <span className={styles.priceUnit}>/ dorosły</span>
-                  </div>
                   <Link
-                    href={`${tour.route}/`}
+                    href={`${dest.routeBase}/`}
                     className={styles.cardCta}
-                    onClick={() => track("tour_details_click", { tour_slug: tour.slug, destination: selected })}
+                    onClick={() => track("destination_select", { destination: selected, source: "map-cta" })}
                   >
-                    Zobacz wycieczkę <IconArrowRight />
+                    Wszystkie wycieczki z {dest.nameGenitive} <IconArrowRight />
                   </Link>
                 </div>
               </div>

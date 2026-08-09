@@ -20,26 +20,41 @@ export const destinations: Destination[] = [
       height: 1000,
     },
     practical: [
-      "Odbiór z hotelu w Hurghadzie i strefach sąsiednich - godzinę podajemy przed wyjazdem.",
-      "Przejazd klimatyzowanym autokarem, z postojami w drodze powrotnej.",
-      "Wyprawa do Kairu i Gizy trwa cały dzień - wyjazd wypada w nocy, a powrót wieczorem lub w nocy.",
-      "Dopłaty za transfer dotyczą tylko wybranych, bardziej oddalonych stref hotelowych.",
+      "Z Hurghady wyruszysz w każdą stronę: rejsy na wyspy (Orange Bay, Mahmya), snorkeling z delfinami, nurkowanie, safari quadami, a także Kair, Giza i Luksor.",
+      "Odbiór spod hotelu jest w cenie większości wycieczek - dokładną godzinę podajemy na WhatsApp przed wyjazdem, bo zależy od wyprawy i strefy hotelu.",
+      "Krótkie atrakcje (akwarium, aquapark, rejsy) startują zwykle rano lub po południu; dalekie trasy do Kairu i Luksoru wyruszają wcześnie rano lub nocą.",
+      "Dla bardziej oddalonych stref (El Gouna, Makadi Bay, Sahl Hasheesh, Soma Bay) może obowiązywać niewielka dopłata za transfer.",
     ],
     faqs: [
       {
-        question: "O której godzinie jest odbiór z hotelu w Hurghadzie?",
+        question: "Jakie wycieczki warto wybrać z Hurghady?",
         answer:
-          "Odbiór odbywa się zwykle między 00:00 a 02:00, w zależności od położenia hotelu. Dokładną godzinę potwierdzamy na WhatsApp po rezerwacji, bo zależy ona od trasy autokaru danego dnia.",
+          "Najpopularniejsze są rejsy na wyspy (Orange Bay, Paradise, Mahmya), snorkeling z delfinami, safari quadami i buggy oraz całodniowe wyprawy do Kairu i Luksoru. Wybór zależy od tego, czy wolisz morze, pustynię, czy historię.",
       },
       {
-        question: "Czy z Hurghady da się pojechać do Kairu i wrócić tego samego dnia?",
+        question: "Co wybrać: rejs, safari czy wycieczkę historyczną?",
         answer:
-          "Tak. Wyprawa jest jednodniowa, ale długa - łączny czas z dojazdami to około 20-22 godzin. Wyjazd jest w nocy, a powrót do hotelu następnego dnia wieczorem lub w nocy.",
+          "Rejs na wyspę to najbardziej relaksująca, rodzinna opcja. Safari quadami lub jeepem to przygoda na pół dnia albo wieczór z zachodem słońca. Kair i Luksor to całodniowe wyprawy dla miłośników historii - dłuższe, ale robiące ogromne wrażenie.",
       },
       {
-        question: "Które hotele w Hurghadzie mają dopłatę za transfer?",
+        question: "Czy odbiór jest z hotelu i o której godzinie?",
         answer:
-          "Dopłata dotyczy stref bardziej oddalonych od centrum: El Gouna, Safaga, Soma Bay, Abu Soma - 10 USD od osoby, oraz Makadi Bay i Sahl Hasheesh - 5 USD od osoby. Hotele w samej Hurghadzie są bez dopłaty.",
+          "Tak, większość wycieczek obejmuje odbiór spod hotelu. Godzina zależy od wyprawy: przy krótkich atrakcjach i rejsach to zwykle poranek, przy Kairze i Luksorze - wczesny ranek lub noc. Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem.",
+      },
+      {
+        question: "Które strefy hotelowe mogą mieć dopłatę za transfer?",
+        answer:
+          "Dopłata dotyczy stref bardziej oddalonych od centrum, np. El Gouna, Safaga, Soma Bay i Abu Soma (zwykle ok. 10 USD od osoby) oraz Makadi Bay i Sahl Hasheesh (ok. 5 USD). Hotele w samej Hurghadzie są zwykle bez dopłaty. Kwotę dla Twojego hotelu potwierdzamy przy rezerwacji.",
+      },
+      {
+        question: "Czy są wycieczki odpowiednie dla dzieci?",
+        answer:
+          "Tak. Rejsy na wyspy, Wielkie Akwarium, aquaparki i pokazy delfinów to opcje, które dzieci lubią najbardziej. Dzieci poniżej 5 lat zwykle jadą bezpłatnie, a dla dzieci 5-11 lat obowiązuje niższa cena.",
+      },
+      {
+        question: "Czy z Hurghady można pojechać do Kairu i Luksoru?",
+        answer:
+          "Tak. Kair zwiedzisz w ramach całodniowej wyprawy autokarem lub szybciej samolotem. Luksor leży bliżej - dojazd w jedną stronę to zwykle ok. 4-5 godzin, dzięki czemu na zwiedzanie masz cały dzień.",
       },
     ],
     seo: {
@@ -65,26 +80,41 @@ export const destinations: Destination[] = [
       height: 1000,
     },
     practical: [
-      "Początek trasy to przejazd z hotelu w Marsa Alam do Hurghady minibusem lub samochodem.",
-      "W Hurghadzie następuje przesiadka do klimatyzowanego autokaru jadącego do Kairu.",
-      "Wyjazd z hotelu jest późnym wieczorem - to najdłuższa z naszych tras.",
-      "Program łączy Stary Kair i Gizę, dlatego dzień jest intensywny i pełny.",
+      "Marsa Alam słynie z morza: pływanie z dzikimi delfinami (Sataya, Samadai), zatoka Abu Dabbab z żółwiami, snorkeling i nurkowanie na dziewiczych rafach.",
+      "Stąd pojedziesz też na rejsy, pustynne safari oraz do Kairu i Luksoru - te dalekie trasy są dłuższe niż z Hurghady, bo Marsa Alam leży dalej na południe.",
+      "Odbiór spod hotelu jest w cenie większości wycieczek; przy morskich wyprawach start wypada zwykle rano, przy Kairze - wcześnie rano lub nocą.",
+      "Dla bardziej oddalonych stref hotelowych może obowiązywać niewielka dopłata za transfer - potwierdzamy ją przy rezerwacji.",
     ],
     faqs: [
       {
-        question: "W które dni odbywa się wycieczka z Marsa Alam?",
+        question: "Sataya czy Samadai - gdzie lepiej popłynąć do delfinów?",
         answer:
-          "Standardowo we wtorki. Dostępność w danym tygodniu potwierdzamy na WhatsApp, bo zależy ona od liczby zgłoszeń i grafiku transferów z Marsa Alam do Hurghady.",
+          "Sataya (Dolphin House) to duża rafa w kształcie podkowy i dłuższy rejs, znany z dużych stad delfinów. Samadai (Dom Delfinów) leży bliżej i ma wyznaczone strefy ochronne. W obu miejscach delfiny są dzikie, więc spotkania są częste, ale nie gwarantowane.",
       },
       {
-        question: "Dlaczego trasa z Marsa Alam trwa dłużej niż z Hurghady?",
+        question: "Co oferuje zatoka Abu Dabbab?",
         answer:
-          "Marsa Alam leży dalej na południe. Najpierw jedziesz do Hurghady, gdzie następuje przesiadka do autokaru do Kairu. Dlatego wyjazd jest wcześniej, a cały dzień - dłuższy.",
+          "Abu Dabbab to spokojna zatoka słynąca ze snorkelingu z żółwiami morskimi, a przy odrobinie szczęścia z diugoniem. Płytka, osłonięta woda sprawia, że to jedno z najlepszych miejsc dla rodzin z dziećmi.",
       },
       {
-        question: "Co dokładnie zwiedzam w Starym Kairze?",
+        question: "Jakie wycieczki są najlepsze z Marsa Alam?",
         answer:
-          "Kościół Wiszący, kościół świętego Sergiusza, meczet Amr ibn al-As oraz synagogę Ben Ezra. To dzielnica, w której obok siebie stoją miejsca trzech religii - stąd jej wyjątkowy charakter.",
+          "Przede wszystkim morskie: pływanie z delfinami, Abu Dabbab, rejsy na rafy i nurkowanie. Dla chętnych na historię dostępne są też całodniowe wyprawy do Kairu i Luksoru.",
+      },
+      {
+        question: "Czy odbiór jest z hotelu?",
+        answer:
+          "Tak, większość wycieczek obejmuje odbiór spod hotelu i powrót. Godzina zależy od wyprawy - przy morskich jest to zwykle poranek. Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem.",
+      },
+      {
+        question: "Czy są wycieczki odpowiednie dla dzieci?",
+        answer:
+          "Tak. Zatoka Abu Dabbab, spokojny snorkeling i rejsy dobrze sprawdzają się z dziećmi. Dzieci poniżej 5 lat zwykle jadą bezpłatnie, a dla dzieci 5-11 lat obowiązuje niższa cena.",
+      },
+      {
+        question: "Jak daleko z Marsa Alam do Kairu i Luksoru?",
+        answer:
+          "Luksor jest bliżej - dojazd zajmuje zwykle ok. 3-4 godziny w jedną stronę. Kair to całodniowa, dłuższa trasa (Marsa Alam leży najdalej na południe), dlatego wyjazd wypada wcześnie rano lub nocą.",
       },
     ],
     seo: {
@@ -110,26 +140,41 @@ export const destinations: Destination[] = [
       height: 1000,
     },
     practical: [
-      "Przejazd klimatyzowanym autokarem z Synaju do Kairu i z powrotem.",
-      "Droga w jedną stronę to około 6-8 godzin, krócej niż z Hurghady czy Marsa Alam.",
-      "W programie Wielkie Muzeum Egipskie (GEM) - najnowocześniejsze muzeum w kraju.",
-      "Powrót do hotelu zwykle między 22:00 a 23:00, w zależności od strefy.",
+      "Sharm to najlepsze rafy Synaju: Ras Mohammed, wyspa Tiran i Blue Hole - snorkeling i nurkowanie w miejscach światowej klasy.",
+      "Stąd wybierzesz też pustynne safari, nocne wejście na Górę Mojżesza z klasztorem św. Katarzyny, wyprawę do Kairu z Wielkim Muzeum GEM, a nawet wyjazd do Jordanii (Petra).",
+      "Trasa do Kairu z Synaju (ok. 6-8 godzin w jedną stronę) jest krótsza niż znad Morza Czerwonego; morskie wycieczki startują zwykle rano.",
+      "Odbiór spod hotelu jest w cenie większości wycieczek - przy dalekich trasach wyjazd wypada nocą lub wcześnie rano.",
     ],
     faqs: [
       {
-        question: "Jak długo trwa dojazd z Sharm el Sheikh do Kairu?",
+        question: "Ras Mohammed czy wyspa Tiran - co wybrać na snorkeling?",
         answer:
-          "Około 6-8 godzin w jedną stronę. Trasa z Synaju jest krótsza niż znad Morza Czerwonego, dlatego powrót do hotelu jest zwykle wcześniej - między 22:00 a 23:00.",
+          "Ras Mohammed to park narodowy ze słynnymi ścianami rafowymi i mangrowcami - zwykle dojazd autokarem i snorkeling z brzegu lub pomostu. Tiran to rejs łodzią z kilkoma postojami przy rafach wokół cieśniny. Oba miejsca są świetne; Tiran ma bardziej rejsowy, plażowy charakter.",
       },
       {
-        question: "Czym różni się GEM od klasycznego Muzeum Egipskiego?",
+        question: "Czym jest Blue Hole i czy to bezpieczne?",
         answer:
-          "Wielkie Muzeum Egipskie (GEM) to nowa, bardzo duża placówka przy płaskowyżu w Gizie. Wyprawa z Sharm el Sheikh obejmuje właśnie GEM oraz teren piramid i Sfinksa.",
+          "Blue Hole koło Dahab to słynne miejsce do snorkelingu i nurkowania. Snorkeling przy brzegu jest dostępny dla każdego i bezpieczny; głębokie nurkowanie techniczne w samej dziurze jest tylko dla wykwalifikowanych nurków i nie wchodzi w zakres zwykłej wycieczki.",
       },
       {
-        question: "W jakim języku mówi przewodnik na trasie z Sharm el Sheikh?",
+        question: "Co obejmuje wejście na Górę Mojżesza?",
         answer:
-          "Język przewodnika na tej trasie potwierdzamy przed rezerwacją. Niezależnie od tego cała obsługa rezerwacji i kontakt z naszą ekipą odbywa się po polsku.",
+          "To nocna wyprawa: wejście na szczyt na wschód słońca, a następnie zwiedzanie klasztoru św. Katarzyny u podnóża góry. Warto zabrać ciepłe ubranie, czołówkę i wygodne, zamknięte buty - noc na wysokości potrafi być chłodna.",
+      },
+      {
+        question: "Czy z Sharm el Sheikh można pojechać do Kairu?",
+        answer:
+          "Tak. To całodniowa wyprawa obejmująca Wielkie Muzeum Egipskie (GEM), płaskowyż w Gizie i Sfinksa. Trasa z Synaju (ok. 6-8 godzin w jedną stronę) jest krótsza niż znad Morza Czerwonego, dlatego powrót jest zwykle wcześniej.",
+      },
+      {
+        question: "W jakim języku mówi przewodnik na wycieczkach z Sharm el Sheikh?",
+        answer:
+          "Język przewodnika na trasach z Sharm el Sheikh potwierdzamy przed rezerwacją. Niezależnie od tego cała obsługa rezerwacji i kontakt z naszą ekipą odbywa się po polsku.",
+      },
+      {
+        question: "Czy są wycieczki odpowiednie dla dzieci?",
+        answer:
+          "Tak. Rejsy, spokojny snorkeling i lokalne atrakcje dobrze sprawdzają się z dziećmi. Dzieci poniżej 5 lat zwykle jadą bezpłatnie, a dla dzieci 5-11 lat obowiązuje niższa cena.",
       },
     ],
     seo: {

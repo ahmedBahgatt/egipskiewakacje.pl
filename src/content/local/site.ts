@@ -9,8 +9,9 @@ export const siteSettings: SiteSettings = {
 };
 
 /**
- * Site-wide FAQ. Answers reflect the ACTUAL differences between the three tours
- * (guide language, availability, child pricing) - not generic filler.
+ * Site-wide FAQ. Broad, excursion-site level questions (types of trips, resort
+ * differences, pickup, family options, guide language, payment) - factual and
+ * original, not Cairo-only and not generic filler.
  */
 export const siteFaqs: FaqItem[] = [
   {
@@ -19,29 +20,34 @@ export const siteFaqs: FaqItem[] = [
       "Wybierz wycieczkę, uzupełnij krótki formularz (imię, data, hotel, liczba osób) i wyślij zgłoszenie. Otworzy się WhatsApp z gotową wiadomością. Nasza ekipa potwierdza dostępność, godzinę odbioru i cenę. Nie ma płatności online.",
   },
   {
-    question: "Kiedy otrzymam godzinę odbioru?",
+    question: "Jakie rodzaje wycieczek oferujecie?",
     answer:
-      "Godzinę odbioru podajemy na WhatsApp przed wyjazdem. Zależy ona od położenia hotelu i trasy autokaru danego dnia - zwykle jest to noc (ok. 00:00-02:00), a z Marsa Alam nieco wcześniej.",
+      "Organizujemy wycieczki morskie (rejsy na wyspy, snorkeling z delfinami, nurkowanie), historyczne (Kair i piramidy, Luksor), pustynne safari (quady, buggy, jeep), lokalne atrakcje dla rodzin oraz wyprawy prywatne. Ofertę można przeglądać według kurortu wyjazdu albo rodzaju wycieczki.",
+  },
+  {
+    question: "Czym różnią się kurorty Hurghada, Marsa Alam i Sharm el Sheikh?",
+    answer:
+      "Hurghada to najbardziej uniwersalna baza z największym wyborem wycieczek w każdą stronę. Marsa Alam słynie z morza - pływania z dzikimi delfinami, żółwi w Abu Dabbab i dziewiczych raf. Sharm el Sheikh na Synaju oferuje najlepsze rafy (Ras Mohammed, Tiran), nocne wejście na Górę Mojżesza i krótszą trasę do Kairu.",
   },
   {
     question: "Czy odbiór odbywa się z hotelu?",
     answer:
-      "Tak. Odbieramy i odwozimy pod hotel. W przypadku bardziej oddalonych stref obowiązuje niewielka dopłata za transfer - podajemy ją przy potwierdzeniu rezerwacji.",
+      "Tak. Większość wycieczek obejmuje odbiór spod hotelu i powrót w to samo miejsce. W przypadku bardziej oddalonych stref obowiązuje niewielka dopłata za transfer - podajemy ją przy potwierdzeniu rezerwacji.",
   },
   {
-    question: "Jak wygląda płatność?",
+    question: "Kiedy i o której otrzymam godzinę odbioru?",
     answer:
-      "Nie pobieramy płatności online. Szczegóły rozliczenia ustalamy przy potwierdzeniu rezerwacji na WhatsApp. Ceny podajemy w USD.",
+      "Godzinę odbioru podajemy na WhatsApp przed wyjazdem. Zależy ona od rodzaju wycieczki i położenia hotelu: krótkie atrakcje i rejsy startują zwykle rano lub po południu, a dalekie trasy do Kairu i Luksoru wcześnie rano lub nocą.",
+  },
+  {
+    question: "Które wycieczki są najlepsze dla rodzin z dziećmi?",
+    answer:
+      "Najbardziej rodzinne są rejsy na wyspy, spokojny snorkeling (np. w zatoce Abu Dabbab), akwaria, aquaparki i pokazy delfinów. Są krótkie, atrakcyjne i nie wymagają całodniowej podróży. Dzieci poniżej 5 lat zwykle jadą bezpłatnie.",
   },
   {
     question: "Jak liczone są ceny dla dzieci?",
     answer:
-      "Dzieci poniżej 5 lat jadą bezpłatnie. Dla dzieci w wieku 5-11 lat obowiązuje niższa cena: 30 USD z Hurghady, 40 USD z Marsa Alam i 60 USD z Sharm el Sheikh.",
-  },
-  {
-    question: "Czy rejs po Nilu jest w cenie?",
-    answer:
-      "Nie. Rejs po Nilu to opcja dodatkowa (ok. 10-12 USD od osoby), płatna na miejscu dla chętnych.",
+      "Dzieci poniżej 5 lat jadą bezpłatnie. Dla dzieci w wieku 5-11 lat obowiązuje niższa cena - dokładne stawki znajdziesz na stronie każdej wycieczki oraz w cenniku.",
   },
   {
     question: "W jakim języku mówi przewodnik?",
@@ -49,9 +55,14 @@ export const siteFaqs: FaqItem[] = [
       "Na trasach z Hurghady i Marsa Alam zapewniamy polskojęzycznego przewodnika. Na trasie z Sharm el Sheikh język przewodnika potwierdzamy przed rezerwacją. Niezależnie od trasy cała obsługa rezerwacji odbywa się po polsku.",
   },
   {
-    question: "Co zabrać na wycieczkę do Kairu?",
+    question: "Jak wygląda płatność?",
     answer:
-      "Przede wszystkim paszport, wygodne buty, nakrycie głowy, wodę, gotówkę na napoje i opcjonalne atrakcje oraz powerbank. Pełną listę znajdziesz w naszym poradniku.",
+      "Nie pobieramy płatności online. Szczegóły rozliczenia ustalamy przy potwierdzeniu rezerwacji na WhatsApp. Ceny podajemy w USD (kursy nurkowe w EUR, zgodnie z cennikiem operatora).",
+  },
+  {
+    question: "Co zabrać na wycieczkę?",
+    answer:
+      "To zależy od typu wyprawy. Na morskie: strój kąpielowy, ręcznik, krem z filtrem i okulary. Na historyczne (Kair, Luksor): paszport, wygodne buty, nakrycie głowy i wodę. Na safari: chustę na twarz, okulary i coś ciepłego na wieczór. Zawsze warto mieć gotówkę na napoje i opcjonalne atrakcje.",
   },
 ];
 

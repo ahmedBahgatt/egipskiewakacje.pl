@@ -104,6 +104,12 @@ export function itemListJsonLd(items: { name: string; path: string }[]) {
  * TouristTrip for a tour. Price is represented honestly via an Offer carrying only
  * the adult from-price in USD. There is NO live inventory (availability is confirmed
  * on WhatsApp), so no `availability`, `priceValidUntil` or quantity is emitted.
+ *
+ * No `touristType` is emitted. It used to be hardcoded to "Wycieczka jednodniowa",
+ * which is wrong for the multi-day trips, PADI courses and packages now in the
+ * catalogue, and schema.org `touristType` is about the audience/type of tourist a
+ * trip suits - which we do not have reliable data for. Omitting it is more correct
+ * than asserting a false, generic value.
  */
 export function tourJsonLd(tour: Tour) {
   return {
@@ -113,7 +119,6 @@ export function tourJsonLd(tour: Tour) {
     description: tour.shortDescription,
     url: absoluteUrl(tour.seo.canonicalPath),
     image: imageJpgUrl(tour.heroImage),
-    touristType: "Wycieczka jednodniowa",
     itinerary: {
       "@type": "ItemList",
       itemListElement: tour.itinerary.map((step, i) => ({
