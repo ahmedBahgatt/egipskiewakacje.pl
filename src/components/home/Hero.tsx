@@ -6,7 +6,9 @@ import Link from "next/link";
 import {
   m,
   useMotionValue,
+  useScroll,
   useSpring,
+  useTransform,
   useReducedMotion,
 } from "motion/react";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
@@ -14,7 +16,8 @@ import { Button } from "@/components/ui/Button";
 import { IconArrowRight, IconPause, IconPlay, IconWhatsApp } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { track } from "@/lib/analytics";
-import type { Destination } from "@/content/types";
+import { pluralResorts } from "@/lib/polish";
+import type { Destination, DestinationSlug } from "@/content/types";
 import styles from "./Hero.module.css";
 
 const HERO_POSTER = {
@@ -24,12 +27,21 @@ const HERO_POSTER = {
   height: 1080,
 };
 
-export function Hero({ destinations }: { destinations: Destination[] }) {
+export function Hero({
+  destinations,
+  counts,
+  total,
+}: {
+  destinations: Destination[];
+  counts: Record<DestinationSlug, number>;
+  total: number;
+}) {
   // Destination selector is CMS-driven (from the content adapter, via props).
   const departures = destinations.map((d) => ({
     slug: d.slug,
     label: d.name,
     href: `${d.routeBase}/`,
+    count: counts[d.slug] ?? 0,
   }));
 
   // Preload the LCP image (AVIF) at high priority so it is not queued behind
@@ -52,6 +64,16 @@ export function Hero({ destinations }: { destinations: Destination[] }) {
   const py = useMotionValue(0);
   const sx = useSpring(px, { stiffness: 60, damping: 18 });
   const sy = useSpring(py, { stiffness: 60, damping: 18 });
+
+  // Scroll parallax for the media + glow. Works on desktop AND touch (it is a pure
+  // transform driven by scroll position, no gyroscope), and is neutralised for
+  // users who prefer reduced motion.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const mediaY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "14%"]);
+  const glowY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "-24%"]);
 
   // Decide whether to load the video: skip for reduced motion & Save-Data, and
   // defer until the page is loaded + idle so the tiny poster remains the LCP
@@ -138,26 +160,31 @@ export function Hero({ destinations }: { destinations: Destination[] }) {
   return (
     <section ref={sectionRef} className={styles.hero} onPointerMove={onPointerMove}>
       <div className={styles.media}>
-        <OptimizedImage image={HERO_POSTER} priority className={styles.poster} />
-        {useVideo && (
-          <video
-            ref={videoRef}
-            className={`${styles.video} ${videoReady && playing ? styles.videoOn : ""}`}
-            muted
-            loop
-            playsInline
-            autoPlay
-            preload="none"
-            aria-hidden="true"
-            tabIndex={-1}
-            onCanPlay={() => setVideoReady(true)}
-            onPlaying={() => setPlaying(true)}
-          >
-            <source src="/media/hero/hero.webm" type="video/webm" />
-            <source src="/media/hero/hero.mp4" type="video/mp4" />
-          </video>
-        )}
+        <m.div className={styles.mediaInner} style={{ y: mediaY }}>
+          <OptimizedImage image={HERO_POSTER} priority className={styles.poster} />
+          {useVideo && (
+            <video
+              ref={videoRef}
+              className={`${styles.video} ${videoReady && playing ? styles.videoOn : ""}`}
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="none"
+              aria-hidden="true"
+              tabIndex={-1}
+              onCanPlay={() => setVideoReady(true)}
+              onPlaying={() => setPlaying(true)}
+            >
+              <source src="/media/hero/hero.webm" type="video/webm" />
+              <source src="/media/hero/hero.mp4" type="video/mp4" />
+            </video>
+          )}
+        </m.div>
         <div className={styles.scrim} />
+        {!reduce && (
+          <m.div className={styles.glow} style={{ y: glowY }} aria-hidden="true" />
+        )}
         {!reduce && (
           <m.div className={styles.orb} style={{ x: sx, y: sy }} aria-hidden="true" />
         )}
@@ -170,6 +197,21 @@ export function Hero({ destinations }: { destinations: Destination[] }) {
           Dziesiątki wycieczek z Hurghady, Marsa Alam i Sharm el Sheikh - morze, historia, pustynia
           i atrakcje dla rodzin. Przejrzyste ceny, odbiór z hotelu i rezerwacja przez WhatsApp.
         </p>
+
+        <ul className={styles.stats} aria-label="W skrócie">
+          <li className={styles.stat}>
+            <span className={styles.statValue}>{total}</span>
+            <span className={styles.statLabel}>wycieczek w ofercie</span>
+          </li>
+          <li className={styles.stat}>
+            <span className={styles.statValue}>3</span>
+            <span className={styles.statLabel}>{pluralResorts(3)} nad Morzem Czerwonym</span>
+          </li>
+          <li className={styles.stat}>
+            <span className={styles.statValue}>PL</span>
+            <span className={styles.statLabel}>obsługa i odbiór z hotelu</span>
+          </li>
+        </ul>
 
         <div className={styles.ctas}>
           <Button href="/wycieczki/" size="lg" iconRight={<IconArrowRight />}>
@@ -199,6 +241,9 @@ export function Hero({ destinations }: { destinations: Destination[] }) {
                 onClick={() => track("destination_select", { destination: d.slug, source: "hero" })}
               >
                 {d.label}
+                <span className={styles.chipCount} aria-hidden="true">
+                  {d.count}
+                </span>
               </Link>
             ))}
           </div>

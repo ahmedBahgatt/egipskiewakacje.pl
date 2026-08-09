@@ -3,8 +3,7 @@ import { content } from "@/content";
 import { buildMetadata, faqJsonLd, itemListJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/home/Hero";
-import { EgyptMap } from "@/components/home/EgyptMap";
-import { DestinationCards } from "@/components/home/DestinationCards";
+import { ResortExplorer, type ResortSummary } from "@/components/home/ResortExplorer";
 import { ThreeFacesStory } from "@/components/home/ThreeFacesStory";
 import { HelpMeChoose } from "@/components/home/HelpMeChoose";
 import {
@@ -21,6 +20,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
 import { IconArrowRight } from "@/components/ui/icons";
+import { groupByCategory, groupByDestination, orderedPresentCategories } from "@/lib/grouping";
+import type { DestinationSlug } from "@/content/types";
 
 export const metadata: Metadata = buildMetadata({
   title: "Egipskie Wakacje - wycieczki fakultatywne w Egipcie dla polskich turystów",
@@ -39,8 +40,36 @@ export default async function HomePage() {
     content.getCategories(),
   ]);
 
+  // Category counts for the "browse by experience" grid.
   const catCounts = new Map<string, number>();
   for (const t of allTours) catCounts.set(t.category, (catCounts.get(t.category) ?? 0) + 1);
+
+  // Per-destination counts for the hero selector.
+  const destCounts = { hurghada: 0, "marsa-alam": 0, "sharm-el-sheikh": 0 } as Record<
+    DestinationSlug,
+    number
+  >;
+  for (const t of allTours) destCounts[t.destination] += 1;
+
+  // Compact, server-computed resort summaries for the explorer (keeps the client
+  // payload tiny - the full 78-tour list never crosses into the browser here).
+  const byDest = groupByDestination(allTours);
+  const resortSummaries: ResortSummary[] = destinations.map((d) => {
+    const dTours = byDest.get(d.slug) ?? [];
+    const byCat = groupByCategory(dTours);
+    return {
+      slug: d.slug,
+      name: d.name,
+      nameGenitive: d.nameGenitive,
+      routeBase: d.routeBase,
+      heroImage: d.heroImage,
+      total: dTours.length,
+      cats: orderedPresentCategories(d.slug, dTours).map((c) => ({
+        slug: c,
+        count: byCat.get(c)?.length ?? 0,
+      })),
+    };
+  });
 
   const homeFaqs = faqs.slice(0, 8);
 
@@ -53,12 +82,12 @@ export default async function HomePage() {
         ]}
       />
 
-      <Hero destinations={destinations} />
+      <Hero destinations={destinations} counts={destCounts} total={allTours.length} />
       <TrustStrip />
 
+      <ResortExplorer resorts={resortSummaries} />
+      <ThreeFacesStory />
       <CategoryBrowse categories={categories} counts={catCounts} />
-      <EgyptMap destinations={destinations} tours={allTours} />
-      <DestinationCards destinations={destinations} />
 
       <section className="section" style={{ background: "var(--bg-paper)" }}>
         <div className="container">
@@ -76,7 +105,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <ThreeFacesStory />
       <HelpMeChoose />
       <BookingSteps />
       <WhyUs />

@@ -1,14 +1,17 @@
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: min(92vh, 780px);
+  min-height: min(94vh, 820px);
   display: flex;
   align-items: flex-end;
   padding-block: clamp(2.5rem, 8vw, 6rem);
   overflow: hidden;
   color: #fff;
 }
-.media { position: absolute; inset: 0; z-index: -1; }
+.media { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+/* Bleeds past the section on the top/bottom so the scroll-parallax shift never
+   exposes an empty edge. */
+.mediaInner { position: absolute; inset: -14% 0; will-change: transform; }
 .poster, .video {
   position: absolute;
   inset: 0;
@@ -22,8 +25,18 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(6, 16, 22, 0.86) 0%, rgba(6, 16, 22, 0.35) 45%, rgba(6, 16, 22, 0.5) 100%),
-    linear-gradient(to right, rgba(6, 16, 22, 0.55), rgba(6, 16, 22, 0.05));
+    linear-gradient(to top, rgba(6, 16, 22, 0.9) 0%, rgba(6, 16, 22, 0.34) 46%, rgba(6, 16, 22, 0.52) 100%),
+    linear-gradient(to right, rgba(6, 16, 22, 0.62), rgba(6, 16, 22, 0.04) 62%);
+}
+/* Warm/cool depth glows layered over the media for a cinematic, premium feel. */
+.glow {
+  position: absolute;
+  inset: -20% -10% 0 -10%;
+  background:
+    radial-gradient(46% 40% at 82% 16%, rgba(224, 178, 86, 0.28), transparent 70%),
+    radial-gradient(52% 48% at 12% 96%, rgba(23, 165, 151, 0.24), transparent 72%);
+  pointer-events: none;
+  z-index: 0;
 }
 .orb {
   position: absolute;
@@ -35,9 +48,10 @@
   background: radial-gradient(circle at 40% 40%, rgba(224, 178, 86, 0.5), rgba(194, 92, 58, 0.18) 55%, transparent 72%);
   filter: blur(6px);
   pointer-events: none;
+  z-index: 0;
 }
 
-.content { position: relative; max-width: 760px; }
+.content { position: relative; z-index: 1; max-width: 780px; }
 .eyebrow { color: var(--gold-400); }
 .title {
   color: #fff;
@@ -49,9 +63,43 @@
   font-size: var(--step-1);
   color: rgba(255, 255, 255, 0.92);
   max-width: 620px;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.5rem;
 }
-.ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
+
+/* --- at-a-glance stats --------------------------------------------------- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1.9rem;
+  margin-bottom: 1.8rem;
+}
+.stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+.stat::before {
+  content: "";
+  flex: none;
+  align-self: center;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-400);
+  margin-right: 0.15rem;
+  box-shadow: 0 0 8px rgba(224, 178, 86, 0.6);
+}
+.statValue {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold-400);
+}
+.statLabel { font-size: 0.9rem; color: rgba(255, 255, 255, 0.86); font-weight: 600; }
+
+.ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.9rem; }
 
 .selector {
   display: flex;
@@ -70,8 +118,9 @@
 .chip {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   min-height: 44px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.7rem 0.5rem 1rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.22);
@@ -81,6 +130,20 @@
   transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 .chip:hover { background: var(--teal-600); border-color: var(--teal-500); transform: translateY(-1px); }
+.chipCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+}
+.chip:hover .chipCount { background: rgba(4, 38, 42, 0.35); }
 
 .playBtn {
   position: absolute;
@@ -102,6 +165,9 @@
 .playBtn:hover { background: rgba(6, 16, 22, 0.75); }
 
 @media (max-width: 560px) {
+  .stats { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .statValue { font-size: var(--step-1); min-width: 1.9rem; }
+  .statLabel { font-size: 0.82rem; }
   .selector { width: 100%; }
   .chips { display: grid; grid-template-columns: 1fr 1fr; }
   .chip { justify-content: center; }
