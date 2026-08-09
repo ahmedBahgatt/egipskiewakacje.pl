@@ -2,9 +2,14 @@
 
 Page-level search architecture for egipskiewakacje.pl after the full-inventory
 build (2026-08-09). One primary intent per indexable page; category pages exist
-only where inventory and intent justify them. No SEMrush CSV was provided this
-session, so the keyword clusters below are derived from the real product inventory
-and Polish search intent; re-validate volumes against SEMrush in Phase 2.
+only where inventory and intent justify them. The keyword clusters below are
+derived from the real product inventory, Polish search intent AND the SEMrush
+Keyword Gap export in `SEO_KEYWORD_MAP.csv` (see the "SEMrush Keyword Gap analysis"
+section below and `SEO_KEYWORD_MAP_NOTES.md`). Each CSV row now carries a
+`classification` (TARGET / SUPPORTING / BLOG / OUT_OF_SCOPE / NOISE). Weather and
+brand-only navigational queries (e.g. "hurghada temperatura", bare "hurghada")
+are explicitly EXCLUDED from commercial destination/category targeting - they are
+kept as market context only. Re-validate live volumes against SEMrush in Phase 2.
 
 ## Page-type intent map
 
