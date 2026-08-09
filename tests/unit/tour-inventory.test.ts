@@ -14,7 +14,39 @@ const ROUTE_BY_DEST: Record<string, string> = Object.fromEntries(
 
 describe("tour inventory integrity", () => {
   it("has the full active catalogue", () => {
-    expect(tours.length).toBeGreaterThanOrEqual(80);
+    // Count is data-driven (81 - 5 removed PADI courses + 2 new Sharm tours = 78).
+    expect(tours.length).toBeGreaterThanOrEqual(70);
+  });
+
+  it("the 5 owner-removed PADI courses are gone from the active catalogue", () => {
+    const padi = tours.filter((t) => /^kurs-padi/.test(t.slug));
+    expect(padi.map((t) => `${t.destination}/${t.slug}`)).toEqual([]);
+    expect(tours.some((t) => t.price.mode === "perCourse")).toBe(false);
+  });
+
+  it("the two new Sharm tours exist with their verified prices", () => {
+    const flight = tours.find(
+      (t) => t.slug === "kair-samolotem-muzeum-egipskie-piramidy",
+    );
+    expect(flight?.destination).toBe("sharm-el-sheikh");
+    expect(flight?.category).toBe("kair");
+    expect(flight?.price.amount).toBe(255);
+    expect(flight?.price.options.find((o) => /dziecko/i.test(o.label))?.amount).toBe(230);
+
+    const monastery = tours.find((t) => t.slug === "klasztor-sw-katarzyny-synaj");
+    expect(monastery?.destination).toBe("sharm-el-sheikh");
+    expect(monastery?.category).toBe("synaj");
+    expect(monastery?.price.amount).toBe(33);
+    expect(monastery?.price.options.find((o) => /5-11/.test(o.label))?.amount).toBe(17);
+    // monastery-only: the positive program (highlights/itinerary/included) must NOT
+    // claim the Mount Moses night ascent. (Overview/FAQ may mention it in a negation,
+    // e.g. "bez nocnego wejścia na szczyt", to steer users to the separate ascent tour.)
+    const program = JSON.stringify({
+      highlights: monastery?.highlights,
+      itinerary: monastery?.itinerary,
+      included: monastery?.included,
+    });
+    expect(/nocne wejście|wschód słońca na szczycie|wejście na szczyt/i.test(program)).toBe(false);
   });
 
   it("routes are globally unique", () => {

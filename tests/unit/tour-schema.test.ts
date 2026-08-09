@@ -12,7 +12,7 @@ function bySlug(slug: string): Tour {
 describe("tourJsonLd - TouristTrip structured data (B16)", () => {
   const dayTour = bySlug("kair-piramidy-muzeum-egipskie"); // single-day (long) tour
   const multiDay = bySlug("luksor-2-dni-lot-balonem"); // 2-day package
-  const padiCourse = bySlug("kurs-padi-open-water"); // PADI course (perCourse)
+  const perVehicle = bySlug("buggy-safari"); // per-vehicle activity (not a plain day tour)
 
   it("never hardcodes a one-day touristType on a standard day tour", () => {
     const s = JSON.stringify(tourJsonLd(dayTour));
@@ -27,9 +27,9 @@ describe("tourJsonLd - TouristTrip structured data (B16)", () => {
     expect(s).not.toContain("Wycieczka jednodniowa");
   });
 
-  it("does not label a PADI course as a one-day tour", () => {
-    expect(padiCourse.price.mode).toBe("perCourse");
-    const s = JSON.stringify(tourJsonLd(padiCourse));
+  it("does not label a per-vehicle activity as a one-day tour", () => {
+    expect(perVehicle.price.mode).toBe("perVehicle");
+    const s = JSON.stringify(tourJsonLd(perVehicle));
     expect(s).not.toContain("touristType");
     expect(s).not.toContain("Wycieczka jednodniowa");
   });
