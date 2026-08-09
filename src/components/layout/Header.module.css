@@ -38,12 +38,15 @@
 }
 .navLink:hover { color: var(--accent-strong); background: rgba(14, 131, 120, 0.07); }
 .navLink.active { color: var(--accent-strong); }
-.navChev { font-size: 1rem; opacity: 0.7; }
+.navChev { font-size: 1rem; opacity: 0.7; transition: transform 0.16s ease; }
+.navLink[aria-expanded="true"] .navChev { transform: rotate(180deg); }
 
 .hasChildren { position: relative; }
 .dropdown {
   position: absolute;
-  top: calc(100% + 6px);
+  /* Touch the trigger's bottom edge (no dead-zone gap) so moving the pointer from
+     the trigger into the menu never crosses empty space and mis-fires mouseleave. */
+  top: 100%;
   left: 0;
   min-width: 260px;
   background: var(--bg-paper);
@@ -56,8 +59,14 @@
   transform: translateY(6px);
   transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
 }
-.hasChildren:hover .dropdown,
-.hasChildren:focus-within .dropdown {
+/*
+ * Visibility is driven ENTIRELY by React state (the `.dropdownOpen` class), not
+ * by CSS :hover / :focus-within. This is deliberate: a CSS-hover menu stays open
+ * over the next page after a click because the pointer is still resting on the
+ * header. With React control we can close on navigation and keep it closed until
+ * the pointer genuinely leaves and re-enters.
+ */
+.dropdownOpen {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

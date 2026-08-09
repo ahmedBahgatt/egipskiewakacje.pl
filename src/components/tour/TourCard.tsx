@@ -55,7 +55,7 @@ export function TourCard({
   });
 
   return (
-    <article ref={ref} className={styles.card}>
+    <article ref={ref} className={styles.card} data-testid="tour-card">
       <Link href={`${tour.route}/`} className={styles.media} tabIndex={-1} aria-hidden="true">
         <OptimizedImage image={tour.heroImage} priority={priority} className={styles.img} />
         <span className={styles.badge}>{tour.availabilityLabel}</span>

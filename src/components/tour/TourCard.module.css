@@ -39,8 +39,15 @@
 .metaItem svg { color: var(--accent-strong); font-size: 1rem; }
 
 .title { font-size: var(--step-1); line-height: 1.15; }
+/*
+ * The title is an ordinary in-flow link. It deliberately has NO stretched
+ * `::after { position:absolute; inset:0 }` pseudo-element: the card is not a
+ * positioned containing block, so such a pseudo-element resolves its inset
+ * against the viewport and turns the whole screen into an invisible tour link
+ * (ghost clicks). The card's real, visible links are the image, this title and
+ * the "Szczegóły" action - nothing else may navigate.
+ */
 .titleLink { color: var(--text); text-decoration: none; }
-.titleLink::after { content: ""; position: absolute; inset: 0; }
 .titleLink:hover { color: var(--accent-strong); }
 
 .highlights { display: flex; flex-wrap: wrap; gap: 0.4rem; }
