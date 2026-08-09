@@ -195,3 +195,16 @@ replace with owner-licensed media before relying on them long-term.
 
 Gallery is currently the single hero per tour; richer per-tour galleries and
 real category/atmosphere media remain an owner-media task.
+
+---
+
+## Inventory correction media (2026-08-09)
+
+- Removed 15 PADI-course media files (`h-kurs-padi-*`, `ma-kurs-padi-*`) - the 5 PADI tours were
+  removed by the owner and the media were referenced nowhere else.
+- New tour `kair-samolotem-muzeum-egipskie-piramidy` reuses existing Muzeum-Egipskie/pyramids
+  placeholder artwork (`/media/tours/h-kair-piramidy-muzeum-egipskie`).
+- New tour `klasztor-sw-katarzyny-synaj` reuses neutral Sinai destination artwork
+  (`/media/destinations/sharm-el-sheikh`) as a placeholder. A summit/sunrise image was
+  deliberately AVOIDED so the hero never implies a Mount Moses ascent. Real St Catherine's
+  Monastery / Sinai imagery remains an owner-media task.

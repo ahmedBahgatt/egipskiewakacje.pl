@@ -22,14 +22,14 @@ likely). Generated 2026-08-09 (task B18).
 | category | tours | pairs | mean similarity |
 |----------|-------|-------|-----------------|
 | prywatne | 4 | 6 | 0.161 |
-| kair | 9 | 36 | 0.095 |
+| kair | 10 | 45 | 0.096 |
 | luksor | 4 | 6 | 0.094 |
 | snorkeling-delfiny | 7 | 21 | 0.082 |
-| nurkowanie | 10 | 45 | 0.067 |
+| nurkowanie | 5 | 10 | 0.073 |
+| synaj | 3 | 3 | 0.070 |
 | safari | 16 | 120 | 0.062 |
 | rejsy-wyspy | 15 | 105 | 0.061 |
 | atrakcje | 13 | 78 | 0.040 |
-| synaj | 2 | 1 | 0.030 |
 
 ## Top 25 highest-similarity pairs
 
@@ -39,27 +39,27 @@ likely). Generated 2026-08-09 (task B18).
 | 2 | 0.291 | safari | quad-safari-3h | quad-safari-5h | hurghada |
 | 3 | 0.239 | rejsy-wyspy | wyspa-hula-hula | wyspa-magawish | hurghada |
 | 4 | 0.237 | atrakcje | lodz-seascope | lodz-seascope | hurghada vs marsa-alam |
-| 5 | 0.211 | nurkowanie | kurs-padi-open-water | kurs-padi-open-water | hurghada vs marsa-alam |
-| 6 | 0.198 | atrakcje | lodz-seascope | lodz-seascope | hurghada vs sharm-el-sheikh |
-| 7 | 0.196 | nurkowanie | kurs-padi-advanced-open-water | kurs-padi-rescue-diver | marsa-alam |
-| 8 | 0.194 | snorkeling-delfiny | sataya-dom-delfinow | samadai-dom-delfinow | marsa-alam |
-| 9 | 0.192 | nurkowanie | kurs-padi-advanced-open-water | kurs-padi-advanced-open-water | hurghada vs marsa-alam |
-| 10 | 0.184 | atrakcje | lodz-seascope | lodz-seascope | marsa-alam vs sharm-el-sheikh |
-| 11 | 0.179 | nurkowanie | kurs-padi-open-water | kurs-padi-advanced-open-water | marsa-alam |
-| 12 | 0.169 | snorkeling-delfiny | abu-dabbab-snorkeling | abu-dabbab | hurghada vs marsa-alam |
-| 13 | 0.168 | kair | kair-piramidy-muzeum-egipskie | kair-gem-piramidy | hurghada vs sharm-el-sheikh |
-| 14 | 0.166 | nurkowanie | nurkowanie-z-plazy | nurkowanie-z-lodzi | marsa-alam |
-| 15 | 0.165 | kair | super-kair-piramidy-rejs-po-nilu | kair-samolotem | hurghada |
-| 16 | 0.163 | safari | super-safari-quady | quad-safari-5h | marsa-alam |
-| 17 | 0.162 | nurkowanie | kurs-padi-open-water | kurs-padi-rescue-diver | marsa-alam |
-| 18 | 0.159 | safari | super-safari-sahara-park | jeep-safari | hurghada vs marsa-alam |
-| 19 | 0.158 | kair | kair-samolotem | kair-samolotem | hurghada vs marsa-alam |
-| 20 | 0.156 | rejsy-wyspy | orange-bay | wyspa-paradise | hurghada |
-| 21 | 0.156 | safari | quad-safari-3h | quad-safari-2h | hurghada vs marsa-alam |
-| 22 | 0.154 | nurkowanie | kurs-padi-open-water | kurs-padi-advanced-open-water | hurghada |
-| 23 | 0.154 | safari | family-safari | super-safari-sahara-park | hurghada |
-| 24 | 0.151 | kair | kair-piramidy-muzeum-egipskie | kair-samolotem | hurghada |
-| 25 | 0.150 | safari | jazda-konno-kapiel-w-morzu | jazda-na-wielbladzie | hurghada |
+| 5 | 0.198 | atrakcje | lodz-seascope | lodz-seascope | hurghada vs sharm-el-sheikh |
+| 6 | 0.194 | snorkeling-delfiny | sataya-dom-delfinow | samadai-dom-delfinow | marsa-alam |
+| 7 | 0.184 | atrakcje | lodz-seascope | lodz-seascope | marsa-alam vs sharm-el-sheikh |
+| 8 | 0.169 | snorkeling-delfiny | abu-dabbab-snorkeling | abu-dabbab | hurghada vs marsa-alam |
+| 9 | 0.168 | kair | kair-piramidy-muzeum-egipskie | kair-gem-piramidy | hurghada vs sharm-el-sheikh |
+| 10 | 0.166 | nurkowanie | nurkowanie-z-plazy | nurkowanie-z-lodzi | marsa-alam |
+| 11 | 0.165 | kair | super-kair-piramidy-rejs-po-nilu | kair-samolotem | hurghada |
+| 12 | 0.163 | safari | super-safari-quady | quad-safari-5h | marsa-alam |
+| 13 | 0.159 | safari | super-safari-sahara-park | jeep-safari | hurghada vs marsa-alam |
+| 14 | 0.158 | kair | kair-samolotem | kair-samolotem | hurghada vs marsa-alam |
+| 15 | 0.156 | rejsy-wyspy | orange-bay | wyspa-paradise | hurghada |
+| 16 | 0.156 | safari | quad-safari-3h | quad-safari-2h | hurghada vs marsa-alam |
+| 17 | 0.154 | safari | family-safari | super-safari-sahara-park | hurghada |
+| 18 | 0.151 | kair | kair-piramidy-muzeum-egipskie | kair-samolotem | hurghada |
+| 19 | 0.150 | safari | jazda-konno-kapiel-w-morzu | jazda-na-wielbladzie | hurghada |
+| 20 | 0.150 | rejsy-wyspy | wyspy-hamata | rejs-nefertari | marsa-alam |
+| 21 | 0.148 | snorkeling-delfiny | samadai-dom-delfinow | marsa-mubarak-snorkeling | marsa-alam |
+| 22 | 0.143 | prywatne | prywatna-wycieczka-do-kairu | prywatna-wycieczka-luksor-dendera | marsa-alam |
+| 23 | 0.142 | kair | kair-samolotem | kair-samolotem-muzeum-egipskie-piramidy | sharm-el-sheikh |
+| 24 | 0.141 | kair | kair-gem-piramidy | kair-samolotem-muzeum-egipskie-piramidy | sharm-el-sheikh |
+| 25 | 0.140 | rejsy-wyspy | wyspa-mahmya | wyspa-bianca-lodz-szklane-dno | hurghada |
 
 ## Reading this
 

@@ -125,3 +125,33 @@ Wakacje. Source checked: 2026-08-09. Prices are the CURRENT selling prices
 | /tour/cleopatra-spa-w-hurghadzie-masaz-relaksacyjny-i-kompleksowe-zabiegi/ | EXCLUDE - wellness/shopping (owner) | excluded |
 | /tour/wycieczka-z-hurhady-masaz-relaksacyjnyz-zakladka-spa/ | EXCLUDE - wellness/shopping (owner) | excluded |
 | /tour/wycieczka-z-hurghady-zakupy/ | EXCLUDE - wellness/shopping (owner) | excluded shopping-only |
+
+---
+
+## Inventory correction (2026-08-09) - owner-driven
+
+REMOVED BY OWNER / NOT OFFERED ON EGIPSKIE WAKACJE (routes now 404):
+
+| Departure | Route (removed) | Source |
+|-----------|-----------------|--------|
+| Hurghada | `/wycieczki-z-hurghady/kurs-padi-open-water` | /tour/kurs-padi-open-water-diver-w-hurghadzie/ |
+| Hurghada | `/wycieczki-z-hurghady/kurs-padi-advanced-open-water` | /tour/kurs-padi-advanced-open-water-diver-w-hurghadzie/ |
+| Marsa Alam | `/wycieczki-z-marsa-alam/kurs-padi-open-water` | /tour/kurs-padi-open-water-diver-w-marsa-alam/ |
+| Marsa Alam | `/wycieczki-z-marsa-alam/kurs-padi-advanced-open-water` | /tour/kurs-padi-advanced-open-water-diver-w-marsa-alam/ |
+| Marsa Alam | `/wycieczki-z-marsa-alam/kurs-padi-rescue-diver` | /tour/kurs-padi-rescue-diver-w-marsa-alam/ |
+
+ADDED (Sharm el Sheikh):
+
+| Route (new) | Price | Source |
+|-------------|-------|--------|
+| `/wycieczki-z-sharm-el-sheikh/kair-samolotem-muzeum-egipskie-piramidy` | 255 USD dorosły / 230 dziecko | /tour/kair-samolotem/ |
+| `/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj` | 33 USD dorosły / 17 dziecko 5-11 / do 5 lat gratis | /tour/gora-mojzesza-klasztor-sw-katarzyny/ |
+
+Revised totals: **78** implemented (Hurghada 39 - Marsa Alam 20 - Sharm el Sheikh 19).
+
+Distinct-product notes (anti-cannibalization):
+- New Cairo-flight page = CLASSIC Muzeum Egipskie (Tahrir). Pre-existing Sharm
+  `kair-samolotem` (299 USD) = new GEM by plane. Different museum + price + slug.
+- New monastery page = DAY visit to St Catherine's Monastery only. Pre-existing Sharm
+  `gora-mojzesza-klasztor-sw-katarzyny` (35 USD) = NIGHT ascent of Mount Moses + sunrise +
+  monastery. The source URL slug is misleading: its live program is monastery-only.

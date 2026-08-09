@@ -208,3 +208,19 @@ rather than shipping stale data.
 - PROMO PRICES: several source cards show a struck "Cena promocyjna". We display
   only the current price. If any are genuine, documented promotions (with a real
   30-day reference price), provide the history to enable an honest crossed price.
+
+---
+
+## Added 2026-08-09 (Sharm additions) - OWNER CONFIRMATION REQUIRED
+
+- **Cairo-by-plane deposit / lead time.** The source for
+  `/wycieczki-z-sharm-el-sheikh/kair-samolotem-muzeum-egipskie-piramidy/` states 7-10 day advance
+  booking and a 40% bank-transfer deposit. Conflicts with the current no-online-payment / WhatsApp
+  model, so NOT published as a firm rule (page says "Termin lotu i warunki rezerwacji potwierdzamy
+  na WhatsApp"). Confirm whether the 40% deposit + 7-10 day lead applies; if yes we can state it. **OPEN**
+- **St Catherine availability (Wednesday?).** Main source block = Mon/Thu/Sat (published). Confirm
+  if any Wednesday departures are real. **OPEN**
+- **St Catherine guide language.** Source does not state guide language for the monastery day trip;
+  page uses the cautious Sharm wording until confirmed. **OPEN**
+- **Real St Catherine / Sinai media.** Page uses a neutral Sinai placeholder (NOT a summit/sunrise
+  image, to avoid implying the ascent). Real monastery/Sinai photo is an owner-media task. **OPEN**

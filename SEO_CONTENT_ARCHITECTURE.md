@@ -25,16 +25,16 @@ kept as market context only. Re-validate live volumes against SEMrush in Phase 2
 
 | Category | Route | Tours | Primary query |
 |----------|-------|-------|---------------|
-| Kair i piramidy | `/wycieczki/kair-i-piramidy/` | 9 | kair i piramidy |
+| Kair i piramidy | `/wycieczki/kair-i-piramidy/` | 10 | kair i piramidy |
 | Luksor | `/wycieczki/luksor/` | 4 | luksor |
 | Rejsy i wyspy | `/wycieczki/rejsy-i-wyspy/` | 15 | rejsy i wyspy |
 | Snorkeling i delfiny | `/wycieczki/snorkeling-i-delfiny/` | 7 | snorkeling i delfiny |
-| Nurkowanie | `/wycieczki/nurkowanie/` | 10 | nurkowanie |
+| Nurkowanie | `/wycieczki/nurkowanie/` | 5 | nurkowanie |
 | Safari i quady | `/wycieczki/safari-i-quady/` | 16 | safari i quady |
 | Atrakcje i rozrywka | `/wycieczki/atrakcje-i-rozrywka/` | 13 | atrakcje i rozrywka |
 | Wycieczki prywatne | `/wycieczki/wycieczki-prywatne/` | 4 | wycieczki prywatne |
 
-Tag-only (no landing page - too thin): Synaj (2 tours), Wycieczki międzynarodowe (1). Still usable as filters/chips.
+Tag-only (no landing page - too thin): Synaj (3 tours - see Synaj decision below), Wycieczki międzynarodowe (1). Still usable as filters/chips.
 
 ## Internal-link plan
 
@@ -53,7 +53,7 @@ Tag-only (no landing page - too thin): Synaj (2 tours), Wycieczki międzynarodow
 - Ras Mohammed czy White Island - snorkeling z Sharm el Sheikh
 - Najlepsze wycieczki z Marsa Alam dla rodzin
 - Ile trwa dojazd: Hurghada, Marsa Alam, Sharm - do Kairu i Luksoru
-- Nurkowanie na próbę vs kurs PADI Open Water
+- Nurkowanie na próbę - jak wygląda pierwsze zejście pod wodę na rafie
 
 ---
 
@@ -103,3 +103,28 @@ close a real gap and strengthen a commercial page.
   ("wycieczki", "atrakcje", "fakultatywne") rather than the bare resort name.
 - Hotel/accommodation queries ("hurghada hotels", "hotel egipt hurghada") are
   out of product scope - excluded.
+
+---
+
+## Inventory correction (2026-08-09) - owner-driven
+
+- REMOVED BY OWNER / NOT OFFERED ON EGIPSKIE WAKACJE: 5 PADI courses -
+  Hurghada `kurs-padi-open-water`, `kurs-padi-advanced-open-water`; Marsa Alam
+  `kurs-padi-open-water`, `kurs-padi-advanced-open-water`, `kurs-padi-rescue-diver`.
+  Their routes now return 404. The Nurkowanie category no longer advertises
+  certification courses; it covers nurkowanie na próbę + wyprawy z butlą
+  (Hurghada, Marsa Alam, Sharm el Sheikh).
+- ADDED (Sharm el Sheikh): `kair-samolotem-muzeum-egipskie-piramidy` (classic
+  Muzeum Egipskie by plane, distinct from the existing GEM-by-plane `kair-samolotem`)
+  and `klasztor-sw-katarzyny-synaj` (monastery-only day trip, distinct from the
+  existing Mount Moses night-ascent `gora-mojzesza-klasztor-sw-katarzyny`).
+- Totals after correction: 78 tours (Hurghada 39, Marsa Alam 20, Sharm el Sheikh 19).
+  Kair 10, Nurkowanie 5, Synaj 3.
+
+### Synaj category decision
+Synaj stays a TAG / Sharm-destination section only - NO standalone indexable
+`/wycieczki/synaj/` page. Even after adding the monastery trip there are only 3
+distinct Sinai products, all departing Sharm el Sheikh, with limited independent
+search demand and high overlap with the Sharm destination page and the individual
+tour pages. A thin category page would risk cannibalization for little gain.
+Revisit only if Sinai inventory and demand grow materially. Not added to the main nav.

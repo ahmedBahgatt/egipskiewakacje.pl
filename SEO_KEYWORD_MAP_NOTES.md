@@ -70,3 +70,19 @@ intents and is not a gap to force.
 
 The stale note in `SEO_CONTENT_ARCHITECTURE.md` that said "No SEMrush CSV was
 provided" was corrected to reference this file and the exclusion of weather/brand noise.
+
+---
+
+## Update 2026-08-09 (inventory correction)
+
+- PADI course keywords: the SEMrush export contained NO rows targeting the 5
+  removed PADI course pages, so no commercial keyword was left pointing at a deleted
+  page. (Nothing to reclassify; noted for completeness.)
+- Added 7 EDITORIAL rows (blank volume/kd/our_rank = intent research, not in the paid
+  export) for the two new Sharm pages:
+  - TARGET: "kair samolotem z sharm el sheikh" -> Cairo-by-plane (Muzeum Egipskie) page;
+    "klasztor św katarzyny z sharm el sheikh" -> St Catherine monastery page.
+  - SUPPORTING: "muzeum egipskie kair samolotem", "piramidy z sharm el sheikh samolotem",
+    "wycieczka do klasztoru św katarzyny", "klasztor św katarzyny synaj", "saint catherine monastery".
+- Bucket counts now (463 rows): TARGET 135, SUPPORTING 209, BLOG 42, OUT_OF_SCOPE 25, NOISE 52.
+- Blank volume/KD in any row = editorial/intent research (no SEMrush export figure); do not treat as zero.

@@ -455,3 +455,10 @@ hurghada wycieczka do kairu,30,0,Informational,#44,/wycieczki/kair-i-piramidy/,c
 z hurghady do kairu,30,0,Informational,#21,/wycieczki-z-hurghady/,destination,SUPPORTING
 wycieczka z hurghady na piramidy,30,0,Informational,not ranking,/wycieczki/kair-i-piramidy/,category,TARGET
 wycieczka hurghada giza,30,0,Informational,not ranking,/wycieczki-z-hurghady/,destination,TARGET
+kair samolotem z sharm el sheikh,,,Commercial,,/wycieczki-z-sharm-el-sheikh/kair-samolotem-muzeum-egipskie-piramidy/,tour,TARGET
+muzeum egipskie kair samolotem,,,Commercial,,/wycieczki-z-sharm-el-sheikh/kair-samolotem-muzeum-egipskie-piramidy/,tour,SUPPORTING
+piramidy z sharm el sheikh samolotem,,,Commercial,,/wycieczki-z-sharm-el-sheikh/kair-samolotem-muzeum-egipskie-piramidy/,tour,SUPPORTING
+klasztor św katarzyny z sharm el sheikh,,,Commercial,,/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj/,tour,TARGET
+wycieczka do klasztoru św katarzyny,,,Commercial,,/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj/,tour,SUPPORTING
+klasztor św katarzyny synaj,,,Informational,,/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj/,tour,SUPPORTING
+saint catherine monastery,,,Informational,,/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj/,tour,SUPPORTING

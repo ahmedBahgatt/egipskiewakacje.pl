@@ -181,3 +181,28 @@ pickup/transfer, transport, included/excluded, programme and guide language.
   check against each source page found 0 tours above 10% overlap (only proper
   nouns and unavoidable operational terms overlap). No source paragraphs, headings,
   metadata, FAQs, countdowns, voucher codes or reviews were reproduced.
+
+---
+
+## New sources verified 2026-08-09 (Sharm el Sheikh additions)
+
+### Cairo by plane - classic Muzeum Egipskie
+Source: sekretyegiptu.pl/tour/kair-samolotem/ (verified LIVE 2026-08-09).
+- Adult 255 USD, child 230 USD. Availability: poniedziałek, środa, sobota. Full-day.
+- Flight Sharm-Cairo-Sharm included + hotel/airport transfers.
+- Program: Muzeum Egipskie (Tahrir, NOT GEM) + Giza + Sphinx + lunch (no drinks) + optional Nile.
+- Guide: English-speaking ("opieka przewodnika anglojęzycznego").
+- Booking/deposit: source states "co najmniej 7-10 dni przed" + "zaliczka 40% na konto bankowe".
+  This conflicts with the site-wide no-online-payment model, so it is NOT published as a hard
+  rule; the page uses safe wording and the deposit is flagged in CONTENT_REQUIRED.md.
+
+### St Catherine's Monastery - Synaj day trip
+Source: sekretyegiptu.pl/tour/gora-mojzesza-klasztor-sw-katarzyny/ (verified LIVE 2026-08-09).
+- Adult 33 USD, child 5-11 17 USD, under 5 gratis. Main availability block:
+  sobota, poniedziałek, czwartek. Full-day. AC coach from Sharm el Sheikh (also Dahab).
+- Program: St Catherine's Monastery (UNESCO), Burning Bush chapel, icons/mosaics, Sinai scenery.
+- CRITICAL: despite the URL slug "gora-mojzesza-...", the live program is MONASTERY-ONLY - NO
+  night ascent, NO summit, NO sunrise. The source separately links a distinct night-ascent
+  product. Implemented monastery-only; the existing EW Mount Moses page is kept separate.
+- Availability conflict: main block = Sat/Mon/Thu (published). Some source templates may show
+  Wednesday; NOT published (unverified). Flagged in CONTENT_REQUIRED.md.
