@@ -5868,269 +5868,6 @@ export const tours: Tour[] = [
     "updatedAt": "2026-08-09"
   },
   {
-    "slug": "kurs-padi-open-water",
-    "route": "/wycieczki-z-hurghady/kurs-padi-open-water",
-    "title": "Kurs PADI Open Water Diver w Hurghadzie",
-    "h1": "Kurs PADI Open Water Diver (OWD) w Hurghadzie",
-    "destination": "hurghada",
-    "category": "nurkowanie",
-    "departure": "Hurghada",
-    "shortDescription": "Podstawowy kurs nurkowy PADI w Hurghadzie dla początkujących, bez wcześniejszego doświadczenia. W ciągu 3-4 dni odbędziesz cztery nurkowania z instruktorem i zdobędziesz międzynarodowy certyfikat Open Water Diver, uprawniający do nurkowania z partnerem do 18 metrów.",
-    "overview": "Open Water Diver to najczęściej wybierany kurs nurkowy PADI i naturalny początek przygody z nurkowaniem. Nie musisz mieć żadnego doświadczenia - instruktor prowadzi Cię krok po kroku, od teorii, przez ćwiczenia w płytkiej wodzie, aż po nurkowania w morzu.\n\nSzkolenie obejmuje cztery nurkowania na wodach otwartych, podczas których utrwalasz podstawowe umiejętności i uczysz się bezpiecznego nurkowania z partnerem. W cenie zapewniamy sprzęt, opiekę instruktora oraz lunch i napoje.\n\nKurs trwa 3-4 dni i kończy się międzynarodowym certyfikatem PADI Open Water Diver, honorowanym na całym świecie. Po jego zdobyciu możesz nurkować z partnerem do 18 metrów. Termin ustalamy indywidualnie i potwierdzamy szczegóły na WhatsApp.",
-    "heroImage": {
-      "src": "/media/tours/h-kurs-padi-open-water",
-      "alt": "Kurs PADI Open Water Diver w Hurghadzie - zdjęcie poglądowe",
-      "width": 1600,
-      "height": 1000
-    },
-    "gallery": [
-      {
-        "src": "/media/tours/h-kurs-padi-open-water",
-        "alt": "Kurs PADI Open Water Diver w Hurghadzie - zdjęcie poglądowe",
-        "width": 1600,
-        "height": 1000
-      }
-    ],
-    "price": {
-      "mode": "perCourse",
-      "amount": 400,
-      "unit": "kurs",
-      "currency": "EUR",
-      "from": false,
-      "lastVerifiedAt": "2026-08-09",
-      "options": [
-        {
-          "label": "Kurs",
-          "amount": 400,
-          "currency": "EUR",
-          "unit": "kurs"
-        }
-      ],
-      "note": "Cena za cały kurs obejmuje cztery nurkowania, sprzęt i certyfikat."
-    },
-    "availabilityLabel": "Terminy ustalane indywidualnie",
-    "availabilityDays": [
-      "Terminy ustalane indywidualnie"
-    ],
-    "durationLabel": "3-4 dni",
-    "pickupLabel": "Do ustalenia",
-    "transport": "Nurkowania na wodach otwartych z instruktorem",
-    "guide": {
-      "label": "Potwierdzamy przed rezerwacją",
-      "polishConfirmed": false
-    },
-    "highlights": [
-      "Certyfikat PADI OWD",
-      "Kurs od podstaw",
-      "4 nurkowania",
-      "Sprzęt w cenie",
-      "Szkolenie z instruktorem"
-    ],
-    "itinerary": [
-      {
-        "time": "Dzień 1",
-        "title": "Teoria i podstawy",
-        "description": "Zajęcia teoretyczne oraz pierwsze ćwiczenia z instruktorem: obsługa sprzętu i zasady bezpieczeństwa."
-      },
-      {
-        "title": "Ćwiczenia w płytkiej wodzie",
-        "description": "Nauka podstawowych umiejętności nurkowych krok po kroku, zanim wejdziesz na głębszą wodę."
-      },
-      {
-        "time": "Dzień 2-4",
-        "title": "4 nurkowania na wodach otwartych",
-        "description": "Cztery nurkowania w morzu, podczas których utrwalasz umiejętności pod okiem instruktora."
-      },
-      {
-        "title": "Certyfikat PADI Open Water Diver",
-        "description": "Po zaliczeniu kursu otrzymujesz międzynarodowy certyfikat i możesz nurkować z partnerem do 18 metrów."
-      }
-    ],
-    "included": [
-      "Szkolenie z instruktorem PADI",
-      "4 nurkowania na wodach otwartych",
-      "Sprzęt nurkowy",
-      "Międzynarodowy certyfikat PADI Open Water Diver",
-      "Lunch i napoje"
-    ],
-    "excluded": [
-      "Wydatki własne i pamiątki",
-      "Napiwki"
-    ],
-    "transferSupplements": [],
-    "extras": [],
-    "whatToBring": [
-      "Strój kąpielowy",
-      "Ręcznik",
-      "Krem przeciwsłoneczny",
-      "Okulary przeciwsłoneczne"
-    ],
-    "requirements": [
-      "Umiejętność pływania",
-      "Dobry ogólny stan zdrowia"
-    ],
-    "cancellationPolicy": "Rezerwacja jest wstępna do potwierdzenia terminu i szczegółów kursu na WhatsApp. Nie pobieramy płatności online - należność regulujesz na miejscu. W razie zmiany planów prosimy o wcześniejszy kontakt.",
-    "featured": false,
-    "faqs": [
-      {
-        "question": "Czy muszę mieć doświadczenie w nurkowaniu?",
-        "answer": "Nie, to podstawowy kurs od zera - instruktor prowadzi Cię krok po kroku, od teorii po nurkowania w morzu."
-      },
-      {
-        "question": "Ile trwa kurs Open Water Diver?",
-        "answer": "Kurs trwa 3-4 dni i obejmuje cztery nurkowania na wodach otwartych."
-      },
-      {
-        "question": "Do jakiej głębokości uprawnia certyfikat?",
-        "answer": "Certyfikat PADI OWD pozwala nurkować z partnerem do 18 metrów na całym świecie."
-      },
-      {
-        "question": "Czy sprzęt jest w cenie?",
-        "answer": "Tak. W cenie są sprzęt nurkowy, szkolenie z instruktorem, certyfikat oraz lunch i napoje."
-      }
-    ],
-    "seo": {
-      "title": "Kurs PADI Open Water Diver w Hurghadzie - certyfikat",
-      "description": "Podstawowy kurs PADI Open Water Diver w Hurghadzie: 4 nurkowania, sprzęt, instruktor i certyfikat PADI. Nurkowanie do 18 m. Cena kursu 400 EUR.",
-      "canonicalPath": "/wycieczki-z-hurghady/kurs-padi-open-water/",
-      "ogImage": "/media/og/hurghada.jpg"
-    },
-    "updatedAt": "2026-08-09"
-  },
-  {
-    "slug": "kurs-padi-advanced-open-water",
-    "route": "/wycieczki-z-hurghady/kurs-padi-advanced-open-water",
-    "title": "Kurs PADI Advanced Open Water Diver w Hurghadzie",
-    "h1": "Kurs PADI Advanced Open Water Diver (AOWD) w Hurghadzie",
-    "destination": "hurghada",
-    "category": "nurkowanie",
-    "departure": "Hurghada",
-    "shortDescription": "Zaawansowany kurs nurkowy PADI w Hurghadzie dla osób z certyfikatem Open Water Diver. W ciągu dwóch dni wykonasz pięć nurkowań z instruktorem, w tym Deep Dive i Navigation, a na koniec odbierzesz międzynarodowy certyfikat AOWD i uprawnienia do nurkowania do 30 metrów.",
-    "overview": "Kurs Advanced Open Water Diver to kolejny krok dla osób, które mają już podstawowy certyfikat PADI OWD i chcą rozwinąć swoje umiejętności pod wodą. Szkolenie stawia na praktykę - większość czasu spędzasz w wodzie, a nie nad książką.\n\nW ramach kursu wykonasz pięć nurkowań typu Adventure Dive. Dwa z nich są obowiązkowe: Deep Dive, po którym możesz schodzić do 30 metrów, oraz Navigation, czyli orientacja i posługiwanie się kompasem pod wodą. Pozostałe nurkowania rozwijają konkretne umiejętności wybrane wspólnie z instruktorem.\n\nSzkolenie trwa dwa dni i kończy się międzynarodowym certyfikatem PADI Advanced Open Water Diver, uznawanym na całym świecie. Termin ustalamy indywidualnie - szczegóły i rezerwację potwierdzimy na WhatsApp.",
-    "heroImage": {
-      "src": "/media/tours/h-kurs-padi-advanced-open-water",
-      "alt": "Kurs PADI Advanced Open Water Diver w Hurghadzie - zdjęcie poglądowe",
-      "width": 1600,
-      "height": 1000
-    },
-    "gallery": [
-      {
-        "src": "/media/tours/h-kurs-padi-advanced-open-water",
-        "alt": "Kurs PADI Advanced Open Water Diver w Hurghadzie - zdjęcie poglądowe",
-        "width": 1600,
-        "height": 1000
-      }
-    ],
-    "price": {
-      "mode": "perCourse",
-      "amount": 360,
-      "unit": "kurs",
-      "currency": "EUR",
-      "from": false,
-      "lastVerifiedAt": "2026-08-09",
-      "options": [
-        {
-          "label": "Kurs",
-          "amount": 360,
-          "currency": "EUR",
-          "unit": "kurs"
-        }
-      ],
-      "note": "Cena za cały kurs obejmujący pięć nurkowań."
-    },
-    "availabilityLabel": "Terminy ustalane indywidualnie",
-    "availabilityDays": [
-      "Terminy ustalane indywidualnie"
-    ],
-    "durationLabel": "2 dni",
-    "pickupLabel": "Do ustalenia",
-    "transport": "Nurkowania na wodach otwartych z instruktorem",
-    "guide": {
-      "label": "Potwierdzamy przed rezerwacją",
-      "polishConfirmed": false
-    },
-    "highlights": [
-      "Certyfikat PADI AOWD",
-      "5 nurkowań",
-      "Deep Dive do 30 m",
-      "Nawigacja podwodna",
-      "Szkolenie z instruktorem"
-    ],
-    "itinerary": [
-      {
-        "time": "Dzień 1",
-        "title": "Odprawa i pierwsze nurkowania",
-        "description": "Spotkanie z instruktorem, omówienie zasad kursu Adventure Dive i wejście do wody na pierwsze nurkowania."
-      },
-      {
-        "title": "Deep Dive",
-        "description": "Nurkowanie głębokie, po którym możesz schodzić do 30 metrów."
-      },
-      {
-        "title": "Navigation",
-        "description": "Nurkowanie z nawigacją podwodną - orientacja pod wodą i posługiwanie się kompasem."
-      },
-      {
-        "time": "Dzień 2",
-        "title": "Kolejne nurkowania Adventure",
-        "description": "Pozostałe z pięciu wymaganych nurkowań, rozwijające wybrane umiejętności pod wodą."
-      },
-      {
-        "title": "Certyfikat PADI AOWD",
-        "description": "Po zaliczeniu wszystkich nurkowań otrzymujesz międzynarodowy certyfikat Advanced Open Water Diver."
-      }
-    ],
-    "included": [
-      "Szkolenie z instruktorem PADI",
-      "5 nurkowań (Adventure Dive, w tym Deep Dive i Navigation)",
-      "Międzynarodowy certyfikat PADI Advanced Open Water Diver",
-      "Lunch i napoje"
-    ],
-    "excluded": [
-      "Wydatki własne i pamiątki",
-      "Napiwki"
-    ],
-    "transferSupplements": [],
-    "extras": [],
-    "whatToBring": [
-      "Strój kąpielowy",
-      "Ręcznik",
-      "Krem przeciwsłoneczny",
-      "Okulary przeciwsłoneczne"
-    ],
-    "requirements": [
-      "Ukończony kurs PADI Open Water Diver lub równoważny",
-      "Dobry ogólny stan zdrowia i umiejętność pływania"
-    ],
-    "cancellationPolicy": "Rezerwacja jest wstępna do potwierdzenia terminu i szczegółów kursu na WhatsApp. Nie pobieramy płatności online - należność regulujesz na miejscu. W razie zmiany planów prosimy o wcześniejszy kontakt.",
-    "featured": false,
-    "faqs": [
-      {
-        "question": "Ile trwa kurs Advanced Open Water Diver?",
-        "answer": "Kurs trwa dwa dni i obejmuje pięć nurkowań typu Adventure Dive."
-      },
-      {
-        "question": "Do jakiej głębokości mogę nurkować po kursie?",
-        "answer": "Po ukończeniu kursu i nurkowaniu Deep Dive możesz schodzić do 30 metrów."
-      },
-      {
-        "question": "Czy potrzebuję wcześniejszego certyfikatu?",
-        "answer": "Tak, kurs jest przeznaczony dla osób, które mają już certyfikat PADI Open Water Diver lub równoważny."
-      },
-      {
-        "question": "Co zawiera cena kursu?",
-        "answer": "W cenie są: szkolenie z instruktorem, pięć nurkowań, międzynarodowy certyfikat PADI AOWD oraz lunch i napoje."
-      }
-    ],
-    "seo": {
-      "title": "Kurs PADI AOWD w Hurghadzie - nurkowanie do 30 m",
-      "description": "Zaawansowany kurs PADI Advanced Open Water Diver w Hurghadzie - 5 nurkowań, Deep Dive i Navigation, certyfikat i nurkowanie do 30 m. Cena kursu 360 EUR.",
-      "canonicalPath": "/wycieczki-z-hurghady/kurs-padi-advanced-open-water/",
-      "ogImage": "/media/og/hurghada.jpg"
-    },
-    "updatedAt": "2026-08-09"
-  },
-  {
     "slug": "kair-stary-kair-piramidy",
     "route": "/wycieczki-z-marsa-alam/kair-stary-kair-piramidy",
     "title": "Wycieczka z Marsa Alam do Kairu",
@@ -8496,412 +8233,6 @@ export const tours: Tour[] = [
       "title": "Nurkowanie z łodzi w Marsa Alam - rafy Morza Czerwonego",
       "description": "Nurkowanie z łodzi w Marsa Alam: 1 lub 2 zejścia, rafy Morza Czerwonego, sprzęt, obiad i transfer. Cena od 75 USD.",
       "canonicalPath": "/wycieczki-z-marsa-alam/nurkowanie-z-lodzi/",
-      "ogImage": "/media/og/marsa-alam.jpg"
-    },
-    "updatedAt": "2026-08-09"
-  },
-  {
-    "slug": "kurs-padi-open-water",
-    "route": "/wycieczki-z-marsa-alam/kurs-padi-open-water",
-    "title": "Kurs PADI Open Water Diver w Marsa Alam",
-    "h1": "Kurs PADI Open Water Diver w Marsa Alam",
-    "destination": "marsa-alam",
-    "category": "nurkowanie",
-    "departure": "Marsa Alam",
-    "shortDescription": "Podstawowy kurs PADI Open Water Diver w Marsa Alam dla początkujących: 4 nurkowania, sprzęt i instruktor, międzynarodowy certyfikat i nurkowanie do 18 m.",
-    "overview": "Kurs PADI Open Water Diver w Marsa Alam to podstawowe szkolenie nurkowe dla osób początkujących. Po jego ukończeniu zdobywasz międzynarodowy certyfikat PADI i możesz nurkować z partnerem do 18 metrów na całym świecie.\n\nSzkolenie prowadzi instruktor, a naukę rozkłada się na teorię, ćwiczenia i praktykę. W programie są 4 nurkowania w wodach otwartych. Kurs trwa 3-4 dni.\n\nW cenie znajdują się szkolenie z instruktorem, sprzęt nurkowy, transfer oraz obiad i napoje podczas rejsu. Do wyboru są dwa warianty: nurkowania z brzegu lub z łodzi.",
-    "heroImage": {
-      "src": "/media/tours/ma-kurs-padi-open-water",
-      "alt": "Kurs PADI Open Water Diver w Marsa Alam - zdjęcie poglądowe",
-      "width": 1600,
-      "height": 1000
-    },
-    "gallery": [
-      {
-        "src": "/media/tours/ma-kurs-padi-open-water",
-        "alt": "Kurs PADI Open Water Diver w Marsa Alam - zdjęcie poglądowe",
-        "width": 1600,
-        "height": 1000
-      }
-    ],
-    "price": {
-      "mode": "perCourse",
-      "amount": 400,
-      "unit": "kurs",
-      "currency": "EUR",
-      "from": true,
-      "lastVerifiedAt": "2026-08-09",
-      "options": [
-        {
-          "label": "Kurs z brzegu",
-          "amount": 400,
-          "currency": "EUR",
-          "unit": "kurs"
-        },
-        {
-          "label": "Kurs z łodzi",
-          "amount": 450,
-          "currency": "EUR",
-          "unit": "kurs"
-        }
-      ],
-      "note": "Cena zależna od wariantu: nurkowania z brzegu lub z łodzi."
-    },
-    "availabilityLabel": "Terminy ustalane indywidualnie",
-    "availabilityDays": [
-      "Terminy ustalane indywidualnie"
-    ],
-    "durationLabel": "3-4 dni",
-    "pickupLabel": "Do ustalenia",
-    "transport": "Nurkowania z brzegu lub z łodzi (rejs), transfer w cenie",
-    "guide": {
-      "label": "Potwierdzamy przed rezerwacją",
-      "polishConfirmed": false
-    },
-    "highlights": [
-      "Certyfikat PADI OWD",
-      "4 nurkowania",
-      "Nurkowanie do 18 m",
-      "Kurs od podstaw",
-      "Sprzęt w cenie"
-    ],
-    "itinerary": [
-      {
-        "title": "Teoria",
-        "description": "Podstawy nurkowania omawiane krok po kroku z instruktorem."
-      },
-      {
-        "title": "Ćwiczenia w wodzie",
-        "description": "Nauka technik i procedur przed nurkowaniami w wodach otwartych."
-      },
-      {
-        "title": "4 nurkowania w wodach otwartych",
-        "description": "Praktyczne nurkowania utrwalające zdobyte umiejętności."
-      },
-      {
-        "title": "Certyfikat PADI OWD",
-        "description": "Po ukończeniu otrzymujesz międzynarodowy certyfikat i możliwość nurkowania do 18 metrów."
-      }
-    ],
-    "included": [
-      "Szkolenie z instruktorem PADI",
-      "4 nurkowania w wodach otwartych",
-      "Sprzęt nurkowy",
-      "Transfer",
-      "Obiad i napoje podczas rejsu",
-      "Certyfikat PADI Open Water Diver"
-    ],
-    "excluded": [
-      "Ubezpieczenie nurkowe",
-      "Dodatkowe nurkowania poza kursem",
-      "Napiwki"
-    ],
-    "transferSupplements": [],
-    "extras": [],
-    "whatToBring": [
-      "Strój kąpielowy i ręcznik",
-      "Krem z filtrem",
-      "Okulary przeciwsłoneczne",
-      "Gotówka na drobne wydatki"
-    ],
-    "requirements": [
-      "Umiejętność pływania",
-      "Dobry stan zdrowia i brak przeciwwskazań do nurkowania"
-    ],
-    "cancellationPolicy": "Rezerwacja jest wstępna do potwierdzenia na WhatsApp. Nie pobieramy płatności online. Termin kursu, wariant i szczegóły ustalamy indywidualnie przed rozpoczęciem.",
-    "featured": false,
-    "faqs": [
-      {
-        "question": "Czy kurs jest dla początkujących?",
-        "answer": "Tak, to podstawowy kurs nurkowy od zera. Prowadzi go instruktor, a naukę rozkłada się na teorię, ćwiczenia i 4 nurkowania w wodach otwartych."
-      },
-      {
-        "question": "Ile trwa kurs OWD?",
-        "answer": "Zwykle 3-4 dni. Termin ustalamy indywidualnie."
-      },
-      {
-        "question": "Jaki certyfikat otrzymam?",
-        "answer": "Międzynarodowy certyfikat PADI Open Water Diver, który pozwala nurkować z partnerem do 18 metrów na całym świecie."
-      },
-      {
-        "question": "Co jest w cenie kursu?",
-        "answer": "Szkolenie z instruktorem, sprzęt nurkowy, transfer oraz obiad i napoje podczas rejsu. Do wyboru wariant z brzegu (400 EUR) lub z łodzi (450 EUR)."
-      }
-    ],
-    "seo": {
-      "title": "Kurs PADI Open Water Diver w Marsa Alam",
-      "description": "Kurs PADI Open Water Diver w Marsa Alam: 4 nurkowania, sprzęt, instruktor i certyfikat do 18 m. Cena od 400 EUR.",
-      "canonicalPath": "/wycieczki-z-marsa-alam/kurs-padi-open-water/",
-      "ogImage": "/media/og/marsa-alam.jpg"
-    },
-    "updatedAt": "2026-08-09"
-  },
-  {
-    "slug": "kurs-padi-advanced-open-water",
-    "route": "/wycieczki-z-marsa-alam/kurs-padi-advanced-open-water",
-    "title": "Kurs PADI Advanced Open Water Diver w Marsa Alam",
-    "h1": "Kurs PADI Advanced Open Water Diver w Marsa Alam",
-    "destination": "marsa-alam",
-    "category": "nurkowanie",
-    "departure": "Marsa Alam",
-    "shortDescription": "Kurs PADI Advanced Open Water Diver w Marsa Alam dla osób po OWD: 5 nurkowań, Deep Dive i nawigacja, nurkowanie do 30 m i certyfikat PADI.",
-    "overview": "Kurs PADI Advanced Open Water Diver w Marsa Alam przeznaczony jest dla osób, które mają już certyfikat Open Water Diver i chcą rozwinąć umiejętności pod wodą. Po ukończeniu możesz nurkować do 30 metrów.\n\nProgram obejmuje 5 nurkowań typu Adventure Dive, w tym dwa obowiązkowe: Deep Dive (nurkowanie głębokie) i Underwater Navigation (nawigacja). Pozostałe nurkowania wybierasz spośród opcji takich jak Wreck Dive, Night Dive, Drift Dive czy Peak Performance Buoyancy.\n\nKurs trwa 2 dni i kończy się certyfikatem PADI AOWD. Dostępne są dwa warianty cenowe: nurkowania z brzegu lub z łodzi. W cenie obiad i napoje podczas rejsu.",
-    "heroImage": {
-      "src": "/media/tours/ma-kurs-padi-advanced-open-water",
-      "alt": "Kurs PADI Advanced Open Water Diver w Marsa Alam - zdjęcie poglądowe",
-      "width": 1600,
-      "height": 1000
-    },
-    "gallery": [
-      {
-        "src": "/media/tours/ma-kurs-padi-advanced-open-water",
-        "alt": "Kurs PADI Advanced Open Water Diver w Marsa Alam - zdjęcie poglądowe",
-        "width": 1600,
-        "height": 1000
-      }
-    ],
-    "price": {
-      "mode": "perCourse",
-      "amount": 360,
-      "unit": "kurs",
-      "currency": "EUR",
-      "from": true,
-      "lastVerifiedAt": "2026-08-09",
-      "options": [
-        {
-          "label": "Kurs z brzegu",
-          "amount": 360,
-          "currency": "EUR",
-          "unit": "kurs"
-        },
-        {
-          "label": "Kurs z łodzi",
-          "amount": 410,
-          "currency": "EUR",
-          "unit": "kurs"
-        }
-      ],
-      "note": "Cena zależna od wariantu: nurkowania z brzegu lub z łodzi."
-    },
-    "availabilityLabel": "Terminy ustalane indywidualnie",
-    "availabilityDays": [
-      "Terminy ustalane indywidualnie"
-    ],
-    "durationLabel": "2 dni",
-    "pickupLabel": "Do ustalenia",
-    "transport": "Nurkowania z brzegu lub z łodzi (rejs)",
-    "guide": {
-      "label": "Potwierdzamy przed rezerwacją",
-      "polishConfirmed": false
-    },
-    "highlights": [
-      "5 nurkowań Adventure Dive",
-      "Nurkowanie do 30 m",
-      "Deep Dive i nawigacja",
-      "Certyfikat PADI AOWD"
-    ],
-    "itinerary": [
-      {
-        "title": "Briefing i teoria",
-        "description": "Wprowadzenie z instruktorem i omówienie kolejnych nurkowań."
-      },
-      {
-        "title": "Deep Dive",
-        "description": "Obowiązkowe nurkowanie głębokie rozwijające umiejętności na większej głębokości."
-      },
-      {
-        "title": "Underwater Navigation",
-        "description": "Obowiązkowe nurkowanie z nawigacją i orientacją pod wodą."
-      },
-      {
-        "title": "Nurkowania do wyboru",
-        "description": "Pozostałe nurkowania specjalne, np. Wreck, Night, Drift lub Peak Performance Buoyancy."
-      },
-      {
-        "title": "Certyfikat PADI AOWD",
-        "description": "Po pięciu nurkowaniach otrzymujesz certyfikat i możliwość nurkowania do 30 metrów."
-      }
-    ],
-    "included": [
-      "Szkolenie z instruktorem PADI",
-      "5 nurkowań (Adventure Dive)",
-      "Obiad i napoje podczas rejsu",
-      "Certyfikat PADI Advanced Open Water Diver"
-    ],
-    "excluded": [
-      "Ubezpieczenie nurkowe",
-      "Dodatkowe nurkowania poza kursem",
-      "Napiwki"
-    ],
-    "transferSupplements": [],
-    "extras": [],
-    "whatToBring": [
-      "Strój kąpielowy i ręcznik",
-      "Certyfikat PADI Open Water Diver",
-      "Krem z filtrem",
-      "Gotówka na drobne wydatki"
-    ],
-    "requirements": [
-      "Wymagany certyfikat PADI Open Water Diver (lub równoważny)",
-      "Dobry stan zdrowia"
-    ],
-    "cancellationPolicy": "Rezerwacja jest wstępna do potwierdzenia na WhatsApp. Nie pobieramy płatności online. Termin kursu, wariant i szczegóły ustalamy indywidualnie przed rozpoczęciem.",
-    "featured": false,
-    "faqs": [
-      {
-        "question": "Kto może zapisać się na kurs AOWD?",
-        "answer": "Kurs jest przeznaczony dla osób z certyfikatem PADI Open Water Diver, które chcą rozwijać umiejętności i nurkować głębiej."
-      },
-      {
-        "question": "Ile nurkowań obejmuje kurs?",
-        "answer": "Pięć nurkowań typu Adventure Dive, w tym obowiązkowe Deep Dive i Underwater Navigation. Kurs trwa 2 dni."
-      },
-      {
-        "question": "Do jakiej głębokości będę mógł nurkować?",
-        "answer": "Po ukończeniu kursu możesz nurkować do 30 metrów."
-      },
-      {
-        "question": "Ile kosztuje kurs?",
-        "answer": "Wariant z brzegu to 360 EUR, a z łodzi 410 EUR za kurs. W cenie obiad i napoje podczas rejsu."
-      }
-    ],
-    "seo": {
-      "title": "Kurs PADI AOWD w Marsa Alam - nurkowanie do 30 m",
-      "description": "Kurs PADI Advanced Open Water Diver w Marsa Alam: 5 nurkowań, Deep Dive i nawigacja, certyfikat PADI. Cena od 360 EUR.",
-      "canonicalPath": "/wycieczki-z-marsa-alam/kurs-padi-advanced-open-water/",
-      "ogImage": "/media/og/marsa-alam.jpg"
-    },
-    "updatedAt": "2026-08-09"
-  },
-  {
-    "slug": "kurs-padi-rescue-diver",
-    "route": "/wycieczki-z-marsa-alam/kurs-padi-rescue-diver",
-    "title": "Kurs PADI Rescue Diver w Marsa Alam",
-    "h1": "Kurs PADI Rescue Diver w Marsa Alam",
-    "destination": "marsa-alam",
-    "category": "nurkowanie",
-    "departure": "Marsa Alam",
-    "shortDescription": "Kurs PADI Rescue Diver w Marsa Alam: nauka zapobiegania wypadkom i scenariusze ratunkowe. Dla nurków po AOWD z aktualnym First Aid / EFR, krok przed Divemaster.",
-    "overview": "Kurs PADI Rescue Diver w Marsa Alam uczy zapobiegania wypadkom i skutecznego reagowania w sytuacjach awaryjnych pod wodą. To jeden z ważniejszych etapów w rozwoju nurka przed poziomem profesjonalnym, np. Divemaster.\n\nSzkolenie łączy teorię z praktycznymi scenariuszami ratunkowymi w Morzu Czerwonym. Kurs trwa 3-4 dni i przeznaczony jest dla nurków z certyfikatem Advanced Open Water Diver oraz aktualnym First Aid / EFR.\n\nPo ukończeniu otrzymujesz certyfikat PADI Rescue Diver. Dostępne są dwa warianty cenowe: nurkowania z brzegu lub z łodzi. W cenie obiad i napoje podczas rejsu.",
-    "heroImage": {
-      "src": "/media/tours/ma-kurs-padi-rescue-diver",
-      "alt": "Kurs PADI Rescue Diver w Marsa Alam - zdjęcie poglądowe",
-      "width": 1600,
-      "height": 1000
-    },
-    "gallery": [
-      {
-        "src": "/media/tours/ma-kurs-padi-rescue-diver",
-        "alt": "Kurs PADI Rescue Diver w Marsa Alam - zdjęcie poglądowe",
-        "width": 1600,
-        "height": 1000
-      }
-    ],
-    "price": {
-      "mode": "perCourse",
-      "amount": 360,
-      "unit": "kurs",
-      "currency": "EUR",
-      "from": true,
-      "lastVerifiedAt": "2026-08-09",
-      "options": [
-        {
-          "label": "Kurs z brzegu",
-          "amount": 360,
-          "currency": "EUR",
-          "unit": "kurs"
-        },
-        {
-          "label": "Kurs z łodzi",
-          "amount": 410,
-          "currency": "EUR",
-          "unit": "kurs"
-        }
-      ],
-      "note": "Cena zależna od wariantu: nurkowania z brzegu lub z łodzi."
-    },
-    "availabilityLabel": "Terminy ustalane indywidualnie",
-    "availabilityDays": [
-      "Terminy ustalane indywidualnie"
-    ],
-    "durationLabel": "3-4 dni",
-    "pickupLabel": "Do ustalenia",
-    "transport": "Nurkowania z brzegu lub z łodzi (rejs)",
-    "guide": {
-      "label": "Potwierdzamy przed rezerwacją",
-      "polishConfirmed": false
-    },
-    "highlights": [
-      "Scenariusze ratunkowe",
-      "Teoria i praktyka",
-      "Certyfikat PADI Rescue",
-      "Krok przed Divemaster"
-    ],
-    "itinerary": [
-      {
-        "title": "Teoria",
-        "description": "Omówienie zapobiegania wypadkom i zasad reagowania w sytuacjach awaryjnych."
-      },
-      {
-        "title": "Ćwiczenia i scenariusze ratunkowe",
-        "description": "Praktyczne rozpoznawanie problemów i udzielanie pomocy innym nurkom."
-      },
-      {
-        "title": "Praktyka w Morzu Czerwonym",
-        "description": "Realistyczne scenariusze ratunkowe w warunkach otwartej wody."
-      },
-      {
-        "title": "Certyfikat PADI Rescue Diver",
-        "description": "Po ukończeniu otrzymujesz certyfikat i przygotowanie przed poziomem Divemaster."
-      }
-    ],
-    "included": [
-      "Szkolenie z instruktorem PADI",
-      "Teoria i praktyczne scenariusze ratunkowe",
-      "Obiad i napoje podczas rejsu",
-      "Certyfikat PADI Rescue Diver"
-    ],
-    "excluded": [
-      "Ubezpieczenie nurkowe",
-      "Dodatkowe nurkowania poza kursem",
-      "Napiwki"
-    ],
-    "transferSupplements": [],
-    "extras": [],
-    "whatToBring": [
-      "Strój kąpielowy i ręcznik",
-      "Certyfikat AOWD i zaświadczenie First Aid / EFR",
-      "Krem z filtrem",
-      "Gotówka na drobne wydatki"
-    ],
-    "requirements": [
-      "Wymagany certyfikat Advanced Open Water Diver",
-      "Aktualny kurs pierwszej pomocy First Aid / EFR"
-    ],
-    "cancellationPolicy": "Rezerwacja jest wstępna do potwierdzenia na WhatsApp. Nie pobieramy płatności online. Termin kursu, wariant i szczegóły ustalamy indywidualnie przed rozpoczęciem.",
-    "featured": false,
-    "faqs": [
-      {
-        "question": "Jakie wymagania trzeba spełnić?",
-        "answer": "Kurs jest dla nurków z certyfikatem Advanced Open Water Diver i aktualnym kursem pierwszej pomocy First Aid / EFR."
-      },
-      {
-        "question": "Czego uczy kurs Rescue Diver?",
-        "answer": "Zapobiegania wypadkom oraz reagowania w sytuacjach awaryjnych - łączy teorię z praktycznymi scenariuszami ratunkowymi. Trwa 3-4 dni."
-      },
-      {
-        "question": "Co daje ten kurs?",
-        "answer": "Certyfikat PADI Rescue Diver i przygotowanie do dalszego rozwoju, np. przed poziomem Divemaster."
-      },
-      {
-        "question": "Ile kosztuje kurs?",
-        "answer": "Wariant z brzegu to 360 EUR, a z łodzi 410 EUR za kurs. W cenie obiad i napoje podczas rejsu."
-      }
-    ],
-    "seo": {
-      "title": "Kurs PADI Rescue Diver w Marsa Alam",
-      "description": "Kurs PADI Rescue Diver w Marsa Alam: scenariusze ratunkowe, teoria i praktyka, certyfikat PADI. Cena od 360 EUR.",
-      "canonicalPath": "/wycieczki-z-marsa-alam/kurs-padi-rescue-diver/",
       "ogImage": "/media/og/marsa-alam.jpg"
     },
     "updatedAt": "2026-08-09"
@@ -11801,6 +11132,317 @@ export const tours: Tour[] = [
       "description": "Godzinna przejażdżka na wielbłądzie lub koniu po pustyni pod Sharm el Sheikh. Transfer, instruktor i kask w cenie, od 28 USD. Rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-sharm-el-sheikh/jazda-na-wielbladzie/",
       "ogImage": "/media/og/sharm-el-sheikh.jpg"
+    },
+    "updatedAt": "2026-08-09"
+  },
+  {
+    "slug": "kair-samolotem-muzeum-egipskie-piramidy",
+    "route": "/wycieczki-z-sharm-el-sheikh/kair-samolotem-muzeum-egipskie-piramidy",
+    "title": "Kair samolotem z Sharm el Sheikh - Muzeum Egipskie i piramidy",
+    "h1": "Kair samolotem z Sharm el Sheikh - Muzeum Egipskie, piramidy w Gizie i Sfinks",
+    "destination": "sharm-el-sheikh",
+    "category": "kair",
+    "departure": "Sharm el Sheikh",
+    "shortDescription": "Jednodniowa wyprawa samolotem z Sharm el Sheikh do Kairu: klasyczne Muzeum Egipskie przy placu Tahrir, piramidy w Gizie i Sfinks. Przelot w obie strony, transfery i obiad w cenie.",
+    "overview": "To klasyczny wariant wycieczki do Kairu samolotem - skupiony na Muzeum Egipskim przy placu Tahrir, czyli historycznym zbiorze skarbów faraonów w centrum stolicy (to nie jest nowe Wielkie Muzeum GEM). Przelot z Sharm el Sheikh do Kairu i z powrotem skraca długą trasę autokarem do minimum, dzięki czemu cały dzień spędzasz na zwiedzaniu: Muzeum Egipskie, płaskowyż w Gizie z piramidami i Sfinksem oraz obiad w lokalnej restauracji. Dla chętnych dostępny jest opcjonalny rejs po Nilu.",
+    "heroImage": {
+      "src": "/media/tours/h-kair-piramidy-muzeum-egipskie",
+      "alt": "Sala Muzeum Egipskiego i piramidy w Gizie - wycieczka do Kairu samolotem",
+      "width": 1600,
+      "height": 1000
+    },
+    "gallery": [
+      {
+        "src": "/media/tours/h-kair-piramidy-muzeum-egipskie",
+        "alt": "Sala Muzeum Egipskiego i piramidy w Gizie - wycieczka do Kairu samolotem",
+        "width": 1600,
+        "height": 1000
+      }
+    ],
+    "price": {
+      "mode": "perPerson",
+      "amount": 255,
+      "unit": "os.",
+      "currency": "USD",
+      "from": true,
+      "lastVerifiedAt": "2026-08-09",
+      "options": [
+        {
+          "label": "Dorosły",
+          "amount": 255,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko",
+          "amount": 230,
+          "currency": "USD",
+          "note": "przedział wiekowy potwierdzamy przy rezerwacji"
+        }
+      ],
+      "note": "Cena obejmuje przelot w obie strony. Ostateczny termin i warunki rezerwacji potwierdzamy na WhatsApp."
+    },
+    "availabilityLabel": "Poniedziałki, środy i soboty",
+    "availabilityDays": [
+      "Poniedziałek",
+      "Środa",
+      "Sobota"
+    ],
+    "durationLabel": "Całodniowa (z przelotem)",
+    "pickupLabel": "wcześnie rano, przed lotem",
+    "returnLabel": "wieczorem",
+    "transport": "Przelot Sharm el Sheikh-Kair-Sharm el Sheikh oraz transfery hotel-lotnisko",
+    "guide": {
+      "label": "Angielski",
+      "polishConfirmed": false
+    },
+    "highlights": [
+      "Przelot do Kairu i z powrotem",
+      "Muzeum Egipskie (Tahrir)",
+      "Piramidy w Gizie i Sfinks",
+      "Obiad"
+    ],
+    "itinerary": [
+      {
+        "time": "wcześnie rano",
+        "title": "Odbiór z hotelu i transfer na lotnisko",
+        "description": "Kierowca odbiera Cię spod hotelu w Sharm el Sheikh i przewozi na lotnisko. Godzinę odbioru potwierdzamy wcześniej na WhatsApp."
+      },
+      {
+        "title": "Przelot do Kairu",
+        "description": "Krótki lot z Sharm el Sheikh do Kairu zamiast wielogodzinnej trasy autokarem."
+      },
+      {
+        "title": "Muzeum Egipskie (Tahrir)",
+        "description": "Zwiedzanie klasycznego Muzeum Egipskiego w centrum Kairu - historyczny zbiór zabytków starożytnego Egiptu."
+      },
+      {
+        "title": "Płaskowyż w Gizie",
+        "description": "Piramidy i Sfinks z bliska, czas na zdjęcia na płaskowyżu w Gizie."
+      },
+      {
+        "title": "Obiad",
+        "description": "Ciepły posiłek w lokalnej restauracji (bez napojów)."
+      },
+      {
+        "title": "Opcjonalny rejs po Nilu",
+        "description": "Dla chętnych krótki rejs po Nilu za dopłatą, płatny na miejscu."
+      },
+      {
+        "title": "Powrót samolotem do Sharm el Sheikh",
+        "description": "Przelot powrotny i transfer pod hotel. Powrót zwykle wieczorem."
+      }
+    ],
+    "included": [
+      "Przelot Sharm el Sheikh-Kair-Sharm el Sheikh",
+      "Transfery hotel-lotnisko",
+      "Bilet wstępu do Muzeum Egipskiego",
+      "Wstęp na płaskowyż w Gizie",
+      "Obiad (bez napojów)",
+      "Opieka przewodnika anglojęzycznego"
+    ],
+    "excluded": [
+      "Napoje",
+      "Wejście do wnętrza piramidy",
+      "Opcjonalny rejs po Nilu",
+      "Przejazd na wielbłądzie",
+      "Wydatki własne i napiwki"
+    ],
+    "transferSupplements": [],
+    "extras": [
+      {
+        "label": "Rejs po Nilu",
+        "note": "opcjonalnie, płatny na miejscu"
+      }
+    ],
+    "whatToBring": [
+      "Paszport (wymagany na przelot i w Kairze)",
+      "Wygodne buty na cały dzień zwiedzania",
+      "Nakrycie głowy, okulary i krem z filtrem",
+      "Woda i przekąski",
+      "Gotówka na napoje, napiwki i opcjonalne atrakcje"
+    ],
+    "requirements": [
+      "Ze względu na przelot rezerwację i termin potwierdzamy z wyprzedzeniem na WhatsApp.",
+      "Liczba miejsc w samolocie jest ograniczona - warto rezerwować wcześniej.",
+      "Przewodnik na tej trasie jest anglojęzyczny; obsługa rezerwacji odbywa się po polsku."
+    ],
+    "cancellationPolicy": "Rezerwacja jest wstępna do czasu potwierdzenia przez naszą ekipę na WhatsApp. Termin lotu i warunki rezerwacji potwierdzamy na WhatsApp. Nie pobieramy płatności online przez tę stronę.",
+    "featured": false,
+    "faqs": [
+      {
+        "question": "Czym różni się ta wycieczka od wersji z Wielkim Muzeum GEM?",
+        "answer": "Ta trasa obejmuje klasyczne Muzeum Egipskie przy placu Tahrir w centrum Kairu. Wariant \"Kair samolotem z GEM\" zamiast tego zwiedza nowe Wielkie Muzeum Egipskie (GEM) przy Gizie. Wybór zależy od tego, które muzeum chcesz zobaczyć."
+      },
+      {
+        "question": "Czy przelot jest w cenie?",
+        "answer": "Tak. Cena obejmuje przelot Sharm el Sheikh-Kair-Sharm el Sheikh oraz transfery między hotelem a lotniskiem."
+      },
+      {
+        "question": "W jakim języku mówi przewodnik?",
+        "answer": "Na tej trasie przewodnik jest anglojęzyczny. Cała obsługa rezerwacji i kontakt z naszą ekipą odbywa się po polsku."
+      },
+      {
+        "question": "Ile kosztuje wycieczka dla dziecka?",
+        "answer": "Cena dla dziecka to 230 USD, dla osoby dorosłej 255 USD. Dokładny przedział wiekowy dziecka potwierdzamy przy rezerwacji."
+      },
+      {
+        "question": "W które dni odbywa się wycieczka?",
+        "answer": "Standardowo w poniedziałki, środy i soboty. Dostępność w danym terminie potwierdzamy na WhatsApp."
+      }
+    ],
+    "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
+    "seo": {
+      "title": "Kair samolotem z Sharm el Sheikh - Muzeum Egipskie i piramidy",
+      "description": "Wycieczka do Kairu samolotem z Sharm el Sheikh: klasyczne Muzeum Egipskie (Tahrir), piramidy w Gizie i Sfinks. Przelot w obie strony i obiad w cenie. Dorosły 255 USD, dziecko 230 USD. Rezerwacja przez WhatsApp.",
+      "canonicalPath": "/wycieczki-z-sharm-el-sheikh/kair-samolotem-muzeum-egipskie-piramidy/",
+      "ogImage": "/media/og/default.jpg"
+    },
+    "updatedAt": "2026-08-09"
+  },
+  {
+    "slug": "klasztor-sw-katarzyny-synaj",
+    "route": "/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj",
+    "title": "Klasztor św. Katarzyny z Sharm el Sheikh - wycieczka na Synaj",
+    "h1": "Klasztor św. Katarzyny z Sharm el Sheikh - wycieczka na Synaj",
+    "destination": "sharm-el-sheikh",
+    "category": "synaj",
+    "departure": "Sharm el Sheikh",
+    "shortDescription": "Jednodniowa wycieczka na Synaj do Klasztoru św. Katarzyny (obiekt UNESCO). Klimatyzowany autokar z Sharm el Sheikh, zwiedzanie klasztoru i górskie krajobrazy - bez nocnego wejścia na Górę Mojżesza.",
+    "overview": "Spokojna, całodniowa wyprawa w głąb Synaju do Klasztoru św. Katarzyny - jednego z najstarszych czynnych klasztorów chrześcijańskich na świecie i obiektu z listy UNESCO. Zwiedzasz dziedzińce i zabytkowe wnętrza klasztorne, kaplicę związaną z tradycją Krzewa Gorejącego oraz zbiory ikon i mozaik, a po drodze podziwiasz surowe krajobrazy gór Synaju. To wariant dzienny, skupiony na samym klasztorze - jeśli szukasz nocnego wejścia na szczyt Góry Mojżesza na wschód słońca, wybierz osobną wycieczkę \"Góra Mojżesza i klasztor św. Katarzyny\".",
+    "heroImage": {
+      "src": "/media/destinations/sharm-el-sheikh",
+      "alt": "Górzysty krajobraz Synaju w drodze do Klasztoru św. Katarzyny",
+      "width": 1600,
+      "height": 1000
+    },
+    "gallery": [
+      {
+        "src": "/media/destinations/sharm-el-sheikh",
+        "alt": "Górzysty krajobraz Synaju w drodze do Klasztoru św. Katarzyny",
+        "width": 1600,
+        "height": 1000
+      }
+    ],
+    "price": {
+      "mode": "perPerson",
+      "amount": 33,
+      "unit": "os.",
+      "currency": "USD",
+      "from": false,
+      "lastVerifiedAt": "2026-08-09",
+      "options": [
+        {
+          "label": "Dorosły",
+          "amount": 33,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko 5-11 lat",
+          "amount": 17,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko poniżej 5 lat",
+          "amount": 0,
+          "currency": "USD",
+          "free": true
+        }
+      ],
+      "childAgeMin": 5,
+      "infantFree": true
+    },
+    "availabilityLabel": "Poniedziałki, czwartki i soboty",
+    "availabilityDays": [
+      "Poniedziałek",
+      "Czwartek",
+      "Sobota"
+    ],
+    "durationLabel": "ok. 1 dzień",
+    "pickupLabel": "wg strefy hotelu, potwierdzamy na WhatsApp",
+    "transport": "Klimatyzowany autokar z Sharm el Sheikh (lub Dahab) na Synaj i z powrotem",
+    "guide": {
+      "label": "Potwierdzamy przed rezerwacją",
+      "polishConfirmed": false
+    },
+    "highlights": [
+      "Klasztor św. Katarzyny (UNESCO)",
+      "Kaplica przy Krzewie Gorejącym",
+      "Ikony i mozaiki",
+      "Krajobrazy Synaju"
+    ],
+    "itinerary": [
+      {
+        "title": "Odbiór z hotelu",
+        "description": "Odbiór spod hotelu w Sharm el Sheikh (możliwy także z Dahab). Godzinę i miejsce zbiórki potwierdzamy na WhatsApp."
+      },
+      {
+        "title": "Przejazd na Synaj",
+        "description": "Klimatyzowanym autokarem w głąb półwyspu Synaj, przez górzyste krajobrazy."
+      },
+      {
+        "title": "Klasztor św. Katarzyny",
+        "description": "Zwiedzanie klasztoru z listy UNESCO: dziedzińce i zabytkowe wnętrza, kaplica związana z tradycją Krzewa Gorejącego oraz zbiory ikon i mozaik."
+      },
+      {
+        "title": "Czas na zdjęcia i krajobrazy",
+        "description": "Chwila na zdjęcia i podziwianie panoramy gór Synaju."
+      },
+      {
+        "title": "Powrót do hotelu",
+        "description": "Droga powrotna autokarem pod hotel."
+      }
+    ],
+    "included": [
+      "Transport klimatyzowanym autokarem z Sharm el Sheikh / Dahab i z powrotem",
+      "Wizyta w Klasztorze św. Katarzyny"
+    ],
+    "excluded": [
+      "Napoje",
+      "Napiwki",
+      "Wydatki własne"
+    ],
+    "transferSupplements": [],
+    "extras": [],
+    "whatToBring": [
+      "Wygodne buty",
+      "Ochrona przeciwsłoneczna (okulary, krem, nakrycie głowy)",
+      "Coś ciepłego - na Synaju bywa chłodniej",
+      "Odpowiedni, zakrywający strój do zwiedzania klasztoru",
+      "Woda i drobna gotówka na wydatki własne"
+    ],
+    "requirements": [
+      "To wycieczka dzienna do klasztoru - nie obejmuje nocnego wejścia na Górę Mojżesza.",
+      "Klasztor bywa zamknięty w niektóre dni religijne - dostępność potwierdzamy przed rezerwacją."
+    ],
+    "cancellationPolicy": "Rezerwacja jest wstępna do czasu potwierdzenia przez naszą ekipę na WhatsApp. Potwierdzamy dostępność, godzinę i miejsce odbioru oraz ostateczną cenę. Nie pobieramy płatności online przez tę stronę.",
+    "featured": false,
+    "faqs": [
+      {
+        "question": "Czy ta wycieczka obejmuje wejście na Górę Mojżesza?",
+        "answer": "Nie. To dzienna wizyta w samym Klasztorze św. Katarzyny, bez nocnego wejścia na szczyt i bez wschodu słońca. Jeśli chcesz wejść na Górę Mojżesza na wschód słońca, wybierz osobną wycieczkę \"Góra Mojżesza i klasztor św. Katarzyny\"."
+      },
+      {
+        "question": "Co zobaczę w klasztorze?",
+        "answer": "Dziedzińce i zabytkowe wnętrza klasztorne, kaplicę związaną z tradycją Krzewa Gorejącego oraz zbiory ikon i mozaik. Klasztor św. Katarzyny jest wpisany na listę UNESCO."
+      },
+      {
+        "question": "Skąd odbywa się odbiór?",
+        "answer": "Z hotelu w Sharm el Sheikh, a w niektórych przypadkach także z Dahab. Godzinę i miejsce odbioru potwierdzamy na WhatsApp."
+      },
+      {
+        "question": "Ile kosztuje wycieczka dla dzieci?",
+        "answer": "Dzieci 5-11 lat: 17 USD, dzieci poniżej 5 lat bezpłatnie, dorośli: 33 USD od osoby."
+      },
+      {
+        "question": "W które dni odbywa się wycieczka?",
+        "answer": "Standardowo w poniedziałki, czwartki i soboty. Dostępność w danym terminie potwierdzamy na WhatsApp."
+      }
+    ],
+    "seo": {
+      "title": "Klasztor św. Katarzyny z Sharm el Sheikh - wycieczka na Synaj (UNESCO)",
+      "description": "Wycieczka na Synaj do Klasztoru św. Katarzyny (UNESCO) z Sharm el Sheikh: dzienne zwiedzanie klasztoru, bez nocnego wejścia na Górę Mojżesza. Dorosły 33 USD, dziecko 17 USD, do 5 lat gratis. Rezerwacja przez WhatsApp.",
+      "canonicalPath": "/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj/",
+      "ogImage": "/media/og/default.jpg"
     },
     "updatedAt": "2026-08-09"
   }

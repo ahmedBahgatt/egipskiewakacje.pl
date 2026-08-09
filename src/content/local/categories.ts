@@ -134,11 +134,11 @@ export const categories: TourCategory[] = [
   {
     slug: "nurkowanie",
     routeBase: "/wycieczki/nurkowanie",
-    name: "Nurkowanie i kursy nurkowe",
+    name: "Nurkowanie na rafach Morza Czerwonego",
     shortLabel: "Nurkowanie",
-    description: "Nurkowanie na próbę, wyprawy z butlą i kursy PADI z Hurghady oraz Marsa Alam.",
+    description: "Nurkowanie na próbę i wyprawy z butlą na rafach Morza Czerwonego - z Hurghady, Marsa Alam i Sharm el Sheikh.",
     intro:
-      "Rafy Morza Czerwonego zachwycają zarówno pierwszy raz, jak i doświadczonych nurków. Zaczynasz od nurkowania na próbę pod okiem instruktora, wybierasz nurkowanie z łodzi lub z brzegu, albo robisz pełny kurs PADI - od Open Water po Rescue Diver. Kursy rozliczane są w euro, zgodnie z cennikiem operatora.",
+      "Rafy Morza Czerwonego zachwycają zarówno za pierwszym razem, jak i doświadczonych nurków. Możesz spróbować nurkowania na próbę pod okiem instruktora, zejść pod wodę z butlą z łodzi lub z brzegu, albo połączyć nurkowanie z rejsem na wyspę Tiran. To wyprawy dla osób, które chcą zobaczyć podwodny świat z bliska - dobieramy je do Twojego doświadczenia.",
     faqs: [
       {
         question: "Czy nurkowanie na próbę wymaga doświadczenia?",
@@ -146,19 +146,19 @@ export const categories: TourCategory[] = [
           "Nie. Nurkowanie na próbę (intro dive) jest przeznaczone dla osób bez uprawnień - instruktor prowadzi Cię przez cały czas, na niewielkiej głębokości. To dobry sposób, by sprawdzić, czy nurkowanie jest dla Ciebie.",
       },
       {
-        question: "Ile trwa kurs PADI Open Water?",
+        question: "Czy trzeba mieć uprawnienia nurkowe?",
         answer:
-          "Kurs Open Water Diver zwykle zajmuje kilka dni i łączy teorię, ćwiczenia na płytkiej wodzie oraz nurkowania w morzu. Po jego ukończeniu otrzymujesz certyfikat uznawany na całym świecie.",
+          "Do nurkowania na próbę nie potrzebujesz żadnych uprawnień. Przy wyprawach z butlą dobieramy głębokość i miejsce do Twojego doświadczenia, a przed każdym zejściem otrzymujesz instruktaż.",
       },
     ],
     seo: {
-      title: "Nurkowanie i kursy PADI w Egipcie | Hurghada, Marsa Alam",
+      title: "Nurkowanie w Egipcie - rafy Morza Czerwonego | Hurghada, Marsa Alam, Sharm",
       description:
-        "Nurkowanie na próbę, nurkowanie z butlą i kursy PADI (Open Water, Advanced, Rescue) z Hurghady i Marsa Alam. Ceny kursów w EUR, rezerwacja przez WhatsApp.",
+        "Nurkowanie na próbę i wyprawy z butlą na rafach Morza Czerwonego z Hurghady, Marsa Alam i Sharm el Sheikh. Dla początkujących i doświadczonych nurków. Rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/nurkowanie/",
       ogImage: "/media/og/default.jpg",
     },
-    primaryQuery: "nurkowanie Egipt kursy",
+    primaryQuery: "nurkowanie w Egipcie",
   },
   {
     slug: "safari",

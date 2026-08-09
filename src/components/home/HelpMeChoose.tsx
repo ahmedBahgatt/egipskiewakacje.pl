@@ -19,7 +19,7 @@ const INTENTS: Intent[] = [
   { q: "Podróżuję z dziećmi", hint: "Atrakcje, akwaria i rodzinne rejsy", href: "/wycieczki/atrakcje-i-rozrywka/" },
   { q: "Chcę zobaczyć zabytki", hint: "Kair, piramidy i Luksor", href: "/wycieczki/kair-i-piramidy/" },
   { q: "Chcę snorkeling i delfiny", hint: "Rafy, delfiny i żółwie", href: "/wycieczki/snorkeling-i-delfiny/" },
-  { q: "Chcę nurkować", hint: "Nurkowanie i kursy PADI", href: "/wycieczki/nurkowanie/" },
+  { q: "Chcę nurkować", hint: "Nurkowanie na rafach Morza Czerwonego", href: "/wycieczki/nurkowanie/" },
   { q: "Szukam aktywnej przygody", hint: "Safari, quady i buggy", href: "/wycieczki/safari-i-quady/" },
   { q: "Chcę relaksu na łodzi", hint: "Rejsy na wyspy Morza Czerwonego", href: "/wycieczki/rejsy-i-wyspy/" },
   { q: "Mam tylko pół dnia", hint: "Krótkie atrakcje blisko hotelu", href: "/wycieczki/atrakcje-i-rozrywka/" },
