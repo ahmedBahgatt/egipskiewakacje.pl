@@ -138,6 +138,19 @@ export const sanityApi: ContentApi = {
   async getToursByDestination(slug) {
     return (await loadTours()).filter((t) => t.destination === slug);
   },
+  // Categories are defined locally (taxonomy is code-owned, not a CMS document type
+  // in this phase). Kept here so both adapters satisfy the same ContentApi.
+  async getCategories() {
+    const { categories } = await import("@/content/local/categories");
+    return categories;
+  },
+  async getCategory(slug) {
+    const { categories } = await import("@/content/local/categories");
+    return categories.find((c) => c.slug === slug);
+  },
+  async getToursByCategory(slug) {
+    return (await loadTours()).filter((t) => t.category === slug);
+  },
   async getPosts() {
     return loadPosts();
   },

@@ -188,3 +188,23 @@ rather than shipping stale data.
   site honestly says "potwierdzamy przed rezerwacją").
 - Real owned photos/video to replace the original generated artwork.
 - Any verified customer reviews before an Opinie section is enabled.
+
+---
+
+## New OPEN items from the full-inventory build (2026-08-09)
+
+- CHILD PRICES: some tours list only an adult price on the source (e.g. GEM Kair
+  and Super Kair from Hurghada, several plane/Cairo variants). Pages show the
+  adult price only rather than inventing a child price. Confirm child prices to add.
+- GUIDE LANGUAGE: confirmed "Polski" only for Cairo/Luxor coach tours from
+  Hurghada & Marsa Alam. Confirm the real guide language for Sharm Cairo (GEM),
+  plane-to-Cairo tours, and whether any sea/safari tours have a Polish-speaking
+  guide/animator. Until confirmed they show "Potwierdzamy przed rezerwacją".
+- PRIVATE-TOUR TIERS: private Cairo/Luxor prices are per-person group tiers taken
+  from the source; the source card and detail block occasionally disagree on the
+  entry tier. Confirm the current tier table.
+- STOCK IMAGES: replace the 2 likely-stock hero images (Luxor, Petra) with
+  owner-licensed media (see ASSET_SOURCES.md).
+- PROMO PRICES: several source cards show a struck "Cena promocyjna". We display
+  only the current price. If any are genuine, documented promotions (with a real
+  30-day reference price), provide the history to enable an honest crossed price.

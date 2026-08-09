@@ -176,3 +176,22 @@ When the owner supplies real, owned photographs or video:
 6. Update this document to record the new provenance, replacing the "no photographs" statement with the actual source and license.
 
 Until then, the "no photographs, no stock, no people" rule stands, and no page may imply otherwise - for example, no "our team" section may show a generated or stock person.
+
+---
+
+## Real tour photos (2026-08-09)
+
+For the 81-tour build, one hero image per tour was reused from the owner's own
+source site (sekretyegiptu.pl - same owner, rights clear) and re-encoded locally
+to AVIF/WebP/JPG at 1600x1000 (`public/media/tours/<dep>-<slug>.*`). Files were
+downloaded, not hotlinked. Accurate Polish alt text is set per tour.
+
+OPEN - rights to confirm/replace (source images that look like third-party stock,
+not owner photos):
+- `hurghada-... luksor-dolina-krolow` - source file `pngtree-egypt-luxor-temple-*`
+- `sharm-... jordania-petra-morze-martwe` - source file `shutterstock_*`
+These were on the owner's site but a stock licence may not extend to this domain;
+replace with owner-licensed media before relying on them long-term.
+
+Gallery is currently the single hero per tour; richer per-tour galleries and
+real category/atmosphere media remain an owner-media task.

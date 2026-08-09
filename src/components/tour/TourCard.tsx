@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { Tour } from "@/content/types";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { IconArrowRight, IconClock, IconMapPin, IconWhatsApp, IconGlobe } from "@/components/ui/icons";
-import { priceLabel, formatMoney } from "@/lib/format";
+import { priceLabel, priceUnit, formatMoney } from "@/lib/format";
 import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import { track } from "@/lib/analytics";
@@ -41,6 +41,8 @@ export function TourCard({
     io.observe(el);
     return () => io.disconnect();
   }, [tour.slug, tour.destination]);
+
+  const childOpt = tour.price.options.find((o) => /dziecko/i.test(o.label) && !o.free);
 
   const waUrl = buildBookingWhatsappUrl({
     tourTitle: tour.title,
@@ -98,11 +100,13 @@ export function TourCard({
         <div className={styles.priceRow}>
           <div>
             <span className={styles.price}>{priceLabel(tour.price)}</span>
-            <span className={styles.priceUnit}> / dorosły</span>
+            <span className={styles.priceUnit}> {priceUnit(tour.price)}</span>
           </div>
-          <span className={styles.childPrice}>
-            dziecko {formatMoney(tour.price.child, tour.price.currency)}
-          </span>
+          {childOpt && !childOpt.free && (
+            <span className={styles.childPrice}>
+              dziecko {formatMoney(childOpt.amount, childOpt.currency)}
+            </span>
+          )}
         </div>
 
         <div className={styles.actions}>

@@ -199,3 +199,33 @@ The live CMS publish loop (seed dataset, deploy studio, CORS, webhook, flip to
 `sanity`, and the end-to-end "publish an article with an uploaded image and see it
 live" proof) requires a **Sanity Editor token**, which only the owner can create.
 All code is done and CI is ready; see CONTENT_REQUIRED.md / SANITY_SETUP.md.
+
+---
+
+## Full-inventory build QA (2026-08-09)
+
+Scope: expanded from 3 to 81 tours + 8 category pages; rebuilt all-tours,
+destination, cennik, homepage, nav and internal linking.
+
+- Typecheck: clean. Lint: clean (build enforces). Unit tests: 42 passed
+  (incl. new tours-inventory suite of 14). E2E: desktop 29 passed; mobile 27
+  passed, 2 skipped.
+- Production build: 110 static pages generated (81 tours, 8 categories, 3
+  destinations, cennik, poradnik, legal, etc.).
+- Full-export link crawl: 105 HTML pages, 6383 internal links, 0 broken, no
+  orphans.
+- Content originality: 0/81 tours exceed 10% 6-gram overlap vs source.
+- Grammar/branding scan of the whole export: 0 "z Hurghada", 0 Sekrety Egiptu
+  branding, 0 fake discount / bestseller / countdown / review terms.
+- Price integrity: headline of every tour equals a real listed option; per-person
+  headlines cross-checked against an independent extraction (all matched); no
+  fabricated reference prices.
+- Lighthouse (local static serve, headless Chrome): Accessibility / Best-Practices
+  / SEO = 100 on homepage, tour, category and cennik pages. Performance measured
+  61-74 locally, which is a local-serve artifact (no gzip/brotli/CDN/HTTP-2);
+  live GitHub Pages historically scores ~99. Final performance Lighthouse to be
+  re-run on live production in Phase 2.
+- Secret scan: clean. npm audit --audit-level=high: 0 vulnerabilities.
+
+Deferred to Phase 2 (per brief): final technical-SEO audit, live performance
+Lighthouse with production headers, Search Console/Bing submission.

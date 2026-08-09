@@ -6,15 +6,15 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { DataTable } from "@/components/ui/DataTable";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IconWhatsApp } from "@/components/ui/icons";
-import { formatMoney, formatDatePl } from "@/lib/format";
+import { priceLabel, priceUnit, formatMoney, formatDatePl } from "@/lib/format";
 import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import styles from "./cennik.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Cennik wycieczek do Kairu | Egipskie Wakacje",
+  title: "Cennik wycieczek w Egipcie | Hurghada, Marsa Alam, Sharm",
   description:
-    "Przejrzysty cennik wycieczek do Kairu z Hurghady, Marsa Alam i Sharm el Sheikh. Ceny w USD dla dorosłych i dzieci, data weryfikacji, rezerwacja przez WhatsApp.",
+    "Przejrzysty cennik wycieczek fakultatywnych z Hurghady, Marsa Alam i Sharm el Sheikh. Ceny za dorosłych i dzieci, data weryfikacji, rezerwacja przez WhatsApp.",
   canonicalPath: "/cennik/",
 });
 
@@ -26,14 +26,16 @@ const crumbs = [
 export default async function Page() {
   const tours = await content.getTours();
 
-  const rows = tours.map((t) => [
+  const rows = tours.map((t) => {
+    const childOpt = t.price.options.find((o) => /dziecko/i.test(o.label) && !o.free);
+    return [
     <Link key="n" href={`${t.route}/`} className={styles.tourLink}>
       {t.title}
     </Link>,
     t.departure,
-    formatMoney(t.price.adult, t.price.currency),
-    `${formatMoney(t.price.child, t.price.currency)} (${t.price.childAgeMin}-${t.price.childAgeMax} lat)`,
-    "bezpłatnie",
+    `${priceLabel(t.price)} ${priceUnit(t.price)}`.trim(),
+    childOpt ? formatMoney(childOpt.amount, childOpt.currency) : "-",
+    t.price.infantFree ? "bezpłatnie" : "-",
     t.availabilityLabel,
     formatDatePl(t.price.lastVerifiedAt),
     <div key="a" className={styles.rowActions}>
@@ -58,7 +60,8 @@ export default async function Page() {
         <IconWhatsApp /> WhatsApp
       </a>
     </div>,
-  ]);
+    ];
+  });
 
   return (
     <>
@@ -66,7 +69,7 @@ export default async function Page() {
       <PageHeader
         eyebrow="Cennik"
         title="Przejrzyste ceny wycieczek"
-        intro="Ceny podajemy w USD, bez ukrytych kosztów i sztucznych promocji. Dzieci poniżej 5 lat jadą bezpłatnie."
+        intro="Ceny podajemy w walucie operatora (USD, kursy nurkowe w EUR), bez ukrytych kosztów i sztucznych promocji. Przy wielu wycieczkach dzieci poniżej 5 lat jadą bezpłatnie."
         crumbs={crumbs}
       />
       <section className="section">
@@ -75,12 +78,12 @@ export default async function Page() {
             columns={[
               "Wycieczka",
               "Wyjazd",
-              "Dorosły",
+              "Cena",
               "Dziecko",
-              "Poniżej 5 lat",
+              "Niemowlę",
               "Dostępność",
               "Zweryfikowano",
-              "",
+              "Akcje",
             ]}
             rows={rows}
           />

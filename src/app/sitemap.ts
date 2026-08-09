@@ -9,14 +9,15 @@ export const dynamic = "force-static";
  * Only indexable public routes are listed - no filter/query combinations.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [tours, destinations, posts, legal] = await Promise.all([
+  const [tours, destinations, categories, posts, legal] = await Promise.all([
     content.getTours(),
     content.getDestinations(),
+    content.getCategories(),
     content.getPosts(),
     content.getLegalPages(),
   ]);
 
-  const today = "2026-08-08";
+  const today = "2026-08-09";
 
   const staticPages: { path: string; priority: number; freq: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
     { path: "/", priority: 1, freq: "weekly" },
@@ -46,6 +47,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: today,
       changeFrequency: "weekly",
       priority: 0.85,
+    });
+  }
+
+  for (const c of categories) {
+    entries.push({
+      url: absoluteUrl(c.seo.canonicalPath),
+      lastModified: today,
+      changeFrequency: "weekly",
+      priority: 0.8,
     });
   }
 

@@ -3,7 +3,7 @@ import type { PostBlock, Tour } from "@/content/types";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { DataTable } from "@/components/ui/DataTable";
 import { IconArrowRight } from "@/components/ui/icons";
-import { priceLabel } from "@/lib/format";
+import { priceLabel, priceUnit } from "@/lib/format";
 import styles from "./PostBody.module.css";
 
 /**
@@ -114,7 +114,7 @@ export function PostBody({ blocks, tours = [] }: { blocks: PostBlock[]; tours?: 
                 <span className={styles.relatedKicker}>Polecana wycieczka</span>
                 <span className={styles.relatedTitle}>{tour.title}</span>
                 <span className={styles.relatedMeta}>
-                  {priceLabel(tour.price)} / dorosły
+                  {priceLabel(tour.price)} {priceUnit(tour.price)}
                   <IconArrowRight />
                 </span>
               </Link>

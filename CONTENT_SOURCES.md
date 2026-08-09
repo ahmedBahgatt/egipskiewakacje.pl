@@ -157,3 +157,27 @@ Prices and schedules change. To re-verify:
 5. Merge to `main` - the deployment is automatic. See [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 Even when nothing changed, bump `lastVerifiedAt` so the record reflects the date the check actually happened.
+
+---
+
+## Full-inventory build (2026-08-09)
+
+A complete READ-ONLY crawl of the operator's own site (sekretyegiptu.pl) was run
+via its Rank Math `tour-sitemap.xml` (107 tour pages). For every page the current
+operational facts were extracted: current selling price, availability, duration,
+pickup/transfer, transport, included/excluded, programme and guide language.
+
+- 81 unique active tours implemented (Hurghada 41, Marsa Alam 23, Sharm 17).
+- 26 source pages excluded: 16 duplicate/consolidated, 2 generic doorway
+  (`/tour/kair-samolotem/`, `/tour/kair-autokarem/`), 8 wellness/shopping
+  (spa/hammam/massage/shopping) excluded per owner instruction. See TOUR_INVENTORY.md.
+- Prices are the CURRENT selling price. Where the source shows a struck
+  "Cena promocyjna A B", the active price B was used and A was NOT reproduced
+  (no fabricated reference price). Diving-course prices kept in EUR.
+- Guide language: "Polski" (polishConfirmed) only for the operator's Cairo/Luxor
+  coach product line from Hurghada & Marsa Alam; all other tours (sea/safari/
+  diving/Sinai/Sharm Cairo) use the cautious "Potwierdzamy przed rezerwacją".
+- Public copy was written fresh from factual notes. An automated 6-gram overlap
+  check against each source page found 0 tours above 10% overlap (only proper
+  nouns and unavoidable operational terms overlap). No source paragraphs, headings,
+  metadata, FAQs, countdowns, voucher codes or reviews were reproduced.

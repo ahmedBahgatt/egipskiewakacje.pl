@@ -6,6 +6,7 @@ import type {
   Review,
   SiteSettings,
   Tour,
+  TourCategory,
 } from "@/content/types";
 
 /** The single content interface the whole frontend reads through. */
@@ -19,6 +20,9 @@ export interface ContentApi {
   getFeaturedTours(): Promise<Tour[]>;
   getTour(slug: string): Promise<Tour | undefined>;
   getToursByDestination(slug: string): Promise<Tour[]>;
+  getCategories(): Promise<TourCategory[]>;
+  getCategory(slug: string): Promise<TourCategory | undefined>;
+  getToursByCategory(slug: string): Promise<Tour[]>;
   getPosts(): Promise<BlogPost[]>;
   getPost(slug: string): Promise<BlogPost | undefined>;
   getLegalPages(): Promise<LegalPage[]>;

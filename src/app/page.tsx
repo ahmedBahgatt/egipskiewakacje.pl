@@ -15,6 +15,7 @@ import {
   WhyUs,
 } from "@/components/home/parts";
 import { ToursGrid } from "@/components/tour/ToursGrid";
+import { CategoryBrowse } from "@/components/home/CategoryBrowse";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
@@ -28,13 +29,17 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default async function HomePage() {
-  const [featured, faqs, post, destinations, allTours] = await Promise.all([
+  const [featured, faqs, post, destinations, allTours, categories] = await Promise.all([
     content.getFeaturedTours(),
     content.getSiteFaqs(),
     content.getPost("co-zabrac-na-wycieczke-do-kairu"),
     content.getDestinations(),
     content.getTours(),
+    content.getCategories(),
   ]);
+
+  const catCounts = new Map<string, number>();
+  for (const t of allTours) catCounts.set(t.category, (catCounts.get(t.category) ?? 0) + 1);
 
   const homeFaqs = faqs.slice(0, 8);
 
@@ -52,12 +57,14 @@ export default async function HomePage() {
       <EgyptMap destinations={destinations} tours={allTours} />
       <DestinationCards destinations={destinations} />
 
+      <CategoryBrowse categories={categories} counts={catCounts} />
+
       <section className="section" style={{ background: "var(--bg-paper)" }}>
         <div className="container">
           <SectionHeading
-            eyebrow="Wycieczki do Kairu"
-            title="Nasze wyprawy do Kairu i piramid"
-            intro="Trzy trasy z trzech kurortów - wszystkie prowadzą do Gizy i Kairu. Ceny w USD, bez ukrytych kosztów."
+            eyebrow="Polecane wycieczki"
+            title="Wybrane wycieczki z naszej oferty"
+            intro="Kilka wypraw z różnych kurortów i kategorii - od Kairu i piramid, przez rejsy i snorkeling, po safari. Pełną ofertę znajdziesz na liście wszystkich wycieczek."
           />
           <ToursGrid tours={featured} priorityFirst />
           <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}>

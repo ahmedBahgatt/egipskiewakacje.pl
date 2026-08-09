@@ -34,7 +34,7 @@ export function Footer() {
         <nav className={styles.cols} aria-label="Stopka">
           {cols.map((col) => (
             <div key={col.title} className={styles.col}>
-              <h3 className={styles.colTitle}>{col.title}</h3>
+              <h2 className={styles.colTitle}>{col.title}</h2>
               <ul>
                 {col.links.map((l) => (
                   <li key={l.href}>

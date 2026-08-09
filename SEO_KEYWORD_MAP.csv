@@ -1,0 +1,98 @@
+keyword,normalized_cluster,intent,destination,assigned_page,page_type,role,cannibalization_note
+wycieczki z Hurghady,destination-H,commercial,Hurghada,/wycieczki-z-hurghady/,destination,primary,broad departure intent - no tour cannibalization
+wycieczki fakultatywne Hurghada,destination-H,commercial,Hurghada,/wycieczki-z-hurghady/,destination,secondary,
+wycieczki z Marsa Alam,destination-MA,commercial,Marsa Alam,/wycieczki-z-marsa-alam/,destination,primary,broad departure intent - no tour cannibalization
+wycieczki fakultatywne Marsa Alam,destination-MA,commercial,Marsa Alam,/wycieczki-z-marsa-alam/,destination,secondary,
+wycieczki z Sharm el Sheikh,destination-S,commercial,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/,destination,primary,broad departure intent - no tour cannibalization
+wycieczki fakultatywne Sharm el Sheikh,destination-S,commercial,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/,destination,secondary,
+wycieczki fakultatywne w Egipcie,home,commercial,all,/,home,primary,broad Egypt intent
+wycieczki w Egipcie dla Polaków,home,commercial,all,/,home,secondary,
+wycieczki do Kairu,cat-kair,commercial,all,/wycieczki/kair-i-piramidy/,category,primary,category cluster - distinct from single-tour intent
+wycieczki do Luksoru,cat-luksor,commercial,all,/wycieczki/luksor/,category,primary,category cluster - distinct from single-tour intent
+rejsy i wyspy Egipt,cat-rejsy-wyspy,commercial,all,/wycieczki/rejsy-i-wyspy/,category,primary,category cluster - distinct from single-tour intent
+snorkeling z delfinami Egipt,cat-snorkeling-delfiny,commercial,all,/wycieczki/snorkeling-i-delfiny/,category,primary,category cluster - distinct from single-tour intent
+nurkowanie Egipt,cat-nurkowanie,commercial,all,/wycieczki/nurkowanie/,category,primary,category cluster - distinct from single-tour intent
+safari quady Egipt,cat-safari,commercial,all,/wycieczki/safari-i-quady/,category,primary,category cluster - distinct from single-tour intent
+atrakcje Egipt,cat-atrakcje,commercial,all,/wycieczki/atrakcje-i-rozrywka/,category,primary,category cluster - distinct from single-tour intent
+prywatne wycieczki Egipt,cat-prywatne,commercial,all,/wycieczki/wycieczki-prywatne/,category,primary,category cluster - distinct from single-tour intent
+kair piramidy muzeum egipskie Hurghady,tour-kair-piramidy-muzeum-egipskie,transactional,Hurghada,/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/,tour,primary,one specific bookable offer
+kair wielkie muzeum gem Hurghady,tour-kair-wielkie-muzeum-gem,transactional,Hurghada,/wycieczki-z-hurghady/kair-wielkie-muzeum-gem/,tour,primary,one specific bookable offer
+super kair piramidy rejs po nilu Hurghady,tour-super-kair-piramidy-rejs-po-nilu,transactional,Hurghada,/wycieczki-z-hurghady/super-kair-piramidy-rejs-po-nilu/,tour,primary,one specific bookable offer
+kair samolotem Hurghady,tour-kair-samolotem,transactional,Hurghada,/wycieczki-z-hurghady/kair-samolotem/,tour,primary,one specific bookable offer
+prywatna wycieczka do kairu Hurghady,tour-prywatna-wycieczka-do-kairu,transactional,Hurghada,/wycieczki-z-hurghady/prywatna-wycieczka-do-kairu/,tour,primary,one specific bookable offer
+luksor dolina krolow Hurghady,tour-luksor-dolina-krolow,transactional,Hurghada,/wycieczki-z-hurghady/luksor-dolina-krolow/,tour,primary,one specific bookable offer
+prywatna wycieczka luksor dendera Hurghady,tour-prywatna-wycieczka-luksor-dendera,transactional,Hurghada,/wycieczki-z-hurghady/prywatna-wycieczka-luksor-dendera/,tour,primary,one specific bookable offer
+luksor lot balonem Hurghady,tour-luksor-lot-balonem,transactional,Hurghada,/wycieczki-z-hurghady/luksor-lot-balonem/,tour,primary,one specific bookable offer
+luksor 2 dni lot balonem Hurghady,tour-luksor-2-dni-lot-balonem,transactional,Hurghada,/wycieczki-z-hurghady/luksor-2-dni-lot-balonem/,tour,primary,one specific bookable offer
+orange bay Hurghady,tour-orange-bay,transactional,Hurghada,/wycieczki-z-hurghady/orange-bay/,tour,primary,one specific bookable offer
+wyspa paradise Hurghady,tour-wyspa-paradise,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-paradise/,tour,primary,one specific bookable offer
+wyspa mahmya Hurghady,tour-wyspa-mahmya,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-mahmya/,tour,primary,one specific bookable offer
+wyspa eden Hurghady,tour-wyspa-eden,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-eden/,tour,primary,one specific bookable offer
+wyspa bianca lodz szklane dno Hurghady,tour-wyspa-bianca-lodz-szklane-dno,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-bianca-lodz-szklane-dno/,tour,primary,one specific bookable offer
+wyspa hula hula Hurghady,tour-wyspa-hula-hula,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-hula-hula/,tour,primary,one specific bookable offer
+wyspa magawish Hurghady,tour-wyspa-magawish,transactional,Hurghada,/wycieczki-z-hurghady/wyspa-magawish/,tour,primary,one specific bookable offer
+sharm el naga snorkeling Hurghady,tour-sharm-el-naga-snorkeling,transactional,Hurghada,/wycieczki-z-hurghady/sharm-el-naga-snorkeling/,tour,primary,one specific bookable offer
+dom delfinow snorkeling Hurghady,tour-dom-delfinow-snorkeling,transactional,Hurghada,/wycieczki-z-hurghady/dom-delfinow-snorkeling/,tour,primary,one specific bookable offer
+dom delfinow nurkowanie Hurghady,tour-dom-delfinow-nurkowanie,transactional,Hurghada,/wycieczki-z-hurghady/dom-delfinow-nurkowanie/,tour,primary,one specific bookable offer
+delfinarium dolphin show Hurghady,tour-delfinarium-dolphin-show,transactional,Hurghada,/wycieczki-z-hurghady/delfinarium-dolphin-show/,tour,primary,one specific bookable offer
+nurkowanie na probe Hurghady,tour-nurkowanie-na-probe,transactional,Hurghada,/wycieczki-z-hurghady/nurkowanie-na-probe/,tour,primary,one specific bookable offer
+abu dabbab snorkeling Hurghady,tour-abu-dabbab-snorkeling,transactional,Hurghada,/wycieczki-z-hurghady/abu-dabbab-snorkeling/,tour,primary,one specific bookable offer
+plaza orange ozirea Hurghady,tour-plaza-orange-ozirea,transactional,Hurghada,/wycieczki-z-hurghady/plaza-orange-ozirea/,tour,primary,one specific bookable offer
+prywatny speedboat Hurghady,tour-prywatny-speedboat,transactional,Hurghada,/wycieczki-z-hurghady/prywatny-speedboat/,tour,primary,one specific bookable offer
+lodz seascope Hurghady,tour-lodz-seascope,transactional,Hurghada,/wycieczki-z-hurghady/lodz-seascope/,tour,primary,one specific bookable offer
+wielkie akwarium Hurghady,tour-wielkie-akwarium,transactional,Hurghada,/wycieczki-z-hurghady/wielkie-akwarium/,tour,primary,one specific bookable offer
+aquapark makadi water world Hurghady,tour-aquapark-makadi-water-world,transactional,Hurghada,/wycieczki-z-hurghady/aquapark-makadi-water-world/,tour,primary,one specific bookable offer
+mini egypt park Hurghady,tour-mini-egypt-park,transactional,Hurghada,/wycieczki-z-hurghady/mini-egypt-park/,tour,primary,one specific bookable offer
+dzien rodzinny Hurghady,tour-dzien-rodzinny,transactional,Hurghada,/wycieczki-z-hurghady/dzien-rodzinny/,tour,primary,one specific bookable offer
+family safari Hurghady,tour-family-safari,transactional,Hurghada,/wycieczki-z-hurghady/family-safari/,tour,primary,one specific bookable offer
+super safari sahara park Hurghady,tour-super-safari-sahara-park,transactional,Hurghada,/wycieczki-z-hurghady/super-safari-sahara-park/,tour,primary,one specific bookable offer
+quad safari 3h Hurghady,tour-quad-safari-3h,transactional,Hurghada,/wycieczki-z-hurghady/quad-safari-3h/,tour,primary,one specific bookable offer
+quad safari 5h Hurghady,tour-quad-safari-5h,transactional,Hurghada,/wycieczki-z-hurghady/quad-safari-5h/,tour,primary,one specific bookable offer
+buggy safari Hurghady,tour-buggy-safari,transactional,Hurghada,/wycieczki-z-hurghady/buggy-safari/,tour,primary,one specific bookable offer
+jazda konno kapiel w morzu Hurghady,tour-jazda-konno-kapiel-w-morzu,transactional,Hurghada,/wycieczki-z-hurghady/jazda-konno-kapiel-w-morzu/,tour,primary,one specific bookable offer
+jazda na wielbladzie Hurghady,tour-jazda-na-wielbladzie,transactional,Hurghada,/wycieczki-z-hurghady/jazda-na-wielbladzie/,tour,primary,one specific bookable offer
+parasailing Hurghady,tour-parasailing,transactional,Hurghada,/wycieczki-z-hurghady/parasailing/,tour,primary,one specific bookable offer
+city tour Hurghady,tour-city-tour,transactional,Hurghada,/wycieczki-z-hurghady/city-tour/,tour,primary,one specific bookable offer
+el gouna Hurghady,tour-el-gouna,transactional,Hurghada,/wycieczki-z-hurghady/el-gouna/,tour,primary,one specific bookable offer
+kurs padi open water Hurghady,tour-kurs-padi-open-water,transactional,Hurghada,/wycieczki-z-hurghady/kurs-padi-open-water/,tour,primary,one specific bookable offer
+kurs padi advanced open water Hurghady,tour-kurs-padi-advanced-open-water,transactional,Hurghada,/wycieczki-z-hurghady/kurs-padi-advanced-open-water/,tour,primary,one specific bookable offer
+kair stary kair piramidy Marsa Alam,tour-kair-stary-kair-piramidy,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kair-stary-kair-piramidy/,tour,primary,one specific bookable offer
+kair wielkie muzeum gem Marsa Alam,tour-kair-wielkie-muzeum-gem,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kair-wielkie-muzeum-gem/,tour,primary,one specific bookable offer
+kair samolotem Marsa Alam,tour-kair-samolotem,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kair-samolotem/,tour,primary,one specific bookable offer
+prywatna wycieczka do kairu Marsa Alam,tour-prywatna-wycieczka-do-kairu,transactional,Marsa Alam,/wycieczki-z-marsa-alam/prywatna-wycieczka-do-kairu/,tour,primary,one specific bookable offer
+luksor dolina krolow Marsa Alam,tour-luksor-dolina-krolow,transactional,Marsa Alam,/wycieczki-z-marsa-alam/luksor-dolina-krolow/,tour,primary,one specific bookable offer
+prywatna wycieczka luksor dendera Marsa Alam,tour-prywatna-wycieczka-luksor-dendera,transactional,Marsa Alam,/wycieczki-z-marsa-alam/prywatna-wycieczka-luksor-dendera/,tour,primary,one specific bookable offer
+sataya dom delfinow Marsa Alam,tour-sataya-dom-delfinow,transactional,Marsa Alam,/wycieczki-z-marsa-alam/sataya-dom-delfinow/,tour,primary,one specific bookable offer
+samadai dom delfinow Marsa Alam,tour-samadai-dom-delfinow,transactional,Marsa Alam,/wycieczki-z-marsa-alam/samadai-dom-delfinow/,tour,primary,one specific bookable offer
+abu dabbab Marsa Alam,tour-abu-dabbab,transactional,Marsa Alam,/wycieczki-z-marsa-alam/abu-dabbab/,tour,primary,one specific bookable offer
+marsa mubarak snorkeling Marsa Alam,tour-marsa-mubarak-snorkeling,transactional,Marsa Alam,/wycieczki-z-marsa-alam/marsa-mubarak-snorkeling/,tour,primary,one specific bookable offer
+wyspy hamata Marsa Alam,tour-wyspy-hamata,transactional,Marsa Alam,/wycieczki-z-marsa-alam/wyspy-hamata/,tour,primary,one specific bookable offer
+rejs nefertari Marsa Alam,tour-rejs-nefertari,transactional,Marsa Alam,/wycieczki-z-marsa-alam/rejs-nefertari/,tour,primary,one specific bookable offer
+lodz seascope Marsa Alam,tour-lodz-seascope,transactional,Marsa Alam,/wycieczki-z-marsa-alam/lodz-seascope/,tour,primary,one specific bookable offer
+sharm el lulli ras hankorab Marsa Alam,tour-sharm-el-lulli-ras-hankorab,transactional,Marsa Alam,/wycieczki-z-marsa-alam/sharm-el-lulli-ras-hankorab/,tour,primary,one specific bookable offer
+nurkowanie z plazy Marsa Alam,tour-nurkowanie-z-plazy,transactional,Marsa Alam,/wycieczki-z-marsa-alam/nurkowanie-z-plazy/,tour,primary,one specific bookable offer
+nurkowanie z lodzi Marsa Alam,tour-nurkowanie-z-lodzi,transactional,Marsa Alam,/wycieczki-z-marsa-alam/nurkowanie-z-lodzi/,tour,primary,one specific bookable offer
+kurs padi open water Marsa Alam,tour-kurs-padi-open-water,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kurs-padi-open-water/,tour,primary,one specific bookable offer
+kurs padi advanced open water Marsa Alam,tour-kurs-padi-advanced-open-water,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kurs-padi-advanced-open-water/,tour,primary,one specific bookable offer
+kurs padi rescue diver Marsa Alam,tour-kurs-padi-rescue-diver,transactional,Marsa Alam,/wycieczki-z-marsa-alam/kurs-padi-rescue-diver/,tour,primary,one specific bookable offer
+super safari quady Marsa Alam,tour-super-safari-quady,transactional,Marsa Alam,/wycieczki-z-marsa-alam/super-safari-quady/,tour,primary,one specific bookable offer
+quad safari 5h Marsa Alam,tour-quad-safari-5h,transactional,Marsa Alam,/wycieczki-z-marsa-alam/quad-safari-5h/,tour,primary,one specific bookable offer
+quad safari 2h Marsa Alam,tour-quad-safari-2h,transactional,Marsa Alam,/wycieczki-z-marsa-alam/quad-safari-2h/,tour,primary,one specific bookable offer
+jeep safari Marsa Alam,tour-jeep-safari,transactional,Marsa Alam,/wycieczki-z-marsa-alam/jeep-safari/,tour,primary,one specific bookable offer
+kair gem piramidy Sharm el Sheikh,tour-kair-gem-piramidy,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/,tour,primary,one specific bookable offer
+kair samolotem Sharm el Sheikh,tour-kair-samolotem,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/kair-samolotem/,tour,primary,one specific bookable offer
+gora mojzesza klasztor sw katarzyny Sharm el Sheikh,tour-gora-mojzesza-klasztor-sw-katarzyny,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/gora-mojzesza-klasztor-sw-katarzyny/,tour,primary,one specific bookable offer
+blue hole kolorowy kanion Sharm el Sheikh,tour-blue-hole-kolorowy-kanion,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/blue-hole-kolorowy-kanion/,tour,primary,one specific bookable offer
+jordania petra morze martwe Sharm el Sheikh,tour-jordania-petra-morze-martwe,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/jordania-petra-morze-martwe/,tour,primary,one specific bookable offer
+white island ras mohamed Sharm el Sheikh,tour-white-island-ras-mohamed,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/white-island-ras-mohamed/,tour,primary,one specific bookable offer
+ras mohamed snorkeling Sharm el Sheikh,tour-ras-mohamed-snorkeling,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/ras-mohamed-snorkeling/,tour,primary,one specific bookable offer
+wyspa tiran snorkeling Sharm el Sheikh,tour-wyspa-tiran-snorkeling,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/wyspa-tiran-snorkeling/,tour,primary,one specific bookable offer
+wyspa tiran nurkowanie Sharm el Sheikh,tour-wyspa-tiran-nurkowanie,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/wyspa-tiran-nurkowanie/,tour,primary,one specific bookable offer
+dolphin show Sharm el Sheikh,tour-dolphin-show,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/dolphin-show/,tour,primary,one specific bookable offer
+lodz seascope Sharm el Sheikh,tour-lodz-seascope,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/lodz-seascope/,tour,primary,one specific bookable offer
+parasailing Sharm el Sheikh,tour-parasailing,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/parasailing/,tour,primary,one specific bookable offer
+quad safari 3h Sharm el Sheikh,tour-quad-safari-3h,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/quad-safari-3h/,tour,primary,one specific bookable offer
+quad safari 5h Sharm el Sheikh,tour-quad-safari-5h,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/quad-safari-5h/,tour,primary,one specific bookable offer
+sunset safari teleskop Sharm el Sheikh,tour-sunset-safari-teleskop,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/sunset-safari-teleskop/,tour,primary,one specific bookable offer
+buggy safari Sharm el Sheikh,tour-buggy-safari,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/buggy-safari/,tour,primary,one specific bookable offer
+jazda na wielbladzie Sharm el Sheikh,tour-jazda-na-wielbladzie,transactional,Sharm el Sheikh,/wycieczki-z-sharm-el-sheikh/jazda-na-wielbladzie/,tour,primary,one specific bookable offer

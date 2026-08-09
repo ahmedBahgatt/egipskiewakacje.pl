@@ -14,6 +14,7 @@
 import type { ContentApi } from "@/content/api";
 
 import { destinations as localDestinations } from "@/content/local/destinations";
+import { categories as localCategories } from "@/content/local/categories";
 import {
   tours as localTours,
   getFeaturedTours as localFeatured,
@@ -52,6 +53,15 @@ const localApi: ContentApi = {
   },
   async getToursByDestination(slug) {
     return localTours.filter((t) => t.destination === slug);
+  },
+  async getCategories() {
+    return localCategories;
+  },
+  async getCategory(slug) {
+    return localCategories.find((c) => c.slug === slug);
+  },
+  async getToursByCategory(slug) {
+    return localTours.filter((t) => t.category === slug);
   },
   async getPosts() {
     return localPosts;

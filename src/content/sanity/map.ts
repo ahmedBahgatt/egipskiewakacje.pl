@@ -181,12 +181,19 @@ interface RawTour {
   title?: string;
   h1?: string;
   destination?: string;
+  category?: string;
   departure?: string;
   shortDescription?: string;
   overview?: string;
   heroImage?: SanityImage;
   gallery?: SanityImage[];
-  price?: Partial<Tour["price"]>;
+  /** Accepts both the new price shape and legacy adult/child fields from older docs. */
+  price?: Partial<Tour["price"]> & {
+    adult?: number;
+    child?: number;
+    childAgeMax?: number;
+    variable?: boolean;
+  };
   availabilityLabel?: string;
   availabilityDays?: string[];
   durationLabel?: string;
@@ -213,7 +220,8 @@ interface RawTour {
 export function mapTour(raw: RawTour): Tour | null {
   const hero = mapSanityImage(raw.heroImage);
   const p = raw.price ?? {};
-  if (!raw.slug || !raw.title || !hero || typeof p.adult !== "number") return null;
+  const headline = typeof p.amount === "number" ? p.amount : p.adult;
+  if (!raw.slug || !raw.title || !hero || typeof headline !== "number") return null;
   const gallery = (raw.gallery ?? [])
     .map((im) => mapSanityImage(im))
     .filter((im): im is MediaImage => im !== null);
@@ -223,20 +231,29 @@ export function mapTour(raw: RawTour): Tour | null {
     title: raw.title,
     h1: raw.h1 ?? raw.title,
     destination: raw.destination as DestinationSlug,
+    category: (raw.category ?? "kair") as Tour["category"],
     departure: raw.departure ?? "",
     shortDescription: raw.shortDescription ?? "",
     overview: raw.overview ?? "",
     heroImage: hero,
     gallery: gallery.length ? gallery : [hero],
     price: {
-      adult: p.adult,
-      child: Number(p.child ?? 0),
-      infantFree: p.infantFree ?? true,
-      childAgeMin: Number(p.childAgeMin ?? 5),
-      childAgeMax: Number(p.childAgeMax ?? 11),
-      currency: "USD",
+      mode: (p.mode ?? "perPerson") as Tour["price"]["mode"],
+      amount: headline,
+      unit: p.unit ?? "os.",
+      currency: (p.currency ?? "USD") as Tour["price"]["currency"],
+      from: p.from ?? p.variable ?? true,
       lastVerifiedAt: String(p.lastVerifiedAt ?? ""),
-      variable: p.variable ?? true,
+      options: Array.isArray(p.options) && p.options.length
+        ? p.options
+        : [
+            { label: "Dorosły", amount: headline, currency: "USD" as const },
+            ...(typeof p.child === "number"
+              ? [{ label: "Dziecko", amount: p.child, currency: "USD" as const }]
+              : []),
+          ],
+      childAgeMin: typeof p.childAgeMin === "number" ? p.childAgeMin : 5,
+      infantFree: p.infantFree ?? true,
     },
     availabilityLabel: raw.availabilityLabel ?? "",
     availabilityDays: raw.availabilityDays ?? [],

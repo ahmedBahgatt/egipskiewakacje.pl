@@ -124,7 +124,7 @@ export function tourJsonLd(tour: Tour) {
     },
     offers: {
       "@type": "Offer",
-      price: tour.price.adult,
+      price: tour.price.amount,
       priceCurrency: tour.price.currency,
       url: absoluteUrl(tour.seo.canonicalPath),
     },

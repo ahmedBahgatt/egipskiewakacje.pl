@@ -57,8 +57,9 @@ describe("mapTour (CMS tour -> typed model)", () => {
   it("carries the CMS price through to the model", () => {
     const t = mapTour(rawTour)!;
     expect(t).not.toBeNull();
-    expect(t.price.adult).toBe(60);
-    expect(t.price.child).toBe(30);
+    expect(t.price.amount).toBe(60);
+    expect(t.price.options.find((o) => /doros/i.test(o.label))?.amount).toBe(60);
+    expect(t.price.options.find((o) => /dziec/i.test(o.label))?.amount).toBe(30);
     expect(t.price.infantFree).toBe(true);
     expect(t.destination).toBe("hurghada");
     expect(t.heroImage.sources?.jpg).toContain("cdn.sanity.io");
@@ -152,7 +153,7 @@ describe("sanityApi (stubbed fetch)", () => {
     const { sanityApi } = await import("@/content/sanity/adapter");
     const tours = await sanityApi.getTours();
     expect(tours).toHaveLength(1);
-    expect(tours[0].price.adult).toBe(60);
+    expect(tours[0].price.amount).toBe(60);
   });
 
   it("getToursByDestination places the CMS tour on its destination", async () => {

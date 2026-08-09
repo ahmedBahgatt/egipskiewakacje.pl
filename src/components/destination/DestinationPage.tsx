@@ -3,7 +3,9 @@ import type { BlogPost, Destination, Tour } from "@/content/types";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ToursGrid } from "@/components/tour/ToursGrid";
+import { ToursFilter } from "@/components/tour/ToursFilter";
+import { categoryLabel, categoryRoute } from "@/lib/categories";
+import type { CategorySlug } from "@/content/types";
 import { DataTable } from "@/components/ui/DataTable";
 import { Faq } from "@/components/ui/Faq";
 import { Button } from "@/components/ui/Button";
@@ -37,8 +39,12 @@ export function DestinationPage({
     { name: "Strona główna", path: "/" },
     { name: `Wycieczki z ${destination.nameGenitive}`, path: `${destination.routeBase}/` },
   ];
-  const mainTour = tours[0];
+  const mainTour = tours.find((t) => t.category === "kair") ?? tours[0];
   const transfers = mainTour?.transferSupplements ?? [];
+  const departureFilter = destination.slug;
+  // categories that both exist for this destination and have a landing page
+  const presentCats = new Set(tours.map((t) => t.category));
+  const catChips = (Object.keys(categoryRoute) as CategorySlug[]).filter((c) => presentCats.has(c));
 
   return (
     <article>
@@ -103,10 +109,21 @@ export function DestinationPage({
         <div className="container">
           <SectionHeading
             eyebrow="Dostępne wycieczki"
-            title="Wyprawy do Kairu z tego kurortu"
-            intro="Aktualnie oferujemy poniższą wyprawę. Kolejne trasy dodamy, gdy będą dostępne."
+            title={`Wycieczki z ${destination.nameGenitive}`}
+            intro={`W ofercie mamy ${tours.length} ${
+              tours.length < 5 ? "wycieczki" : "wycieczek"
+            } z ${destination.nameGenitive}. Filtruj po rodzaju, żeby szybciej znaleźć to, czego szukasz.`}
           />
-          <ToursGrid tours={tours} priorityFirst />
+          {catChips.length > 1 && (
+            <nav className={styles.catChips} aria-label="Rodzaje wycieczek">
+              {catChips.map((c) => (
+                <Link key={c} href={`${categoryRoute[c]}/`} className={styles.catChip}>
+                  {categoryLabel[c]}
+                </Link>
+              ))}
+            </nav>
+          )}
+          <ToursFilter tours={tours} initialDeparture={departureFilter} hideDeparture />
         </div>
       </section>
 
@@ -115,21 +132,18 @@ export function DestinationPage({
         <section className="section">
           <div className={`container ${styles.detailGrid}`}>
             <div>
-              <h2 className={styles.h2}>Ceny i odbiór z hotelu</h2>
+              <h2 className={styles.h2}>Przykładowe ceny i odbiór ({mainTour.title})</h2>
               <DataTable
-                columns={["Kategoria", "Cena"]}
-                rows={[
-                  ["Dorosły", formatMoney(mainTour.price.adult, mainTour.price.currency)],
-                  [
-                    `Dziecko ${mainTour.price.childAgeMin}-${mainTour.price.childAgeMax} lat`,
-                    formatMoney(mainTour.price.child, mainTour.price.currency),
-                  ],
-                  [`Dziecko poniżej ${mainTour.price.childAgeMin} lat`, "bezpłatnie"],
-                ]}
+                columns={["Wariant", "Cena"]}
+                rows={mainTour.price.options.map((opt) => [
+                  opt.note ? `${opt.label} (${opt.note})` : opt.label,
+                  opt.free ? "bezpłatnie" : formatMoney(opt.amount, opt.currency),
+                ])}
               />
               <p className={styles.para}>
                 Odbiór i powrót odbywają się pod hotel. Planowany odbiór: {mainTour.pickupLabel}.
-                Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem.
+                Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem. Ceny pozostałych wycieczek
+                znajdziesz na kartach ofert i w cenniku.
               </p>
             </div>
 

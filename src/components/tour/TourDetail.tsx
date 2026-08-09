@@ -7,6 +7,7 @@ import { Faq } from "@/components/ui/Faq";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ItineraryTimeline } from "./ItineraryTimeline";
+import { TourCard } from "./TourCard";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { StickyBookingBar } from "@/components/booking/StickyBookingBar";
 import {
@@ -20,7 +21,7 @@ import {
   IconWhatsApp,
   IconX,
 } from "@/components/ui/icons";
-import { priceLabel, formatMoney, formatDatePl } from "@/lib/format";
+import { priceLabel, priceUnit, optionAmount, formatMoney, formatDatePl } from "@/lib/format";
 import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import {
@@ -34,10 +35,16 @@ export function TourDetail({
   tour,
   destination,
   relatedPost,
+  relatedTours = [],
+  categoryHref,
+  categoryLabel,
 }: {
   tour: Tour;
   destination: Destination;
   relatedPost?: BlogPost;
+  relatedTours?: Tour[];
+  categoryHref?: string;
+  categoryLabel?: string;
 }) {
   const crumbs = [
     { name: "Strona główna", path: "/" },
@@ -123,24 +130,18 @@ export function TourDetail({
             <div className={styles.priceHead}>
               <div>
                 <span className={styles.priceBig}>{priceLabel(tour.price)}</span>
-                <span className={styles.priceUnit}> / dorosły</span>
+                <span className={styles.priceUnit}> {priceUnit(tour.price)}</span>
               </div>
               <span className={styles.availPill}>{tour.availabilityLabel}</span>
             </div>
 
             <ul className={styles.priceList}>
-              <li>
-                <span>Dorosły</span>
-                <strong>{formatMoney(tour.price.adult, tour.price.currency)}</strong>
-              </li>
-              <li>
-                <span>Dziecko {tour.price.childAgeMin}-{tour.price.childAgeMax} lat</span>
-                <strong>{formatMoney(tour.price.child, tour.price.currency)}</strong>
-              </li>
-              <li>
-                <span>Dziecko poniżej {tour.price.childAgeMin} lat</span>
-                <strong>bezpłatnie</strong>
-              </li>
+              {tour.price.options.map((opt) => (
+                <li key={opt.label}>
+                  <span>{opt.label}</span>
+                  <strong>{optionAmount(opt)}</strong>
+                </li>
+              ))}
             </ul>
 
             <Button href="#rezerwacja" size="lg" fullWidth>
@@ -205,19 +206,17 @@ export function TourDetail({
           <section className={styles.block}>
             <h2 className={styles.h2}>Ceny</h2>
             <DataTable
-              columns={["Kategoria", "Wiek", "Cena"]}
-              rows={[
-                ["Dorosły", "-", formatMoney(tour.price.adult, tour.price.currency)],
-                [
-                  "Dziecko",
-                  `${tour.price.childAgeMin}-${tour.price.childAgeMax} lat`,
-                  formatMoney(tour.price.child, tour.price.currency),
-                ],
-                ["Dziecko", `poniżej ${tour.price.childAgeMin} lat`, "bezpłatnie"],
-              ]}
+              columns={["Wariant", "Cena"]}
+              rows={tour.price.options.map((opt) => [
+                opt.note ? `${opt.label} (${opt.note})` : opt.label,
+                optionAmount(opt),
+              ])}
             />
             <p className={styles.note}>
-              Cena w USD. Ostateczny koszt może zależeć od strefy hotelowej i opcjonalnych atrakcji.
+              Ceny w {tour.price.currency}.{" "}
+              {tour.price.note
+                ? `${tour.price.note} `
+                : "Ostateczny koszt może zależeć od strefy hotelowej i opcjonalnych atrakcji. "}
               Cena zweryfikowana {formatDatePl(tour.price.lastVerifiedAt)}.
             </p>
           </section>
@@ -300,6 +299,18 @@ export function TourDetail({
             <Faq items={tour.faqs} />
           </section>
 
+          {/* related tours */}
+          {relatedTours.length > 0 && (
+            <section className={styles.block}>
+              <h2 className={styles.h2}>Podobne wycieczki</h2>
+              <div className={styles.relatedTours}>
+                {relatedTours.map((rt) => (
+                  <TourCard key={rt.route} tour={rt} />
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* related */}
           <section className={`${styles.block} ${styles.related}`}>
             <Link href={`${destination.routeBase}/`} className={styles.relatedCard}>
@@ -309,6 +320,15 @@ export function TourDetail({
                 Zobacz kierunek <IconArrowRight />
               </span>
             </Link>
+            {categoryHref && categoryLabel && (
+              <Link href={categoryHref} className={styles.relatedCard}>
+                <span className={styles.relatedKicker}>Rodzaj</span>
+                <span className={styles.relatedTitle}>{categoryLabel}</span>
+                <span className={styles.relatedMore}>
+                  Zobacz kategorię <IconArrowRight />
+                </span>
+              </Link>
+            )}
             {relatedPost && (
               <Link href={`${relatedPost.route}/`} className={styles.relatedCard}>
                 <span className={styles.relatedKicker}>Poradnik</span>

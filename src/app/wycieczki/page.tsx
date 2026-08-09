@@ -6,9 +6,9 @@ import { ToursFilter } from "@/components/tour/ToursFilter";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Wszystkie wycieczki w Egipcie do Kairu | Egipskie Wakacje",
+  title: "Wszystkie wycieczki fakultatywne w Egipcie | Egipskie Wakacje",
   description:
-    "Wszystkie wycieczki fakultatywne do Kairu i piramid: z Hurghady, Marsa Alam i Sharm el Sheikh. Ceny w USD, odbiór z hotelu, rezerwacja przez WhatsApp.",
+    "Pełna oferta wycieczek fakultatywnych z Hurghady, Marsa Alam i Sharm el Sheikh: Kair i piramidy, Luksor, rejsy i wyspy, snorkeling, nurkowanie, safari i atrakcje. Rezerwacja przez WhatsApp.",
   canonicalPath: "/wycieczki/",
 });
 
@@ -30,12 +30,13 @@ export default async function Page() {
       />
       <PageHeader
         eyebrow="Oferta"
-        title="Wycieczki do Kairu i piramid"
-        intro="Wszystkie nasze wyprawy prowadzą do Kairu i Gizy. Wybierz kurort, z którego wyjeżdżasz, i porównaj ceny."
+        title="Wszystkie wycieczki w Egipcie"
+        intro="Pełna oferta wypraw z Hurghady, Marsa Alam i Sharm el Sheikh - od Kairu i Luksoru, przez rejsy i snorkeling, po safari i nurkowanie. Filtruj po kurorcie i rodzaju wycieczki."
         crumbs={crumbs}
       />
       <section className="section">
         <div className="container">
+          <h2 className="visually-hidden">Lista wszystkich wycieczek</h2>
           <ToursFilter tours={tours} />
         </div>
       </section>
