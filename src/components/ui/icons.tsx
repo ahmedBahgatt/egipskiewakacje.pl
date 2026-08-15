@@ -145,15 +145,23 @@ export const IconDolphin = (p: IconProps) => (
 );
 export const IconPyramid = (p: IconProps) => (
   <Base {...p}>
-    <path d="M12 4 3 20h18z" />
-    <path d="M12 4 8 20M3 20h18" />
+    <path d="M2 20h20" />
+    <path d="M2 20 9 7l7 13" />
+    <path d="M12.5 20 17 10.5 22 20" />
   </Base>
 );
 export const IconFish = (p: IconProps) => (
   <Base {...p}>
-    <path d="M3.5 12c2.6-3.6 7.6-3.6 10.5 0-2.9 3.6-7.9 3.6-10.5 0z" />
-    <path d="M14 12l4-2.4v4.8z" />
-    <path d="M6.5 11h.01" />
+    <path d="M5 12c3-4 8-4 12-1.2M5 12c3 4 8 4 12 1.2" />
+    <path d="M17 10.8 21 8.5v7l-4-2.3" />
+    <path d="M7.6 11.2h.01" />
+  </Base>
+);
+export const IconMask = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="3.5" y="7" width="17" height="8.6" rx="4.2" />
+    <path d="M3.5 10.4H1.6M22.4 10.4h-1.9" />
+    <path d="M9.5 15.6c0 1.6 1 2.6 2.5 2.6s2.5-1 2.5-2.6" />
   </Base>
 );
 export const IconBalloon = (p: IconProps) => (

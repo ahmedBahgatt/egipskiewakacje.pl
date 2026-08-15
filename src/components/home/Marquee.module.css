@@ -21,7 +21,7 @@
 .item {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-family: var(--font-display);
   font-size: 1.04rem;
   font-weight: 500;
@@ -35,10 +35,12 @@
 .item:hover { color: #fff; }
 .icon {
   display: inline-flex;
-  font-size: 1.15rem;
+  align-items: center;
+  font-size: 1.34rem;
   color: var(--gold-400);
   transition: color 0.2s ease;
 }
+.icon svg { stroke-width: 1.6; }
 .item:hover .icon { color: var(--gold-300); }
 .item:focus-visible { outline: 2px solid var(--gold-400); outline-offset: 3px; border-radius: 4px; }
 

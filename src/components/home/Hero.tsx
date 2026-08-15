@@ -135,7 +135,8 @@ export function Hero({ total }: { total: number }) {
         <div className={styles.scrim} />
       </div>
 
-      <div className={`container ${styles.content}`}>
+      <div className="container">
+        <div className={styles.content}>
         <p className={`eyebrow ${styles.eyebrow}`}>
           Egipt dla polskich turystów
           <span className={styles.eyebrowMark} aria-hidden="true" />
@@ -190,6 +191,7 @@ export function Hero({ total }: { total: number }) {
             </span>
           </li>
         </ul>
+        </div>
       </div>
     </section>
   );
