@@ -109,6 +109,67 @@ export const IconPause = (p: IconProps) => (
   </Base>
 );
 
+/* --- travel motifs (decorative, gold on dark / navy on light) ------------- */
+export const IconPalm = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 21c0-3.3.3-6.2 1.5-8.5" />
+    <path d="M13.5 12.5c-3-1-5.6.1-7.2 2.6M13.5 12.5c3-1 5.6.1 7.2 2.6M13.5 12.5c-1.7-1.9-1.5-4.6.4-6.9M13.5 12.5c1.9-1 4.2-.8 6.3.7" />
+    <circle cx="13.5" cy="12.5" r="0.9" />
+    <path d="M9.5 21h5" />
+  </Base>
+);
+export const IconBoat = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 3v10M12 3l6 10h-6" />
+    <path d="M4 14h16l-2.3 4.8a1.6 1.6 0 0 1-1.4.9H7.7a1.6 1.6 0 0 1-1.4-.9z" />
+  </Base>
+);
+export const IconBuggy = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="6.5" cy="16.5" r="2.6" />
+    <circle cx="17.5" cy="16.5" r="2.6" />
+    <path d="M3.6 13l1.8-3.6h6.6l3 3.6M9 9.4V6.4h4M9.2 16.5h5.6" />
+  </Base>
+);
+export const IconTemple = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 9.5 12 4l9 5.5" />
+    <path d="M4 20h16M4 9.8V20M8 9.8V20M12 9.8V20M16 9.8V20M20 9.8V20M3 20h18" />
+  </Base>
+);
+export const IconDolphin = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 13.5c3.4 3.2 7.6 3.1 10.6-.2 1.8-2 2.9-4.8 5.4-4.9-.6 2.2-.9 4.3-2.9 6.4-3.3 3.5-8.4 4-13.1 1.6z" />
+    <path d="M7.5 14.4c.9.8 2.4.9 3.5.2" />
+  </Base>
+);
+export const IconPyramid = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 4 3 20h18z" />
+    <path d="M12 4 8 20M3 20h18" />
+  </Base>
+);
+export const IconFish = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3.5 12c2.6-3.6 7.6-3.6 10.5 0-2.9 3.6-7.9 3.6-10.5 0z" />
+    <path d="M14 12l4-2.4v4.8z" />
+    <path d="M6.5 11h.01" />
+  </Base>
+);
+export const IconBalloon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 3a6.2 6.2 0 0 1 6.2 6.2c0 3.6-3.1 6.1-6.2 8-3.1-1.9-6.2-4.4-6.2-8A6.2 6.2 0 0 1 12 3z" />
+    <path d="M12 3v14.2M8.4 6.2c-.7 3.6-.7 7.4 0 11M15.6 6.2c.7 3.6.7 7.4 0 11" />
+    <path d="M10.3 17.2h3.4l-.5 3h-2.4z" />
+  </Base>
+);
+export const IconBuilding = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M5 21V6l7-3 7 3v15" />
+    <path d="M3 21h18M10 21v-4h4v4M8.5 8h.01M12 8h.01M15.5 8h.01M8.5 12h.01M12 12h.01M15.5 12h.01" />
+  </Base>
+);
+
 /** WhatsApp glyph - recognisable brand mark. Uses currentColor so the button
  *  controls the colour. Filled path. */
 export const IconWhatsApp = (p: IconProps) => (

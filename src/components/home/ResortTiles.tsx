@@ -17,20 +17,9 @@ export interface ResortTile {
 }
 
 /**
- * Short, factual teaser per resort - presentation copy (not inventory), aligned
- * with the destination pages. Tells a first-time visitor at a glance what each
- * base is best known for.
- */
-const TEASER: Record<DestinationSlug, string> = {
-  hurghada: "Największy wybór wypraw - morze, pustynia, Kair i Luksor.",
-  "marsa-alam": "Snorkeling i dzikie delfiny, spokojne rafy i zatoki.",
-  "sharm-el-sheikh": "Synaj i klasztor, kolorowy kanion i rejsy po Morzu Czerwonym.",
-};
-
-/**
  * "Skąd wyruszasz?" - the homepage resort chooser as three large, image-led
- * portrait tiles (one per Red Sea base). Each links straight into that resort's
- * full excursion offer.
+ * tiles (one per Red Sea base). Each links straight into that resort's full
+ * excursion offer, with a gold call-to-action disc echoing the brand palette.
  */
 export function ResortTiles({ resorts }: { resorts: ResortTile[] }) {
   return (
@@ -50,14 +39,12 @@ export function ResortTiles({ resorts }: { resorts: ResortTile[] }) {
                   <OptimizedImage image={r.heroImage} className={styles.img} />
                 </span>
                 <span className={styles.body}>
-                  <span className={styles.kicker}>Wycieczki z</span>
-                  <span className={styles.name}>{r.nameGenitive}</span>
-                  <span className={styles.teaser}>{TEASER[r.slug]}</span>
-                  <span className={styles.foot}>
+                  <span className={styles.info}>
+                    <span className={styles.name}>{r.name}</span>
                     <span className={styles.count}>{formatTourCount(r.total)}</span>
-                    <span className={styles.more}>
-                      Zobacz <IconArrowRight />
-                    </span>
+                  </span>
+                  <span className={styles.arrow} aria-hidden="true">
+                    <IconArrowRight />
                   </span>
                 </span>
               </Link>

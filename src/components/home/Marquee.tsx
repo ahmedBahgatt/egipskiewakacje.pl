@@ -1,9 +1,11 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import styles from "./Marquee.module.css";
 
 export interface MarqueeItem {
   label: string;
   href: string;
+  icon?: ReactNode;
 }
 
 /**
@@ -24,6 +26,11 @@ export function Marquee({ items }: { items: MarqueeItem[] }) {
       {items.map((it, i) => (
         <span className={styles.cell} key={`${clone ? "b" : "a"}-${i}`}>
           <Link href={it.href} className={styles.item} tabIndex={clone ? -1 : undefined}>
+            {it.icon && (
+              <span className={styles.icon} aria-hidden="true">
+                {it.icon}
+              </span>
+            )}
             {it.label}
           </Link>
           <span className={styles.sep} aria-hidden="true">

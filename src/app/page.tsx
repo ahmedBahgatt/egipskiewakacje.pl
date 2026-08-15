@@ -20,8 +20,33 @@ import { CategoryBrowse } from "@/components/home/CategoryBrowse";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
-import { IconArrowRight } from "@/components/ui/icons";
-import type { DestinationSlug } from "@/content/types";
+import {
+  IconArrowRight,
+  IconBalloon,
+  IconBoat,
+  IconBuggy,
+  IconDolphin,
+  IconFish,
+  IconPalm,
+  IconPyramid,
+  IconTemple,
+  IconUsers,
+} from "@/components/ui/icons";
+import type { CategorySlug, DestinationSlug } from "@/content/types";
+import type { ReactNode } from "react";
+
+// Gold marquee motif per category - matched to the tour taxonomy in
+// src/content/local/categories.ts (falls back to a boat for any new category).
+const CATEGORY_ICON: Partial<Record<CategorySlug, ReactNode>> = {
+  kair: <IconPyramid />,
+  luksor: <IconTemple />,
+  "rejsy-wyspy": <IconBoat />,
+  "snorkeling-delfiny": <IconDolphin />,
+  nurkowanie: <IconFish />,
+  safari: <IconBuggy />,
+  atrakcje: <IconBalloon />,
+  prywatne: <IconUsers />,
+};
 
 export const metadata: Metadata = buildMetadata({
   title: "Egipskie Wakacje - wycieczki fakultatywne w Egipcie dla polskich turystów",
@@ -60,10 +85,19 @@ export default async function HomePage() {
     total: destCounts[d.slug],
   }));
 
-  // Ticker items - real categories + destinations, each linking to its existing page.
+  // Ticker items - real categories + destinations, each linking to its existing
+  // page, with a matching gold motif icon.
   const marqueeItems: MarqueeItem[] = [
-    ...categories.map((c) => ({ label: c.shortLabel, href: `${c.routeBase}/` })),
-    ...destinations.map((d) => ({ label: d.name, href: `${d.routeBase}/` })),
+    ...categories.map((c) => ({
+      label: c.shortLabel,
+      href: `${c.routeBase}/`,
+      icon: CATEGORY_ICON[c.slug] ?? <IconBoat />,
+    })),
+    ...destinations.map((d) => ({
+      label: d.name,
+      href: `${d.routeBase}/`,
+      icon: <IconPalm />,
+    })),
   ];
 
   const homeFaqs = faqs.slice(0, 8);
@@ -77,7 +111,7 @@ export default async function HomePage() {
         ]}
       />
 
-      <Hero destinations={destinations} counts={destCounts} total={allTours.length} />
+      <Hero total={allTours.length} />
 
       <Marquee items={marqueeItems} />
 

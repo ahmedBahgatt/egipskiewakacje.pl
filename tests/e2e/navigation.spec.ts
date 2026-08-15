@@ -49,23 +49,3 @@ test.describe("mobile menu", () => {
     await expect(page).toHaveURL(/\/cennik\/$/);
   });
 });
-
-test.describe("hero destination selector", () => {
-  test("each option links to its destination page", async ({ page }) => {
-    await page.goto("/");
-    // Scope to the hero's "Skąd wyjeżdżasz?" group - the same destination names
-    // also appear in the marquee and resort tiles elsewhere on the page.
-    const selector = page.getByRole("group", { name: "Skąd wyjeżdżasz?" });
-    await expect(selector.getByRole("link", { name: "Hurghada", exact: true })).toHaveAttribute(
-      "href",
-      "/wycieczki-z-hurghady/",
-    );
-    await expect(selector.getByRole("link", { name: "Marsa Alam", exact: true })).toHaveAttribute(
-      "href",
-      "/wycieczki-z-marsa-alam/",
-    );
-    await expect(
-      selector.getByRole("link", { name: "Sharm el Sheikh", exact: true }),
-    ).toHaveAttribute("href", "/wycieczki-z-sharm-el-sheikh/");
-  });
-});
