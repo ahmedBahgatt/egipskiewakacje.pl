@@ -17,21 +17,38 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
 }
-.img { transition: transform 0.5s ease; }
-.card:hover .img { transform: scale(1.04); }
+.img { transition: transform 0.6s var(--ease-out); }
+.card:hover .img { transform: scale(1.06); }
 .badge {
   position: absolute;
   top: 0.8rem;
   left: 0.8rem;
-  background: color-mix(in srgb, var(--navy-900) 82%, transparent);
+  background: var(--grad-gold);
+  color: var(--navy-900);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(8, 20, 45, 0.22);
+}
+.dur {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: color-mix(in srgb, var(--navy-900) 78%, transparent);
   color: #fff;
   font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 0.3rem 0.6rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
   border-radius: 999px;
   backdrop-filter: blur(4px);
 }
+.dur svg { font-size: 0.95rem; }
 
 .body { display: flex; flex-direction: column; gap: 0.7rem; padding: 1.2rem 1.3rem 1.35rem; flex: 1; }
 .meta { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; color: var(--text-muted); font-size: 0.85rem; }
@@ -47,8 +64,19 @@
  * (ghost clicks). The card's real, visible links are the image, this title and
  * the "Szczegóły" action - nothing else may navigate.
  */
-.titleLink { color: var(--text); text-decoration: none; }
-.titleLink:hover { color: var(--accent-strong); }
+.titleLink {
+  color: var(--text);
+  text-decoration: none;
+  background-image: var(--grad-gold);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.35s var(--ease-out), color 0.15s ease;
+}
+.titleLink:hover { color: var(--royal-700); background-size: 100% 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .img, .titleLink { transition: none; }
+}
 
 .highlights { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .highlights li {

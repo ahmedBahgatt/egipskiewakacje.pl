@@ -39,15 +39,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: var(--navy-900);
-  color: #fff;
+  background: var(--grad-gold);
+  color: var(--navy-900);
   font-family: var(--font-display);
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1rem;
+  box-shadow: 0 6px 16px rgba(224, 178, 82, 0.32);
 }
 .stepTitle { font-size: var(--step-1); margin-bottom: 0.4rem; }
 .stepText { color: var(--text-muted); }
@@ -120,15 +121,49 @@
 .guideMore { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--accent-strong); }
 
 /* --- final CTA ----------------------------------------------------------- */
-.finalCta { color: #fff; padding-block: clamp(3.5rem, 8vw, 6rem); }
-.finalInner { position: relative; z-index: 1; text-align: center; max-width: 720px; margin-inline: auto; }
-.finalTitle { color: #fff; font-size: var(--step-4); }
-.finalText { color: rgba(255, 255, 255, 0.86); font-size: var(--step-1); margin: 1rem auto 1.8rem; }
-.finalCtas { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+.finalSection { background: var(--bg); }
+.band {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4rem;
+  padding: clamp(1.8rem, 5vw, 3.2rem);
+  border-radius: var(--radius-lg);
+  background: var(--grad-royal);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+}
+/* Radial gold glow, echoing the sun in the logo. */
+.band::before {
+  content: "";
+  position: absolute;
+  right: -70px;
+  top: -70px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 185, 85, 0.34), transparent 70%);
+  pointer-events: none;
+}
+.bandText { position: relative; z-index: 1; max-width: 60ch; }
+.finalTitle { color: #fff; font-size: var(--step-3); margin-bottom: 0.5rem; }
+.finalText { color: rgba(255, 255, 255, 0.88); font-size: var(--step-1); margin: 0; }
+.finalCtas { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
 @media (min-width: 720px) {
   .steps { grid-template-columns: repeat(3, 1fr); }
   .whyGrid { grid-template-columns: repeat(3, 1fr); }
   .guideCard { grid-template-columns: 1.1fr 1fr; align-items: stretch; }
   .guideMedia { aspect-ratio: auto; height: 100%; }
+}
+
+@media (min-width: 860px) {
+  .band {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
 }

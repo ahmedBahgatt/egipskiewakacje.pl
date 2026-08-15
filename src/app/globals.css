@@ -5,27 +5,34 @@
    ========================================================================== */
 
 :root {
-  /* --- raw palette ------------------------------------------------------- */
-  --navy-900: #0a1922;
-  --navy-800: #0f2634;
-  --navy-700: #163a4d;
+  /* --- raw palette (derived from the Egipskie Wakacje logo: royal-blue +
+     gold wordmark over a turquoise Red Sea, golden sun and desert sand) ---- */
+  --navy-900: #081a35;                    /* deep royal navy (logo dark blue) */
+  --navy-800: #0d2a54;
+  --navy-700: #143a72;
+  --royal-800: #13387f;                   /* wordmark royal blue - deep */
+  --royal-700: #184291;
+  --royal-600: #1d4ea3;                   /* primary CTA */
+  --royal-500: #2a63c4;
+  --royal-400: #5a8ae6;                   /* links / accents on dark */
   --teal-700: #0b675f;
   --teal-600: #0e8378;
-  --teal-500: #17a597;
+  --teal-500: #17a597;                    /* turquoise sea */
   --teal-400: #37c2b2;
   --gold-600: #b07d24;
   --gold-500: #c9922f;
-  --gold-400: #e0b256;
-  --terracotta-600: #a8482a;
+  --gold-400: #e6b955;                    /* logo sun / gold outline */
+  --terracotta-600: #a8482a;              /* warm sunset accent (secondary) */
   --terracotta-500: #c25c3a;
+  --sun-500: #f2a338;                     /* warm sun glow */
   --sand-50: #fffdf8;
   --sand-100: #faf4e9;
   --sand-200: #f2e7d3;
   --sand-300: #e6d8bd;
-  --ink-900: #1b1a16;
-  --ink-700: #3b382f;
-  --ink-500: #615b4b;
-  --ink-400: #837c69;
+  --ink-900: #12203a;                     /* near-royal ink for body text */
+  --ink-700: #33405c;
+  --ink-500: #566079;
+  --ink-400: #7b849b;
   --line: #e7dcc7;
   --white: #ffffff;
 
@@ -37,12 +44,12 @@
 
   --text: var(--ink-900);
   --text-muted: var(--ink-500);
-  --text-on-dark: #f2ece0;
-  --text-on-dark-muted: #a7bcc7;
+  --text-on-dark: #eef2f8;
+  --text-on-dark-muted: #a6b6cf;
 
-  --primary: var(--terracotta-600);       /* main "Zarezerwuj" CTA */
-  --primary-hover: #93401f;
-  --accent: var(--teal-600);              /* selected states, links accent */
+  --primary: var(--royal-600);            /* main "Zarezerwuj" CTA (logo blue) */
+  --primary-hover: var(--royal-800);
+  --accent: var(--teal-600);              /* selected states, links accent (sea) */
   --accent-strong: var(--teal-700);
   --gold: var(--gold-500);
   --link: var(--teal-700);
@@ -50,17 +57,22 @@
   --whatsapp: #25d366;
   --whatsapp-dark: #1da851;
 
-  --focus: #0e8378;
+  --focus: #1d4ea3;
   --danger: #b3261e;
+
+  /* --- gradients & motion ------------------------------------------------ */
+  --grad-gold: linear-gradient(120deg, var(--gold-400), var(--gold-600));
+  --grad-royal: linear-gradient(125deg, var(--navy-900) 0%, var(--royal-700) 100%);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* --- shape & depth ----------------------------------------------------- */
   --radius-sm: 8px;
   --radius: 14px;
   --radius-lg: 22px;
   --radius-xl: 30px;
-  --shadow-sm: 0 1px 2px rgba(16, 38, 52, 0.06), 0 2px 6px rgba(16, 38, 52, 0.05);
-  --shadow: 0 6px 18px rgba(16, 38, 52, 0.09), 0 2px 6px rgba(16, 38, 52, 0.06);
-  --shadow-lg: 0 20px 48px rgba(10, 25, 34, 0.16), 0 6px 16px rgba(10, 25, 34, 0.08);
+  --shadow-sm: 0 1px 2px rgba(8, 26, 53, 0.06), 0 2px 6px rgba(8, 26, 53, 0.05);
+  --shadow: 0 6px 20px rgba(8, 26, 53, 0.10), 0 2px 6px rgba(8, 26, 53, 0.06);
+  --shadow-lg: 0 22px 50px rgba(8, 20, 45, 0.20), 0 6px 16px rgba(8, 20, 45, 0.09);
 
   /* --- layout ------------------------------------------------------------ */
   --container: 1200px;

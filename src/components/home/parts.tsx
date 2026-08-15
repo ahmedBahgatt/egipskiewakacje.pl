@@ -179,14 +179,16 @@ export function GuidePreview({ post }: { post: BlogPost }) {
 /* --- Final CTA ------------------------------------------------------------ */
 export function FinalCta() {
   return (
-    <section className={`${styles.finalCta} motif-dark on-dark`}>
-      <div className={`container ${styles.finalInner}`}>
-        <Reveal>
-          <h2 className={styles.finalTitle}>Nie wiesz, którą wycieczkę wybrać?</h2>
-          <p className={styles.finalText}>
-            Napisz do nas na WhatsApp. Pomożemy dobrać wycieczkę do miejsca pobytu, terminu i liczby
-            uczestników.
-          </p>
+    <section className={`section ${styles.finalSection}`}>
+      <div className="container">
+        <Reveal className={`${styles.band} on-dark`}>
+          <div className={styles.bandText}>
+            <h2 className={styles.finalTitle}>Nie wiesz, którą wycieczkę wybrać?</h2>
+            <p className={styles.finalText}>
+              Napisz do nas na WhatsApp. Pomożemy dobrać wycieczkę do miejsca pobytu, terminu i
+              liczby uczestników.
+            </p>
+          </div>
           <div className={styles.finalCtas}>
             <Button
               href={contactWhatsappUrl("Cześć! Pomożecie dobrać wycieczkę do Kairu?")}

@@ -9,9 +9,32 @@
 }
 .scrolled {
   border-bottom-color: var(--line);
-  box-shadow: 0 2px 14px rgba(10, 25, 34, 0.06);
+  box-shadow: 0 2px 14px rgba(8, 26, 53, 0.06);
   background: color-mix(in srgb, var(--sand-50) 94%, transparent);
 }
+
+/* --- homepage: transparent header floating over the full-bleed hero ------ */
+.overHero {
+  position: fixed;
+  inset: 0 0 auto;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+/* Once scrolled the homepage header turns into a solid royal-navy bar with the
+   same light text - no jarring flip from light to dark type. */
+.overHero.scrolled {
+  background: color-mix(in srgb, var(--navy-900) 97%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(8, 20, 45, 0.18);
+}
+.overHero .brand { color: #fff; }
+.overHero .navLink { color: rgba(255, 255, 255, 0.9); }
+.overHero .navLink:hover,
+.overHero .navLink.active { color: var(--gold-400); background: rgba(230, 185, 85, 0.12); }
+.overHero .burger { color: #fff; border-color: rgba(255, 255, 255, 0.32); background: rgba(255, 255, 255, 0.08); }
+.overHero .burger:hover { background: rgba(255, 255, 255, 0.16); }
 .bar {
   display: flex;
   align-items: center;

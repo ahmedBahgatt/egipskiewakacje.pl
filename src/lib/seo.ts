@@ -49,6 +49,7 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
+    logo: ogImageUrl("/media/brand/logo.png"),
     description: siteConfig.description,
     contactPoint: {
       "@type": "ContactPoint",

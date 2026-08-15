@@ -78,8 +78,16 @@ export function Header() {
     };
   }, [openMenu]);
 
+  // On the homepage the header floats transparently over the full-bleed hero and
+  // only turns solid once scrolled. Every other page keeps the solid light bar.
+  const overHero = pathname === "/";
+
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+    <header
+      className={`${styles.header} ${overHero ? styles.overHero : ""} ${
+        scrolled ? styles.scrolled : ""
+      }`}
+    >
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.brand} aria-label="Egipskie Wakacje - strona główna">
           <Logo />

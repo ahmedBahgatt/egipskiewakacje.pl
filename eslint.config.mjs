@@ -14,6 +14,7 @@ export default tseslint.config(
       "tests/e2e/**",
       "playwright-report/**",
       "coverage/**",
+      ".local-research/**",
     ],
   },
   js.configs.recommended,

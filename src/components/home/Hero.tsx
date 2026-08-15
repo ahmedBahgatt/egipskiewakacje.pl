@@ -3,14 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import Link from "next/link";
-import {
-  m,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-  useReducedMotion,
-} from "motion/react";
+import { m, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { Button } from "@/components/ui/Button";
 import { IconArrowRight, IconPause, IconPlay, IconWhatsApp } from "@/components/ui/icons";
@@ -22,9 +15,9 @@ import styles from "./Hero.module.css";
 
 const HERO_POSTER = {
   src: "/media/hero/hero-poster",
-  alt: "Piramidy w Gizie i Morze Czerwone o zachodzie słońca",
-  width: 1920,
-  height: 1080,
+  alt: "Piramidy w Gizie i Sfinks o zachodzie słońca z lotu ptaka",
+  width: 1440,
+  height: 810,
 };
 
 export function Hero({
@@ -59,21 +52,13 @@ export function Hero({
   const [playing, setPlaying] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
 
-  // Pointer parallax for the decorative layer (desktop, fine pointer, motion ok).
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-  const sx = useSpring(px, { stiffness: 60, damping: 18 });
-  const sy = useSpring(py, { stiffness: 60, damping: 18 });
-
-  // Scroll parallax for the media + glow. Works on desktop AND touch (it is a pure
-  // transform driven by scroll position, no gyroscope), and is neutralised for
-  // users who prefer reduced motion.
+  // Subtle scroll parallax for the media. Pure transform driven by scroll position
+  // (no gyroscope); neutralised for users who prefer reduced motion.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
   const mediaY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "14%"]);
-  const glowY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "-24%"]);
 
   // Decide whether to load the video: skip for reduced motion & Save-Data, and
   // defer until the page is loaded + idle so the tiny poster remains the LCP
@@ -149,16 +134,8 @@ export function Hero({
     }
   }
 
-  function onPointerMove(e: React.PointerEvent) {
-    if (reduce || e.pointerType !== "mouse") return;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    px.set(((e.clientX / w) - 0.5) * 22);
-    py.set(((e.clientY / h) - 0.5) * 22);
-  }
-
   return (
-    <section ref={sectionRef} className={styles.hero} onPointerMove={onPointerMove}>
+    <section ref={sectionRef} className={styles.hero}>
       <div className={styles.media}>
         <m.div className={styles.mediaInner} style={{ y: mediaY }}>
           <OptimizedImage image={HERO_POSTER} priority className={styles.poster} />
@@ -176,18 +153,11 @@ export function Hero({
               onCanPlay={() => setVideoReady(true)}
               onPlaying={() => setPlaying(true)}
             >
-              <source src="/media/hero/hero.webm" type="video/webm" />
-              <source src="/media/hero/hero.mp4" type="video/mp4" />
+              <source src="/media/hero/egipskie-wakacje-hero.mp4" type="video/mp4" />
             </video>
           )}
         </m.div>
         <div className={styles.scrim} />
-        {!reduce && (
-          <m.div className={styles.glow} style={{ y: glowY }} aria-hidden="true" />
-        )}
-        {!reduce && (
-          <m.div className={styles.orb} style={{ x: sx, y: sy }} aria-hidden="true" />
-        )}
       </div>
 
       <div className={`container ${styles.content}`}>

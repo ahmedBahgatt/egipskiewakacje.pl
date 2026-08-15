@@ -59,15 +59,15 @@ export function TourCard({
       <Link href={`${tour.route}/`} className={styles.media} tabIndex={-1} aria-hidden="true">
         <OptimizedImage image={tour.heroImage} priority={priority} className={styles.img} />
         <span className={styles.badge}>{tour.availabilityLabel}</span>
+        <span className={styles.dur}>
+          <IconClock /> {tour.durationLabel}
+        </span>
       </Link>
 
       <div className={styles.body}>
         <div className={styles.meta}>
           <span className={styles.metaItem}>
             <IconMapPin /> {tour.departure}
-          </span>
-          <span className={styles.metaItem}>
-            <IconClock /> {tour.durationLabel}
           </span>
         </div>
 

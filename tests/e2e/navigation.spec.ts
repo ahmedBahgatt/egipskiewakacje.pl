@@ -53,17 +53,19 @@ test.describe("mobile menu", () => {
 test.describe("hero destination selector", () => {
   test("each option links to its destination page", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("link", { name: "Hurghada", exact: true })).toHaveAttribute(
+    // Scope to the hero's "Skąd wyjeżdżasz?" group - the same destination names
+    // also appear in the marquee and resort tiles elsewhere on the page.
+    const selector = page.getByRole("group", { name: "Skąd wyjeżdżasz?" });
+    await expect(selector.getByRole("link", { name: "Hurghada", exact: true })).toHaveAttribute(
       "href",
       "/wycieczki-z-hurghady/",
     );
-    await expect(page.getByRole("link", { name: "Marsa Alam", exact: true })).toHaveAttribute(
+    await expect(selector.getByRole("link", { name: "Marsa Alam", exact: true })).toHaveAttribute(
       "href",
       "/wycieczki-z-marsa-alam/",
     );
-    await expect(page.getByRole("link", { name: "Sharm el Sheikh", exact: true })).toHaveAttribute(
-      "href",
-      "/wycieczki-z-sharm-el-sheikh/",
-    );
+    await expect(
+      selector.getByRole("link", { name: "Sharm el Sheikh", exact: true }),
+    ).toHaveAttribute("href", "/wycieczki-z-sharm-el-sheikh/");
   });
 });
