@@ -40,6 +40,32 @@
 .whatsapp { --_bg: var(--whatsapp); --_fg: #04331a; font-weight: 800; }
 .whatsapp:hover { --_bg: var(--whatsapp-dark); --_fg: #ffffff; }
 
+/* Warm-gold primary - premium hero CTA, navy readable text. */
+.gold {
+  --_bg: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+  --_fg: var(--navy-900);
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(190, 147, 48, 0.24);
+}
+.gold:hover {
+  --_bg: linear-gradient(135deg, var(--gold-300), var(--gold-400));
+  box-shadow: 0 9px 24px rgba(212, 175, 55, 0.34);
+}
+
+/* Refined secondary for the hero WhatsApp action: dark-subtle fill, thin warm
+   border, light text, brand-green only on the icon so it complements the gold. */
+.whatsappOutline {
+  --_bg: rgba(255, 255, 255, 0.06);
+  --_fg: #eef2f8;
+  --_bd: rgba(212, 175, 55, 0.45);
+}
+.whatsappOutline:hover {
+  --_bg: rgba(255, 255, 255, 0.12);
+  --_bd: var(--gold-400);
+  box-shadow: none;
+}
+.whatsappOutline .icon { color: var(--whatsapp); }
+
 .outline {
   --_bg: transparent;
   --_fg: var(--text);

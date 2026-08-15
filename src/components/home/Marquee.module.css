@@ -1,6 +1,8 @@
 .marquee {
-  background: var(--navy-900);
-  border-block: 1px solid rgba(230, 185, 85, 0.22);
+  /* Deep, rich navy - a touch darker than navy-900 with a subtle gradient so the
+     strip reads as a premium band that flows out of the hero, not a flat block. */
+  background: linear-gradient(180deg, #050f22 0%, var(--navy-900) 55%, #06152c 100%);
+  border-block: 1px solid rgba(212, 175, 55, 0.24);
   position: relative;
   z-index: 1;
 }

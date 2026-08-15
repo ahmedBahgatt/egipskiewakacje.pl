@@ -2,7 +2,14 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import styles from "./Button.module.css";
 
-type Variant = "primary" | "secondary" | "whatsapp" | "outline" | "ghost";
+type Variant =
+  | "primary"
+  | "secondary"
+  | "whatsapp"
+  | "whatsappOutline"
+  | "gold"
+  | "outline"
+  | "ghost";
 type Size = "sm" | "md" | "lg";
 
 interface CommonProps {

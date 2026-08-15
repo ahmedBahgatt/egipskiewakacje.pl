@@ -26,8 +26,8 @@ import {
   IconBoat,
   IconBuggy,
   IconFish,
+  IconMapPin,
   IconMask,
-  IconPalm,
   IconPyramid,
   IconTemple,
   IconUsers,
@@ -96,7 +96,7 @@ export default async function HomePage() {
     ...destinations.map((d) => ({
       label: d.name,
       href: `${d.routeBase}/`,
-      icon: <IconPalm />,
+      icon: <IconMapPin />,
     })),
   ];
 

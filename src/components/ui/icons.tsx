@@ -177,6 +177,13 @@ export const IconBuilding = (p: IconProps) => (
     <path d="M3 21h18M10 21v-4h4v4M8.5 8h.01M12 8h.01M15.5 8h.01M8.5 12h.01M12 12h.01M15.5 12h.01" />
   </Base>
 );
+/** Suitcase - reads instantly as trips / excursions for the hero trust stats. */
+export const IconSuitcase = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="3.5" y="7.5" width="17" height="12.5" rx="2.4" />
+    <path d="M8.5 7.5V5.6a1.9 1.9 0 0 1 1.9-1.9h3.2a1.9 1.9 0 0 1 1.9 1.9V7.5M9 12v3M15 12v3" />
+  </Base>
+);
 
 /** WhatsApp glyph - recognisable brand mark. Uses currentColor so the button
  *  controls the colour. Filled path. */

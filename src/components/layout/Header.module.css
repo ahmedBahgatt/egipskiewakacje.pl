@@ -17,8 +17,10 @@
 .overHero {
   position: fixed;
   inset: 0 0 auto;
-  background: transparent;
-  backdrop-filter: none;
+  /* Glassy, not solid: a soft top-down navy veil that fades to nothing plus a
+     whisper of blur - keeps the nav readable over the video with no hard bar. */
+  background: linear-gradient(to bottom, rgba(8, 18, 40, 0.42), rgba(8, 18, 40, 0));
+  backdrop-filter: saturate(125%) blur(2px);
   border-bottom-color: transparent;
 }
 /* Once scrolled the homepage header turns into a solid royal-navy bar with the

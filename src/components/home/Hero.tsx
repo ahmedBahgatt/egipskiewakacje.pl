@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/Button";
 import {
   IconArrowRight,
   IconBuilding,
-  IconPalm,
   IconShield,
+  IconSuitcase,
   IconWhatsApp,
 } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
@@ -148,14 +148,14 @@ export function Hero({ total }: { total: number }) {
         </p>
 
         <div className={styles.ctas}>
-          <Button href="/wycieczki/" size="lg" iconRight={<IconArrowRight />}>
+          <Button href="/wycieczki/" variant="gold" size="md" iconRight={<IconArrowRight />}>
             Zobacz wycieczki
           </Button>
           <Button
             href={contactWhatsappUrl("Cześć! Chcę zapytać o wycieczki w Egipcie.")}
             external
-            variant="whatsapp"
-            size="lg"
+            variant="whatsappOutline"
+            size="md"
             iconLeft={<IconWhatsApp />}
           >
             Napisz na WhatsApp
@@ -165,7 +165,7 @@ export function Hero({ total }: { total: number }) {
         <ul className={styles.stats} aria-label="W skrócie">
           <li className={styles.stat}>
             <span className={styles.statIcon}>
-              <IconPalm />
+              <IconSuitcase />
             </span>
             <span className={styles.statBody}>
               <span className={styles.statValue}>{total}+</span>
