@@ -145,6 +145,12 @@ export interface Destination {
   name: string;
   /** Short name used inline in sentences, e.g. "Hurghady" (genitive). */
   nameGenitive: string;
+  /**
+   * Optional explicit hero H1. Defaults to `Wycieczki z ${nameGenitive}` when
+   * omitted; set only when a keyword-stronger phrasing wins (e.g. Marsa Alam ->
+   * "Wycieczki fakultatywne z Marsa Alam", the KD-3/1600-vol primary).
+   */
+  heroTitle?: string;
   shortIntro: string;
   heroImage: MediaImage;
   /** Destination-specific practical notes rendered as a list. */

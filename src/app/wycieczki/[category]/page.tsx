@@ -2,8 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { content } from "@/content";
-import { buildMetadata, breadcrumbJsonLd, itemListJsonLd, faqJsonLd } from "@/lib/seo";
+import {
+  buildMetadata,
+  breadcrumbJsonLd,
+  collectionPageJsonLd,
+  faqJsonLd,
+} from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
+import { PageIntro } from "@/components/ui/PageIntro";
+import { RelatedLinks, type RelatedLink } from "@/components/ui/RelatedLinks";
+import { CtaBanner } from "@/components/ui/CtaBanner";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -11,9 +19,15 @@ import { SectionJumpNav, type JumpItem } from "@/components/experience/SectionJu
 import { ExperienceVisual } from "@/components/experience/ExperienceVisual";
 import { CategoryDestinationSection } from "@/components/category/CategoryDestinationSection";
 import { CategoryComparison } from "@/components/category/CategoryComparison";
-import { EXPERIENCE, CATEGORY_DESTINATION_ORDER } from "@/lib/experiences";
+import {
+  EXPERIENCE,
+  CATEGORY_DESTINATION_ORDER,
+  CATEGORY_HIGHLIGHT_SLUGS,
+} from "@/lib/experiences";
 import { categoryImage } from "@/lib/categories";
 import { groupByDestination } from "@/lib/grouping";
+import { hubFacts, fromPriceLabel, departureResorts, resortListLabel } from "@/lib/facts";
+import { formatTourCount } from "@/lib/polish";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { IconArrowRight, IconWhatsApp } from "@/components/ui/icons";
 import type { Destination, Tour } from "@/content/types";
@@ -79,12 +93,29 @@ export default async function Page({ params }: { params: Promise<{ category: str
     count: tours.length,
   }));
 
+  const price = fromPriceLabel(tours);
+  const resorts = departureResorts(tours);
+  const highlightLinks: RelatedLink[] = (CATEGORY_HIGHLIGHT_SLUGS[c.slug] ?? [])
+    .map((s) => tours.find((t) => t.slug === s))
+    .filter((t): t is Tour => Boolean(t))
+    .map((t) => ({ title: t.title, href: `${t.route}/`, blurb: t.shortDescription }));
+  const resortLinks: RelatedLink[] = presentDests.map(({ destination, tours: dt }) => ({
+    title: `Wycieczki z ${destination.nameGenitive}`,
+    href: `${destination.routeBase}/`,
+    blurb: `Cała oferta z ${destination.nameGenitive}, w tym ${formatTourCount(dt.length)} z tej kategorii.`,
+  }));
+
   return (
     <>
       <JsonLd
         data={[
           breadcrumbJsonLd(crumbs),
-          itemListJsonLd(tours.map((t) => ({ name: t.title, path: t.seo.canonicalPath }))),
+          collectionPageJsonLd({
+            name: c.name,
+            description: c.seo.description,
+            path: c.seo.canonicalPath,
+            items: tours.map((t) => ({ name: t.title, path: t.seo.canonicalPath })),
+          }),
           faqJsonLd(c.faqs),
         ]}
       />
@@ -108,6 +139,24 @@ export default async function Page({ params }: { params: Promise<{ category: str
             >
               Napisz na WhatsApp
             </Button>
+          </>
+        }
+      />
+
+      <PageIntro
+        facts={hubFacts(tours)}
+        lead={
+          <>
+            <p>
+              W kategorii <strong>{c.shortLabel}</strong> mamy {formatTourCount(tours.length)} z{" "}
+              {resortListLabel(resorts)}
+              {price ? `, ceny ${price}` : ""}. {c.description}
+            </p>
+            <p>
+              Rezerwację potwierdzasz po polsku przez WhatsApp, a{" "}
+              <strong>za wycieczkę płacisz dopiero przy jej rozpoczęciu</strong> - bez przedpłaty i
+              płatności online. Odbiór spod hotelu jest w cenie większości wypraw.
+            </p>
           </>
         }
       />
@@ -158,6 +207,25 @@ export default async function Page({ params }: { params: Promise<{ category: str
         </div>
       </section>
 
+      {highlightLinks.length > 0 && (
+        <RelatedLinks
+          eyebrow="Konkretne miejsca"
+          title={`Popularne wycieczki i miejsca - ${c.shortLabel}`}
+          items={highlightLinks}
+          columns={3}
+          tone="paper"
+        />
+      )}
+
+      {resortLinks.length > 0 && (
+        <RelatedLinks
+          eyebrow="Wybierz punkt wyjazdu"
+          title="Zobacz też wycieczki z kurortów"
+          items={resortLinks}
+          columns={3}
+        />
+      )}
+
       {c.faqs.length > 0 && (
         <section className="section" style={{ background: "var(--bg-paper)" }}>
           <div className="container container-narrow">
@@ -166,6 +234,12 @@ export default async function Page({ params }: { params: Promise<{ category: str
           </div>
         </section>
       )}
+
+      <CtaBanner
+        title={`Masz pytania o wycieczki ${c.shortLabel}?`}
+        text="Napisz na WhatsApp - potwierdzimy dostępność, godzinę odbioru i cenę dla Twojego hotelu. Bez przedpłaty."
+        message={`Cześć! Mam pytanie o wycieczki: ${c.shortLabel}.`}
+      />
     </>
   );
 }

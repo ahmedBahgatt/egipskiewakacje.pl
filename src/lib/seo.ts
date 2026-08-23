@@ -115,6 +115,42 @@ export function itemListJsonLd(items: { name: string; path: string }[]) {
 }
 
 /**
+ * CollectionPage for a listing/hub page (all-tours, destination, category). The
+ * real, visible tours on the page are carried as a nested ItemList `mainEntity`
+ * (position + name + url only - no fake price/availability/rating). Tied to the
+ * global WebSite entity so the site graph stays consistent. Use this INSTEAD of a
+ * standalone itemListJsonLd on hub pages, so a page emits exactly one ItemList.
+ */
+export function collectionPageJsonLd(opts: {
+  name: string;
+  description: string;
+  path: string;
+  items: { name: string; path: string }[];
+}) {
+  const url = absoluteUrl(opts.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    name: opts.name,
+    description: opts.description,
+    url,
+    inLanguage: "pl-PL",
+    isPartOf: { "@id": `${siteConfig.url}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: opts.items.length,
+      itemListElement: opts.items.map((it, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: it.name,
+        url: absoluteUrl(it.path),
+      })),
+    },
+  };
+}
+
+/**
  * TouristTrip for a tour. Price is represented honestly via an Offer carrying only
  * the adult from-price in USD. There is NO live inventory (availability is confirmed
  * on WhatsApp), so no `availability`, `priceValidUntil` or quantity is emitted.

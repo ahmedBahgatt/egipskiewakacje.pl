@@ -16,5 +16,13 @@ export default async function Page() {
   if (!destination) notFound();
   const tours = await content.getToursByDestination(SLUG);
   const relatedPost = await content.getPost("co-zabrac-na-wycieczke-do-kairu");
-  return <DestinationPage destination={destination} tours={tours} relatedPost={relatedPost} />;
+  const otherDestinations = (await content.getDestinations()).filter((d) => d.slug !== SLUG);
+  return (
+    <DestinationPage
+      destination={destination}
+      tours={tours}
+      relatedPost={relatedPost}
+      otherDestinations={otherDestinations}
+    />
+  );
 }

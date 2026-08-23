@@ -59,7 +59,7 @@ export const destinations: Destination[] = [
       },
     ],
     seo: {
-      title: "Wycieczki z Hurghady - fakultatywne, Kair, morze, safari",
+      title: "Wycieczki z Hurghady po polsku - ceny i atrakcje | Egipskie Wakacje",
       description:
         "Wycieczki fakultatywne z Hurghady: Kair i piramidy, Luksor, rejsy na wyspy, snorkeling, delfiny, nurkowanie i safari. Odbiór z hotelu, ceny od 12 USD, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki-z-hurghady/",
@@ -72,6 +72,7 @@ export const destinations: Destination[] = [
     routeBase: "/wycieczki-z-marsa-alam",
     name: "Marsa Alam",
     nameGenitive: "Marsa Alam",
+    heroTitle: "Wycieczki fakultatywne z Marsa Alam",
     shortIntro:
       "Marsa Alam to raj dla miłośników morza. To najlepsze miejsce na wycieczki fakultatywne ze snorkelingiem i pływaniem z dzikimi delfinami - Sataya, Samadai i zatoka Abu Dabbab ze żółwiami. Z Marsa Alam pojedziesz też do Kairu i Luksoru, na rejsy, nurkowanie i pustynne safari. Odbiór z hotelu, obsługa po polsku.",
     heroImage: {
@@ -120,7 +121,7 @@ export const destinations: Destination[] = [
       },
     ],
     seo: {
-      title: "Wycieczki z Marsa Alam - fakultatywne, delfiny, snorkeling",
+      title: "Wycieczki fakultatywne z Marsa Alam po polsku | Egipskie Wakacje",
       description:
         "Wycieczki fakultatywne z Marsa Alam: pływanie z delfinami (Sataya, Samadai), snorkeling, Abu Dabbab, rejsy, Kair, Luksor i safari. Odbiór z hotelu, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki-z-marsa-alam/",
@@ -181,7 +182,7 @@ export const destinations: Destination[] = [
       },
     ],
     seo: {
-      title: "Wycieczki z Sharm el Sheikh - fakultatywne, Ras Mohammed, Kair",
+      title: "Wycieczki z Sharm el Sheikh po polsku | Egipskie Wakacje",
       description:
         "Wycieczki fakultatywne z Sharm el Sheikh: Ras Mohammed, wyspa Tiran, Blue Hole, Góra Mojżesza, Kair z GEM, Jordania (Petra) i safari. Odbiór z hotelu, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki-z-sharm-el-sheikh/",

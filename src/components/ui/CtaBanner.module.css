@@ -1,0 +1,4 @@
+.cta { color: #fff; padding-block: clamp(3rem, 7vw, 5rem); }
+.inner { position: relative; z-index: 1; text-align: center; max-width: 640px; margin-inline: auto; }
+.title { color: #fff; font-size: var(--step-3); }
+.text { color: rgba(255, 255, 255, 0.86); margin: 0.9rem auto 1.6rem; }

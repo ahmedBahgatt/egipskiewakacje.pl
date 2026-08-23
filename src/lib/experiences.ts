@@ -88,6 +88,20 @@ export const CATEGORY_DESTINATION_ORDER: DestinationSlug[] = [
 ];
 
 /**
+ * High-demand SPECIFIC entities that a category page must NOT cannibalise: their
+ * primary search intent (Orange Bay, Abu Dabbab, Sataya, Grand Aquarium,
+ * Parasailing, ...) belongs to the dedicated tour page. The category hub instead
+ * links to them explicitly with a keyword-relevant anchor. Values are tour
+ * `slug`s; the page resolves them against the tours it already loaded and skips
+ * any that are absent (no hardcoded routes, no broken links). See SEO_KEYWORD_MAP.md.
+ */
+export const CATEGORY_HIGHLIGHT_SLUGS: Partial<Record<CategorySlug, string[]>> = {
+  "rejsy-wyspy": ["orange-bay", "wyspa-paradise", "wyspy-hamata"],
+  "snorkeling-delfiny": ["abu-dabbab", "sataya-dom-delfinow", "dom-delfinow-snorkeling"],
+  atrakcje: ["wielkie-akwarium", "parasailing", "lodz-seascope"],
+};
+
+/**
  * Short, contextual intro for an experience section. Kept factual and original;
  * the resort name is woven in (genitive) where it helps orientation.
  */

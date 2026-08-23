@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { BlogPost, Destination, Tour } from "@/content/types";
 import { PageHero } from "@/components/ui/PageHero";
+import { PageIntro } from "@/components/ui/PageIntro";
+import { RelatedLinks, type RelatedLink } from "@/components/ui/RelatedLinks";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DataTable } from "@/components/ui/DataTable";
@@ -11,11 +13,15 @@ import { Reveal } from "@/components/motion/Reveal";
 import { DestinationExperience } from "./DestinationExperience";
 import { IconArrowRight, IconCheck, IconWhatsApp } from "@/components/ui/icons";
 import { formatMoney } from "@/lib/format";
+import { hubFacts, fromPriceLabel } from "@/lib/facts";
+import { groupByCategory, orderedPresentCategories } from "@/lib/grouping";
+import { categoryLabel, categoryRoute } from "@/lib/categories";
+import { formatTourCount } from "@/lib/polish";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import {
   breadcrumbJsonLd,
+  collectionPageJsonLd,
   faqJsonLd,
-  itemListJsonLd,
   touristDestinationJsonLd,
 } from "@/lib/seo";
 import styles from "./DestinationPage.module.css";
@@ -24,14 +30,50 @@ export function DestinationPage({
   destination,
   tours,
   relatedPost,
+  otherDestinations = [],
 }: {
   destination: Destination;
   tours: Tour[];
   relatedPost?: BlogPost;
+  /** The other departure resorts, for the cross-resort internal-link block. */
+  otherDestinations?: Destination[];
 }) {
   const crumbs = [
     { name: "Strona główna", path: "/" },
     { name: `Wycieczki z ${destination.nameGenitive}`, path: `${destination.routeBase}/` },
+  ];
+
+  const heroTitle = destination.heroTitle ?? `Wycieczki z ${destination.nameGenitive}`;
+
+  const byCat = groupByCategory(tours);
+  const categoryLinks: RelatedLink[] = orderedPresentCategories(destination.slug, tours)
+    .filter((c) => categoryRoute[c])
+    .map((c) => ({
+      title: categoryLabel[c],
+      href: `${categoryRoute[c]}/`,
+      blurb: `${formatTourCount(byCat.get(c)?.length ?? 0)} z ${destination.nameGenitive}.`,
+    }));
+
+  const price = fromPriceLabel(tours);
+  const catNames = orderedPresentCategories(destination.slug, tours)
+    .map((c) => categoryLabel[c])
+    .slice(0, 6);
+  const catNamesLabel =
+    catNames.length > 1
+      ? `${catNames.slice(0, -1).join(", ")} i ${catNames[catNames.length - 1]}`
+      : catNames.join("");
+
+  const otherResortLinks: RelatedLink[] = [
+    ...otherDestinations.map((d) => ({
+      title: `Wycieczki z ${d.nameGenitive}`,
+      href: `${d.routeBase}/`,
+      blurb: `${d.shortIntro.split(". ")[0]}.`,
+    })),
+    {
+      title: "Wszystkie wycieczki w Egipcie",
+      href: "/wycieczki/",
+      blurb: "Pełna oferta z trzech kurortów - filtruj po kurorcie i rodzaju.",
+    },
   ];
 
   // Aggregate the distinct transfer-supplement zones across THIS resort's tours
@@ -53,7 +95,12 @@ export function DestinationPage({
         data={[
           breadcrumbJsonLd(crumbs),
           touristDestinationJsonLd(destination),
-          itemListJsonLd(tours.map((t) => ({ name: t.title, path: t.seo.canonicalPath }))),
+          collectionPageJsonLd({
+            name: `Wycieczki z ${destination.nameGenitive}`,
+            description: destination.seo.description,
+            path: destination.seo.canonicalPath,
+            items: tours.map((t) => ({ name: t.title, path: t.seo.canonicalPath })),
+          }),
           faqJsonLd(destination.faqs),
         ]}
       />
@@ -61,7 +108,7 @@ export function DestinationPage({
       {/* hero */}
       <PageHero
         eyebrow="Kurort wyjazdu"
-        title={`Wycieczki z ${destination.nameGenitive}`}
+        title={heroTitle}
         intro={destination.shortIntro}
         crumbs={crumbs}
         image={destination.heroImage}
@@ -81,6 +128,24 @@ export function DestinationPage({
             >
               Napisz na WhatsApp
             </Button>
+          </>
+        }
+      />
+
+      <PageIntro
+        facts={hubFacts(tours, destination.name)}
+        lead={
+          <>
+            <p>
+              Z <strong>{destination.name}</strong> organizujemy {formatTourCount(tours.length)}{" "}
+              fakultatywnych po polsku, z odbiorem spod hotelu
+              {price ? `, ceny ${price}` : ""}. Do wyboru masz {catNamesLabel}.
+            </p>
+            <p>
+              Rezerwację potwierdzasz na WhatsApp, a{" "}
+              <strong>za wycieczkę płacisz dopiero przy jej rozpoczęciu</strong> - bez przedpłaty i
+              płatności online. Dokładną godzinę odbioru podajemy przed wyjazdem.
+            </p>
           </>
         }
       />
@@ -167,6 +232,25 @@ export function DestinationPage({
           </div>
         </section>
       )}
+
+      {/* internal linking: category hubs from this resort */}
+      {categoryLinks.length > 0 && (
+        <RelatedLinks
+          eyebrow="Rodzaje wycieczek"
+          title={`Rodzaje wycieczek z ${destination.nameGenitive}`}
+          items={categoryLinks}
+          columns={4}
+          tone="paper"
+        />
+      )}
+
+      {/* internal linking: other resorts + all-tours hub */}
+      <RelatedLinks
+        eyebrow="Zobacz też"
+        title="Wycieczki z innych kurortów"
+        items={otherResortLinks}
+        columns={3}
+      />
 
       {/* final CTA */}
       <section className={`${styles.finalCta} motif-dark on-dark`}>

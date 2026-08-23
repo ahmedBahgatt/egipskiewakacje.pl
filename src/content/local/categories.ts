@@ -47,7 +47,7 @@ export const categories: TourCategory[] = [
   {
     slug: "luksor",
     routeBase: "/wycieczki/luksor",
-    name: "Wycieczki do Luksoru",
+    name: "Wycieczki do Luksoru i Doliny Królów",
     shortLabel: "Luksor",
     description: "Dolina Królów, Karnak i świątynie Teb - dzień pełen historii nad Nilem.",
     intro:
@@ -65,7 +65,7 @@ export const categories: TourCategory[] = [
       },
     ],
     seo: {
-      title: "Wycieczki do Luksoru z Hurghady i Marsa Alam | Egipskie Wakacje",
+      title: "Wycieczki do Luksoru i Doliny Królów | Egipskie Wakacje",
       description:
         "Wycieczki do Luksoru: Dolina Królów, Karnak, świątynia Hatszepsut i lot balonem. Wyjazdy z Hurghady i Marsa Alam, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/luksor/",
@@ -134,11 +134,11 @@ export const categories: TourCategory[] = [
   {
     slug: "nurkowanie",
     routeBase: "/wycieczki/nurkowanie",
-    name: "Nurkowanie na rafach Morza Czerwonego",
+    name: "Nurkowanie w Egipcie",
     shortLabel: "Nurkowanie",
     description: "Nurkowanie na próbę i wyprawy z butlą na rafach Morza Czerwonego - z Hurghady, Marsa Alam i Sharm el Sheikh.",
     intro:
-      "Rafy Morza Czerwonego zachwycają zarówno za pierwszym razem, jak i doświadczonych nurków. Możesz spróbować nurkowania na próbę pod okiem instruktora, zejść pod wodę z butlą z łodzi lub z brzegu, albo połączyć nurkowanie z rejsem na wyspę Tiran. To wyprawy dla osób, które chcą zobaczyć podwodny świat z bliska - dobieramy je do Twojego doświadczenia.",
+      "Nurkowanie w Egipcie to przede wszystkim rafy Morza Czerwonego - zachwycają i za pierwszym razem, i doświadczonych nurków. Możesz spróbować nurkowania na próbę pod okiem instruktora, zejść pod wodę z butlą z łodzi lub z brzegu, albo połączyć nurkowanie z rejsem na wyspę Tiran. To wyprawy dla osób, które chcą zobaczyć podwodny świat z bliska - dobieramy je do Twojego doświadczenia.",
     faqs: [
       {
         question: "Czy nurkowanie na próbę wymaga doświadczenia?",
@@ -154,7 +154,7 @@ export const categories: TourCategory[] = [
     seo: {
       title: "Nurkowanie w Egipcie - rafy Morza Czerwonego | Hurghada, Marsa Alam, Sharm",
       description:
-        "Nurkowanie na próbę i wyprawy z butlą na rafach Morza Czerwonego z Hurghady, Marsa Alam i Sharm el Sheikh. Dla początkujących i doświadczonych nurków. Rezerwacja przez WhatsApp.",
+        "Nurkowanie w Egipcie: nurkowanie na próbę i wyprawy z butlą na rafach Morza Czerwonego z Hurghady, Marsa Alam i Sharm el Sheikh. Dla początkujących i doświadczonych nurków. Rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/nurkowanie/",
       ogImage: "/media/og/default.jpg",
     },
@@ -216,7 +216,7 @@ export const categories: TourCategory[] = [
       canonicalPath: "/wycieczki/atrakcje-i-rozrywka/",
       ogImage: "/media/og/default.jpg",
     },
-    primaryQuery: "atrakcje Hurghada Marsa Alam",
+    primaryQuery: "atrakcje i rozrywka w Egipcie",
   },
   {
     slug: "prywatne",
