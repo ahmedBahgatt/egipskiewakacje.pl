@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { IconArrowRight, IconWhatsApp, IconX } from "@/components/ui/icons";
@@ -20,6 +21,14 @@ const FOCUSABLE =
 export function MobileMenu({ open, onClose, pathname }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const previouslyFocused = useRef<HTMLElement | null>(null);
+  // The drawer is rendered through a portal into <body> so it escapes the
+  // header's stacking/containing context. The header carries `backdrop-filter`,
+  // which makes it the containing block for any fixed-position descendant - that
+  // trapped this fixed drawer inside the 72px-tall header box (clipped panel +
+  // a backdrop covering only the header strip). `mounted` gates the portal so the
+  // server/first client render match (no hydration mismatch).
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!open) return;
@@ -69,9 +78,9 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  return createPortal(
     <div className={styles.root}>
       <div className={styles.backdrop} onClick={onClose} aria-hidden="true" />
       <div
@@ -136,6 +145,7 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
           </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

@@ -11,8 +11,9 @@
 .track {
   display: flex;
   width: max-content;
+  /* The transform animation is compositor-accelerated without a permanent
+     `will-change` layer - one fewer always-on GPU layer for older iPhones. */
   animation: marquee-scroll 46s linear infinite;
-  will-change: transform;
 }
 .marquee:hover .track,
 .marquee:focus-within .track { animation-play-state: paused; }

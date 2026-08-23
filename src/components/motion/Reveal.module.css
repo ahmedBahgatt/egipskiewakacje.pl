@@ -1,0 +1,20 @@
+/*
+ * Reveal is OPAQUE by default (no opacity gating) so content is never blank while
+ * a slow device catches up. Only a small translate animates, and only when the
+ * user has not asked for reduced motion. Once revealed the transform resets to
+ * none, so no lasting compositing layer / will-change memory cost remains.
+ */
+.reveal {
+  /* visible by default - the base rule intentionally sets no opacity/transform */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    transform: translateY(var(--reveal-y, 22px));
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  .reveal[data-revealed="true"] {
+    transform: none;
+  }
+}

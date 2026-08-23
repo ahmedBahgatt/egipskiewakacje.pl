@@ -57,6 +57,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
   const readyRef = useRef(false);
 
   const driftingRef = useRef(false);
+  const onScreenRef = useRef(false); // belt only runs while the carousel is visible
   const rafRef = useRef(0);
   const lastTsRef = useRef(0);
   const resumeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -98,7 +99,10 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
   );
 
   const startDrift = useCallback(() => {
+    // Never spin the rAF loop while the carousel is scrolled offscreen (saves
+    // main-thread + compositor work, notably on older iPhones) or while hidden.
     if (reduce || driftingRef.current || !readyRef.current || n === 0) return;
+    if (!onScreenRef.current || document.hidden) return;
     driftingRef.current = true;
     lastTsRef.current = 0;
     rafRef.current = requestAnimationFrame(tick);
@@ -143,7 +147,6 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
     if (!el || !vp || n === 0) return;
 
     measure();
-    startDrift();
 
     const ro = new ResizeObserver(() => {
       stopDrift();
@@ -151,6 +154,28 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
       resumeSoon(1200);
     });
     ro.observe(vp);
+
+    // Pause the belt whenever the carousel scrolls out of view; resume on return.
+    // (Falls back to always-on if IntersectionObserver is unavailable.)
+    let io: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        (entries) => {
+          const visible = entries[0]?.isIntersecting ?? false;
+          onScreenRef.current = visible;
+          if (visible) startDrift();
+          else {
+            stopDrift();
+            clearTimeout(resumeTimer.current);
+          }
+        },
+        { rootMargin: "120px 0px" },
+      );
+      io.observe(vp);
+    } else {
+      onScreenRef.current = true;
+      startDrift();
+    }
 
     const onEnd = (e: TransitionEvent) => {
       if (e.target !== el || e.propertyName !== "transform") return;
@@ -168,6 +193,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
 
     return () => {
       ro.disconnect();
+      io?.disconnect();
       el.removeEventListener("transitionend", onEnd);
       document.removeEventListener("visibilitychange", onVis);
       stopDrift();
