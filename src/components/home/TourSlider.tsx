@@ -6,31 +6,33 @@ import { useReducedMotion } from "motion/react";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { IconArrowRight, IconClock, IconMapPin } from "@/components/ui/icons";
 import { priceLabel, priceUnit } from "@/lib/format";
-import { normalizeIndex } from "@/lib/carousel";
+import { wrapPos } from "@/lib/carousel";
 import { track } from "@/lib/analytics";
 import type { Tour } from "@/content/types";
 import styles from "./TourSlider.module.css";
 
-const AUTOPLAY_MS = 4200; // dwell per card position
-const RESUME_MS = 5000; // idle delay before autoplay resumes after interaction
-const STEP_MS = 620; // one card transition (keep in sync with the easing below)
+const SPEED = 62; // px/s - calm continuous belt drift when idle
+const STEP_MS = 600; // one-card snap transition
+const RESUME_MS = 4000; // idle delay before the belt resumes after interaction
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 /**
- * Bestseller carousel - a TRUE infinite loop.
+ * Bestseller carousel - one coherent architecture, two modes.
  *
- * The track renders three consecutive copies of the tour list
- * `[cloneA][real][cloneB]` and is moved with a single GPU `translate3d` transition
- * per card step (no per-frame JS, no native scroll). The logical index starts in
- * the middle (real) block; whenever a step lands in a clone block the position is
- * normalised by exactly one block width with the transition disabled, so the jump
- * is pixel-identical and invisible. Result: autoplay, arrows and drag all continue
- * forever in both directions with no beginning, end, rewind or blank gap.
+ * The track is three consecutive copies of the tour list `[a][real][b]` moved by a
+ * single `translate3d` on the element (no per-frame React state). The pixel offset
+ * `pos` is the single source of truth and is wrapped back into the middle copy
+ * every frame (`wrapPos`), so there is never a beginning, end, rewind or gap.
  *
- * Autoplay pauses on hover/focus/drag and while the tab is hidden, and resumes from
- * the CURRENT card after an idle delay. Reduced-motion disables autoplay and makes
- * steps instant; manual navigation still works. Real tour data only - clones are
- * UI-only (aria-hidden, not focusable) and add no duplicate IDs or JSON-LD.
+ * IDLE: a requestAnimationFrame loop advances `pos` at a constant speed - the strip
+ * moves continuously like one connected belt (never stepped).
+ * MANUAL: pointer drag pauses the belt and settles on exactly ONE card per swipe
+ * (nearest-card, clamped to +/-1); desktop arrows also move one card and wrap. After
+ * a short idle the belt resumes smoothly FROM THE CURRENT position.
+ *
+ * Reduced motion disables the belt (steps are instant); manual navigation stays.
+ * Clones are aria-hidden + non-focusable - real data stays a single set, no dup
+ * IDs or JSON-LD.
  */
 export function TourSlider({ tours }: { tours: Tour[] }) {
   const reduce = useReducedMotion();
@@ -41,7 +43,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
       n === 0
         ? []
         : (["a", "real", "b"] as const).flatMap((copy) =>
-            tours.map((t, i) => ({ t, copy, real: copy === "real", key: `${copy}-${t.slug}-${i}` })),
+            tours.map((t, i) => ({ t, real: copy === "real", key: `${copy}-${t.slug}-${i}` })),
           ),
     [tours, n],
   );
@@ -49,146 +51,185 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  const indexRef = useRef(n); // start at the first REAL card
-  const stepRef = useRef(0); // card width + gap, measured
-  const animRef = useRef(false); // whether the transition is currently enabled
-  const drag = useRef({ active: false, startX: 0, dx: 0, moved: 0 });
-  const pausedRef = useRef(false);
+  const posRef = useRef(0); // scroll offset in px (translateX = -pos)
+  const stepRef = useRef(0); // card width + gap
+  const blockRef = useRef(0); // one copy width = step * n
+  const readyRef = useRef(false);
+
+  const driftingRef = useRef(false);
+  const rafRef = useRef(0);
+  const lastTsRef = useRef(0);
   const resumeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  const transition = useCallback(
-    () => (animRef.current && !reduce ? `transform ${STEP_MS}ms ${EASE}` : "none"),
-    [reduce],
-  );
+  const drag = useRef({ active: false, startX: 0, startY: 0, startPos: 0, dx: 0, moved: 0, axis: 0 });
 
-  const paint = useCallback(() => {
+  const applyTransform = useCallback((withTransition: boolean) => {
     const el = trackRef.current;
     if (!el) return;
-    const x = -(indexRef.current * stepRef.current) + drag.current.dx;
-    el.style.transition = transition();
-    el.style.transform = `translate3d(${x}px, 0, 0)`;
-  }, [transition]);
+    el.style.transition = withTransition && !reduce ? `transform ${STEP_MS}ms ${EASE}` : "none";
+    el.style.transform = `translate3d(${-posRef.current}px, 0, 0)`;
+  }, [reduce]);
 
   const measure = useCallback(() => {
-    const track = trackRef.current;
-    const first = track?.children[0] as HTMLElement | undefined;
-    if (!track || !first) return;
-    const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+    const el = trackRef.current;
+    const first = el?.children[0] as HTMLElement | undefined;
+    if (!el || !first) return;
+    const gap = parseFloat(getComputedStyle(el).columnGap || "0") || 0;
     stepRef.current = first.offsetWidth + gap;
-    animRef.current = false; // never animate a resize reflow
-    paint();
-  }, [paint]);
+    blockRef.current = stepRef.current * n;
+    if (!readyRef.current) {
+      posRef.current = blockRef.current; // start on the middle (real) copy
+      readyRef.current = true;
+    }
+    applyTransform(false);
+  }, [applyTransform, n]);
 
-  const goTo = useCallback(
-    (i: number) => {
-      animRef.current = true;
-      indexRef.current = i;
-      paint();
+  // --- continuous belt (rAF) ----------------------------------------------
+  const tick = useCallback(
+    (ts: number) => {
+      if (!driftingRef.current) return;
+      const dt = lastTsRef.current ? (ts - lastTsRef.current) / 1000 : 0;
+      lastTsRef.current = ts;
+      posRef.current = wrapPos(posRef.current + SPEED * dt, blockRef.current);
+      applyTransform(false);
+      rafRef.current = requestAnimationFrame(tick);
     },
-    [paint],
+    [applyTransform],
   );
 
-  const next = useCallback(() => goTo(indexRef.current + 1), [goTo]);
-  const prev = useCallback(() => goTo(indexRef.current - 1), [goTo]);
+  const startDrift = useCallback(() => {
+    if (reduce || driftingRef.current || !readyRef.current || n === 0) return;
+    driftingRef.current = true;
+    lastTsRef.current = 0;
+    rafRef.current = requestAnimationFrame(tick);
+  }, [reduce, tick, n]);
 
-  // Silent boundary normalisation: keep the index inside the middle [n, 2n) block
-  // by jumping exactly one block (visually identical) with the transition off.
-  const normalize = useCallback(() => {
-    const i = normalizeIndex(indexRef.current, n);
-    if (i === indexRef.current) return;
+  const stopDrift = useCallback(() => {
+    driftingRef.current = false;
+    cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  const resumeSoon = useCallback(
+    (ms = RESUME_MS) => {
+      clearTimeout(resumeTimer.current);
+      resumeTimer.current = setTimeout(startDrift, ms);
+    },
+    [startDrift],
+  );
+
+  // --- one-card step (arrows / snap) --------------------------------------
+  const snapToCard = useCallback(
+    (card: number) => {
+      stopDrift();
+      posRef.current = card * stepRef.current;
+      applyTransform(true);
+    },
+    [applyTransform, stopDrift],
+  );
+
+  const step = useCallback(
+    (dir: 1 | -1) => {
+      const card = Math.round(posRef.current / stepRef.current) + dir;
+      snapToCard(card);
+      resumeSoon();
+    },
+    [snapToCard, resumeSoon],
+  );
+
+  // --- mount: measure, observe resize, normalise after each snap ----------
+  useEffect(() => {
     const el = trackRef.current;
-    if (!el) return;
-    animRef.current = false;
-    indexRef.current = i;
-    el.style.transition = "none";
-    el.style.transform = `translate3d(${-(i * stepRef.current)}px, 0, 0)`;
-    void el.offsetWidth; // force reflow so the next step animates from here
-  }, [n]);
-
-  // --- autoplay ------------------------------------------------------------
-  useEffect(() => {
-    if (n === 0 || reduce) return;
-    const id = window.setInterval(() => {
-      if (pausedRef.current || document.hidden || drag.current.active) return;
-      next();
-    }, AUTOPLAY_MS);
-    return () => window.clearInterval(id);
-  }, [n, reduce, next]);
-
-  const pause = useCallback(() => {
-    pausedRef.current = true;
-    clearTimeout(resumeTimer.current);
-  }, []);
-  const resumeSoon = useCallback((ms: number) => {
-    clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => {
-      pausedRef.current = false;
-    }, ms);
-  }, []);
-
-  // --- mount: measure + observe resize + normalise on transition end -------
-  useEffect(() => {
-    const track = trackRef.current;
     const vp = viewportRef.current;
-    if (!track || !vp) return;
+    if (!el || !vp || n === 0) return;
 
     measure();
-    const ro = new ResizeObserver(measure);
+    startDrift();
+
+    const ro = new ResizeObserver(() => {
+      stopDrift();
+      measure();
+      resumeSoon(1200);
+    });
     ro.observe(vp);
 
     const onEnd = (e: TransitionEvent) => {
-      if (e.target === track && e.propertyName === "transform") normalize();
+      if (e.target !== el || e.propertyName !== "transform") return;
+      const wrapped = wrapPos(posRef.current, blockRef.current);
+      if (wrapped !== posRef.current) {
+        posRef.current = wrapped;
+        applyTransform(false); // silent, pixel-identical
+        void el.offsetWidth; // reflow so the next transition starts clean
+      }
     };
-    track.addEventListener("transitionend", onEnd);
+    el.addEventListener("transitionend", onEnd);
 
-    const onVis = () => {
-      if (!document.hidden) resumeSoon(RESUME_MS);
-    };
+    const onVis = () => (document.hidden ? stopDrift() : resumeSoon(600));
     document.addEventListener("visibilitychange", onVis);
 
     return () => {
       ro.disconnect();
-      track.removeEventListener("transitionend", onEnd);
+      el.removeEventListener("transitionend", onEnd);
       document.removeEventListener("visibilitychange", onVis);
+      stopDrift();
       clearTimeout(resumeTimer.current);
     };
-  }, [measure, normalize, resumeSoon]);
+  }, [measure, startDrift, stopDrift, resumeSoon, applyTransform, n]);
 
-  // --- pointer drag --------------------------------------------------------
+  // --- pointer drag: pause belt, one card per swipe ------------------------
   const onPointerDown = (e: React.PointerEvent) => {
-    drag.current = { active: true, startX: e.clientX, dx: 0, moved: 0 };
-    animRef.current = false;
-    pause();
+    if (!readyRef.current) return;
+    stopDrift();
+    clearTimeout(resumeTimer.current);
+    drag.current = {
+      active: true,
+      startX: e.clientX,
+      startY: e.clientY,
+      startPos: posRef.current,
+      dx: 0,
+      moved: 0,
+      axis: 0,
+    };
     viewportRef.current?.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!drag.current.active) return;
-    const dx = e.clientX - drag.current.startX;
-    drag.current.dx = dx;
-    drag.current.moved = Math.max(drag.current.moved, Math.abs(dx));
-    paint();
+    const d = drag.current;
+    if (!d.active) return;
+    const dx = e.clientX - d.startX;
+    const dy = e.clientY - d.startY;
+    if (d.axis === 0) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      d.axis = Math.abs(dx) >= Math.abs(dy) ? 1 : -1; // horizontal vs vertical
+    }
+    if (d.axis !== 1) return; // let the page scroll vertically
+    d.dx = dx;
+    d.moved = Math.max(d.moved, Math.abs(dx));
+    posRef.current = d.startPos - dx;
+    applyTransform(false);
   };
   const endDrag = (e: React.PointerEvent) => {
-    if (!drag.current.active) return;
-    const { dx } = drag.current;
-    drag.current.active = false;
+    const d = drag.current;
+    if (!d.active) return;
+    d.active = false;
     try {
       viewportRef.current?.releasePointerCapture(e.pointerId);
     } catch {
       /* already released */
     }
-    const step = stepRef.current || 1;
-    // Convert the dragged position to the nearest logical card; a decisive short
-    // flick still advances exactly one card.
-    let target = Math.round(indexRef.current - dx / step);
-    if (target === indexRef.current && Math.abs(dx) > step * 0.12) {
-      target = indexRef.current - Math.sign(dx);
+    if (d.axis !== 1) {
+      resumeSoon();
+      return;
     }
-    drag.current.dx = 0;
-    goTo(target);
-    resumeSoon(RESUME_MS);
+    const s = stepRef.current || 1;
+    const startCard = Math.round(d.startPos / s);
+    let target = Math.round(posRef.current / s);
+    // exactly one card per intentional swipe
+    target = Math.max(startCard - 1, Math.min(startCard + 1, target));
+    if (target === startCard && Math.abs(d.dx) > s * 0.15) {
+      target = startCard + (d.dx < 0 ? 1 : -1);
+    }
+    snapToCard(target);
+    resumeSoon();
   };
-  // A drag must not fire the card's link navigation.
   const onClickCapture = (e: React.MouseEvent) => {
     if (drag.current.moved > 6) {
       e.preventDefault();
@@ -208,10 +249,16 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onClickCapture={onClickCapture}
-        onMouseEnter={pause}
-        onMouseLeave={() => resumeSoon(RESUME_MS)}
-        onFocusCapture={pause}
-        onBlurCapture={() => resumeSoon(RESUME_MS)}
+        onMouseEnter={() => {
+          stopDrift();
+          clearTimeout(resumeTimer.current);
+        }}
+        onMouseLeave={() => resumeSoon()}
+        onFocusCapture={() => {
+          stopDrift();
+          clearTimeout(resumeTimer.current);
+        }}
+        onBlurCapture={() => resumeSoon()}
       >
         <div ref={trackRef} className={styles.track}>
           {slides.map(({ t, real, key }) => (
@@ -262,11 +309,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
           type="button"
           className={`${styles.arrow} ${styles.prev}`}
           aria-label="Poprzednie wycieczki"
-          onClick={() => {
-            pause();
-            prev();
-            resumeSoon(RESUME_MS);
-          }}
+          onClick={() => step(-1)}
         >
           <IconArrowRight />
         </button>
@@ -274,11 +317,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
           type="button"
           className={styles.arrow}
           aria-label="Następne wycieczki"
-          onClick={() => {
-            pause();
-            next();
-            resumeSoon(RESUME_MS);
-          }}
+          onClick={() => step(1)}
         >
           <IconArrowRight />
         </button>

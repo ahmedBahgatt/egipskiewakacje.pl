@@ -26,9 +26,9 @@ test.describe("desktop navigation", () => {
   test("Wycieczki dropdown exposes destination links", async ({ page }) => {
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Menu główne" });
-    // Focusing the parent triggers :focus-within, revealing the dropdown - a
-    // deterministic reveal (keyboard path) rather than relying on :hover.
-    await nav.getByRole("link", { name: "Wycieczki", exact: true }).focus();
+    // The Wycieczki trigger is a <button>; click opens the dropdown (it never
+    // navigates), then the destination links inside are reachable.
+    await nav.getByRole("button", { name: "Wycieczki", exact: true }).click();
     const sub = nav.getByRole("link", { name: "Wycieczki z Hurghady" });
     await expect(sub).toBeVisible();
     await expect(sub).toHaveAttribute("href", "/wycieczki-z-hurghady/");

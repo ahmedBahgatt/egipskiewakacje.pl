@@ -51,7 +51,7 @@
   width: 100%;
 }
 .content {
-  max-width: min(720px, 100%);
+  max-width: min(760px, 100%);
 }
 .content :global(nav[aria-label="Okruszki"]) {
   margin-bottom: 0.5rem;
@@ -86,7 +86,7 @@
   color: rgba(255, 255, 255, 0.92);
   font-size: var(--step-1);
   line-height: 1.55;
-  max-width: 700px;
+  max-width: min(720px, 100%);
   margin-top: 0.9rem;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
 }
@@ -100,7 +100,9 @@
 
 @media (min-width: 900px) {
   .content {
-    /* Left column ~45% of the container; the right half stays clear photography. */
-    max-width: min(56%, 760px);
+    /* Wide editorial column (~700-780px) that leaves the right of the photo clear.
+       min() keeps it responsive without a fixed narrow cap. Identical for every
+       destination and category page - the single source of hero content width. */
+    max-width: min(780px, 66%);
   }
 }

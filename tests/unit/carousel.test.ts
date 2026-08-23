@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { normalizeIndex, realIndex } from "@/lib/carousel";
+import { normalizeIndex, realIndex, wrapPos } from "@/lib/carousel";
 
 /**
  * The bestseller carousel is a true infinite loop built on a 3x track
@@ -43,5 +43,40 @@ describe("carousel normalizeIndex", () => {
   it("is safe for an empty list", () => {
     expect(normalizeIndex(0, 0)).toBe(0);
     expect(realIndex(3, 0)).toBe(0);
+  });
+});
+
+describe("carousel wrapPos (continuous belt)", () => {
+  const block = 3060; // one copy width in px (e.g. 9 cards * 340)
+
+  it("keeps offsets inside the middle copy untouched", () => {
+    for (const p of [block, block + 1, block * 1.5, 2 * block - 1]) {
+      expect(wrapPos(p, block)).toBe(p);
+    }
+  });
+
+  it("drifting past the end wraps back exactly one block (invisible)", () => {
+    // A frame that advances just past 2*block must land at the identical middle
+    // position, never rewind to zero.
+    expect(wrapPos(2 * block, block)).toBe(block);
+    expect(wrapPos(2 * block + 12, block)).toBe(block + 12);
+  });
+
+  it("dragging before the start wraps forward one block", () => {
+    expect(wrapPos(block - 1, block)).toBe(2 * block - 1);
+    expect(wrapPos(block - 40, block)).toBe(2 * block - 40);
+  });
+
+  it("continuous drift never leaves the [block, 2*block) band", () => {
+    let pos = block;
+    for (let i = 0; i < 5000; i++) {
+      pos = wrapPos(pos + 7.3, block); // ~every frame
+      expect(pos).toBeGreaterThanOrEqual(block);
+      expect(pos).toBeLessThan(2 * block);
+    }
+  });
+
+  it("is safe for a zero-width block", () => {
+    expect(wrapPos(123, 0)).toBe(123);
   });
 });

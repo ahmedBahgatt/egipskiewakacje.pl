@@ -31,7 +31,7 @@ test.describe("desktop Wycieczki dropdown", () => {
     }) => {
       await page.goto("/");
       const nav = page.getByRole("navigation", { name: "Menu główne" });
-      const trigger = nav.getByRole("link", { name: "Wycieczki", exact: true });
+      const trigger = nav.getByRole("button", { name: "Wycieczki", exact: true });
 
       await trigger.hover();
       const child = nav.getByRole("link", { name: c.label, exact: true });
@@ -47,29 +47,47 @@ test.describe("desktop Wycieczki dropdown", () => {
     });
   }
 
-  test("opens on hover and the parent /wycieczki/ link still navigates", async ({ page }) => {
+  test("first hover after load opens immediately, and re-opens reliably", async ({ page }) => {
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Menu główne" });
-    const trigger = nav.getByRole("link", { name: "Wycieczki", exact: true });
+    const trigger = nav.getByRole("button", { name: "Wycieczki", exact: true });
+    const child = nav.getByRole("link", { name: "Wycieczki z Hurghady", exact: true });
+    const away = page.getByRole("link", { name: "Egipskie Wakacje - strona główna" });
 
-    await trigger.hover();
-    await expect(nav.getByRole("link", { name: "Wycieczki z Hurghady", exact: true })).toBeVisible();
-    await expect(trigger).toHaveAttribute("aria-expanded", "true");
-
-    await trigger.click();
-    await expect(page).toHaveURL(/\/wycieczki\/$/);
-    await expect(
-      nav.getByRole("link", { name: "Wycieczki z Hurghady", exact: true }),
-    ).toBeHidden();
+    // No click anywhere first - the very first hover must open the menu.
+    for (let i = 0; i < 4; i++) {
+      await trigger.hover();
+      await expect(child).toBeVisible();
+      await expect(trigger).toHaveAttribute("aria-expanded", "true");
+      await away.hover(); // leave the trigger+panel region
+      await expect(child).toBeHidden();
+    }
   });
 
-  test("keyboard: focus opens the menu, Escape closes it and restores focus", async ({ page }) => {
+  test("trigger opens the menu but does NOT navigate; Wszystkie wycieczki does", async ({ page }) => {
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Menu główne" });
-    const trigger = nav.getByRole("link", { name: "Wycieczki", exact: true });
+    const trigger = nav.getByRole("button", { name: "Wycieczki", exact: true });
+
+    // Clicking the trigger toggles the menu and must stay on the homepage.
+    await trigger.click();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await expect(nav.getByRole("link", { name: "Wycieczki z Hurghady", exact: true })).toBeVisible();
+    await expect(page).toHaveURL(/\/$/);
+
+    // The explicit all-tours link navigates.
+    await nav.getByRole("link", { name: "Wszystkie wycieczki", exact: true }).click();
+    await expect(page).toHaveURL(/\/wycieczki\/$/);
+  });
+
+  test("keyboard: Enter opens the menu, Escape closes it and restores focus", async ({ page }) => {
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Menu główne" });
+    const trigger = nav.getByRole("button", { name: "Wycieczki", exact: true });
     const child = nav.getByRole("link", { name: "Wycieczki z Hurghady", exact: true });
 
     await trigger.focus();
+    await page.keyboard.press("Enter");
     await expect(child).toBeVisible();
     await expect(trigger).toHaveAttribute("aria-expanded", "true");
 
@@ -82,7 +100,7 @@ test.describe("desktop Wycieczki dropdown", () => {
   test("click outside closes the menu", async ({ page }) => {
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Menu główne" });
-    const trigger = nav.getByRole("link", { name: "Wycieczki", exact: true });
+    const trigger = nav.getByRole("button", { name: "Wycieczki", exact: true });
     const child = nav.getByRole("link", { name: "Wycieczki z Hurghady", exact: true });
 
     await trigger.hover();

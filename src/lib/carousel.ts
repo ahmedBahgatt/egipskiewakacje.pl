@@ -22,3 +22,16 @@ export function realIndex(index: number, n: number): number {
   if (n <= 0) return 0;
   return ((index % n) + n) % n;
 }
+
+/**
+ * Wrap a continuous scroll offset (px) back into the middle block `[blockW, 2*blockW)`.
+ * `blockW` is the pixel width of one full copy of the list. Used every animation
+ * frame by the continuous belt drift and after each snap so the offset never leaves
+ * the middle copy - the jump is exactly one block (pixel-identical) and invisible.
+ */
+export function wrapPos(pos: number, blockW: number): number {
+  if (blockW <= 0) return pos;
+  if (pos >= 2 * blockW) return pos - blockW;
+  if (pos < blockW) return pos + blockW;
+  return pos;
+}
