@@ -10,6 +10,8 @@ interface Props {
   className?: string;
   sizes?: string;
   rounded?: boolean;
+  /** CSS object-position for the cover crop, e.g. "center 40%". Falls back to image.objectPosition. */
+  objectPosition?: string;
 }
 
 /**
@@ -24,8 +26,10 @@ export function OptimizedImage({
   fit = "cover",
   className,
   rounded = false,
+  objectPosition,
 }: Props) {
   const { src, alt, width, height, sources } = image;
+  const pos = objectPosition ?? image.objectPosition;
   const avif = sources?.avif ?? `${src}.avif`;
   const webp = sources?.webp ?? `${src}.webp`;
   const jpg = sources?.jpg ?? `${src}.jpg`;
@@ -45,7 +49,7 @@ export function OptimizedImage({
         className={`${styles.img} ${fit === "contain" ? styles.contain : styles.cover} ${
           rounded ? styles.rounded : ""
         }`}
-        style={{ aspectRatio: `${width} / ${height}` }}
+        style={{ aspectRatio: `${width} / ${height}`, ...(pos ? { objectPosition: pos } : null) }}
       />
     </picture>
   );

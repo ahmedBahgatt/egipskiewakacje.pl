@@ -84,6 +84,8 @@ export interface MediaImage {
   sources?: { avif: string; webp: string; jpg: string };
   /** Optional low-quality image placeholder (Sanity blur data URL). */
   lqip?: string;
+  /** Optional CSS object-position for the cover crop, e.g. "center 40%". */
+  objectPosition?: string;
 }
 
 export interface GuideLanguage {

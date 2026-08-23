@@ -15,9 +15,10 @@ export const destinations: Destination[] = [
       "Hurghada to najlepsza baza wypadowa nad Morzem Czerwonym. Stąd pojedziesz na wycieczki fakultatywne w każdą stronę: Kair i piramidy, Luksor, rejsy na wyspy takie jak Orange Bay i Mahmya, snorkeling z delfinami, safari quadami i buggy oraz lokalne atrakcje jak Wielkie Akwarium. Odbiór z hotelu w cenie, a szczegóły potwierdzamy po polsku.",
     heroImage: {
       src: "/media/destinations/hurghada",
-      alt: "Panorama wybrzeża Hurghady nad turkusowym Morzem Czerwonym o poranku",
-      width: 1600,
-      height: 1000,
+      alt: "Marina w Hurghadzie z jachtami i kolorowymi budynkami nad turkusowym Morzem Czerwonym",
+      width: 1586,
+      height: 992,
+      objectPosition: "center 42%",
     },
     practical: [
       "Z Hurghady wyruszysz w każdą stronę: rejsy na wyspy (Orange Bay, Mahmya), snorkeling z delfinami, nurkowanie, safari quadami, a także Kair, Giza i Luksor.",
@@ -75,9 +76,10 @@ export const destinations: Destination[] = [
       "Marsa Alam to raj dla miłośników morza. To najlepsze miejsce na wycieczki fakultatywne ze snorkelingiem i pływaniem z dzikimi delfinami - Sataya, Samadai i zatoka Abu Dabbab ze żółwiami. Z Marsa Alam pojedziesz też do Kairu i Luksoru, na rejsy, nurkowanie i pustynne safari. Odbiór z hotelu, obsługa po polsku.",
     heroImage: {
       src: "/media/destinations/marsa-alam",
-      alt: "Spokojna zatoka Marsa Alam z rafą koralową widoczną przez czystą wodę",
-      width: 1600,
-      height: 1000,
+      alt: "Spokojna zatoka Marsa Alam z rafą koralową widoczną przez krystaliczną wodę",
+      width: 1586,
+      height: 992,
+      objectPosition: "center 40%",
     },
     practical: [
       "Marsa Alam słynie z morza: pływanie z dzikimi delfinami (Sataya, Samadai), zatoka Abu Dabbab z żółwiami, snorkeling i nurkowanie na dziewiczych rafach.",
@@ -135,9 +137,10 @@ export const destinations: Destination[] = [
       "Sharm el Sheikh na Synaju łączy najlepsze rafy świata z bliskością wyjątkowych miejsc. Stąd wybierzesz wycieczki fakultatywne na snorkeling w Ras Mohammed i na wyspę Tiran, nurkowanie w Blue Hole, nocne wejście na Górę Mojżesza, wyprawę do Kairu z Wielkim Muzeum GEM, a nawet do Jordanii (Petra). Do tego safari i atrakcje dla rodzin.",
     heroImage: {
       src: "/media/destinations/sharm-el-sheikh",
-      alt: "Wybrzeże Sharm el Sheikh na Synaju z górami w tle i turkusową zatoką",
-      width: 1600,
-      height: 1000,
+      alt: "Wybrzeże Sharm el Sheikh na Synaju z górami o zachodzie słońca i turkusową zatoką",
+      width: 1586,
+      height: 992,
+      objectPosition: "center 40%",
     },
     practical: [
       "Sharm to najlepsze rafy Synaju: Ras Mohammed, wyspa Tiran i Blue Hole - snorkeling i nurkowanie w miejscach światowej klasy.",
