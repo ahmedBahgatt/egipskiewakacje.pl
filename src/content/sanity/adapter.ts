@@ -120,6 +120,12 @@ export const sanityApi: ContentApi = {
     const raw = await sanityQuery<Parameters<typeof mapReviews>[0]>(GROQ.reviews);
     return mapReviews(raw);
   },
+  // Testimonials are code-owned display content (not a CMS document type in this
+  // phase), served from the local file in both modes - same pattern as categories.
+  async getTestimonials() {
+    const { testimonials } = await import("@/content/local/testimonials");
+    return testimonials;
+  },
   async getDestinations() {
     return loadDestinations();
   },

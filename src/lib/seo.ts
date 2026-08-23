@@ -47,10 +47,21 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
     logo: ogImageUrl("/media/brand/logo.png"),
     description: siteConfig.description,
+    slogan: "Wycieczki fakultatywne w Egipcie dla polskich turystów",
+    knowsLanguage: ["pl"],
+    // Egypt-based resorts the excursions depart from. No physical address is
+    // claimed - none is verified - so no LocalBusiness/TravelAgency type is used.
+    areaServed: [
+      { "@type": "Place", name: "Hurghada" },
+      { "@type": "Place", name: "Marsa Alam" },
+      { "@type": "Place", name: "Sharm el Sheikh" },
+      { "@type": "Country", name: "Egipt" },
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "reservations",
@@ -64,9 +75,11 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
     name: siteConfig.name,
     url: siteConfig.url,
     inLanguage: "pl-PL",
+    publisher: { "@id": `${siteConfig.url}/#organization` },
   };
 }
 

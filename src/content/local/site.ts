@@ -20,6 +20,26 @@ export const siteFaqs: FaqItem[] = [
       "Wybierz wycieczkę, uzupełnij krótki formularz (imię, data, hotel, liczba osób) i wyślij zgłoszenie. Otworzy się WhatsApp z gotową wiadomością. Nasza ekipa potwierdza dostępność, godzinę odbioru i cenę. Nie ma płatności online.",
   },
   {
+    question: "Czy trzeba płacić z góry za wycieczkę?",
+    answer:
+      "Nie. Nie pobieramy przedpłaty ani zaliczki, nie ma też płatności online przy rezerwacji. Za wycieczkę płacisz dopiero na miejscu, przy jej rozpoczęciu, gdy odbieramy Cię spod hotelu.",
+  },
+  {
+    question: "Kiedy i jak płacę za wycieczkę?",
+    answer:
+      "Płacisz dopiero przy rozpoczęciu wycieczki, w dniu wyjazdu. Cenę potwierdzamy wcześniej na WhatsApp, więc znasz ją przed wyjazdem - bez ukrytych kosztów. Ceny podajemy w USD (kursy nurkowe w EUR, zgodnie z cennikiem operatora).",
+  },
+  {
+    question: "Czy odbiór odbywa się z hotelu?",
+    answer:
+      "Tak. Większość wycieczek obejmuje odbiór spod hotelu i powrót w to samo miejsce. W przypadku bardziej oddalonych stref obowiązuje niewielka dopłata za transfer - podajemy ją przy potwierdzeniu rezerwacji.",
+  },
+  {
+    question: "W jakim języku mówi przewodnik?",
+    answer:
+      "Na trasach z Hurghady i Marsa Alam zapewniamy polskojęzycznego przewodnika. Na trasie z Sharm el Sheikh język przewodnika potwierdzamy przed rezerwacją. Niezależnie od trasy cała obsługa rezerwacji odbywa się po polsku.",
+  },
+  {
     question: "Jakie rodzaje wycieczek oferujecie?",
     answer:
       "Organizujemy wycieczki morskie (rejsy na wyspy, snorkeling z delfinami, nurkowanie), historyczne (Kair i piramidy, Luksor), pustynne safari (quady, buggy, jeep), lokalne atrakcje dla rodzin oraz wyprawy prywatne. Ofertę można przeglądać według kurortu wyjazdu albo rodzaju wycieczki.",
@@ -28,16 +48,6 @@ export const siteFaqs: FaqItem[] = [
     question: "Czym różnią się kurorty Hurghada, Marsa Alam i Sharm el Sheikh?",
     answer:
       "Hurghada to najbardziej uniwersalna baza z największym wyborem wycieczek w każdą stronę. Marsa Alam słynie z morza - pływania z dzikimi delfinami, żółwi w Abu Dabbab i dziewiczych raf. Sharm el Sheikh na Synaju oferuje najlepsze rafy (Ras Mohammed, Tiran), nocne wejście na Górę Mojżesza i krótszą trasę do Kairu.",
-  },
-  {
-    question: "Czy odbiór odbywa się z hotelu?",
-    answer:
-      "Tak. Większość wycieczek obejmuje odbiór spod hotelu i powrót w to samo miejsce. W przypadku bardziej oddalonych stref obowiązuje niewielka dopłata za transfer - podajemy ją przy potwierdzeniu rezerwacji.",
-  },
-  {
-    question: "Kiedy i o której otrzymam godzinę odbioru?",
-    answer:
-      "Godzinę odbioru podajemy na WhatsApp przed wyjazdem. Zależy ona od rodzaju wycieczki i położenia hotelu: krótkie atrakcje i rejsy startują zwykle rano lub po południu, a dalekie trasy do Kairu i Luksoru wcześnie rano lub nocą.",
   },
   {
     question: "Które wycieczki są najlepsze dla rodzin z dziećmi?",
@@ -50,14 +60,9 @@ export const siteFaqs: FaqItem[] = [
       "Dzieci poniżej 5 lat jadą bezpłatnie. Dla dzieci w wieku 5-11 lat obowiązuje niższa cena - dokładne stawki znajdziesz na stronie każdej wycieczki oraz w cenniku.",
   },
   {
-    question: "W jakim języku mówi przewodnik?",
+    question: "Kiedy i o której otrzymam godzinę odbioru?",
     answer:
-      "Na trasach z Hurghady i Marsa Alam zapewniamy polskojęzycznego przewodnika. Na trasie z Sharm el Sheikh język przewodnika potwierdzamy przed rezerwacją. Niezależnie od trasy cała obsługa rezerwacji odbywa się po polsku.",
-  },
-  {
-    question: "Jak wygląda płatność?",
-    answer:
-      "Nie pobieramy płatności online. Szczegóły rozliczenia ustalamy przy potwierdzeniu rezerwacji na WhatsApp. Ceny podajemy w USD (kursy nurkowe w EUR, zgodnie z cennikiem operatora).",
+      "Godzinę odbioru podajemy na WhatsApp przed wyjazdem. Zależy ona od rodzaju wycieczki i położenia hotelu: krótkie atrakcje i rejsy startują zwykle rano lub po południu, a dalekie trasy do Kairu i Luksoru wcześnie rano lub nocą.",
   },
   {
     question: "Co zabrać na wycieczkę?",

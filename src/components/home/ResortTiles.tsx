@@ -28,7 +28,7 @@ export function ResortTiles({ resorts }: { resorts: ResortTile[] }) {
         <SectionHeading
           eyebrow="Trzy kurorty nad Morzem Czerwonym"
           title={<span id="resorts-title">Skąd wyruszasz?</span>}
-          intro="Wybierz kurort, w którym się zatrzymujesz - pokażemy wszystkie wycieczki, które możesz stamtąd zarezerwować, z odbiorem spod hotelu."
+          intro="Wszystkie nasze wycieczki fakultatywne startują z trzech kurortów: Hurghady, Marsa Alam i Sharm el Sheikh. Wybierz ten, w którym się zatrzymujesz - pokażemy wyprawy z odbiorem spod hotelu."
         />
 
         <div className={styles.tiles}>

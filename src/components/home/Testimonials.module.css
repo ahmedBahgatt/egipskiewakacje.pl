@@ -1,0 +1,198 @@
+.section {
+  background: var(--bg);
+}
+
+/* Editorial layout: featured on the left, 2x2 supporting grid on the right. */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+  align-items: stretch;
+}
+.featuredWrap {
+  min-width: 0;
+}
+
+/* --- shared card chrome --------------------------------------------------- */
+.featured,
+.card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: var(--bg-paper);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+}
+.featured:hover,
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+/* --- featured ------------------------------------------------------------- */
+.featured {
+  padding: clamp(1.5rem, 3.2vw, 2.4rem);
+  justify-content: center;
+  gap: 1.1rem;
+  background: linear-gradient(160deg, var(--white) 0%, var(--sand-50) 100%);
+  box-shadow: var(--shadow);
+}
+.markLg {
+  position: absolute;
+  top: -0.6rem;
+  right: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 8rem;
+  line-height: 1;
+  color: var(--gold-400);
+  opacity: 0.14;
+  pointer-events: none;
+}
+.featuredQuote {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--ink-900);
+  font-size: clamp(1.15rem, 0.98rem + 0.9vw, 1.5rem);
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+/* --- supporting grid ------------------------------------------------------ */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+  min-width: 0;
+}
+.card {
+  padding: 1.4rem 1.35rem;
+  box-shadow: var(--shadow-sm);
+}
+.markSm {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  line-height: 0.5;
+  height: 1rem;
+  color: var(--gold-400);
+  opacity: 0.55;
+}
+.quote {
+  margin: 0;
+  color: var(--ink-700);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* --- stars ---------------------------------------------------------------- */
+.stars {
+  display: inline-flex;
+  gap: 0.16rem;
+}
+.star {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: var(--gold-400);
+  flex: none;
+}
+
+/* --- attribution ---------------------------------------------------------- */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem 1rem;
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+.who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.card .who {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+.person {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--text);
+}
+.trip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(14, 131, 120, 0.1);
+  color: var(--accent-strong);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* --- trust badge ---------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.14);
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  color: var(--gold-600);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge svg {
+  font-size: 0.95rem;
+}
+
+.note {
+  margin-top: 1.35rem;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (min-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: 1.02fr 1.2fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured,
+  .card {
+    transition: none;
+  }
+  .featured:hover,
+  .card:hover {
+    transform: none;
+  }
+}

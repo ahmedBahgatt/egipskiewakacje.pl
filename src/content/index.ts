@@ -22,6 +22,7 @@ import {
 import { posts as localPosts } from "@/content/local/posts";
 import { legalPages as localLegal } from "@/content/local/legal";
 import { siteSettings, siteFaqs, reviews as localReviews } from "@/content/local/site";
+import { testimonials as localTestimonials } from "@/content/local/testimonials";
 import { sanityApi } from "@/content/sanity/adapter";
 
 const MODE = (process.env.NEXT_PUBLIC_CONTENT_SOURCE ?? "local").toLowerCase();
@@ -35,6 +36,9 @@ const localApi: ContentApi = {
   },
   async getReviews() {
     return localReviews.filter((r) => r.verified);
+  },
+  async getTestimonials() {
+    return localTestimonials;
   },
   async getDestinations() {
     return localDestinations;

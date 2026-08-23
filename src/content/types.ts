@@ -252,6 +252,26 @@ export interface Review {
   verified: boolean;
 }
 
+/**
+ * A display-only, ANONYMISED participant testimonial. Deliberately NOT a `Review`:
+ * it never feeds Review/AggregateRating structured data and shows no reviewer
+ * identity. Used for the homepage "Opinie uczestników naszych wycieczek" section,
+ * sourced from genuine, publicly visible opinions written by people who took
+ * excursions operated by the same team. Presented honestly as anonymous
+ * participant experiences - no real names shown, no fake names invented.
+ */
+export interface Testimonial {
+  id: string;
+  /** Faithful, meaning-preserving excerpt of the real opinion. */
+  quote: string;
+  /** Factual trip/category label taken from the review itself, e.g. "Luksor". */
+  trip: string;
+  /** Exact source star rating (1-5); only rendered when genuinely verified. */
+  rating: number;
+  /** Marks the single large featured testimonial in the editorial layout. */
+  featured?: boolean;
+}
+
 export interface LegalPage {
   slug: string;
   route: string;

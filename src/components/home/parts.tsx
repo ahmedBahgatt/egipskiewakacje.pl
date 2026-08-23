@@ -11,7 +11,6 @@ import {
   IconGlobe,
   IconMapPin,
   IconShield,
-  IconSparkle,
   IconWhatsApp,
 } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
@@ -20,11 +19,11 @@ import styles from "./parts.module.css";
 
 /* --- Trust strip ---------------------------------------------------------- */
 const TRUST = [
-  { icon: <IconGlobe />, label: "Obsługa rezerwacji po polsku" },
+  { icon: <IconShield />, label: "Bez przedpłaty" },
+  { icon: <IconCheck />, label: "Płatność przy rozpoczęciu wycieczki" },
+  { icon: <IconWhatsApp />, label: "Rezerwacja przez WhatsApp" },
   { icon: <IconMapPin />, label: "Odbiór z hotelu" },
-  { icon: <IconCheck />, label: "Przejrzyste ceny" },
-  { icon: <IconWhatsApp />, label: "Potwierdzenie przez WhatsApp" },
-  { icon: <IconShield />, label: "Lokalna obsługa w Egipcie" },
+  { icon: <IconGlobe />, label: "Obsługa po polsku" },
 ];
 
 export function TrustStrip() {
@@ -53,13 +52,13 @@ const STEPS = [
   },
   {
     n: "2",
-    title: "Uzupełnij dane",
-    text: "Podaj datę, hotel i liczbę osób w krótkim formularzu. Wysłanie otwiera WhatsApp z gotową wiadomością.",
+    title: "Zarezerwuj przez WhatsApp",
+    text: "Podaj datę, hotel i liczbę osób w krótkim formularzu. Otwiera on WhatsApp z gotową wiadomością, a nasza ekipa potwierdza dostępność, godzinę odbioru i cenę.",
   },
   {
     n: "3",
-    title: "Otrzymaj potwierdzenie na WhatsApp",
-    text: "Nasza ekipa potwierdza dostępność, godzinę odbioru i cenę. Bez płatności online.",
+    title: "Płać przy rozpoczęciu wycieczki",
+    text: "Bez przedpłaty, zaliczki i płatności online. Za wycieczkę płacisz dopiero na miejscu, gdy odbieramy Cię spod hotelu.",
   },
 ];
 
@@ -70,7 +69,7 @@ export function BookingSteps() {
         <SectionHeading
           eyebrow="Jak to działa"
           title="Rezerwacja w trzech krokach"
-          intro="Bez logowania i bez płatności online. Rezerwację potwierdzamy w rozmowie na WhatsApp."
+          intro="Bez logowania, bez przedpłaty i bez płatności online. Rezerwację potwierdzamy w rozmowie na WhatsApp, a płacisz dopiero przy rozpoczęciu wycieczki."
         />
         <ol className={styles.steps}>
           {STEPS.map((s, i) => (
@@ -88,12 +87,12 @@ export function BookingSteps() {
 
 /* --- Why us --------------------------------------------------------------- */
 const WHY = [
-  { icon: <IconGlobe />, title: "Obsługa po polsku", text: "Rezerwację i pytania załatwiasz po polsku, od pierwszej wiadomości." },
+  { icon: <IconShield />, title: "Bez przedpłaty", text: "Nie pobieramy zaliczki ani przedpłaty i nie ma płatności online. Płacisz dopiero przy rozpoczęciu wycieczki." },
   { icon: <IconCheck />, title: "Przejrzyste ceny", text: "Ceny w USD podane wprost, bez ukrytych kosztów i sztucznych promocji." },
   { icon: <IconMapPin />, title: "Odbiór z hotelu", text: "Kierowca odbiera i odwozi pod hotel. Godzinę potwierdzamy przed wyjazdem." },
-  { icon: <IconWhatsApp />, title: "Wsparcie przed wycieczką", text: "Masz pytanie o program lub godzinę odbioru? Napisz na WhatsApp." },
-  { icon: <IconSparkle />, title: "Prosta rezerwacja", text: "Krótki formularz zamiast długiego procesu. Resztę ustalamy w rozmowie." },
-  { icon: <IconBus />, title: "Lokalna wiedza", text: "Znamy trasy z każdego kurortu i realny przebieg dnia w Kairze." },
+  { icon: <IconGlobe />, title: "Obsługa po polsku", text: "Rezerwację i pytania załatwiasz po polsku, od pierwszej wiadomości." },
+  { icon: <IconWhatsApp />, title: "Rezerwacja przez WhatsApp", text: "Krótki formularz zamiast długiego procesu - resztę ustalamy w rozmowie." },
+  { icon: <IconBus />, title: "Lokalna wiedza", text: "Działamy na miejscu w Egipcie i znamy realny przebieg każdej trasy." },
 ];
 
 export function WhyUs() {

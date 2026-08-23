@@ -17,6 +17,7 @@ import {
 } from "@/components/home/parts";
 import { TourSlider } from "@/components/home/TourSlider";
 import { CategoryBrowse } from "@/components/home/CategoryBrowse";
+import { Testimonials } from "@/components/home/Testimonials";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
@@ -56,14 +57,16 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default async function HomePage() {
-  const [featured, faqs, post, destinations, allTours, categories] = await Promise.all([
-    content.getFeaturedTours(),
-    content.getSiteFaqs(),
-    content.getPost("co-zabrac-na-wycieczke-do-kairu"),
-    content.getDestinations(),
-    content.getTours(),
-    content.getCategories(),
-  ]);
+  const [featured, faqs, post, destinations, allTours, categories, testimonials] =
+    await Promise.all([
+      content.getFeaturedTours(),
+      content.getSiteFaqs(),
+      content.getPost("co-zabrac-na-wycieczke-do-kairu"),
+      content.getDestinations(),
+      content.getTours(),
+      content.getCategories(),
+      content.getTestimonials(),
+    ]);
 
   // Category counts for the "browse by experience" grid.
   const catCounts = new Map<string, number>();
@@ -117,6 +120,8 @@ export default async function HomePage() {
 
       <ResortTiles resorts={resortTiles} />
 
+      <TrustStrip />
+
       <section className="section" style={{ background: "var(--bg-paper)" }}>
         <div className="container">
           <SectionHeading
@@ -133,13 +138,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <TrustStrip />
-
       <CategoryBrowse categories={categories} counts={catCounts} />
 
       <ThreeFacesStory />
 
       <HelpMeChoose />
+      <Testimonials items={testimonials} />
       <BookingSteps />
       <WhyUs />
       {post && <GuidePreview post={post} />}

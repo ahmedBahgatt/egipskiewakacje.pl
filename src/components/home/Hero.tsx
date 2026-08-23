@@ -187,7 +187,7 @@ export function Hero({ total }: { total: number }) {
             </span>
             <span className={styles.statBody}>
               <span className={styles.statValueSm}>Bez przedpłaty</span>
-              <span className={styles.statLabel}>płatność u przewodnika</span>
+              <span className={styles.statLabel}>płatność przy odbiorze</span>
             </span>
           </li>
         </ul>

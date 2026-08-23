@@ -5,6 +5,7 @@ import type {
   LegalPage,
   Review,
   SiteSettings,
+  Testimonial,
   Tour,
   TourCategory,
 } from "@/content/types";
@@ -14,6 +15,8 @@ export interface ContentApi {
   getSiteSettings(): Promise<SiteSettings>;
   getSiteFaqs(): Promise<FaqItem[]>;
   getReviews(): Promise<Review[]>;
+  /** Display-only participant testimonials (no rating, never schema). */
+  getTestimonials(): Promise<Testimonial[]>;
   getDestinations(): Promise<Destination[]>;
   getDestination(slug: string): Promise<Destination | undefined>;
   getTours(): Promise<Tour[]>;
