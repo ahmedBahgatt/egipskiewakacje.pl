@@ -22,7 +22,6 @@ const PAGES = [
   { name: "sharm", url: "/wycieczki-z-sharm-el-sheikh/" },
   { name: "all-tours", url: "/wycieczki/" },
   { name: "category-kair", url: "/wycieczki/kair-i-piramidy/" },
-  { name: "cennik", url: "/cennik/" },
 ];
 
 type Rect = { left: number; top: number; right: number; bottom: number };

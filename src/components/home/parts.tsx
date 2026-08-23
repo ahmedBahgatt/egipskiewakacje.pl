@@ -198,8 +198,8 @@ export function FinalCta() {
             >
               Napisz na WhatsApp
             </Button>
-            <Button href="/cennik/" variant="outline" size="lg">
-              Zobacz cennik
+            <Button href="/wycieczki/" variant="outline" size="lg">
+              Zobacz wycieczki
             </Button>
           </div>
         </Reveal>

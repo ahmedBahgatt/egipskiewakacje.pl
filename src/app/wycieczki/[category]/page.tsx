@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { content } from "@/content";
 import { buildMetadata, breadcrumbJsonLd, itemListJsonLd, faqJsonLd } from "@/lib/seo";
-import { PageHeader } from "@/components/ui/PageHeader";
+import { PageHero } from "@/components/ui/PageHero";
+import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SectionJumpNav, type JumpItem } from "@/components/experience/SectionJumpNav";
@@ -11,7 +12,10 @@ import { ExperienceVisual } from "@/components/experience/ExperienceVisual";
 import { CategoryDestinationSection } from "@/components/category/CategoryDestinationSection";
 import { CategoryComparison } from "@/components/category/CategoryComparison";
 import { EXPERIENCE, CATEGORY_DESTINATION_ORDER } from "@/lib/experiences";
+import { categoryImage } from "@/lib/categories";
 import { groupByDestination } from "@/lib/grouping";
+import { contactWhatsappUrl } from "@/lib/whatsapp";
+import { IconArrowRight, IconWhatsApp } from "@/components/ui/icons";
 import type { Destination, Tour } from "@/content/types";
 import styles from "./category.module.css";
 
@@ -84,7 +88,29 @@ export default async function Page({ params }: { params: Promise<{ category: str
           faqJsonLd(c.faqs),
         ]}
       />
-      <PageHeader eyebrow="Rodzaj wycieczki" title={c.name} intro={c.intro} crumbs={crumbs} />
+      <PageHero
+        eyebrow="Rodzaj wycieczki"
+        title={c.name}
+        intro={c.intro}
+        crumbs={crumbs}
+        image={categoryImage[c.slug]}
+        imagePriority
+        actions={
+          <>
+            <Button href="#wycieczki" variant="gold" iconRight={<IconArrowRight />}>
+              Zobacz wycieczki
+            </Button>
+            <Button
+              href={contactWhatsappUrl(`Cześć! Interesują mnie wycieczki: ${c.shortLabel}.`)}
+              external
+              variant="whatsappSubtle"
+              iconLeft={<IconWhatsApp />}
+            >
+              Napisz na WhatsApp
+            </Button>
+          </>
+        }
+      />
 
       <nav className={styles.catNav} aria-label="Rodzaje wycieczek">
         {allCats.map((other) => (
@@ -99,7 +125,7 @@ export default async function Page({ params }: { params: Promise<{ category: str
         ))}
       </nav>
 
-      <section className="section">
+      <section className="section" id="wycieczki">
         <div className="container">
           <div className={styles.motifBand} style={{ color: meta.accent }}>
             <ExperienceVisual motif={meta.motif} accent={meta.accent} />

@@ -57,7 +57,7 @@ export const siteFaqs: FaqItem[] = [
   {
     question: "Jak liczone są ceny dla dzieci?",
     answer:
-      "Dzieci poniżej 5 lat jadą bezpłatnie. Dla dzieci w wieku 5-11 lat obowiązuje niższa cena - dokładne stawki znajdziesz na stronie każdej wycieczki oraz w cenniku.",
+      "Dzieci poniżej 5 lat jadą bezpłatnie. Dla dzieci w wieku 5-11 lat obowiązuje niższa cena - dokładne stawki znajdziesz na stronie każdej wycieczki.",
   },
   {
     question: "Kiedy i o której otrzymam godzinę odbioru?",

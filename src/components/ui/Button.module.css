@@ -66,6 +66,20 @@
 }
 .whatsappOutline .icon { color: var(--whatsapp); }
 
+/* WhatsApp CTA for LIGHT backgrounds (inner-page heroes): restrained outline,
+   dark readable text, brand-green only on the icon - never a solid green block. */
+.whatsappSubtle {
+  --_bg: transparent;
+  --_fg: var(--text);
+  --_bd: var(--line);
+}
+.whatsappSubtle:hover {
+  --_bd: var(--whatsapp-dark);
+  --_fg: var(--text);
+  box-shadow: none;
+}
+.whatsappSubtle .icon { color: var(--whatsapp-dark); }
+
 .outline {
   --_bg: transparent;
   --_fg: var(--text);

@@ -11,6 +11,7 @@ export interface NavItem {
 }
 
 export const primaryNav: NavItem[] = [
+  { label: "Strona główna", href: "/" },
   {
     label: "Wycieczki",
     href: "/wycieczki/",
@@ -26,7 +27,6 @@ export const primaryNav: NavItem[] = [
       { label: "Nurkowanie", href: "/wycieczki/nurkowanie/" },
     ],
   },
-  { label: "Cennik", href: "/cennik/" },
   { label: "Poradnik", href: "/poradnik/" },
   { label: "O nas", href: "/o-nas/" },
   { label: "Kontakt", href: "/kontakt/" },

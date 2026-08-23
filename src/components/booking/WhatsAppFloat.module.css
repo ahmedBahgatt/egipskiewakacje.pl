@@ -14,7 +14,8 @@
   box-shadow: var(--shadow-lg);
   text-decoration: none;
   overflow: hidden;
-  transition: gap 0.2s ease, padding 0.2s ease, background-color 0.2s ease, bottom 0.2s ease;
+  transition: gap 0.2s ease, padding 0.2s ease, background-color 0.2s ease, bottom 0.2s ease,
+    opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
 }
 .icon {
   display: inline-flex;
@@ -38,6 +39,16 @@
   background: var(--whatsapp-dark);
   color: #fff;
   gap: 0;
+}
+
+/* When the mobile drawer is open it carries its own WhatsApp action, so hide the
+   redundant floating button (shared state via the body attribute set by the
+   drawer - no z-index war). */
+:global(body[data-menu-open="true"]) .float {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  pointer-events: none;
 }
 /* Reveal the label on hover/focus (desktop). Mobile stays a compact icon. */
 @media (min-width: 700px) and (hover: hover) {

@@ -21,7 +21,7 @@ const PAGES = [
   "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/",
   "/wycieczki-z-marsa-alam/",
   "/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/",
-  "/cennik/",
+  "/wycieczki/kair-i-piramidy/",
   "/o-nas/",
   "/faq/",
   "/kontakt/",

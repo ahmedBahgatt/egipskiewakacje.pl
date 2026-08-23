@@ -30,6 +30,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.1rem 1.3rem;
+  padding-top: calc(1.1rem + env(safe-area-inset-top));
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .headTitle {
@@ -45,10 +46,17 @@
   height: 44px;
   border-radius: var(--radius-sm);
   color: var(--text-on-dark);
-  font-size: 1.4rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 .close:hover { background: rgba(255, 255, 255, 0.08); }
+/* Explicit pixel sizing so the close (X) icon never renders as an empty box on
+   iOS Safari; currentColor keeps it readable on the dark drawer. */
+.close svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
 
 .nav { flex: 1; overflow-y: auto; padding: 1rem 1.3rem; }
 .list { display: flex; flex-direction: column; gap: 0.15rem; }
@@ -80,8 +88,8 @@
 .footer {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: 1.1rem 1.3rem calc(1.1rem + env(safe-area-inset-bottom));
+  gap: 0.55rem;
+  padding: 0.95rem 1.3rem calc(0.95rem + env(safe-area-inset-bottom));
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 

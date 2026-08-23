@@ -7,6 +7,7 @@ type Variant =
   | "secondary"
   | "whatsapp"
   | "whatsappOutline"
+  | "whatsappSubtle"
   | "gold"
   | "outline"
   | "ghost";

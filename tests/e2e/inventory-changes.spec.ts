@@ -69,8 +69,8 @@ test.describe("new Sharm tours", () => {
     expect(html).not.toContain("kurs-padi");
   });
 
-  test("cennik lists the new tours and no PADI course", async ({ page }) => {
-    await page.goto("/cennik/");
+  test("the tours listing shows the new tours and no PADI course", async ({ page }) => {
+    await page.goto("/wycieczki/");
     const html = await page.content();
     expect(html).toContain("Kair samolotem");
     expect(html).toContain("Klasztor św. Katarzyny");

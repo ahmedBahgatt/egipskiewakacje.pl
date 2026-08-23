@@ -19,7 +19,12 @@ test.describe("tour pages render", () => {
 });
 
 test.describe("no broken internal links", () => {
-  const PAGES = ["/", "/wycieczki/", "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/", "/cennik/"];
+  const PAGES = [
+    "/",
+    "/wycieczki/",
+    "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/",
+    "/wycieczki/kair-i-piramidy/",
+  ];
 
   for (const path of PAGES) {
     test(`internal links resolve on ${path}`, async ({ page, request, baseURL }) => {

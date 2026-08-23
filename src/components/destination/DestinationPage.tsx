@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { BlogPost, Destination, Tour } from "@/content/types";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { PageHero } from "@/components/ui/PageHero";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DataTable } from "@/components/ui/DataTable";
@@ -59,17 +59,16 @@ export function DestinationPage({
       />
 
       {/* hero */}
-      <header className={styles.hero}>
-        <div className={styles.heroMedia}>
-          <OptimizedImage image={destination.heroImage} priority className={styles.heroImg} />
-          <div className={styles.heroScrim} />
-        </div>
-        <div className={`container ${styles.heroInner}`}>
-          <Breadcrumbs crumbs={crumbs} />
-          <h1 className={styles.title}>Wycieczki z {destination.nameGenitive}</h1>
-          <p className={styles.intro}>{destination.shortIntro}</p>
-          <div className={styles.heroCtas}>
-            <Button href="#wycieczki" size="lg" iconRight={<IconArrowRight />}>
+      <PageHero
+        eyebrow="Kurort wyjazdu"
+        title={`Wycieczki z ${destination.nameGenitive}`}
+        intro={destination.shortIntro}
+        crumbs={crumbs}
+        image={destination.heroImage}
+        imagePriority
+        actions={
+          <>
+            <Button href="#wycieczki" variant="gold" iconRight={<IconArrowRight />}>
               Zobacz wycieczki
             </Button>
             <Button
@@ -77,15 +76,14 @@ export function DestinationPage({
                 `Cześć! Interesują mnie wycieczki z ${destination.nameGenitive}.`,
               )}
               external
-              variant="whatsapp"
-              size="lg"
+              variant="whatsappSubtle"
               iconLeft={<IconWhatsApp />}
             >
               Napisz na WhatsApp
             </Button>
-          </div>
-        </div>
-      </header>
+          </>
+        }
+      />
 
       {/* practical (destination-level) */}
       <section className="section">

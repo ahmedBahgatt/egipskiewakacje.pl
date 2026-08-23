@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { IconWhatsApp, IconX } from "@/components/ui/icons";
+import { IconArrowRight, IconWhatsApp, IconX } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { primaryNav } from "./nav";
 import styles from "./MobileMenu.module.css";
@@ -32,6 +32,9 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
     const prevPadding = document.body.style.paddingRight;
     document.body.style.overflow = "hidden";
     if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`;
+    // Signal the open drawer to the rest of the app via a body attribute so the
+    // global floating WhatsApp button can hide itself in pure CSS (no z-index war).
+    document.body.setAttribute("data-menu-open", "true");
 
     const panel = panelRef.current;
     const focusables = panel ? Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)) : [];
@@ -61,6 +64,7 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = prevOverflow;
       document.body.style.paddingRight = prevPadding;
+      document.body.removeAttribute("data-menu-open");
       previouslyFocused.current?.focus?.();
     };
   }, [open, onClose]);
@@ -117,14 +121,14 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
         </nav>
 
         <div className={styles.footer}>
-          <Button href="/rezerwacja/" size="lg" fullWidth>
+          <Button href="/rezerwacja/" variant="gold" size="md" fullWidth iconRight={<IconArrowRight />}>
             Zarezerwuj wycieczkę
           </Button>
           <Button
             href={contactWhatsappUrl("Cześć! Mam pytanie o wycieczki w Egipcie.")}
             external
-            variant="whatsapp"
-            size="lg"
+            variant="whatsappOutline"
+            size="md"
             fullWidth
             iconLeft={<IconWhatsApp />}
           >

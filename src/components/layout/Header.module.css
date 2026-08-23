@@ -119,11 +119,19 @@
   height: 46px;
   border-radius: var(--radius-sm);
   color: var(--navy-900);
-  font-size: 1.5rem;
   border: 1px solid var(--line);
   background: var(--bg-paper);
 }
 .burger:hover { background: var(--sand-200); }
+/* Explicit pixel sizing (never font-relative em) so the inline SVG can't collapse
+   or render as an empty box on iOS Safari; currentColor keeps it visible on both
+   the light bar and the transparent over-hero header. */
+.burger svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+}
 
 @media (min-width: 900px) {
   .nav { display: block; }

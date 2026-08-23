@@ -25,7 +25,7 @@ export default function NotFound() {
           <Link href="/wycieczki-z-hurghady/">Wycieczki z Hurghady</Link>
           <Link href="/wycieczki-z-marsa-alam/">Wycieczki z Marsa Alam</Link>
           <Link href="/wycieczki-z-sharm-el-sheikh/">Wycieczki z Sharm el Sheikh</Link>
-          <Link href="/cennik/">Cennik</Link>
+          <Link href="/poradnik/">Poradnik</Link>
           <Link href="/kontakt/">Kontakt</Link>
         </nav>
       </div>

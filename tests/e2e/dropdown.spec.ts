@@ -122,7 +122,7 @@ test.describe("mobile menu still works", () => {
     await page.getByRole("button", { name: "Otwórz menu" }).click();
     const dialog = page.getByRole("dialog", { name: "Menu" });
     await expect(dialog).toBeVisible();
-    await dialog.getByRole("link", { name: "Cennik" }).click();
-    await expect(page).toHaveURL(/\/cennik\/$/);
+    await dialog.getByRole("link", { name: "Poradnik" }).click();
+    await expect(page).toHaveURL(/\/poradnik\/$/);
   });
 });

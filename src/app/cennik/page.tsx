@@ -1,95 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { content } from "@/content";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { DataTable } from "@/components/ui/DataTable";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { IconWhatsApp } from "@/components/ui/icons";
-import { priceLabel, priceUnit, formatMoney, formatDatePl } from "@/lib/format";
-import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
-import { absoluteUrl } from "@/content/config";
-import styles from "./cennik.module.css";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Cennik wycieczek w Egipcie | Hurghada, Marsa Alam, Sharm",
-  description:
-    "Przejrzysty cennik wycieczek fakultatywnych z Hurghady, Marsa Alam i Sharm el Sheikh. Ceny za dorosłych i dzieci, data weryfikacji, rezerwacja przez WhatsApp.",
-  canonicalPath: "/cennik/",
-});
+/**
+ * The standalone price list has been retired: per-tour prices live on each tour
+ * page and in the listings. This route is kept only as an SEO-safe redirect so any
+ * indexed/linked `/cennik/` URL is consolidated onto the real tours listing.
+ *
+ * Static export (GitHub Pages) cannot issue a 301, so we do the closest safe thing:
+ * - canonical -> /wycieczki/ (consolidates ranking signals onto the target)
+ * - a 0-second <meta http-equiv="refresh"> (React 19 hoists it into <head>)
+ * - a visible fallback link for anyone/anything that does not auto-redirect.
+ */
+export const metadata: Metadata = {
+  ...buildMetadata({
+    title: "Wycieczki w Egipcie | Egipskie Wakacje",
+    description:
+      "Wszystkie wycieczki fakultatywne w Egipcie z Hurghady, Marsa Alam i Sharm el Sheikh - ceny podane przy każdej wycieczce.",
+    canonicalPath: "/wycieczki/",
+  }),
+  robots: { index: false, follow: true },
+};
 
-const crumbs = [
-  { name: "Strona główna", path: "/" },
-  { name: "Cennik", path: "/cennik/" },
-];
-
-export default async function Page() {
-  const tours = await content.getTours();
-
-  const rows = tours.map((t) => {
-    const childOpt = t.price.options.find((o) => /dziecko/i.test(o.label) && !o.free);
-    return [
-    <Link key="n" href={`${t.route}/`} className={styles.tourLink}>
-      {t.title}
-    </Link>,
-    t.departure,
-    `${priceLabel(t.price)} ${priceUnit(t.price)}`.trim(),
-    childOpt ? formatMoney(childOpt.amount, childOpt.currency) : "-",
-    t.price.infantFree ? "bezpłatnie" : "-",
-    t.availabilityLabel,
-    formatDatePl(t.price.lastVerifiedAt),
-    <div key="a" className={styles.rowActions}>
-      <Link href={`${t.route}/`} className={styles.details}>
-        Szczegóły
-      </Link>
-      <a
-        href={buildBookingWhatsappUrl({
-          tourTitle: t.title,
-          departure: t.departure,
-          date: "(do ustalenia)",
-          hotel: "(do podania)",
-          adults: 2,
-          name: "(do podania)",
-          pageUrl: absoluteUrl(t.seo.canonicalPath),
-        })}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.wa}
-        aria-label={`Zapytaj o ${t.title} na WhatsApp`}
-      >
-        <IconWhatsApp /> WhatsApp
-      </a>
-    </div>,
-    ];
-  });
-
+export default function Page() {
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(crumbs)} />
-      <PageHeader
-        eyebrow="Cennik"
-        title="Przejrzyste ceny wycieczek"
-        intro="Ceny podajemy w walucie operatora (USD, kursy nurkowe w EUR), bez ukrytych kosztów i sztucznych promocji. Przy wielu wycieczkach dzieci poniżej 5 lat jadą bezpłatnie."
-        crumbs={crumbs}
-      />
+      <meta httpEquiv="refresh" content="0; url=/wycieczki/" />
       <section className="section">
-        <div className="container">
-          <DataTable
-            columns={[
-              "Wycieczka",
-              "Wyjazd",
-              "Cena",
-              "Dziecko",
-              "Niemowlę",
-              "Dostępność",
-              "Zweryfikowano",
-              "Akcje",
-            ]}
-            rows={rows}
-          />
-          <p className={styles.note}>
-            Ostateczny koszt może zależeć od strefy hotelowej (dopłata za transfer) oraz opcjonalnych
-            atrakcji. Dostępność i ostateczną cenę potwierdzamy na WhatsApp.
+        <div className="container container-narrow" style={{ textAlign: "center" }}>
+          <h1>Przechodzimy do wycieczek</h1>
+          <p style={{ color: "var(--text-muted)", margin: "0.8rem 0 1.4rem" }}>
+            Ceny podajemy teraz bezpośrednio przy każdej wycieczce. Za chwilę przeniesiemy Cię do
+            pełnej listy wypraw.
+          </p>
+          <p>
+            <Link href="/wycieczki/">Zobacz wszystkie wycieczki</Link>
           </p>
         </div>
       </section>
