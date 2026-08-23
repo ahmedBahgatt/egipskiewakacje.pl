@@ -76,7 +76,7 @@ export function DestinationPage({
                 `Cześć! Interesują mnie wycieczki z ${destination.nameGenitive}.`,
               )}
               external
-              variant="whatsappSubtle"
+              variant="whatsappOutline"
               iconLeft={<IconWhatsApp />}
             >
               Napisz na WhatsApp

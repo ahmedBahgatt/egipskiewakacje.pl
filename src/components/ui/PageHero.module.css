@@ -1,58 +1,20 @@
 .hero {
-  background: linear-gradient(180deg, var(--sand-200), var(--bg));
-  border-bottom: 1px solid var(--line);
-  padding-block: clamp(1.4rem, 4vw, 2.6rem) clamp(2rem, 5vw, 3.2rem);
-  overflow: hidden;
-}
-
-.inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.4rem, 4vw, 2.6rem);
-  align-items: center;
-}
-
-.content {
-  max-width: 660px;
-  min-width: 0;
-}
-.content :global(nav) {
-  margin-bottom: 0.6rem;
-}
-.content :global(.eyebrow) {
-  margin-top: 0.7rem;
-}
-
-.title {
-  /* ~52-66px on desktop; wraps to two deliberate lines for long Polish titles. */
-  font-size: clamp(2rem, 1.3rem + 2.7vw, 4.05rem);
-  line-height: 1.03;
-  margin-top: 0.55rem;
-}
-
-.intro {
-  color: var(--text-muted);
-  font-size: var(--step-1);
-  line-height: 1.6;
-  max-width: 56ch;
-  margin-top: 0.9rem;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 1.4rem;
-}
-
-/* right-hand photography */
-.media {
   position: relative;
-  border-radius: var(--radius-lg);
+  isolation: isolate;
+  display: flex;
+  align-items: center;
   overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.28);
-  box-shadow: var(--shadow);
-  aspect-ratio: 16 / 10;
+  min-height: clamp(420px, 42vw, 660px);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  background: var(--navy-900); /* fallback while the photo decodes / if absent */
+}
+
+/* full-bleed photography */
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
 }
 .img {
   position: absolute;
@@ -66,11 +28,79 @@
   object-fit: cover;
 }
 
-@media (min-width: 880px) {
-  .withMedia {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
-  }
-  .withMedia .media {
-    aspect-ratio: 4 / 3;
+/* Left-to-right scrim: strong navy on the left for text contrast, fading to almost
+   nothing on the right so the photography stays bright and visible. A gentle
+   bottom veil keeps the copy readable where it stacks lower on mobile. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 15, 34, 0.86) 0%,
+      rgba(6, 15, 34, 0.66) 34%,
+      rgba(6, 15, 34, 0.32) 60%,
+      rgba(6, 15, 34, 0.08) 100%
+    ),
+    linear-gradient(to top, rgba(6, 15, 34, 0.45), rgba(6, 15, 34, 0) 42%);
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+}
+.content {
+  max-width: min(720px, 100%);
+}
+.content :global(nav[aria-label="Okruszki"]) {
+  margin-bottom: 0.5rem;
+}
+.content :global(nav[aria-label="Okruszki"]) a {
+  color: rgba(255, 255, 255, 0.82);
+}
+.content :global(nav[aria-label="Okruszki"]) a:hover {
+  color: #fff;
+}
+.content :global(nav[aria-label="Okruszki"]) span {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.eyebrow {
+  color: var(--gold-300);
+  margin-top: 0.4rem;
+}
+
+.title {
+  /* ~48-64px on desktop. No artificial width cap: short titles (Hurghada, Marsa
+     Alam) stay on one line within the content column, longer ones wrap to two. */
+  font-size: clamp(2rem, 1.15rem + 2.6vw, 3.9rem);
+  line-height: 1.06;
+  color: #fff;
+  margin-top: 0.5rem;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.32);
+  text-wrap: balance;
+}
+
+.intro {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--step-1);
+  line-height: 1.55;
+  max-width: 700px;
+  margin-top: 0.9rem;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .content {
+    /* Left column ~45% of the container; the right half stays clear photography. */
+    max-width: min(56%, 760px);
   }
 }

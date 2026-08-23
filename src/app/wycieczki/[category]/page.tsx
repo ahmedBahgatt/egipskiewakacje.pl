@@ -103,7 +103,7 @@ export default async function Page({ params }: { params: Promise<{ category: str
             <Button
               href={contactWhatsappUrl(`Cześć! Interesują mnie wycieczki: ${c.shortLabel}.`)}
               external
-              variant="whatsappSubtle"
+              variant="whatsappOutline"
               iconLeft={<IconWhatsApp />}
             >
               Napisz na WhatsApp

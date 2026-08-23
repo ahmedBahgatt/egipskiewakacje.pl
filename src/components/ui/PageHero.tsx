@@ -9,38 +9,40 @@ interface Props {
   title: ReactNode;
   intro?: ReactNode;
   crumbs: Crumb[];
-  /** Right-hand photography. When omitted the hero is a clean left-aligned band. */
+  /** Full-bleed background photography (destination / category). */
   image?: MediaImage;
   /** Prioritise the hero image (it is the LCP on interior pages). */
   imagePriority?: boolean;
-  /** Compact CTA row (use the shared Button: gold + whatsappSubtle). */
+  /** Compact CTA row (use the shared Button: gold + whatsappOutline). */
   actions?: ReactNode;
 }
 
 /**
- * Shared interior-page hero. One premium composition for every destination and
- * category landing page: LEFT column = breadcrumb, H1, intro and compact CTAs,
- * aligned to the normal site gutter (never centred); RIGHT column = clean
- * destination/category photography. Collapses to a single column on mobile with
- * the copy first, so the H1 is the first thing read and the image follows.
+ * Shared interior-page hero: one cinematic composition for every destination and
+ * category landing page. The real photography fills the whole section (full-bleed,
+ * object-fit cover with a destination-tuned crop). A left-to-right navy scrim keeps
+ * the LEFT column readable (breadcrumb, eyebrow, H1, intro, compact CTAs) while the
+ * RIGHT side of the photo stays bright and open. Content is left-aligned to the
+ * normal site gutter and never centred; it stacks over the photo on mobile.
  */
 export function PageHero({ eyebrow, title, intro, crumbs, image, imagePriority, actions }: Props) {
   return (
-    <header className={styles.hero}>
-      <div className={`container ${styles.inner} ${image ? styles.withMedia : ""}`}>
+    <header className={`${styles.hero} on-dark`}>
+      {image && (
+        <div className={styles.media} aria-hidden="true">
+          <OptimizedImage image={image} priority={imagePriority} className={styles.img} />
+        </div>
+      )}
+      <div className={styles.scrim} aria-hidden="true" />
+
+      <div className={`container ${styles.inner}`}>
         <div className={styles.content}>
           <Breadcrumbs crumbs={crumbs} />
-          {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+          {eyebrow && <p className={`eyebrow ${styles.eyebrow}`}>{eyebrow}</p>}
           <h1 className={styles.title}>{title}</h1>
           {intro && <p className={styles.intro}>{intro}</p>}
           {actions && <div className={styles.actions}>{actions}</div>}
         </div>
-
-        {image && (
-          <div className={styles.media}>
-            <OptimizedImage image={image} priority={imagePriority} className={styles.img} />
-          </div>
-        )}
       </div>
     </header>
   );
