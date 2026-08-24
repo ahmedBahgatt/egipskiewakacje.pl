@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { IconArrowRight, IconWhatsApp, IconX } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
@@ -92,7 +93,9 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
         aria-label="Menu"
       >
         <div className={styles.head}>
-          <span className={styles.headTitle}>Menu</span>
+          <Link href="/" className={styles.headBrand} aria-label="Egipskie Wakacje - strona główna" onClick={onClose}>
+            <Logo context="drawer" />
+          </Link>
           <button type="button" className={styles.close} aria-label="Zamknij menu" onClick={onClose}>
             <IconX />
           </button>

@@ -15,7 +15,9 @@ export function Footer() {
     <footer className={`${styles.footer} motif-dark on-dark`}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brandCol}>
-          <Logo mono />
+          <Link href="/" className={styles.brandLink} aria-label="Egipskie Wakacje - strona główna">
+            <Logo context="footer" />
+          </Link>
           <p className={styles.tagline}>
             Wycieczki fakultatywne w Egipcie dla polskich turystów. Kair i piramidy z Hurghady,
             Marsa Alam i Sharm el Sheikh.

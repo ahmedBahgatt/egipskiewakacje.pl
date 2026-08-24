@@ -50,7 +50,7 @@ export function organizationJsonLd() {
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: ogImageUrl("/media/brand/logo.png"),
+    logo: ogImageUrl("/media/brand/egipskie-wakacje-logo.png"),
     description: siteConfig.description,
     slogan: "Wycieczki fakultatywne w Egipcie dla polskich turystów",
     knowsLanguage: ["pl"],

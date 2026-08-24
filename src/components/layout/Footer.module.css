@@ -11,6 +11,7 @@
   gap: 2.5rem;
 }
 .brandCol { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; color: #fff; max-width: 420px; }
+.brandLink { display: inline-flex; color: #fff; text-decoration: none; }
 .tagline { color: var(--text-on-dark-muted); font-size: 0.98rem; }
 .wa { font-weight: 700; color: var(--teal-400); font-size: 1.05rem; }
 

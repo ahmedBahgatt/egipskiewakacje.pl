@@ -52,7 +52,8 @@ test.describe("desktop Wycieczki dropdown", () => {
     const nav = page.getByRole("navigation", { name: "Menu główne" });
     const trigger = nav.getByRole("button", { name: "Wycieczki", exact: true });
     const child = nav.getByRole("link", { name: "Wycieczki z Hurghady", exact: true });
-    const away = page.getByRole("link", { name: "Egipskie Wakacje - strona główna" });
+    // The header brand link (footer carries the same home link, so scope to the banner).
+    const away = page.getByRole("banner").getByRole("link", { name: "Egipskie Wakacje - strona główna" });
 
     // No click anywhere first - the very first hover must open the menu.
     for (let i = 0; i < 4; i++) {

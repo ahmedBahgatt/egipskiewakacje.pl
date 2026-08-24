@@ -97,7 +97,10 @@ export function Header() {
     >
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.brand} aria-label="Egipskie Wakacje - strona główna">
-          <Logo />
+          {/* Crest + live-text wordmark. The name re-colours via currentColor -
+              navy on the cream inner header, white over the dark hero / navy
+              scrolled bar - so one lockup works on every surface. */}
+          <Logo context="header" />
         </Link>
 
         <nav ref={navRef} className={styles.nav} aria-label="Menu główne">

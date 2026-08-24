@@ -31,7 +31,8 @@
   border-bottom-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 6px 18px rgba(8, 20, 45, 0.18);
 }
-.overHero .brand { color: #fff; }
+/* text-shadow inherits to the wordmark + tagline so they stay legible over the hero */
+.overHero .brand { color: #fff; text-shadow: 0 1px 10px rgba(6, 14, 30, 0.5); }
 .overHero .navLink { color: rgba(255, 255, 255, 0.9); }
 .overHero .navLink:hover,
 .overHero .navLink.active { color: var(--gold-400); background: rgba(230, 185, 85, 0.12); }

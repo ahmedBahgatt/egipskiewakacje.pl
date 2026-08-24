@@ -1,14 +1,61 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  line-height: 0;
+  gap: 0.55rem;
+  line-height: 1;
 }
-.mark {
-  height: 52px;
-  width: auto;
+.crest {
   display: block;
+  width: auto;
   filter: drop-shadow(0 1px 2px rgba(8, 20, 45, 0.18));
 }
-@media (max-width: 560px) {
-  .mark { height: 42px; }
+.word {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.02;
 }
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: currentColor;
+  white-space: nowrap; /* "Egipskie Wakacje" always on one line */
+}
+.tag {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+
+/* --- header: compact; tagline from 900px up; name hides on ultra-narrow ---- */
+.header .crest { height: 46px; }
+.header .brand { font-size: 1.08rem; letter-spacing: 0.005em; }
+.header .tag {
+  display: block;
+  margin-top: 0.42rem;
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+}
+@media (min-width: 640px) { .header .brand { font-size: 1.2rem; } .header .tag { font-size: 0.58rem; letter-spacing: 0.19em; } }
+@media (min-width: 900px) { .header .brand { font-size: 1.3rem; } }
+@media (max-width: 560px) {
+  .header .crest { height: 42px; }
+  .header .brand { font-size: 1.02rem; }
+}
+/* Ultra-narrow phones: mark only, so the name+slogan never crowd the burger. */
+@media (max-width: 359px) { .header .word { display: none; } }
+
+/* --- footer: larger; tagline always visible ------------------------------- */
+.footer { gap: 0.7rem; }
+.footer .crest { height: 56px; }
+.footer .brand { font-size: 1.5rem; letter-spacing: 0.005em; }
+.footer .tag {
+  display: block;
+  margin-top: 0.55rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+}
+
+/* --- drawer: compact; no tagline ------------------------------------------ */
+.drawer .crest { height: 40px; }
+.drawer .brand { font-size: 1.15rem; }
