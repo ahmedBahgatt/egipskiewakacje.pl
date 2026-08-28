@@ -19,7 +19,8 @@ export type AnalyticsEvent =
   | "booking_form_start"
   | "booking_form_validation_error"
   | "booking_form_valid"
-  | "booking_whatsapp_open";
+  | "booking_whatsapp_open"
+  | "booking_sheet_open";
 
 /** ONLY these keys may ever reach an analytics platform. Everything else is dropped. */
 const ALLOWED_KEYS = [

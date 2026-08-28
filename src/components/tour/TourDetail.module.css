@@ -36,30 +36,54 @@
 .bookingCard {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  padding: 1.4rem;
+  gap: 0.55rem;
+  padding: 1.15rem;
   background: var(--bg-paper);
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  /* Restrained, editorial - not a floating SaaS card. */
+  box-shadow: 0 1px 2px rgba(8, 26, 53, 0.05), 0 8px 22px rgba(8, 26, 53, 0.05);
 }
-.priceHead { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
-.priceBig { font-family: var(--font-display); font-size: var(--step-3); font-weight: 600; color: var(--text); }
-.priceUnit { color: var(--text-muted); font-size: 0.9rem; }
+.priceHead { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
+.priceMain { display: flex; align-items: baseline; gap: 0.28rem; flex-wrap: wrap; min-width: 0; }
+.priceBig { font-family: var(--font-display); font-size: var(--step-2); font-weight: 600; color: var(--text); line-height: 1; }
+.priceUnit { color: var(--text-muted); font-size: 0.85rem; }
 .availPill {
-  font-size: 0.74rem;
+  flex: none;
+  align-self: center;
+  font-size: 0.68rem;
   font-weight: 800;
   color: var(--accent-strong);
-  background: rgba(14, 131, 120, 0.12);
-  padding: 0.25rem 0.55rem;
+  background: rgba(14, 131, 120, 0.1);
+  padding: 0.2rem 0.5rem;
   border-radius: 999px;
   text-align: center;
+  white-space: nowrap;
 }
-.priceList { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.4rem 0 0.6rem; }
-.priceList li { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.94rem; color: var(--text-muted); padding-bottom: 0.5rem; border-bottom: 1px dashed var(--line); }
-.priceList li strong { color: var(--text); }
-.verified { font-size: 0.8rem; color: var(--ink-500); text-align: center; }
-.noPay { font-size: 0.82rem; color: var(--text-muted); text-align: center; }
+.priceList { display: flex; flex-direction: column; margin: 0.15rem 0 0.7rem; }
+.priceList li { display: flex; justify-content: space-between; align-items: baseline; gap: 0.9rem; font-size: 0.9rem; color: var(--text-muted); padding: 0.42rem 0; border-bottom: 1px solid var(--line); }
+.priceList li:first-child { padding-top: 0; }
+.priceList li:last-child { border-bottom: none; padding-bottom: 0; }
+.priceList li strong { color: var(--text); font-weight: 700; white-space: nowrap; }
+
+/* One dominant primary action; WhatsApp calmer/secondary underneath. */
+.ctaGroup { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.noPay {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink-700);
+}
+.noPayIcon { color: var(--teal-600); flex: none; width: 1rem; height: 1rem; margin-top: 1px; }
+.verified { font-size: 0.75rem; color: var(--ink-500); }
+
+@media (max-width: 559px) {
+  .bookingCard { padding: 1rem; gap: 0.5rem; }
+}
 
 /* --- content --- */
 .contentWrap { display: block; }

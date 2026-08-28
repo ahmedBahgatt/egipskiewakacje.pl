@@ -20,18 +20,57 @@
 }
 .table th,
 .table td {
-  padding: 0.85rem 1rem;
+  padding: 0.8rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--line);
   font-size: 0.95rem;
 }
 .table th {
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-500);
-  background: var(--sand-200);
+  background: color-mix(in srgb, var(--sand-200) 55%, var(--bg-paper));
 }
 .table tbody tr:last-child td { border-bottom: none; }
-.table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--sand-100) 55%, transparent); }
+.table tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--sand-100) 40%, transparent); }
+
+/* Responsive tables fit their box, so clip cleanly to the radius (no wide scroll). */
+.responsive { overflow: hidden; }
+
+/* --- responsive fit: keep ONE bordered box, no per-row cards, no sideways scroll --- */
+@media (max-width: 559px) {
+  .responsive .table { min-width: 0; }
+  /* Header hidden visually but kept in the a11y tree (clean rows, still a table). */
+  .responsive thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .responsive .table td {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.94rem;
+    vertical-align: top;
+  }
+  /* Label column: flexible, wraps long Polish labels / hotel-zone names. */
+  .responsive .table td:first-child {
+    color: var(--ink-700);
+    overflow-wrap: anywhere;
+    padding-right: 0.6rem;
+  }
+  /* Value column: shrink-to-content, right-aligned, stays on one line, readable. */
+  .responsive .table td:last-child {
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+    font-weight: 700;
+    color: var(--text);
+  }
+}

@@ -126,11 +126,15 @@ export function TourDetail({
         <aside className={styles.aside}>
           <div className={styles.bookingCard}>
             <div className={styles.priceHead}>
-              <div>
+              <div className={styles.priceMain}>
                 <span className={styles.priceBig}>{priceLabel(tour.price)}</span>
-                <span className={styles.priceUnit}> {priceUnit(tour.price)}</span>
+                {priceUnit(tour.price) ? (
+                  <span className={styles.priceUnit}>{priceUnit(tour.price)}</span>
+                ) : null}
               </div>
-              <span className={styles.availPill}>{tour.availabilityLabel}</span>
+              {tour.availabilityLabel ? (
+                <span className={styles.availPill}>{tour.availabilityLabel}</span>
+              ) : null}
             </div>
 
             <ul className={styles.priceList}>
@@ -142,23 +146,29 @@ export function TourDetail({
               ))}
             </ul>
 
-            <Button href="#rezerwacja" size="lg" fullWidth>
-              Zarezerwuj wycieczkę
-            </Button>
-            <Button
-              href={waQuick}
-              external
-              variant="whatsapp"
-              fullWidth
-              iconLeft={<IconWhatsApp />}
-            >
-              Szybkie pytanie
-            </Button>
+            <div className={styles.ctaGroup}>
+              <Button href="#rezerwacja" size="md" fullWidth>
+                Zarezerwuj wycieczkę
+              </Button>
+              <Button
+                href={waQuick}
+                external
+                variant="whatsappSubtle"
+                size="sm"
+                fullWidth
+                iconLeft={<IconWhatsApp />}
+              >
+                Szybkie pytanie na WhatsApp
+              </Button>
+            </div>
 
+            <p className={styles.noPay}>
+              <IconCheck className={styles.noPayIcon} />
+              <span>Bez przedpłaty - płacisz dopiero przy rozpoczęciu wycieczki.</span>
+            </p>
             <p className={styles.verified}>
               Cena zweryfikowana: {formatDatePl(tour.price.lastVerifiedAt)}
             </p>
-            <p className={styles.noPay}>Brak płatności online. Szczegóły potwierdzamy na WhatsApp.</p>
           </div>
         </aside>
       </section>
@@ -235,6 +245,7 @@ export function TourDetail({
           <section className={styles.block}>
             <h2 className={styles.h2}>Ceny</h2>
             <DataTable
+              responsive
               columns={["Wariant", "Cena"]}
               rows={tour.price.options.map((opt) => [
                 opt.note ? `${opt.label} (${opt.note})` : opt.label,
@@ -254,10 +265,11 @@ export function TourDetail({
             <section className={styles.block}>
               <h2 className={styles.h2}>Dopłaty za transfer</h2>
               <DataTable
+                responsive
                 columns={["Strefa / hotele", "Dopłata (od osoby)"]}
                 rows={tour.transferSupplements.map((t) => [
                   t.zone,
-                  formatMoney(t.amount, tour.price.currency),
+                  `+${formatMoney(t.amount, tour.price.currency)} / os.`,
                 ])}
               />
             </section>
@@ -371,7 +383,12 @@ export function TourDetail({
         </div>
       </div>
 
-      <StickyBookingBar priceLabel={priceLabel(tour.price)} targetId="rezerwacja" />
+      <StickyBookingBar
+        priceLabel={priceLabel(tour.price)}
+        priceUnitLabel={priceUnit(tour.price)}
+        bookingOption={bookingOption}
+        tourTitle={tour.title}
+      />
     </article>
   );
 }

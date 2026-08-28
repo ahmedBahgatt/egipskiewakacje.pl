@@ -1,11 +1,28 @@
 # Egipskie Wakacje — Project Handoff (current state)
 
 Single source of truth for a fresh session. Describes CURRENT production, not
-history. Last update: **First gold-standard individual tour page — Cairo-from-Hurghady (bus) — 6-image gallery + lightbox + full technical SEO/schema closure** (NOT yet deployed; local review pending).
+history. Last update: **Global mobile + booking UX pass on the SHARED individual tour-page system (all 78 tours)** (NOT yet deployed; local review pending).
 
 ---
 
-## 0. Latest session — Cairo-from-Hurghady gold-standard tour page (NOT deployed)
+## 0. Latest session — Global mobile + booking UX (shared tour-page system, NOT deployed)
+- **Objective:** fix mobile + booking UX at the SHARED level so all 78 canonical tour pages benefit. NO Cairo-specific forks; Cairo is only the QA reference. SEO/schema/content/prices/URLs preserved; no redesign of hubs; no dep upgrade.
+- **Shared components changed (affect all 78 tours):**
+  - `components/booking/StickyBookingBar.{tsx,module.css}` — rewritten. Compact single-row mobile bar (price left, primary `Zarezerwuj` right; ~64-72px + `env(safe-area-inset-bottom)`; responsive clamp typography for 320-430px). The CTA now opens an accessible full-height **booking sheet** (portal to `<body>`, `role=dialog`/`aria-modal`, focus trap, Escape, body scroll-lock, focus return, `100svh`/`100dvh`) hosting the shared `BookingForm`. On mount it sets `body[data-tour-page="true"]`.
+  - `components/booking/WhatsAppFloat.module.css` — standalone FAB now `display:none` on `body[data-tour-page]` (Option A: no two overlapping floating actions on tour pages). Non-tour pages unchanged.
+  - `components/booking/BookingForm.{tsx,module.css}` — new `idPrefix` prop (inline uses `bf-`, sheet uses `bfm-` → no duplicate ids). Submit+disclaimer wrapped in `.actions`; in `variant="panel"` it is `position:sticky; bottom:0` (never fixed → no keyboard trap) with safe-area padding. Inputs forced `font-size:max(16px,1rem)` (kills iOS focus-zoom). Optional **Uwagi** collapsed behind `+ Dodaj uwagi`. Disclaimer reworded to the no-prepayment rule.
+  - `components/ui/DataTable.{tsx,module.css}` — new opt-in `stack` prop. At `<=559px` the table collapses to stacked row cards (title + value, wraps, `min-width:0`, no inner sideways scroll); desktop unchanged; other DataTable usages (blog/destination) untouched.
+  - `components/tour/TourDetail.{tsx,module.css}` — desktop booking card refined: price anchor `--step-4` + smaller unit; ONE dominant primary CTA (`Zarezerwuj wycieczkę`), WhatsApp demoted to `whatsappSubtle` (calm outline, green icon only); restrained shadow + `--radius`; no-prepayment callout row (`Bez przedpłaty - płacisz dopiero przy rozpoczęciu wycieczki.`). Pricing + transfer tables pass `stack`. Transfer value now `+N USD / os.`. Sticky bar wired with derived price unit + booking option.
+  - `lib/analytics.ts` — added `booking_sheet_open` event.
+- **Refinement pass (post physical review, still shared-only):** booking/price card made COMPACT - card padding 1.5→1.15rem (1rem <560px), price `--step-4`→`--step-2`, primary CTA `lg`→`md`, WhatsApp secondary → `size="sm"`, no-prepayment turned into a light inline reassurance row (no boxed panel), tighter price rows. **Mobile tables no longer split into per-row cards:** `DataTable` prop renamed `stack`→`responsive` and re-implemented as ONE bordered/rounded box that fits the phone - header visually-hidden (kept in a11y tree), label column wraps (`overflow-wrap:anywhere`), value column `width:1%`+`nowrap`+right-aligned; desktop table typography/padding/header-bg refined (still a normal table, never cards). Overflow e2e now also asserts document + table fit at **320px** and 375px.
+- **Booking logic unchanged:** still WhatsApp-only inquiry (same `buildBookingWhatsappUrl`), no checkout/payment/account/availability calendar. Inline `#rezerwacja` form kept (server-rendered, crawlable, desktop path); sheet is an additional mobile entry using the SAME component.
+- **Tests:** new `tests/e2e/tour-booking-mobile.spec.ts` (10 tests across 3 tours × Hurghada/Marsa/Sharm: no table sideways-scroll @375, bar fits viewport, FAB hidden, sheet open/submit/Escape-close, WhatsApp-based submit, desktop card present). Green: typecheck, lint, 85 unit, build, e2e desktop+mobile-chromium **159 passed / 13 skipped**, plus mobile-safari(WebKit) spot-run green.
+- **Preview (LAN, NOT deployed):** static `out/` served on `*:3111`. Cairo `http://192.168.1.6:3111/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/`, Orange Bay `.../orange-bay/`, Safari `.../super-safari-sahara-park/`, Diving/Snorkel `.../abu-dabbab-snorkeling/`.
+- **Next steps / blockers:** owner physical review on iPhone/Android/desktop. NOT committed/pushed/deployed. After sign-off: commit + push `main`.
+
+---
+
+## 0-prev. Session — Cairo-from-Hurghady gold-standard tour page (NOT deployed)
 - **Objective:** turn ONLY `/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/` into the first polished, reusable gold-standard tour page. Slug/canonical unchanged. Other 77 tours untouched.
 - **Keyword-map row (source of truth):** primary `wycieczki z hurghady do kairu` (260/KD3); secondary cluster `wycieczka do kairu z hurghady`, `wycieczka z hurghady do kairu cena`, `wycieczki z hurghady do piramid`, `wycieczka na piramidy z hurghady`; reserved (do NOT target): `wycieczka do kairu` (Kair hub), `kair piramidy` (hub), `piramidy w egipcie` (future guide). BUS intent — separated from plane/GEM/Super-Cairo/private by departure+mode modifier.
 - **Six supplied photos** (`~/Desktop/Cairo`, originals untouched) optimised into responsive AVIF/WebP/JPG (content-hashed) under `public/media/tours/kair-piramidy/` via new `scripts/generate-tour-gallery.mjs`. Every image ships as WebP (AVIF served first where supported, JPG fallback). Widths: primary 640–2000, supports 400–≤source. Dedicated 1200×630 OG derivative `public/media/og/kair-hurghada-839cad65.jpg` (attention-crop keeps the pyramid).

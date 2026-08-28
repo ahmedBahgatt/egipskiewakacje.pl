@@ -51,6 +51,12 @@
   transform: translateY(10px);
   pointer-events: none;
 }
+/* Individual tour pages carry their own booking bar + WhatsApp actions, so the
+   standalone FAB is hidden there (Option A - no two overlapping floating actions).
+   Flag set by the mounted StickyBookingBar. */
+:global(body[data-tour-page="true"]) .float {
+  display: none;
+}
 /* Reveal the label on hover/focus (desktop). Mobile stays a compact icon. */
 @media (min-width: 700px) and (hover: hover) {
   .float:hover .label,

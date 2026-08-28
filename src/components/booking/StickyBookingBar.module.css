@@ -1,3 +1,4 @@
+/* --- compact mobile booking bar --- */
 .bar {
   position: fixed;
   left: 0;
@@ -7,17 +8,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.7rem max(16px, env(safe-area-inset-left)) calc(0.7rem + env(safe-area-inset-bottom));
+  gap: 0.75rem;
+  padding: 0.55rem max(14px, env(safe-area-inset-left)) max(14px, env(safe-area-inset-left));
+  padding-bottom: calc(0.55rem + env(safe-area-inset-bottom));
   background: color-mix(in srgb, var(--bg-paper) 94%, transparent);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--line);
   box-shadow: 0 -4px 16px rgba(10, 25, 34, 0.08);
 }
-.price { display: flex; align-items: baseline; gap: 0.3rem; }
-.value { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--text); }
-.unit { font-size: 0.82rem; color: var(--text-muted); }
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+  min-width: 0;
+}
+.value {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 4.6vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.unit { font-size: 0.76rem; color: var(--text-muted); white-space: nowrap; }
 .cta {
+  flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -25,14 +40,89 @@
   background: var(--primary);
   color: #fff;
   font-weight: 800;
-  padding: 0.8rem 1.3rem;
+  font-size: clamp(0.95rem, 3.6vw, 1.02rem);
+  padding: 0.7rem clamp(1.1rem, 5vw, 1.6rem);
   border-radius: 999px;
   min-height: 48px;
   white-space: nowrap;
+  transition: background-color 0.2s ease;
 }
 .cta:hover { background: var(--primary-hover); }
 
 /* Desktop uses the sticky in-column card instead. */
 @media (min-width: 960px) {
   .bar { display: none; }
+}
+
+/* --- full-height booking sheet --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background: rgba(8, 20, 45, 0.55);
+  animation: fade 0.18s ease;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 560px;
+  height: 100dvh;
+  background: var(--bg-paper);
+  animation: slideUp 0.22s var(--ease-out, ease);
+}
+@supports (height: 100svh) {
+  .panel { height: 100svh; }
+}
+.panelHead {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: max(12px, env(safe-area-inset-top)) 1.1rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.panelTitle { font-size: var(--step-1); }
+.panelTour {
+  flex: none;
+  padding: 0.7rem 1.1rem 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.close {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--sand-100);
+}
+.close svg { font-size: 1.2rem; }
+.close:hover { background: var(--sand-200); }
+.panelBody {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 1.1rem 0;
+}
+
+@keyframes fade { from { opacity: 0; } }
+@keyframes slideUp { from { transform: translateY(16px); opacity: 0.4; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay, .panel { animation: none; }
+}
+
+/* Never show the sheet UI on desktop even if state leaks. */
+@media (min-width: 960px) {
+  .overlay { display: none; }
 }
