@@ -1,13 +1,15 @@
 # Egipskie Wakacje — Project Handoff (current state)
 
 Single source of truth for a fresh session. Describes CURRENT production, not
-history. Last update: **DestinationSignature visual bridge** on branch `main`.
-The compact category ChipNav on the destination hubs was removed (it duplicated
-the functional category filter inside "Wycieczki ... wedlug rodzaju"); in its
-place a small inline-SVG `DestinationSignature` (per-resort line-art motif + one
-short factual Polish sentence) bridges PageIntro/Quick Facts -> "Praktycznie".
-Shared `ChipNav` (`src/components/ui/ChipNav.tsx`) is kept and still used by the
-category hub pages. Prior: "Brama opieki" brand integration (§5).
+history. Last update: **DestinationSignature = supplied illustrations** on `main`.
+`DestinationSignature` bridges PageIntro/Quick Facts -> "Praktycznie" on the three
+destination hubs. It now renders the owner's supplied hand-made transparent
+line-art (one per resort) as an optimized responsive WebP (near-lossless, 900w +
+1600w) with a PNG fallback, flanked by faint gold rules, above one short factual
+Polish sentence. Assets: `public/media/destinations/signatures/`. The earlier
+inline-SVG scene/tags version was removed (single system). Shared `ChipNav`
+(`src/components/ui/ChipNav.tsx`) is kept for the category hub pages. Prior:
+"Brama opieki" brand integration (§5).
 
 > Language note: the site is **Polish**. Browser screenshots may render English
 > because Chrome auto-translate is on — the real content is and must stay Polish.

@@ -1,77 +1,77 @@
 /*
- * Quiet visual bridge between PageIntro/Quick Facts and "Praktycznie".
- * Not a card, not a section heading - a centered line-art motif flanked by
- * hairline rules, with one short sentence beneath. Vertical rhythm below (toward
- * "Praktycznie") is owned by the destination layout via `.afterSignature`.
+ * Destination signature band: a supplied transparent illustration flanked by
+ * faint gold rules (with diamond caps), and a short sentence beneath. Not a card
+ * - it sits on the page background between PageIntro and "Praktycznie". Vertical
+ * rhythm down to "Praktycznie" is owned by the destination layout (.afterSignature).
  */
-.wrap {
-  /* Pull up toward the intro so the bridge reads as part of that cluster. */
+.band {
+  /* Pull up toward the intro so the band reads as part of that cluster. */
   margin-top: clamp(-2rem, -2.5vw, -1rem);
 }
 
 .inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(0.75rem, 2vw, 1.4rem);
+  gap: clamp(0.5rem, 2vw, 1.5rem);
 }
 
-.rule {
+/* Side rails: a hairline fading toward the page margin, capped by a diamond. */
+.rail {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.rail .line {
+  flex: 1 1 auto;
   height: 1px;
-  width: clamp(2.5rem, 12vw, 6rem);
-  flex: 0 1 auto;
-  background: linear-gradient(to right, transparent, var(--line));
+  background: linear-gradient(to left, color-mix(in srgb, var(--gold-600) 55%, transparent), transparent);
 }
-.ruleEnd {
-  background: linear-gradient(to left, transparent, var(--line));
+.railEnd .line {
+  background: linear-gradient(to right, color-mix(in srgb, var(--gold-600) 55%, transparent), transparent);
 }
-
-.motif {
+.diamond {
   flex: none;
-  width: clamp(104px, 24vw, 140px);
-  height: auto;
-  color: var(--teal-600);
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  border: 1px solid var(--gold-600);
+  opacity: 0.7;
 }
 
-.line {
-  margin: 0.9rem auto 0;
-  max-width: 46ch;
+/* The illustration. Fixed intrinsic width/height (via the <img> attrs) reserve
+   the aspect ratio, so there is no layout shift; it scales down fluidly and is
+   never cropped or distorted. */
+.art {
+  flex: 0 1 900px;
+  display: block;
+  width: 100%;
+  max-width: 900px;
+}
+.art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  margin: 1.1rem auto 0;
+  max-width: 60ch;
+  padding-inline: var(--gutter);
   text-align: center;
-  color: var(--text-muted);
-  font-size: var(--step--1);
-  line-height: 1.6;
+  color: var(--ink-700);
+  font-size: var(--step-0);
+  line-height: 1.55;
   text-wrap: balance;
 }
 
-/* Whisper of motion - pure CSS, tiny transforms, gated on reduced-motion. */
-@media (prefers-reduced-motion: no-preference) {
-  .wave {
-    animation: sig-wave 6s ease-in-out infinite;
+/* Mobile: drop the side rails so the illustration gets the full container width. */
+@media (max-width: 560px) {
+  .rail {
+    display: none;
   }
-  .floatA {
-    transform-origin: center;
-    animation: sig-float 5.5s ease-in-out infinite;
-  }
-  .floatB {
-    transform-origin: center;
-    animation: sig-float 7s ease-in-out infinite;
-  }
-  @keyframes sig-wave {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(1.2px);
-    }
-  }
-  @keyframes sig-float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-1.6px);
-    }
+  .caption {
+    font-size: var(--step--1);
   }
 }
