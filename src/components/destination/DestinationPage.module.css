@@ -1,3 +1,15 @@
+/*
+ * Compact category chip row + its rhythm. It sits between the PageIntro section
+ * and the "Praktycznie" section, both of which carry full `.section` padding.
+ * Pull the row up a touch so it reads as part of the intro cluster, then hand a
+ * deliberate, tokenized gap to the next section instead of stacking two full
+ * section paddings (which left a large void when nothing sat between them).
+ */
+.catNav { margin-top: clamp(-2rem, -2.5vw, -1rem); }
+
+/* Gap after the chip row -> "Praktycznie": ~40-56px mobile, ~56-80px desktop. */
+.afterCatNav { padding-top: clamp(2.5rem, 5vw, 5rem); }
+
 .practical { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 .practicalItem {
   display: flex;

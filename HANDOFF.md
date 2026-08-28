@@ -1,8 +1,11 @@
 # Egipskie Wakacje — Project Handoff (current state)
 
 Single source of truth for a fresh session. Describes CURRENT production, not
-history. Last update: **"Brama opieki" brand integration** on branch `main`
-(new approved logo system across header/footer/drawer/favicons/schema/OG — see §5).
+history. Last update: **compact destination category ChipNav** on branch `main`
+(shared `ChipNav` reused by category + destination hubs; destination pages now
+place a compact category-chip row after PageIntro/Quick Facts and tighten the
+gap to "Praktycznie" - the old big "Rodzaje wycieczek" card grid was moved up
+into these chips, not duplicated). Prior: "Brama opieki" brand integration (§5).
 
 > Language note: the site is **Polish**. Browser screenshots may render English
 > because Chrome auto-translate is on — the real content is and must stay Polish.

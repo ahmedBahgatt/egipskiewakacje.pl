@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { content } from "@/content";
 import {
@@ -11,6 +10,7 @@ import {
 import { PageHero } from "@/components/ui/PageHero";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { RelatedLinks, type RelatedLink } from "@/components/ui/RelatedLinks";
+import { ChipNav } from "@/components/ui/ChipNav";
 import { CtaBanner } from "@/components/ui/CtaBanner";
 import { Button } from "@/components/ui/Button";
 import { Faq } from "@/components/ui/Faq";
@@ -161,18 +161,14 @@ export default async function Page({ params }: { params: Promise<{ category: str
         }
       />
 
-      <nav className={styles.catNav} aria-label="Rodzaje wycieczek">
-        {allCats.map((other) => (
-          <Link
-            key={other.slug}
-            href={`${other.routeBase}/`}
-            className={`${styles.chip} ${other.slug === c.slug ? styles.chipActive : ""}`}
-            aria-current={other.slug === c.slug ? "page" : undefined}
-          >
-            {other.shortLabel}
-          </Link>
-        ))}
-      </nav>
+      <ChipNav
+        ariaLabel="Rodzaje wycieczek"
+        items={allCats.map((other) => ({
+          label: other.shortLabel,
+          href: `${other.routeBase}/`,
+          active: other.slug === c.slug,
+        }))}
+      />
 
       <section className="section" id="wycieczki">
         <div className="container">

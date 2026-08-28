@@ -3,6 +3,7 @@ import type { BlogPost, Destination, Tour } from "@/content/types";
 import { PageHero } from "@/components/ui/PageHero";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { RelatedLinks, type RelatedLink } from "@/components/ui/RelatedLinks";
+import { ChipNav } from "@/components/ui/ChipNav";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DataTable } from "@/components/ui/DataTable";
@@ -14,7 +15,7 @@ import { DestinationExperience } from "./DestinationExperience";
 import { IconArrowRight, IconCheck, IconWhatsApp } from "@/components/ui/icons";
 import { formatMoney } from "@/lib/format";
 import { hubFacts, fromPriceLabel } from "@/lib/facts";
-import { groupByCategory, orderedPresentCategories } from "@/lib/grouping";
+import { orderedPresentCategories } from "@/lib/grouping";
 import { categoryLabel, categoryRoute } from "@/lib/categories";
 import { formatTourCount } from "@/lib/polish";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
@@ -45,14 +46,12 @@ export function DestinationPage({
 
   const heroTitle = destination.heroTitle ?? `Wycieczki z ${destination.nameGenitive}`;
 
-  const byCat = groupByCategory(tours);
-  const categoryLinks: RelatedLink[] = orderedPresentCategories(destination.slug, tours)
+  // Compact contextual nav: only categories that genuinely have tours from this
+  // resort AND have a canonical hub route. Same source of truth as the on-page
+  // experience sections, so it never links to an empty/nonexistent category.
+  const catNavItems = orderedPresentCategories(destination.slug, tours)
     .filter((c) => categoryRoute[c])
-    .map((c) => ({
-      title: categoryLabel[c],
-      href: `${categoryRoute[c]}/`,
-      blurb: `${formatTourCount(byCat.get(c)?.length ?? 0)} z ${destination.nameGenitive}.`,
-    }));
+    .map((c) => ({ label: categoryLabel[c], href: `${categoryRoute[c]}/` }));
 
   const price = fromPriceLabel(tours);
   const catNames = orderedPresentCategories(destination.slug, tours)
@@ -150,8 +149,15 @@ export function DestinationPage({
         }
       />
 
+      {/* compact contextual category navigation (internal links to real hubs) */}
+      <ChipNav
+        ariaLabel={`Rodzaje wycieczek z ${destination.nameGenitive}`}
+        className={styles.catNav}
+        items={catNavItems}
+      />
+
       {/* practical (destination-level) */}
-      <section className="section">
+      <section className={`section ${styles.afterCatNav}`}>
         <div className="container">
           <SectionHeading
             eyebrow="Praktycznie"
@@ -231,17 +237,6 @@ export function DestinationPage({
             </Link>
           </div>
         </section>
-      )}
-
-      {/* internal linking: category hubs from this resort */}
-      {categoryLinks.length > 0 && (
-        <RelatedLinks
-          eyebrow="Rodzaje wycieczek"
-          title={`Rodzaje wycieczek z ${destination.nameGenitive}`}
-          items={categoryLinks}
-          columns={4}
-          tone="paper"
-        />
       )}
 
       {/* internal linking: other resorts + all-tours hub */}
