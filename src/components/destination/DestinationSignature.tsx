@@ -16,7 +16,16 @@ import styles from "./DestinationSignature.module.css";
 const ART_W = 2172;
 const ART_H = 724;
 
-type Signature = { alt: string; caption: string };
+/**
+ * `ver` is a short content hash of the supplied source artwork, baked into the
+ * public filename (e.g. `...-sharm-el-sheikh-61e56901-1600.webp`). When the
+ * artwork is replaced, a new hash yields a new URL, so a normal browser reload
+ * fetches the changed image immediately instead of a stale cached copy - GitHub
+ * Pages serves every file with a fixed `max-age=600` and offers no per-asset
+ * cache headers, so versioned filenames are the robust cache-busting mechanism.
+ * Assets without a `ver` are the original (still-approved) filenames.
+ */
+type Signature = { alt: string; caption: string; ver?: string };
 
 const DATA: Record<DestinationSlug, Signature> = {
   hurghada: {
@@ -31,6 +40,7 @@ const DATA: Record<DestinationSlug, Signature> = {
   "sharm-el-sheikh": {
     alt: "Ilustracja liniowa rafy Morza Czerwonego, gór Synaju i pustyni w Sharm el Sheikh",
     caption: "Rafy Synaju, Ras Mohammed, pustynne safari i dalsze wyprawy z Sharm el Sheikh.",
+    ver: "61e56901",
   },
 };
 
@@ -41,8 +51,10 @@ export function DestinationSignature({
   slug: DestinationSlug;
   className?: string;
 }) {
-  const { alt, caption } = DATA[slug];
-  const base = `/media/destinations/signatures/destination-signature-${slug}`;
+  const { alt, caption, ver } = DATA[slug];
+  const base = `/media/destinations/signatures/destination-signature-${slug}${
+    ver ? `-${ver}` : ""
+  }`;
 
   return (
     <section className={`${styles.band} ${className ?? ""}`} aria-label="O kurorcie">

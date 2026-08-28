@@ -1,7 +1,7 @@
 # Egipskie Wakacje — Project Handoff (current state)
 
 Single source of truth for a fresh session. Describes CURRENT production, not
-history. Last update: **DestinationSignature = supplied illustrations** on `main`.
+history. Last update: **Sharm signature artwork replaced (content-hashed filename)** on `main`.
 `DestinationSignature` bridges PageIntro/Quick Facts -> "Praktycznie" on the three
 destination hubs. It now renders the owner's supplied hand-made transparent
 line-art (one per resort) as an optimized responsive WebP (near-lossless, 900w +
@@ -119,6 +119,9 @@ Homepage JSON-LD: **Organization** + **WebSite** (in `layout.tsx`) and **FAQPage
 
 ## 23. Image pipeline (`components/ui/OptimizedImage.tsx`)
 `<picture>` serving **AVIF → WebP → JPG** (local base path `src` → `${src}.avif|.webp|.jpg`, or Sanity CDN URLs). `priority` → `loading=eager` + `fetchPriority=high` (LCP only); else lazy. Inline `aspect-ratio` (prevents CLS) + optional `object-position`. Pre-generated variants via `scripts/generate-media.mjs` (`npm run media`); hero video via `scripts/generate-hero-video.mjs`. Production assets live under `public/media/{hero,destinations,categories,blog,brand,og}`. The old `~/Downloads` import folders were temporary — not production dependencies.
+
+### 23a. Public-asset cache-busting convention (DURABLE RULE)
+Host = GitHub Pages, which serves **every** file (HTML, images, `/_next/static`) with a fixed `Cache-Control: max-age=600` and offers **no** per-asset cache headers, no `_headers` file, and no `no-store` control (do not attempt to disable caching globally — the site relies on this caching for repeat-visit speed). Next.js already fingerprints `/_next/static/*` (content-hashed URLs — never touch). **For manually managed assets in `public/` that are replaced visually over time, use a versioned/content-hashed production filename instead of overwriting the same public URL.** A changed URL guarantees a normal browser reload fetches the new bytes immediately (no hard refresh), while unchanged fingerprinted/versioned URLs stay cacheable. Convention in use: a short (8-char) content hash of the source, baked into the filename — e.g. `destination-signature-sharm-el-sheikh-61e56901-{900,1600}.webp` + `-61e56901.png`, referenced via the per-slug `ver` token in `DestinationSignature.tsx`. When you replace such an asset: generate a new hash, write new files, update the reference, delete the now-unreferenced old files. Do **not** bulk-rename existing unchanged assets. No service worker / PWA cache exists (nothing to invalidate on deploy).
 
 ## 24. Performance / CWV + cross-device stability rules
 Optimized AVIF/WebP; lazy-load below the fold; explicit aspect-ratio to avoid CLS; hero poster is the LCP, video deferred (faststart, off for reduced-motion/Save-Data); no heavy carousel/icon deps (carousel is CSS transform + rAF, animates outside React rerenders); don't preload every image; reduced-motion respected; avoid layout thrashing. Interior heroes pass `imagePriority` (eager + `fetchPriority=high`) — the only LCP prioritised per page.
