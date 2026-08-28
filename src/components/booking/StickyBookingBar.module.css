@@ -31,6 +31,12 @@
   white-space: nowrap;
 }
 .unit { font-size: 0.76rem; color: var(--text-muted); white-space: nowrap; }
+.unitShort { display: none; }
+/* Very narrow phones: swap "za osobę dorosłą" for the compact "dorosły". */
+@media (max-width: 360px) {
+  .unitLong { display: none; }
+  .unitShort { display: inline; }
+}
 .cta {
   flex: none;
   display: inline-flex;

@@ -44,13 +44,14 @@
   /* Restrained, editorial - not a floating SaaS card. */
   box-shadow: 0 1px 2px rgba(8, 26, 53, 0.05), 0 8px 22px rgba(8, 26, 53, 0.05);
 }
-.priceHead { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
-.priceMain { display: flex; align-items: baseline; gap: 0.28rem; flex-wrap: wrap; min-width: 0; }
+.priceHead { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem; }
+.priceMain { display: flex; flex-direction: column; gap: 0.12rem; min-width: 0; }
 .priceBig { font-family: var(--font-display); font-size: var(--step-2); font-weight: 600; color: var(--text); line-height: 1; }
-.priceUnit { color: var(--text-muted); font-size: 0.85rem; }
+.priceCaption { color: var(--text-muted); font-size: 0.8rem; font-weight: 600; }
 .availPill {
   flex: none;
-  align-self: center;
+  align-self: flex-start;
+  margin-top: 0.15rem;
   font-size: 0.68rem;
   font-weight: 800;
   color: var(--accent-strong);

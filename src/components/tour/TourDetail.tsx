@@ -22,7 +22,7 @@ import {
   IconWhatsApp,
   IconX,
 } from "@/components/ui/icons";
-import { priceLabel, priceUnit, optionAmount, formatMoney, formatDatePl } from "@/lib/format";
+import { priceHeadline, optionAmount, formatMoney, formatDatePl } from "@/lib/format";
 import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import {
@@ -84,6 +84,8 @@ export function TourDetail({
     canonicalPath: tour.seo.canonicalPath,
   };
 
+  const head = priceHeadline(tour.price);
+
   return (
     <article className={styles.page}>
       <JsonLd
@@ -127,9 +129,9 @@ export function TourDetail({
           <div className={styles.bookingCard}>
             <div className={styles.priceHead}>
               <div className={styles.priceMain}>
-                <span className={styles.priceBig}>{priceLabel(tour.price)}</span>
-                {priceUnit(tour.price) ? (
-                  <span className={styles.priceUnit}>{priceUnit(tour.price)}</span>
+                <span className={styles.priceBig}>{head.value}</span>
+                {head.captionLong ? (
+                  <span className={styles.priceCaption}>{head.captionLong}</span>
                 ) : null}
               </div>
               {tour.availabilityLabel ? (
@@ -384,8 +386,9 @@ export function TourDetail({
       </div>
 
       <StickyBookingBar
-        priceLabel={priceLabel(tour.price)}
-        priceUnitLabel={priceUnit(tour.price)}
+        priceValue={head.value}
+        priceCaption={head.captionLong}
+        priceCaptionShort={head.captionShort}
         bookingOption={bookingOption}
         tourTitle={tour.title}
       />

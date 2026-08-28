@@ -15,13 +15,15 @@ import styles from "./StickyBookingBar.module.css";
  * floating actions never overlap.
  */
 export function StickyBookingBar({
-  priceLabel,
-  priceUnitLabel,
+  priceValue,
+  priceCaption,
+  priceCaptionShort,
   bookingOption,
   tourTitle,
 }: {
-  priceLabel: string;
-  priceUnitLabel?: string;
+  priceValue: string;
+  priceCaption?: string;
+  priceCaptionShort?: string;
   bookingOption: BookingTourOption;
   tourTitle: string;
 }) {
@@ -99,8 +101,15 @@ export function StickyBookingBar({
     <>
       <div className={styles.bar}>
         <div className={styles.price}>
-          <span className={styles.value}>{priceLabel}</span>
-          {priceUnitLabel ? <span className={styles.unit}>{priceUnitLabel}</span> : null}
+          <span className={styles.value}>{priceValue}</span>
+          {priceCaption ? (
+            <span className={styles.unit}>
+              <span className={styles.unitLong}>{priceCaption}</span>
+              {priceCaptionShort ? (
+                <span className={styles.unitShort}>{priceCaptionShort}</span>
+              ) : null}
+            </span>
+          ) : null}
         </div>
         <button ref={openerRef} type="button" className={styles.cta} onClick={openSheet}>
           Zarezerwuj
