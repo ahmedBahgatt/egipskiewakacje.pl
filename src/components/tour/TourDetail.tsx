@@ -7,6 +7,7 @@ import { Faq } from "@/components/ui/Faq";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ItineraryTimeline } from "./ItineraryTimeline";
+import { TourGallery } from "./TourGallery";
 import { TourCard } from "./TourCard";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { StickyBookingBar } from "@/components/booking/StickyBookingBar";
@@ -96,18 +97,15 @@ export function TourDetail({
       {/* --- top: gallery + summary / sticky booking card --- */}
       <section className={`container ${styles.top}`}>
         <div className={styles.main}>
-          <div className={styles.gallery}>
-            <div className={styles.heroImg}>
-              <OptimizedImage image={tour.heroImage} priority rounded />
+          {tour.gallery.length > 1 ? (
+            <TourGallery images={tour.gallery} />
+          ) : (
+            <div className={styles.gallery}>
+              <div className={styles.heroImg}>
+                <OptimizedImage image={tour.heroImage} priority rounded />
+              </div>
             </div>
-            <div className={styles.thumbs}>
-              {tour.gallery.slice(1, 4).map((img) => (
-                <div key={img.src} className={styles.thumb}>
-                  <OptimizedImage image={img} rounded />
-                </div>
-              ))}
-            </div>
-          </div>
+          )}
 
           <h1 className={styles.title}>{tour.h1}</h1>
           <p className={styles.lead}>{tour.shortDescription}</p>
@@ -170,13 +168,44 @@ export function TourDetail({
         <div className={styles.content}>
           <section className={styles.block}>
             <h2 className={styles.h2}>O wycieczce</h2>
-            <p className={styles.para}>{tour.overview}</p>
+            {tour.overview.split("\n\n").map((p) => (
+              <p key={p.slice(0, 24)} className={styles.para}>
+                {p}
+              </p>
+            ))}
+            {tour.compare && (
+              <p className={styles.compare}>
+                {tour.compare.note}{" "}
+                <Link href={tour.compare.href} className={styles.compareLink}>
+                  {tour.compare.linkLabel} <IconArrowRight />
+                </Link>
+              </p>
+            )}
           </section>
+
+          {tour.attractions && tour.attractions.length > 0 && (
+            <section className={styles.block}>
+              <h2 className={styles.h2}>Co zobaczysz</h2>
+              {tour.attractions.map((a) => (
+                <div key={a.title} className={styles.attraction}>
+                  <h3 className={styles.h3}>{a.title}</h3>
+                  <p className={styles.para}>{a.body}</p>
+                </div>
+              ))}
+            </section>
+          )}
 
           <section className={styles.block}>
             <h2 className={styles.h2}>Plan dnia</h2>
             <ItineraryTimeline steps={tour.itinerary} />
           </section>
+
+          {tour.planningNote && (
+            <section className={styles.block}>
+              <h2 className={styles.h2}>Ile trwa i jak daleko</h2>
+              <p className={styles.para}>{tour.planningNote}</p>
+            </section>
+          )}
 
           <section className={styles.block}>
             <div className={styles.twoCol}>

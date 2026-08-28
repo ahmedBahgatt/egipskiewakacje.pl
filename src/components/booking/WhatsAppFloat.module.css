@@ -44,7 +44,8 @@
 /* When the mobile drawer is open it carries its own WhatsApp action, so hide the
    redundant floating button (shared state via the body attribute set by the
    drawer - no z-index war). */
-:global(body[data-menu-open="true"]) .float {
+:global(body[data-menu-open="true"]) .float,
+:global(body[data-lightbox-open="true"]) .float {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);

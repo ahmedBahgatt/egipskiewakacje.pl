@@ -19,7 +19,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tour } = await params;
   const t = (await content.getToursByDestination("hurghada")).find((x) => x.slug === tour);
-  return t ? buildMetadata({ ...t.seo, type: "article" }) : {};
+  // Tour pages default to "article"; a commercial page may opt into "website" via seo.type.
+  return t ? buildMetadata({ ...t.seo, type: t.seo.type ?? "article" }) : {};
 }
 
 export default async function Page({ params }: { params: Promise<{ tour: string }> }) {

@@ -1,7 +1,23 @@
 # Egipskie Wakacje — Project Handoff (current state)
 
 Single source of truth for a fresh session. Describes CURRENT production, not
-history. Last update: **Sharm signature artwork replaced (content-hashed filename)** on `main`.
+history. Last update: **First gold-standard individual tour page — Cairo-from-Hurghady (bus) — 6-image gallery + lightbox + full technical SEO/schema closure** (NOT yet deployed; local review pending).
+
+---
+
+## 0. Latest session — Cairo-from-Hurghady gold-standard tour page (NOT deployed)
+- **Objective:** turn ONLY `/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/` into the first polished, reusable gold-standard tour page. Slug/canonical unchanged. Other 77 tours untouched.
+- **Keyword-map row (source of truth):** primary `wycieczki z hurghady do kairu` (260/KD3); secondary cluster `wycieczka do kairu z hurghady`, `wycieczka z hurghady do kairu cena`, `wycieczki z hurghady do piramid`, `wycieczka na piramidy z hurghady`; reserved (do NOT target): `wycieczka do kairu` (Kair hub), `kair piramidy` (hub), `piramidy w egipcie` (future guide). BUS intent — separated from plane/GEM/Super-Cairo/private by departure+mode modifier.
+- **Six supplied photos** (`~/Desktop/Cairo`, originals untouched) optimised into responsive AVIF/WebP/JPG (content-hashed) under `public/media/tours/kair-piramidy/` via new `scripts/generate-tour-gallery.mjs`. Every image ships as WebP (AVIF served first where supported, JPG fallback). Widths: primary 640–2000, supports 400–≤source. Dedicated 1200×630 OG derivative `public/media/og/kair-hurghada-839cad65.jpg` (attention-crop keeps the pyramid).
+- **New reusable component `components/tour/TourGallery.tsx`** (+`.module.css`): editorial mosaic (desktop 3-col: large primary 2×2 + stacked pair + row of three; mobile: primary full-width + 2-col supports) and a dependency-free lightbox — prev/next with wrap, `1 / 6` counter, swipe, ArrowLeft/Right, Escape, focus trap + return, body scroll-lock, adjacent-only preload, portaled to `<body>`. Reuse on the other 77 tours later by giving a tour a `gallery` of >1 image.
+- **Responsive images:** `MediaImage.widths?` added; `OptimizedImage` emits width `srcSet` + `sizes` when present (else unchanged single triplet); `imageJpgUrl` picks the max-width jpg. `IconChevronLeft/Right` added.
+- **Content/data (`content/local/tours.ts`, target tour only):** H1 → "Wycieczka z Hurghady do Kairu autokarem" (bus-unmistakable); new SEO title/description; 6-image `gallery`+`heroImage`; richer entity overview (Cheops/Chefren/Mykerinos, Sfinks, Muzeum Egipskie, płaskowyż Giza); new opt-in Tour fields `attractions[]` (Co zobaczysz), `planningNote` (Ile trwa i jak daleko — 20–22 h, 6–7 h/way, 450–520 km), `compare` (bus-vs-plane callout → `/wycieczki-z-hurghady/kair-samolotem/`); 11 FAQs (price/duration/included/guide/child/Nile/pyramid-interior/transfers/pickup/prepayment/bus-vs-plane). Prices unchanged & verified vs Sekrety: adult 60 USD, child 5–11 30 USD, <5 free; transfers Safaga/Soma Bay/Abu Soma/El Gouna +10, Makadi Bay/Sahl Hasheesh +5; availability Codziennie.
+- **Schema:** `tourJsonLd` now emits the full gallery `image[]` and `provider` by `@id` (references the global Organization — no duplicate entity). Page JSON-LD (verified in exported HTML): Organization + WebSite (layout) + BreadcrumbList + TouristTrip(Offer 60 USD) + FAQPage(11). 0 duplicate @ids (Organization defined once, referenced by `@id` from WebSite.publisher + Trip.provider). Self-canonical + index,follow. OG/Twitter complete: **`og:type=website`** (per-tour `SeoMeta.type` opt-in; other tour pages still default `article`), og:image 1200×630 with a descriptive **`og:image:alt`**/`twitter:image:alt` describing the image (not the title) via new `SeoMeta.ogImageAlt` (buildMetadata falls back to title). No AggregateRating/Review; Offer = price/currency/url only (no fake availability/priceValidUntil).
+- **Tests:** `tests/e2e/tour-gallery.spec.ts` added (open/counter/next/prev/wrap/arrows/Escape/focus-return/scroll-lock/close). `tour-inventory` hero-image test generalised to validate responsive width variants across hero+gallery. `pages.spec` expected H1 updated. All green: typecheck, lint, 85 unit, build, 135 e2e (desktop+mobile-chromium, 13 desktop-only skipped).
+- **Files touched:** `scripts/generate-tour-gallery.mjs` (new), `src/components/tour/TourGallery.{tsx,module.css}` (new), `tests/e2e/tour-gallery.spec.ts` (new), `public/media/tours/kair-piramidy/*` + `public/media/og/kair-hurghada-839cad65.jpg` (new assets); modified `src/content/types.ts`, `src/content/local/tours.ts`, `src/components/tour/TourDetail.{tsx,module.css}`, `src/components/ui/OptimizedImage.tsx`, `src/components/ui/icons.tsx`, `src/lib/{media,seo}.ts`, `src/components/booking/WhatsAppFloat.module.css`, `tests/unit/tour-inventory.test.ts`, `tests/e2e/pages.spec.ts`.
+- **Next steps / blockers:** owner to physically review on phone + desktop (local server `node tests/serve-out.mjs 3111`, or `npm run build` first). NOT committed/pushed/deployed. After sign-off: commit + push `main`. Then roll the `TourGallery` pattern to the remaining 77 tours (each needs its own supplied photos + accurate alt).
+
+---
 `DestinationSignature` bridges PageIntro/Quick Facts -> "Praktycznie" on the three
 destination hubs. It now renders the owner's supplied hand-made transparent
 line-art (one per resort) as an optimized responsive WebP (near-lossless, 900w +
@@ -13,6 +29,16 @@ inline-SVG scene/tags version was removed (single system). Shared `ChipNav`
 
 > Language note: the site is **Polish**. Browser screenshots may render English
 > because Chrome auto-translate is on — the real content is and must stay Polish.
+
+> **Tour SEO source of truth (consult BEFORE any individual tour page change):** a
+> complete tour-level keyword ownership map now exists — `TOUR_KEYWORD_MAP.md`
+> (human-readable) + `TOUR_KEYWORD_MAP.csv` (one row per canonical tour) at repo
+> root. Covers all **78** canonical tour pages (H39/M20/S19), primary/secondary/
+> long-tail/AEO keywords, entity ownership, multi-resort departure separation, and
+> cannibalization decisions. Metrics come only from the SEMrush gap CSV; hub
+> ownership in `SEO_KEYWORD_MAP.md` is preserved. Research/planning only — no tour
+> page, meta, H1, schema, slug or link has been changed. Read it before optimising
+> tours one by one.
 
 ---
 

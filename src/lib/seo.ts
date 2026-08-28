@@ -10,6 +10,8 @@ export interface PageSeo {
   description: string;
   canonicalPath: string;
   ogImage?: string;
+  /** Accurate description of the OG IMAGE itself (not the page). Falls back to title. */
+  ogImageAlt?: string;
   type?: "website" | "article";
 }
 
@@ -17,6 +19,7 @@ export interface PageSeo {
 export function buildMetadata(seo: PageSeo): Metadata {
   const url = absoluteUrl(seo.canonicalPath);
   const ogImage = ogImageUrl(seo.ogImage ?? DEFAULT_OG);
+  const ogImageAlt = seo.ogImageAlt ?? seo.title;
   return {
     title: seo.title,
     description: seo.description,
@@ -28,13 +31,13 @@ export function buildMetadata(seo: PageSeo): Metadata {
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: seo.type ?? "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: seo.title }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: ogImageAlt }],
     },
     twitter: {
       card: "summary_large_image",
       title: seo.title,
       description: seo.description,
-      images: [ogImage],
+      images: [{ url: ogImage, alt: ogImageAlt }],
     },
   };
 }
@@ -168,7 +171,7 @@ export function tourJsonLd(tour: Tour) {
     name: tour.title,
     description: tour.shortDescription,
     url: absoluteUrl(tour.seo.canonicalPath),
-    image: imageJpgUrl(tour.heroImage),
+    image: (tour.gallery?.length ? tour.gallery : [tour.heroImage]).map(imageJpgUrl),
     itinerary: {
       "@type": "ItemList",
       itemListElement: tour.itinerary.map((step, i) => ({
@@ -183,7 +186,7 @@ export function tourJsonLd(tour: Tour) {
       priceCurrency: tour.price.currency,
       url: absoluteUrl(tour.seo.canonicalPath),
     },
-    provider: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+    provider: { "@id": `${siteConfig.url}/#organization` },
   };
 }
 

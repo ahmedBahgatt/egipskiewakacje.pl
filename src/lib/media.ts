@@ -8,6 +8,10 @@ import { absoluteUrl } from "@/content/config";
  */
 export function imageJpgUrl(image: MediaImage): string {
   if (image.sources?.jpg) return image.sources.jpg;
+  if (image.widths?.length) {
+    const maxW = image.widths[image.widths.length - 1];
+    return absoluteUrl(`${image.src}-${maxW}.jpg`);
+  }
   return absoluteUrl(`${image.src}.jpg`);
 }
 

@@ -14,24 +14,61 @@ export const tours: Tour[] = [
     "slug": "kair-piramidy-muzeum-egipskie",
     "route": "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie",
     "title": "Wycieczka z Hurghady do Kairu",
-    "h1": "Wycieczka z Hurghady do Kairu",
+    "h1": "Wycieczka z Hurghady do Kairu autokarem",
     "destination": "hurghada",
     "category": "kair",
     "departure": "Hurghada",
-    "shortDescription": "Cały dzień w Kairze i Gizie: Muzeum Egipskie, piramidy i Sfinks. Odbiór z hotelu w Hurghadzie, klimatyzowany autokar i polskojęzyczny przewodnik.",
-    "overview": "To klasyczna, jednodniowa wyprawa z Hurghady do serca starożytnego Egiptu. Odwiedzasz Muzeum Egipskie w centrum Kairu, a następnie płaskowyż w Gizie z trzema piramidami i Sfinksem. Trasa jest długa, bo obejmuje dojazd w obie strony, dlatego wyruszamy nocą - dzięki temu na miejscu masz cały dzień na zwiedzanie.",
+    "shortDescription": "Całodniowa wycieczka autokarem z Hurghady do Kairu i Gizy: Muzeum Egipskie, piramidy i Wielki Sfinks. Odbiór z hotelu, klimatyzowany autokar i polskojęzyczny przewodnik.",
+    "overview": "Wycieczka z Hurghady do Kairu to całodniowa wyprawa autokarem do serca starożytnego Egiptu. W programie jest zwiedzanie Muzeum Egipskiego w centrum Kairu oraz płaskowyżu w Gizie z trzema piramidami - Cheopsa, Chefrena i Mykerinosa - i Wielkim Sfinksem. Trasa obejmuje przejazd w obie strony, dlatego odbiór z hotelu wypada w nocy, a na miejscu masz cały dzień na zwiedzanie z polskojęzycznym przewodnikiem. Powrót do Hurghady następuje wieczorem lub w nocy tego samego dnia.",
     "heroImage": {
-      "src": "/media/tours/hurghada-kair",
-      "alt": "Piramidy w Gizie o złotej godzinie, widok z płaskowyżu",
-      "width": 1600,
-      "height": 1000
+      "src": "/media/tours/kair-piramidy/piramida-cheopsa-giza-zachod-slonca-839cad65",
+      "alt": "Wielka Piramida Cheopsa w Gizie o zachodzie słońca, wielbłąd odpoczywający przy kamiennych ruinach",
+      "width": 2000,
+      "height": 1397,
+      "widths": [640, 960, 1280, 1600, 2000]
     },
     "gallery": [
       {
-        "src": "/media/tours/hurghada-kair",
-        "alt": "Piramidy w Gizie o złotej godzinie, widok z płaskowyżu",
-        "width": 1600,
-        "height": 1000
+        "src": "/media/tours/kair-piramidy/piramida-cheopsa-giza-zachod-slonca-839cad65",
+        "alt": "Wielka Piramida Cheopsa w Gizie o zachodzie słońca, wielbłąd odpoczywający przy kamiennych ruinach",
+        "width": 2000,
+        "height": 1397,
+        "widths": [640, 960, 1280, 1600, 2000]
+      },
+      {
+        "src": "/media/tours/kair-piramidy/piramidy-giza-wielblad-turysci-edd9bd2f",
+        "alt": "Piramidy w Gizie z jeźdźcem na wielbłądzie i turystami spacerującymi po płaskowyżu",
+        "width": 669,
+        "height": 446,
+        "widths": [400, 669]
+      },
+      {
+        "src": "/media/tours/kair-piramidy/muzeum-egipskie-kair-gmach-a77a1c27",
+        "alt": "Muzeum Egipskie w Kairze - zabytkowy gmach z sadzawką i palmami przed wejściem",
+        "width": 1024,
+        "height": 760,
+        "widths": [400, 700, 1000, 1024]
+      },
+      {
+        "src": "/media/tours/kair-piramidy/turysci-wielblady-piramida-giza-4ae0cecc",
+        "alt": "Turyści pozujący na wielbłądach na tle wielkiej piramidy w Gizie",
+        "width": 669,
+        "height": 446,
+        "widths": [400, 669]
+      },
+      {
+        "src": "/media/tours/kair-piramidy/muzeum-egipskie-kair-wnetrze-6845f9ca",
+        "alt": "Wnętrze Muzeum Egipskiego w Kairze - główna sala z posągami faraonów",
+        "width": 700,
+        "height": 500,
+        "widths": [400, 700]
+      },
+      {
+        "src": "/media/tours/kair-piramidy/rejs-po-nilu-statek-b0c0b4d6",
+        "alt": "Statek na Nilu o zmierzchu - opcjonalny rejs po Nilu podczas wycieczki do Kairu",
+        "width": 700,
+        "height": 500,
+        "widths": [400, 700]
       }
     ],
     "price": {
@@ -167,26 +204,80 @@ export const tours: Tour[] = [
     "featured": true,
     "faqs": [
       {
+        "question": "Ile kosztuje wycieczka z Hurghady do Kairu?",
+        "answer": "Dorosły: 60 USD od osoby. Dziecko 5-11 lat: 30 USD. Dzieci poniżej 5 lat jadą bezpłatnie. Ostateczna cena może zależeć od strefy hotelowej (dopłata za transfer) oraz wybranych atrakcji dodatkowych."
+      },
+      {
+        "question": "Ile trwa wycieczka i ile jedzie się z Hurghady do Kairu?",
+        "answer": "Cała wycieczka autokarem trwa około 20-22 godzin. Sam przejazd w jedną stronę zajmuje ok. 6-7 godzin, bo z Hurghady do Kairu i Gizy jest około 450-520 km w każdą stronę."
+      },
+      {
+        "question": "Co obejmuje cena?",
+        "answer": "Odbiór z hotelu i powrót, przejazd klimatyzowanym autokarem, polskojęzyczny przewodnik, bilety wstępu do głównych obiektów (płaskowyż w Gizie i Muzeum Egipskie) oraz obiad bez napojów."
+      },
+      {
         "question": "Czy przewodnik mówi po polsku?",
         "answer": "Tak, na trasie z Hurghady zapewniamy polskojęzycznego przewodnika."
       },
       {
-        "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat: 30 USD. Dzieci poniżej 5 lat jadą bezpłatnie. Dorośli: 60 USD od osoby."
+        "question": "Czy dzieci płacą za wycieczkę?",
+        "answer": "Dziecko w wieku 5-11 lat: 30 USD. Dzieci poniżej 5 lat jadą bezpłatnie. Dorosły: 60 USD od osoby."
       },
       {
         "question": "Czy rejs po Nilu jest w cenie?",
         "answer": "Nie. To opcja dodatkowa (ok. 10-12 USD od osoby), płatna na miejscu dla chętnych."
+      },
+      {
+        "question": "Czy wejście do wnętrza piramidy jest w cenie?",
+        "answer": "Nie. Wejście do wnętrza piramidy to dodatkowo płatny bilet, kupowany na miejscu dla chętnych."
+      },
+      {
+        "question": "Czy można jechać z Makadi, El Gouna lub Soma Bay?",
+        "answer": "Tak. Odbiór z Hurghady jest w cenie. Dla hoteli w strefach Safaga, Soma Bay, Abu Soma i El Gouna obowiązuje dopłata 10 USD od osoby, a w Makadi Bay i Sahl Hasheesh 5 USD od osoby."
+      },
+      {
+        "question": "Skąd jest odbiór?",
+        "answer": "Odbiór odbywa się spod Twojego hotelu w Hurghadzie (lub w pobliskich strefach za dopłatą). Dokładną godzinę - zwykle między 00:00 a 02:00 - potwierdzamy na WhatsApp przed wyjazdem."
+      },
+      {
+        "question": "Czy trzeba płacić z góry?",
+        "answer": "Nie pobieramy płatności online. Rezerwację i cenę potwierdzamy na WhatsApp, a za wycieczkę płacisz dopiero na miejscu."
+      },
+      {
+        "question": "Kair z Hurghady - autokarem czy samolotem?",
+        "answer": "Autokarem to pełna, całodniowa wyprawa (ok. 20-22 h) w atrakcyjnej cenie od 60 USD. Jeśli zależy Ci na czasie, sprawdź wersję samolotem - jest krótsza, ale droższa."
       }
     ],
     "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
-    "seo": {
-      "title": "Wycieczka z Hurghady do Kairu | Piramidy i Muzeum",
-      "description": "Jednodniowa wycieczka z Hurghady do Kairu: Muzeum Egipskie, piramidy w Gizie i Sfinks. Cena od 60 USD, odbiór z hotelu, polski przewodnik, rezerwacja przez WhatsApp.",
-      "canonicalPath": "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/",
-      "ogImage": "/media/og/hurghada.jpg"
+    "attractions": [
+      {
+        "title": "Piramidy w Gizie i Wielki Sfinks",
+        "body": "Na płaskowyżu w Gizie z bliska zobaczysz trzy piramidy: największą Piramidę Cheopsa oraz piramidy Chefrena i Mykerinosa. Tuż obok stoi Wielki Sfinks - kamienny posąg z ciałem lwa i głową człowieka. Jest czas na zdjęcia i spacer po terenie. Wejście do wnętrza piramidy jest dodatkowo płatne i nie jest objęte ceną wycieczki."
+      },
+      {
+        "title": "Muzeum Egipskie w Kairze",
+        "body": "W centrum Kairu zwiedzasz Muzeum Egipskie - jedną z najważniejszych kolekcji zabytków starożytnego Egiptu. Zobaczysz posągi faraonów, sarkofagi i skarby sprzed tysięcy lat, a polskojęzyczny przewodnik opowie o najciekawszych eksponatach."
+      },
+      {
+        "title": "Opcjonalny rejs po Nilu",
+        "body": "Dla chętnych organizujemy krótki rejs po Nilu (ok. 10-12 USD od osoby, płatny na miejscu). To dobra okazja, żeby zobaczyć Kair od strony rzeki. Rejs nie jest objęty ceną podstawową wycieczki."
+      }
+    ],
+    "planningNote": "Cała wycieczka autokarem trwa około 20-22 godzin - od nocnego odbioru z hotelu do powrotu wieczorem lub w nocy. Sam przejazd w jedną stronę zajmuje mniej więcej 6-7 godzin, bo z Hurghady do Kairu i Gizy jest około 450-520 km, w zależności od trasy. Podane czasy są orientacyjne i mogą się różnić w zależności od hotelu, sezonu i warunków na drodze.",
+    "compare": {
+      "note": "Wolisz krótszą podróż i mniej czasu w drodze?",
+      "linkLabel": "Zobacz Kair z Hurghady samolotem",
+      "href": "/wycieczki-z-hurghady/kair-samolotem/"
     },
-    "updatedAt": "2026-08-09"
+    "seo": {
+      "title": "Wycieczka z Hurghady do Kairu autokarem - piramidy i Sfinks",
+      "description": "Całodniowa wycieczka autokarem z Hurghady do Kairu: piramidy w Gizie, Wielki Sfinks i Muzeum Egipskie. Polski przewodnik, cena od 60 USD/os., bez przedpłaty - rezerwacja na WhatsApp.",
+      "canonicalPath": "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/",
+      "ogImage": "/media/og/kair-hurghada-839cad65.jpg",
+      "ogImageAlt": "Wielka Piramida Cheopsa w Gizie o zachodzie słońca z wielbłądem odpoczywającym przy kamiennych ruinach",
+      "type": "website"
+    },
+    "updatedAt": "2026-08-28"
   },
   {
     "slug": "kair-wielkie-muzeum-gem",

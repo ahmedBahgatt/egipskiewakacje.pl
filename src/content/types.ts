@@ -82,6 +82,14 @@ export interface MediaImage {
   height: number;
   /** Present for Sanity-hosted images: per-format CDN URLs. */
   sources?: { avif: string; webp: string; jpg: string };
+  /**
+   * Present for responsive LOCAL images: the pre-generated variant widths (px,
+   * ascending). When set, format files are named `${src}-${w}.avif|.webp|.jpg`
+   * (see scripts/generate-tour-gallery.mjs) and OptimizedImage emits a srcSet so
+   * a phone never downloads a desktop-sized file. When absent, a single
+   * `${src}.avif|.webp|.jpg` triplet is served (scripts/generate-media.mjs).
+   */
+  widths?: number[];
   /** Optional low-quality image placeholder (Sanity blur data URL). */
   lqip?: string;
   /** Optional CSS object-position for the cover crop, e.g. "center 40%". */
@@ -199,6 +207,16 @@ export interface Tour {
   featured: boolean;
   faqs: FaqItem[];
   relatedPostSlug?: string;
+  /**
+   * Optional entity-rich sections ("what you will see"), rendered as H3 blocks.
+   * Opt-in per tour - lets a gold-standard page spell out attractions (Giza,
+   * Sphinx, Egyptian Museum, ...) as clean server-rendered HTML for AEO/GEO.
+   */
+  attractions?: { title: string; body: string }[];
+  /** Optional factual "duration & distance" paragraph, rendered as its own section. */
+  planningNote?: string;
+  /** Optional internal comparison callout (e.g. bus vs plane) with a real internal link. */
+  compare?: { note: string; linkLabel: string; href: string };
   seo: SeoMeta;
   updatedAt: string;
 }
@@ -245,6 +263,10 @@ export interface SeoMeta {
   /** Canonical path (with trailing slash), e.g. "/wycieczki-z-hurghady/". */
   canonicalPath: string;
   ogImage?: string;
+  /** Accurate description of the OG image itself (not the page title). */
+  ogImageAlt?: string;
+  /** Open Graph type override. Tour pages default to "article"; commercial pages may set "website". */
+  type?: "website" | "article";
 }
 
 export interface Review {

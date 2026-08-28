@@ -71,6 +71,28 @@
 .para { color: var(--ink-700); line-height: 1.75; }
 .note { font-size: 0.86rem; color: var(--text-muted); margin-top: 0.7rem; }
 
+.para + .para { margin-top: 0.9rem; }
+.attraction + .attraction { margin-top: 1.3rem; }
+
+.compare {
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: var(--radius);
+  color: var(--ink-700);
+  line-height: 1.6;
+}
+.compareLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+  white-space: nowrap;
+}
+.compareLink:hover { text-decoration: underline; }
+
 .twoCol { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
 .includeBox, .excludeBox { padding: 1.3rem; border-radius: var(--radius); border: 1px solid var(--line); }
 .includeBox { background: rgba(14, 131, 120, 0.05); }

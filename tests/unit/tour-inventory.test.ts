@@ -127,11 +127,18 @@ describe("tour inventory integrity", () => {
     }
   });
 
-  it("hero images exist on disk as .avif/.webp/.jpg variants", () => {
+  it("hero + gallery images exist on disk (responsive width variants when declared)", () => {
+    const exts = ["avif", "webp", "jpg"] as const;
+    const variantFiles = (img: { src: string; widths?: number[] }) =>
+      img.widths?.length
+        ? img.widths.flatMap((w) => exts.map((e) => `${img.src}-${w}.${e}`))
+        : exts.map((e) => `${img.src}.${e}`);
     for (const t of tours) {
-      for (const ext of ["avif", "webp", "jpg"]) {
-        const p = path.join(process.cwd(), "public", `${t.heroImage.src}.${ext}`);
-        expect(existsSync(p), `${t.heroImage.src}.${ext} for ${t.route}`).toBe(true);
+      const imgs = [t.heroImage, ...t.gallery];
+      const files = [...new Set(imgs.flatMap(variantFiles))];
+      for (const rel of files) {
+        const p = path.join(process.cwd(), "public", rel);
+        expect(existsSync(p), `${rel} for ${t.route}`).toBe(true);
       }
     }
   });
