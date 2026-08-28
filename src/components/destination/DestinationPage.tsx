@@ -3,7 +3,6 @@ import type { BlogPost, Destination, Tour } from "@/content/types";
 import { PageHero } from "@/components/ui/PageHero";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { RelatedLinks, type RelatedLink } from "@/components/ui/RelatedLinks";
-import { ChipNav } from "@/components/ui/ChipNav";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DataTable } from "@/components/ui/DataTable";
@@ -12,11 +11,12 @@ import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/motion/Reveal";
 import { DestinationExperience } from "./DestinationExperience";
+import { DestinationSignature } from "./DestinationSignature";
 import { IconArrowRight, IconCheck, IconWhatsApp } from "@/components/ui/icons";
 import { formatMoney } from "@/lib/format";
 import { hubFacts, fromPriceLabel } from "@/lib/facts";
 import { orderedPresentCategories } from "@/lib/grouping";
-import { categoryLabel, categoryRoute } from "@/lib/categories";
+import { categoryLabel } from "@/lib/categories";
 import { formatTourCount } from "@/lib/polish";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import {
@@ -45,13 +45,6 @@ export function DestinationPage({
   ];
 
   const heroTitle = destination.heroTitle ?? `Wycieczki z ${destination.nameGenitive}`;
-
-  // Compact contextual nav: only categories that genuinely have tours from this
-  // resort AND have a canonical hub route. Same source of truth as the on-page
-  // experience sections, so it never links to an empty/nonexistent category.
-  const catNavItems = orderedPresentCategories(destination.slug, tours)
-    .filter((c) => categoryRoute[c])
-    .map((c) => ({ label: categoryLabel[c], href: `${categoryRoute[c]}/` }));
 
   const price = fromPriceLabel(tours);
   const catNames = orderedPresentCategories(destination.slug, tours)
@@ -149,15 +142,11 @@ export function DestinationPage({
         }
       />
 
-      {/* compact contextual category navigation (internal links to real hubs) */}
-      <ChipNav
-        ariaLabel={`Rodzaje wycieczek z ${destination.nameGenitive}`}
-        className={styles.catNav}
-        items={catNavItems}
-      />
+      {/* quiet visual bridge - destination identity, not repeated category nav */}
+      <DestinationSignature slug={destination.slug} />
 
       {/* practical (destination-level) */}
-      <section className={`section ${styles.afterCatNav}`}>
+      <section className={`section ${styles.afterSignature}`}>
         <div className="container">
           <SectionHeading
             eyebrow="Praktycznie"

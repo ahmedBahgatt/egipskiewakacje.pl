@@ -1,0 +1,77 @@
+/*
+ * Quiet visual bridge between PageIntro/Quick Facts and "Praktycznie".
+ * Not a card, not a section heading - a centered line-art motif flanked by
+ * hairline rules, with one short sentence beneath. Vertical rhythm below (toward
+ * "Praktycznie") is owned by the destination layout via `.afterSignature`.
+ */
+.wrap {
+  /* Pull up toward the intro so the bridge reads as part of that cluster. */
+  margin-top: clamp(-2rem, -2.5vw, -1rem);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.4rem);
+}
+
+.rule {
+  height: 1px;
+  width: clamp(2.5rem, 12vw, 6rem);
+  flex: 0 1 auto;
+  background: linear-gradient(to right, transparent, var(--line));
+}
+.ruleEnd {
+  background: linear-gradient(to left, transparent, var(--line));
+}
+
+.motif {
+  flex: none;
+  width: clamp(104px, 24vw, 140px);
+  height: auto;
+  color: var(--teal-600);
+}
+
+.line {
+  margin: 0.9rem auto 0;
+  max-width: 46ch;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+/* Whisper of motion - pure CSS, tiny transforms, gated on reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .wave {
+    animation: sig-wave 6s ease-in-out infinite;
+  }
+  .floatA {
+    transform-origin: center;
+    animation: sig-float 5.5s ease-in-out infinite;
+  }
+  .floatB {
+    transform-origin: center;
+    animation: sig-float 7s ease-in-out infinite;
+  }
+  @keyframes sig-wave {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(1.2px);
+    }
+  }
+  @keyframes sig-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-1.6px);
+    }
+  }
+}
