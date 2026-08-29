@@ -3,6 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 /** Representative tours across data shapes (pricing tiers, transfer rows, categories). */
 const TOURS = [
   "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/",
+  "/wycieczki-z-hurghady/orange-bay/",
   "/wycieczki-z-marsa-alam/kair-stary-kair-piramidy/",
   "/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/",
 ];

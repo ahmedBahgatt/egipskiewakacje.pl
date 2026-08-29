@@ -111,11 +111,14 @@
 .compareLink {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.3rem;
   font-weight: 700;
   color: var(--accent-strong);
-  white-space: nowrap;
+  /* Allow long anchor labels to wrap on narrow phones instead of clipping. */
+  white-space: normal;
 }
+.compareLink svg { flex: none; }
 .compareLink:hover { text-decoration: underline; }
 
 .twoCol { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }

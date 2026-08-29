@@ -1493,24 +1493,61 @@ export const tours: Tour[] = [
     "slug": "orange-bay",
     "route": "/wycieczki-z-hurghady/orange-bay",
     "title": "Orange Bay z Hurghady",
-    "h1": "Orange Bay Hurghada - wycieczka z Hurghady",
+    "h1": "Orange Bay z Hurghady - rejs na wyspę, plaża i snorkeling",
     "destination": "hurghada",
     "category": "rejsy-wyspy",
     "departure": "Hurghada",
-    "shortDescription": "Całodniowa wycieczka łodzią z Hurghady na wyspę Orange Bay, z plażą i przystankami na snorkeling. W cenie transfer z hotelu, sprzęt do snorkelingu oraz lunch i napoje na pokładzie. Dobra propozycja na relaks nad rafą dla całej rodziny.",
-    "overview": "Orange Bay to jedna z najchętniej odwiedzanych wysp w okolicy Hurghady, znana z piaszczystej plaży i przejrzystej wody. Wycieczka ma formę całodniowego rejsu i trwa około 7-8 godzin, wraz z transferem z hotelu i z powrotem.\n\nPodczas rejsu przewidziane są jeden lub dwa postoje na snorkeling, a sprzęt zapewniamy na miejscu. Na wyspie masz czas na wypoczynek na plaży i kąpiel w morzu. Przy dobrej pogodzie dostępne są dodatkowo płatne sporty wodne, takie jak banan czy kanapa.\n\nW cenie są transfer z/do hotelu w Hurghadzie, rejs, sprzęt do snorkelingu, lunch na łodzi oraz ciepłe i zimne napoje na statku. Za hotele położone poza Hurghadą mogą obowiązywać dopłaty. Szczegóły rezerwacji potwierdzimy na WhatsApp.",
+    "shortDescription": "Całodniowy rejs łodzią z Hurghady na wyspę Orange Bay: piaszczysta plaża, 1-2 postoje na snorkeling nad rafą, lunch i napoje na pokładzie oraz transfer z hotelu. Wycieczka trwa około 7-8 godzin - dobra propozycja dla rodzin z dziećmi. Dorosły 30 USD, dziecko 15 USD.",
+    "overview": "Orange Bay to jedna z najchętniej odwiedzanych wysp w rejonie Hurghady - znana z jasnej, piaszczystej plaży, drewnianych pomostów i wyjątkowo przejrzystej, turkusowej wody Morza Czerwonego. Wyspa leży w okolicy wysp Giftun, a dotrzeć na nią można wyłącznie łodzią, dlatego wycieczka ma formę całodniowego rejsu.\n\nCały dzień trwa około 7-8 godzin, razem z transferem z hotelu i z powrotem. Po drodze przewidziany jest jeden lub dwa postoje na snorkeling nad rafą - maskę i fajkę zapewniamy na miejscu. Na samej wyspie masz około 1,5-2 godzin na kąpiel, plażowanie i zdjęcia.\n\nW cenie są transfer z/do hotelu w Hurghadzie, rejs łodzią, sprzęt do snorkelingu, lunch serwowany na pokładzie oraz ciepłe i zimne napoje na statku. Przy dobrej pogodzie dostępne są dodatkowo płatne sporty wodne (banan, kanapa). Dla hoteli poza Hurghadą może obowiązywać dopłata za transfer. Nie pobieramy przedpłaty - rezerwację i godzinę odbioru potwierdzamy na WhatsApp.",
     "heroImage": {
-      "src": "/media/tours/h-orange-bay",
-      "alt": "Orange Bay z Hurghady - zdjęcie poglądowe",
-      "width": 1600,
-      "height": 1000
+      "src": "/media/tours/orange-bay/snorkeling-rafa-orange-bay-4b97b124",
+      "alt": "Snorkeling nad rafą Morza Czerwonego - ławica niebiesko-żółtych ryb przy Orange Bay",
+      "width": 720,
+      "height": 480,
+      "widths": [400, 700, 720]
     },
     "gallery": [
       {
-        "src": "/media/tours/h-orange-bay",
-        "alt": "Orange Bay z Hurghady - zdjęcie poglądowe",
-        "width": 1600,
-        "height": 1000
+        "src": "/media/tours/orange-bay/orange-bay-hustawka-morze-bcf1ffc4",
+        "alt": "Huśtawka zawieszona nad turkusową, płytką wodą przy wyspie Orange Bay koło Hurghady",
+        "width": 1920,
+        "height": 1277,
+        "widths": [640, 960, 1280, 1600, 1920]
+      },
+      {
+        "src": "/media/tours/orange-bay/orange-bay-molo-giftun-c39d4492",
+        "alt": "Drewniane molo i przejrzysta turkusowa laguna przy wyspie Orange Bay w rejonie wysp Giftun",
+        "width": 1280,
+        "height": 960,
+        "widths": [400, 700, 1000, 1280]
+      },
+      {
+        "src": "/media/tours/orange-bay/orange-bay-plaza-pomosty-54b6374b",
+        "alt": "Wejście na Orange Bay - drewniane pawilony i pomosty nad płytką laguną Morza Czerwonego",
+        "width": 800,
+        "height": 450,
+        "widths": [400, 700, 800]
+      },
+      {
+        "src": "/media/tours/orange-bay/snorkeling-rafa-orange-bay-4b97b124",
+        "alt": "Snorkeling nad rafą Morza Czerwonego - ławica niebiesko-żółtych ryb przy Orange Bay",
+        "width": 720,
+        "height": 480,
+        "widths": [400, 700, 720]
+      },
+      {
+        "src": "/media/tours/orange-bay/orange-bay-plaza-parasole-21c5ebf1",
+        "alt": "Piaszczysta plaża Orange Bay z parasolami i pufami na piasku nad turkusowym morzem",
+        "width": 1400,
+        "height": 934,
+        "widths": [400, 700, 1000, 1400]
+      },
+      {
+        "src": "/media/tours/orange-bay/orange-bay-lodz-rejs-dedf4a39",
+        "alt": "Biała łódź wycieczkowa z turystami dobijająca do pomostu na wyspie Orange Bay",
+        "width": 1024,
+        "height": 682,
+        "widths": [400, 700, 1000, 1024]
       }
     ],
     "price": {
@@ -1519,23 +1556,35 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
+      "lastVerifiedAt": "2026-08-29",
       "options": [
         {
           "label": "Dorosły",
           "amount": 30,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko 5-11 lat",
+          "amount": 15,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko poniżej 5 lat",
+          "amount": 0,
           "currency": "USD",
-          "unit": "os."
+          "free": true
         }
       ],
-      "note": "Możliwe dopłaty za strefy hotelowe poza Hurghadą."
+      "childAgeMin": 5,
+      "infantFree": true,
+      "note": "Cena obejmuje odbiór z hoteli w Hurghadzie. Dla hoteli w innych strefach obowiązuje dopłata za transfer (patrz tabela poniżej)."
     },
     "availabilityLabel": "Codziennie (według dostępności)",
     "availabilityDays": [
       "Codziennie"
     ],
     "durationLabel": "ok. 7-8 godzin",
-    "pickupLabel": "Do ustalenia",
+    "pickupLabel": "ok. 07:30-08:30",
     "transport": "Rejs łodzią, transfer z/do hotelu w Hurghadzie",
     "guide": {
       "label": "Potwierdzamy przed rezerwacją",
@@ -1550,28 +1599,40 @@ export const tours: Tour[] = [
     ],
     "itinerary": [
       {
+        "time": "07:30-08:30",
         "title": "Odbiór z hotelu",
-        "description": "Transfer spod hotelu w Hurghadzie do portu."
+        "description": "Kierowca odbiera Cię spod hotelu w Hurghadzie. Dokładną godzinę - zwykle między 07:30 a 08:30 - potwierdzamy na WhatsApp, ponieważ zależy ona od strefy hotelu i trasy danego dnia."
       },
       {
-        "title": "Rejs na Orange Bay",
-        "description": "Wypłynięcie łodzią w stronę wyspy Orange Bay."
+        "title": "Transfer do portu",
+        "description": "Krótki przejazd z hotelu do portu (mariny), z którego wypływają łodzie na wyspę."
       },
       {
-        "title": "Snorkeling",
-        "description": "Jeden lub dwa postoje na snorkeling na rafie; sprzęt zapewniamy."
+        "time": "09:00-10:00",
+        "title": "Wypłynięcie w rejs",
+        "description": "Łódź wypływa w stronę Orange Bay przez turkusowe wody Morza Czerwonego. Rejs w jedną stronę to dobry moment na relaks na pokładzie."
       },
       {
-        "title": "Plaża na Orange Bay",
-        "description": "Czas na wypoczynek na plaży i kąpiel w morzu."
+        "title": "Snorkeling na rafie",
+        "description": "Po drodze przewidziany jest jeden lub dwa postoje na snorkeling nad rafą. Sprzęt (maska i fajka) jest w cenie."
+      },
+      {
+        "time": "ok. 1,5-2 h",
+        "title": "Czas na wyspie Orange Bay",
+        "description": "Na wyspie masz około 1,5-2 godzin na kąpiel w morzu, plażowanie, spacer po drewnianych pomostach i zdjęcia."
       },
       {
         "title": "Lunch na łodzi",
-        "description": "Posiłek serwowany na pokładzie, z ciepłymi i zimnymi napojami."
+        "description": "Na pokładzie serwowany jest lunch. Dostępne są też ciepłe i zimne napoje."
       },
       {
-        "title": "Powrót do hotelu",
-        "description": "Rejs do portu i transfer pod hotel."
+        "time": "16:00-17:00",
+        "title": "Powrót do portu",
+        "description": "Rejs powrotny do portu w Hurghadzie, zwykle około 16:00-17:00."
+      },
+      {
+        "title": "Transfer do hotelu",
+        "description": "Z portu wracasz transferem pod swój hotel. Cały dzień zamyka się zwykle w 7-8 godzinach."
       }
     ],
     "included": [
@@ -1584,52 +1645,136 @@ export const tours: Tour[] = [
     "excluded": [
       "Napiwki",
       "Wydatki własne",
-      "Sporty wodne (banan, kanapa)"
+      "Sporty wodne: banan i kanapa (przy dobrej pogodzie, dodatkowo płatne)",
+      "Dodatkowe napoje i przekąski kupowane na wyspie",
+      "Usługi fotografa"
     ],
-    "transferSupplements": [],
+    "transferSupplements": [
+      {
+        "zone": "El Gouna",
+        "amount": 10
+      },
+      {
+        "zone": "Safaga, Soma Bay, Abu Soma",
+        "amount": 10
+      },
+      {
+        "zone": "Makadi Bay",
+        "amount": 5
+      },
+      {
+        "zone": "Sahl Hasheesh",
+        "amount": 5
+      }
+    ],
     "extras": [
       {
         "label": "Sporty wodne (banan, kanapa)",
-        "note": "przy dobrej pogodzie, dodatkowo płatne"
+        "note": "przy dobrej pogodzie, dodatkowo płatne na miejscu"
       }
     ],
     "whatToBring": [
-      "Strój kąpielowy",
-      "Ręcznik",
-      "Krem przeciwsłoneczny",
-      "Okulary przeciwsłoneczne",
-      "Klapki"
+      "Strój kąpielowy i ręcznik",
+      "Krem z filtrem i okulary przeciwsłoneczne",
+      "Nakrycie głowy",
+      "Klapki lub obuwie do wody",
+      "Woda w butelce",
+      "Gotówka na napoje, sporty wodne i napiwki"
     ],
     "requirements": [
-      "Sprzęt do snorkelingu zapewniamy - przyda się umiejętność pływania"
+      "Sprzęt do snorkelingu zapewniamy - przyda się podstawowa umiejętność pływania.",
+      "Godzinę odbioru i dostępność potwierdzamy na WhatsApp przed wyjazdem.",
+      "Program i godziny są orientacyjne - mogą się zmienić zależnie od pogody i warunków na morzu."
     ],
     "cancellationPolicy": "Rezerwacja jest wstępna do potwierdzenia terminu i godziny odbioru na WhatsApp. Nie pobieramy płatności online - należność regulujesz na miejscu. W razie zmiany planów prosimy o wcześniejszy kontakt.",
     "featured": true,
     "faqs": [
       {
+        "question": "Ile kosztuje wycieczka na Orange Bay z Hurghady?",
+        "answer": "Dorosły: 30 USD od osoby. Dziecko 5-11 lat: 15 USD. Dzieci poniżej 5 lat bezpłatnie. Cena obejmuje odbiór z hoteli w Hurghadzie; dla innych stref hotelowych obowiązuje dopłata za transfer."
+      },
+      {
+        "question": "Ile kosztuje dziecko?",
+        "answer": "Dziecko w wieku 5-11 lat: 15 USD. Dzieci poniżej 5 lat jadą bezpłatnie. Dorosły: 30 USD od osoby."
+      },
+      {
         "question": "Ile trwa wycieczka na Orange Bay?",
-        "answer": "Wycieczka trwa około 7-8 godzin, razem z transferem z hotelu i z powrotem."
+        "answer": "Cała wycieczka trwa około 7-8 godzin, razem z transferem z hotelu i z powrotem."
       },
       {
-        "question": "Co jest w cenie?",
-        "answer": "Transfer z/do hotelu, rejs łodzią, sprzęt do snorkelingu, lunch na łodzi oraz ciepłe i zimne napoje."
+        "question": "Ile czasu spędza się na wyspie Orange Bay?",
+        "answer": "Na samej wyspie masz zwykle około 1,5-2 godzin na kąpiel, plażowanie i zdjęcia. Pozostały czas zajmują rejs, snorkeling i transfery."
       },
       {
-        "question": "Czy podczas rejsu jest snorkeling?",
-        "answer": "Tak, przewidziane są jeden lub dwa postoje na snorkeling na rafie, a sprzęt zapewniamy."
+        "question": "Czy lunch jest w cenie?",
+        "answer": "Tak. Lunch serwowany na pokładzie łodzi jest wliczony w cenę wycieczki."
       },
       {
-        "question": "Czy są dostępne sporty wodne?",
-        "answer": "Przy dobrej pogodzie dostępne są sporty wodne, takie jak banan czy kanapa - są one dodatkowo płatne."
+        "question": "Czy napoje są w cenie?",
+        "answer": "Tak, ciepłe i zimne napoje na statku są w cenie. Dodatkowe napoje kupowane na wyspie płatne są osobno."
+      },
+      {
+        "question": "Czy sprzęt do snorkelingu jest w cenie?",
+        "answer": "Tak, maskę i fajkę zapewniamy na miejscu - sprzęt do snorkelingu jest wliczony w cenę."
+      },
+      {
+        "question": "Ile jest postojów na snorkeling?",
+        "answer": "Podczas rejsu przewidziany jest jeden lub dwa postoje na snorkeling nad rafą (zależnie od warunków na morzu)."
+      },
+      {
+        "question": "O której jest odbiór z hotelu?",
+        "answer": "Odbiór wypada zwykle między 07:30 a 08:30, w zależności od strefy hotelu. Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem."
+      },
+      {
+        "question": "Czy transfer z hotelu jest w cenie?",
+        "answer": "Tak. Transfer z/do hotelu w Hurghadzie jest w cenie. Dla hoteli w innych strefach obowiązuje dopłata za transfer."
+      },
+      {
+        "question": "Czy są dopłaty z Makadi Bay, Sahl Hasheesh, El Gouna lub Soma Bay?",
+        "answer": "Tak. El Gouna oraz Safaga, Soma Bay i Abu Soma: dopłata 10 USD od osoby. Makadi Bay i Sahl Hasheesh: 5 USD od osoby. Odbiór z Hurghady jest w cenie."
+      },
+      {
+        "question": "Czy Orange Bay jest odpowiednia dla dzieci?",
+        "answer": "Tak. Płytka, spokojna woda przy plaży i dziecięca cena sprawiają, że to dobra propozycja dla rodzin. Dzieci poniżej 5 lat jadą bezpłatnie."
+      },
+      {
+        "question": "Czy dostępne są sporty wodne?",
+        "answer": "Przy dobrej pogodzie na wyspie dostępne są sporty wodne, takie jak banan czy kanapa. Nie są objęte ceną - płaci się za nie dodatkowo na miejscu."
+      },
+      {
+        "question": "Czy trzeba płacić z góry?",
+        "answer": "Nie pobieramy płatności online. Rezerwację i cenę potwierdzamy na WhatsApp, a za wycieczkę płacisz dopiero na miejscu."
       }
     ],
-    "seo": {
-      "title": "Orange Bay z Hurghady - rejs, plaża i snorkeling",
-      "description": "Wycieczka na Orange Bay z Hurghady: rejs łodzią, snorkeling, plaża, lunch i napoje na łodzi oraz transfer z hotelu. Ok. 7-8 godzin, 30 USD za osobę.",
-      "canonicalPath": "/wycieczki-z-hurghady/orange-bay/",
-      "ogImage": "/media/og/hurghada.jpg"
+    "attractions": [
+      {
+        "title": "Wyspa i plaża Orange Bay",
+        "body": "Orange Bay to piaszczysta wyspa z długimi drewnianymi pomostami wychodzącymi w płytką, turkusową wodę. Na miejscu jest czas na kąpiel, plażowanie i spacer, a płytkie, spokojne wejście do morza sprawdza się także dla dzieci."
+      },
+      {
+        "title": "Snorkeling nad rafą Morza Czerwonego",
+        "body": "Po drodze łódź zatrzymuje się na jednym lub dwóch postojach na snorkeling nad rafą. To okazja, żeby zobaczyć kolorowe ryby i koralowce Morza Czerwonego. Maskę i fajkę zapewniamy na miejscu."
+      },
+      {
+        "title": "Całodniowy rejs łodzią",
+        "body": "Dojazd na wyspę i powrót to rejs po Morzu Czerwonym w rejonie wysp Giftun. Na pokładzie serwowany jest lunch oraz ciepłe i zimne napoje, więc większość dnia spędzasz aktywnie na wodzie i na plaży."
+      }
+    ],
+    "planningNote": "Cała wycieczka trwa około 7-8 godzin - od porannego odbioru z hotelu (zwykle 07:30-08:30) do powrotu po południu. Rejs w stronę wyspy zaczyna się zazwyczaj około 09:00-10:00, a powrót do portu następuje około 16:00-17:00. Podane godziny są orientacyjne i mogą się różnić zależnie od hotelu, pogody i warunków na morzu - ostateczną godzinę odbioru potwierdzamy na WhatsApp.",
+    "compare": {
+      "note": "Rozważasz inną wyspę w okolicy Hurghady?",
+      "linkLabel": "Zobacz Wyspę Paradise z Hurghady",
+      "href": "/wycieczki-z-hurghady/wyspa-paradise/"
     },
-    "updatedAt": "2026-08-09"
+    "seo": {
+      "title": "Orange Bay z Hurghady - rejs, plaża i snorkeling od 30 USD",
+      "description": "Całodniowy rejs na wyspę Orange Bay z Hurghady: plaża, 1-2 postoje na snorkeling, lunch i napoje na łodzi oraz transfer z hotelu. Ok. 7-8 h. Dorosły 30 USD, dziecko 15 USD. Bez przedpłaty - rezerwacja na WhatsApp.",
+      "canonicalPath": "/wycieczki-z-hurghady/orange-bay/",
+      "ogImage": "/media/og/orange-bay-bcf1ffc4.jpg",
+      "ogImageAlt": "Huśtawka nad turkusową wodą przy wyspie Orange Bay koło Hurghady",
+      "type": "website"
+    },
+    "updatedAt": "2026-08-29"
   },
   {
     "slug": "wyspa-paradise",

@@ -23,6 +23,7 @@ test.describe("no broken internal links", () => {
     "/",
     "/wycieczki/",
     "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/",
+    "/wycieczki-z-hurghady/orange-bay/",
     "/wycieczki/kair-i-piramidy/",
   ];
 
