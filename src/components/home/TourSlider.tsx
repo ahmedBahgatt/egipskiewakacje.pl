@@ -62,7 +62,17 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
   const lastTsRef = useRef(0);
   const resumeTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  const drag = useRef({ active: false, startX: 0, startY: 0, startPos: 0, dx: 0, moved: 0, axis: 0 });
+  const drag = useRef({
+    active: false,
+    startX: 0,
+    startY: 0,
+    startPos: 0,
+    dx: 0,
+    moved: 0,
+    axis: 0,
+    pointerId: -1,
+    captured: false,
+  });
 
   const applyTransform = useCallback((withTransition: boolean) => {
     const el = trackRef.current;
@@ -206,6 +216,11 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
     if (!readyRef.current) return;
     stopDrift();
     clearTimeout(resumeTimer.current);
+    // NB: do NOT setPointerCapture here. Capturing on pointerdown makes Chromium
+    // retarget the trailing `click` to the capturing viewport (the capture target
+    // becomes the nearest common ancestor of down/up), so a plain desktop click
+    // never reached a card's <a> and the tour would not open. Capture is deferred
+    // to onPointerMove, only once a real horizontal drag begins.
     drag.current = {
       active: true,
       startX: e.clientX,
@@ -214,8 +229,9 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
       dx: 0,
       moved: 0,
       axis: 0,
+      pointerId: e.pointerId,
+      captured: false,
     };
-    viewportRef.current?.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
     const d = drag.current;
@@ -225,6 +241,17 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
     if (d.axis === 0) {
       if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
       d.axis = Math.abs(dx) >= Math.abs(dy) ? 1 : -1; // horizontal vs vertical
+      if (d.axis === 1 && !d.captured) {
+        // A real horizontal drag has started: capture now so the gesture keeps
+        // tracking even if the pointer leaves the viewport, and so the trailing
+        // click is suppressed (below) rather than navigating.
+        try {
+          viewportRef.current?.setPointerCapture(d.pointerId);
+          d.captured = true;
+        } catch {
+          /* pointer may have already ended */
+        }
+      }
     }
     if (d.axis !== 1) return; // let the page scroll vertically
     d.dx = dx;
@@ -236,10 +263,13 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
     const d = drag.current;
     if (!d.active) return;
     d.active = false;
-    try {
-      viewportRef.current?.releasePointerCapture(e.pointerId);
-    } catch {
-      /* already released */
+    if (d.captured) {
+      try {
+        viewportRef.current?.releasePointerCapture(e.pointerId);
+      } catch {
+        /* already released */
+      }
+      d.captured = false;
     }
     if (d.axis !== 1) {
       resumeSoon();
@@ -266,7 +296,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
   if (n === 0) return null;
 
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} data-testid="tour-slider">
       <div
         ref={viewportRef}
         className={styles.viewport}
@@ -292,6 +322,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
               <Link
                 href={`${t.route}/`}
                 className={styles.card}
+                data-slide-card={real ? "real" : "clone"}
                 draggable={false}
                 tabIndex={real ? undefined : -1}
                 onClick={() =>
@@ -316,7 +347,7 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
                   </span>
                   <span className={styles.title}>{t.title}</span>
                   <span className={styles.foot}>
-                    <span className={styles.price}>
+                    <span className={styles.price} data-testid="tour-price">
                       {priceLabel(t.price)} <span className={styles.unit}>{priceUnit(t.price)}</span>
                     </span>
                     <span className={styles.cta}>

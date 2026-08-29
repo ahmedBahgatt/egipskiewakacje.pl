@@ -7,12 +7,16 @@ export function formatMoney(amount: number, currency = "USD"): string {
 }
 
 /**
- * Headline price label for cards/summaries. Uses "od" (from) only when the final
- * cost can vary (transfers/extras/variants) - never a fake "from" on a fixed price.
+ * Headline price label for tour cards / listings. States the stored base
+ * per-person price plainly (e.g. "60 USD"). The vague "od" (from) prefix was
+ * deliberately removed from tour cards: the card already shows the unit ("/ os.")
+ * and the full adult/child/free breakdown lives on the tour page, so a bare number
+ * reads cleaner and is not misleading. This is presentation only - the pricing
+ * data (including `price.from`, still consumed by schema and the hub aggregate
+ * "od X" fact in lib/facts.ts) is unchanged.
  */
-export function priceLabel(price: Pick<PriceTier, "amount" | "currency" | "from">): string {
-  const base = formatMoney(price.amount, price.currency);
-  return price.from ? `od ${base}` : base;
+export function priceLabel(price: Pick<PriceTier, "amount" | "currency">): string {
+  return formatMoney(price.amount, price.currency);
 }
 
 /** Unit suffix for the headline price, e.g. "/ os.", "/ łódź", "/ kurs". */

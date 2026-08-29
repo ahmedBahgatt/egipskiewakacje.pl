@@ -98,7 +98,7 @@ export function TourCard({
         </p>
 
         <div className={styles.priceRow}>
-          <div>
+          <div data-testid="tour-price">
             <span className={styles.price}>{priceLabel(tour.price)}</span>
             <span className={styles.priceUnit}> {priceUnit(tour.price)}</span>
           </div>

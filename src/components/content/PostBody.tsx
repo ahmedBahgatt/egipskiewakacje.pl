@@ -113,7 +113,7 @@ export function PostBody({ blocks, tours = [] }: { blocks: PostBlock[]; tours?: 
               <Link key={i} href={`${tour.route}/`} className={styles.relatedTour}>
                 <span className={styles.relatedKicker}>Polecana wycieczka</span>
                 <span className={styles.relatedTitle}>{tour.title}</span>
-                <span className={styles.relatedMeta}>
+                <span className={styles.relatedMeta} data-testid="tour-price">
                   {priceLabel(tour.price)} {priceUnit(tour.price)}
                   <IconArrowRight />
                 </span>
