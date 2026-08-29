@@ -25,10 +25,17 @@ src/content/sanity/        GROQ queries + read-only fetch (no token)
 public/media/              the image files the seed uploads into Sanity
 ```
 
-The frontend never writes to Sanity and never holds a token. In `sanity` mode it
-does anonymous reads against the public CDN at build time. If a query returns
-nothing, `src/content/index.ts` falls back to the local content, so a
-half-seeded dataset still produces a complete site.
+The frontend never writes to Sanity. This `production` dataset is **private**
+(the project has private-dataset access control), so a `sanity`-mode build reads
+content with a least-privilege **Viewer** read token, supplied server-side as
+`SANITY_API_READ_TOKEN` (never `NEXT_PUBLIC_`, never in the browser bundle). The
+build runs in Node, so the token stays on the build machine / in GitHub Actions
+secrets. Token reads hit the live `api.sanity.io` (freshest); if the dataset were
+ever made public, the adapter falls back to anonymous CDN reads automatically.
+
+`sanity` mode is STRICT: a network error or an incomplete required document
+throws and fails `next build` rather than silently shipping stale local content.
+Only genuinely-empty collections (site FAQs, reviews) may be empty.
 
 `studio/` is invisible to the frontend build: it has its own `package.json`, and
 the root `tsconfig.json` and `eslint.config.mjs` both exclude it. Do not add it
@@ -181,8 +188,11 @@ CORS does not apply. These entries matter for anything querying the dataset from
 a *browser* - a page you open locally, a future client-side query, a preview.
 Adding them now costs nothing and removes a confusing class of failure later.
 
-Also check **Dataset visibility** on the same page: `production` must be
-**public** for the anonymous build-time reads to work.
+**Dataset visibility:** this `production` dataset is **private**, so build-time
+reads use a Viewer token (see step 7) rather than anonymous access. You do NOT
+need to make it public - the read token is the supported, least-privilege path.
+(If you ever do switch it to public, the adapter falls back to anonymous CDN
+reads with no code change.)
 
 ---
 

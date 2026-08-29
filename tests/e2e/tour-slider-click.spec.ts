@@ -25,6 +25,21 @@ async function firstRealCard(page: Page): Promise<Locator> {
   const card = page.locator('[data-testid="tour-slider"] a[data-slide-card="real"]').first();
   await card.scrollIntoViewIfNeeded();
   await expect(card).toBeVisible();
+  // Wait for the card's hero image to finish decoding before a synthetic drag.
+  // CDN-hosted images (Sanity mode) load slower than same-origin local files, and
+  // a CDP mouse-move issued mid-decode stalls the synthetic input pipeline (real
+  // users use the browser's own input path and are unaffected). This makes the
+  // drag/click assertions deterministic regardless of image source.
+  await card
+    .locator("img")
+    .first()
+    .evaluate((img: HTMLImageElement) =>
+      img.complete ? undefined : new Promise<void>((res) => {
+        img.addEventListener("load", () => res(), { once: true });
+        img.addEventListener("error", () => res(), { once: true });
+      }),
+    )
+    .catch(() => {});
   return card;
 }
 

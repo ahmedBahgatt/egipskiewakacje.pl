@@ -31,13 +31,24 @@ import { createReadStream, existsSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { seedDocuments } from "./data.mjs";
+import { seedDocuments as staticSeedDocuments } from "./data.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const STUDIO_ROOT = resolve(HERE, "..");
 /** Image sources live in the frontend's public folder - the repository root. */
 const MEDIA_ROOT = resolve(STUDIO_ROOT, "..", "public", "media");
 const API_VERSION = "2024-01-01";
+
+/**
+ * Prefer the programmatically generated payload (all 78 tours, produced from the
+ * live local content by seed/generate.ts). Fall back to the hand-written
+ * data.mjs only if it has not been generated yet.
+ */
+const GENERATED = resolve(HERE, "data.generated.json");
+const usingGenerated = existsSync(GENERATED);
+const seedDocuments = usingGenerated
+  ? JSON.parse(readFileSync(GENERATED, "utf8"))
+  : staticSeedDocuments;
 
 // --- tiny .env loader (no dependency, never overrides real env vars) --------
 
@@ -155,6 +166,7 @@ const byType = seedDocuments.reduce((acc, doc) => {
 
 function printPlan() {
   console.log(`Target      : projectId=${projectId} dataset=${dataset}`);
+  console.log(`Source      : ${usingGenerated ? "data.generated.json (generated from local content)" : "data.mjs (static fallback)"}`);
   console.log(`Documents   : ${seedDocuments.length}`);
   for (const [type, count] of Object.entries(byType).sort()) {
     console.log(`  ${type.padEnd(14)} ${count}`);

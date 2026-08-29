@@ -1,15 +1,17 @@
 /**
  * Content adapter - the ONLY module pages import to read content.
  *
- * Two modes, selected by NEXT_PUBLIC_CONTENT_SOURCE:
+ * Two modes, selected by CONTENT_SOURCE (a BUILD-only variable - source selection
+ * is a server/build concern, so it is deliberately NOT `NEXT_PUBLIC_`):
  *   - "local"  (default): typed source files in ./local. No network, no secrets.
- *   - "sanity"         : GROQ over the public read-only Sanity CDN, mapped and
- *                        validated at build time (see ./sanity/adapter).
+ *   - "sanity"         : GROQ over Sanity (read token, build-time), mapped and
+ *                        validated (see ./sanity/adapter).
  *
  * Sanity mode is authoritative: it never silently falls back to local content, so
  * a broken query or an incomplete document fails the build instead of shipping
  * stale local prices. Flip production by setting the repo variable
- * NEXT_PUBLIC_CONTENT_SOURCE=sanity once the dataset is seeded (see SANITY_SETUP.md).
+ * CONTENT_SOURCE=sanity once the dataset is seeded (see SANITY_SETUP.md). The old
+ * NEXT_PUBLIC_CONTENT_SOURCE name is still honoured as a fallback.
  */
 import type { ContentApi } from "@/content/api";
 
@@ -25,7 +27,11 @@ import { siteSettings, siteFaqs, reviews as localReviews } from "@/content/local
 import { testimonials as localTestimonials } from "@/content/local/testimonials";
 import { sanityApi } from "@/content/sanity/adapter";
 
-const MODE = (process.env.NEXT_PUBLIC_CONTENT_SOURCE ?? "local").toLowerCase();
+const MODE = (
+  process.env.CONTENT_SOURCE ??
+  process.env.NEXT_PUBLIC_CONTENT_SOURCE ??
+  "local"
+).toLowerCase();
 
 const localApi: ContentApi = {
   async getSiteSettings() {

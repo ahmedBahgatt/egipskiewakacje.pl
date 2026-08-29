@@ -383,7 +383,7 @@ export const blockRelatedTour = defineType({
     }),
   ],
   preview: {
-    select: { title: "tour.title", price: "tour.adultPrice" },
+    select: { title: "tour.title", price: "tour.priceAmount" },
     prepare: ({ title, price }) => ({
       title: title || "(wybierz wycieczkę)",
       subtitle: typeof price === "number" ? `Polecana wycieczka - od ${price} USD` : "Polecana wycieczka",

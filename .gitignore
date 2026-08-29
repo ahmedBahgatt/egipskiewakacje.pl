@@ -4,6 +4,11 @@
 /.pnp
 .pnp.*
 
+# sanity studio build + generated seed payload (regenerate with `npm run generate`)
+/studio/dist
+/studio/.sanity
+/studio/seed/data.generated.json
+
 # next.js
 /.next/
 /out/

@@ -11,8 +11,10 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "seed": "node ./seed/seed.mjs",
-    "seed:dry": "node ./seed/seed.mjs --dry-run"
+    "generate": "tsx --tsconfig ./seed/tsconfig.json ./seed/generate.ts",
+    "seed:dry": "npm run generate && node ./seed/seed.mjs --dry-run",
+    "seed": "npm run generate && node ./seed/seed.mjs",
+    "parity": "tsx --tsconfig ./seed/tsconfig.json ./seed/parity.ts"
   },
   "dependencies": {
     "@sanity/client": "^6.22.0",
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.0"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "//": "Used ONLY by tsx when running generate.ts. Resolves the frontend '@/' alias to ../../src so the generator can import the live local content.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "baseUrl": "../../src",
+    "paths": { "@/*": ["*"] },
+    "strict": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit": true
+  },
+  "include": ["generate.ts"]
+}

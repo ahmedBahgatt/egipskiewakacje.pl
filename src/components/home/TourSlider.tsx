@@ -335,7 +335,11 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
                 }
               >
                 <span className={styles.media}>
-                  <OptimizedImage image={t.heroImage} className={styles.img} />
+                  <OptimizedImage
+                    image={t.heroImage}
+                    className={styles.img}
+                    sizes="(max-width: 640px) 80vw, (max-width: 1100px) 45vw, 360px"
+                  />
                   <span className={styles.badge}>{t.availabilityLabel}</span>
                   <span className={styles.dur}>
                     <IconClock /> {t.durationLabel}

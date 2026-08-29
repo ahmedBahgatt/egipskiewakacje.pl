@@ -28,10 +28,16 @@ jobs:
     # production to the CMS is a one-variable change (Settings -> Variables), not a
     # code edit. Defaults keep the site building in local mode.
     env:
-      NEXT_PUBLIC_CONTENT_SOURCE: ${{ vars.NEXT_PUBLIC_CONTENT_SOURCE || 'local' }}
+      # Build-only source switch (NOT NEXT_PUBLIC_). Set repo Variable CONTENT_SOURCE=sanity
+      # to cut over; the old NEXT_PUBLIC_CONTENT_SOURCE var is still honoured as a fallback.
+      CONTENT_SOURCE: ${{ vars.CONTENT_SOURCE || vars.NEXT_PUBLIC_CONTENT_SOURCE || 'local' }}
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID || 'ej04dib0' }}
       NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET || 'production' }}
       NEXT_PUBLIC_SANITY_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01' }}
+      # Server-only read token (NOT NEXT_PUBLIC_): the production dataset is private,
+      # so a `sanity`-mode build reads content with a least-privilege Viewer token.
+      # Required only when NEXT_PUBLIC_CONTENT_SOURCE=sanity; harmless (unused) in local mode.
+      SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
       NEXT_PUBLIC_SITE_URL: https://egipskiewakacje.pl
     steps:
       - name: Checkout

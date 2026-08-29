@@ -138,6 +138,30 @@ export const tour = defineType({
       description: "Krótkie hasła pokazywane jako znaczniki na karcie, np. „Piramidy w Gizie”.",
       validation: (rule) => rule.min(1).max(8),
     }),
+    defineField({
+      name: "attractions",
+      title: "Co zobaczysz (sekcje encji, opcjonalnie)",
+      type: "array",
+      group: "content",
+      of: [defineArrayMember({ type: "tourAttraction" })],
+      description:
+        "Opcjonalne, bogate w treść sekcje H3 (np. Giza, Sfinks, Muzeum Egipskie). Renderowane jako czysty HTML pod kątem AEO/GEO.",
+    }),
+    defineField({
+      name: "planningNote",
+      title: "Ile trwa i jak daleko (opcjonalnie)",
+      type: "text",
+      group: "content",
+      rows: 3,
+      description: "Krótki, faktyczny akapit o czasie trwania i odległości, renderowany jako osobna sekcja.",
+    }),
+    defineField({
+      name: "compare",
+      title: "Porównanie / odnośnik wewnętrzny (opcjonalnie)",
+      type: "tourCompare",
+      group: "content",
+      description: "Opcjonalny callout kierujący do powiązanej trasy (np. autokar vs samolot).",
+    }),
 
     // --- Media ---------------------------------------------------------------
     imageField({
@@ -168,72 +192,72 @@ export const tour = defineType({
     }),
 
     // --- Ceny ----------------------------------------------------------------
+    // Structured price model (mirrors PriceTier in src/content/types.ts). Not
+    // every tour is per-person adult/child: per-boat, per-vehicle (quad/buggy),
+    // per-course (diving) and per-package tours list their own `priceOptions`.
+    // queries.ts flattens priceMode/priceAmount/priceUnit/currency/priceFrom/
+    // priceLastVerifiedAt/priceOptions/priceChildAgeMin/priceInfantFree/priceNote
+    // -> Tour.price.
     defineField({
-      name: "currency",
-      title: "Waluta",
+      name: "priceMode",
+      title: "Sposób wyceny",
       type: "string",
       group: "pricing",
-      options: { list: [{ title: "USD", value: "USD" }], layout: "radio" },
+      description: "Steruje jednostką pokazywaną przy cenie nagłówkowej.",
+      options: {
+        list: [
+          { title: "Za osobę", value: "perPerson" },
+          { title: "Za łódź", value: "perBoat" },
+          { title: "Za pojazd (quad/buggy)", value: "perVehicle" },
+          { title: "Za kurs (nurkowanie)", value: "perCourse" },
+          { title: "Za pakiet", value: "perPackage" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "perPerson",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "priceAmount",
+      title: "Cena nagłówkowa",
+      type: "number",
+      group: "pricing",
+      description:
+        "Kwota pokazywana na kartach i w karcie rezerwacji. Zwykle równa pierwszej pozycji cennika.",
+      validation: (rule) => rule.required().min(0).precision(2),
+    }),
+    defineField({
+      name: "priceUnit",
+      title: "Jednostka ceny nagłówkowej",
+      type: "string",
+      group: "pricing",
+      description: 'Etykieta obok ceny: "os.", "łódź", "buggy", "quad", "kurs", "pakiet".',
+      initialValue: "os.",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "currency",
+      title: "Waluta nagłówkowa",
+      type: "string",
+      group: "pricing",
+      options: {
+        list: [
+          { title: "USD", value: "USD" },
+          { title: "EUR", value: "EUR" },
+        ],
+        layout: "radio",
+      },
       initialValue: "USD",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "adultPrice",
-      title: "Cena - dorosły",
-      type: "number",
-      group: "pricing",
-      validation: (rule) => rule.required().min(0).precision(2),
-    }),
-    defineField({
-      name: "childPrice",
-      title: "Cena - dziecko",
-      type: "number",
-      group: "pricing",
-      description: "Cena dla dzieci w podanym niżej przedziale wiekowym.",
-      validation: (rule) =>
-        rule
-          .required()
-          .min(0)
-          .precision(2)
-          .custom((value, ctx) => {
-            const adult = (ctx.document as { adultPrice?: number } | undefined)?.adultPrice;
-            if (typeof value !== "number" || typeof adult !== "number") return true;
-            return value <= adult ? true : "Cena dla dziecka nie może być wyższa niż dla dorosłego";
-          }),
-    }),
-    defineField({
-      name: "infantFree",
-      title: "Najmłodsze dzieci bezpłatnie",
+      name: "priceFrom",
+      title: 'Cena zmienna (pokaż "Cena od")',
       type: "boolean",
       group: "pricing",
-      description: "Dzieci poniżej dolnej granicy wieku jadą bezpłatnie.",
+      description:
+        "Włącz, gdy końcowy koszt zależy od strefy transferu, wariantu lub opcji dodatkowych.",
       initialValue: true,
-    }),
-    defineField({
-      name: "childAgeMinimum",
-      title: "Wiek dziecka - od",
-      type: "number",
-      group: "pricing",
-      initialValue: 5,
-      validation: (rule) => rule.required().integer().min(0).max(18),
-    }),
-    defineField({
-      name: "childAgeMaximum",
-      title: "Wiek dziecka - do",
-      type: "number",
-      group: "pricing",
-      initialValue: 11,
-      validation: (rule) =>
-        rule
-          .required()
-          .integer()
-          .min(0)
-          .max(18)
-          .custom((value, ctx) => {
-            const min = (ctx.document as { childAgeMinimum?: number } | undefined)?.childAgeMinimum;
-            if (typeof value !== "number" || typeof min !== "number") return true;
-            return value >= min ? true : "Górna granica wieku musi być większa niż dolna";
-          }),
     }),
     defineField({
       name: "priceLastVerifiedAt",
@@ -245,12 +269,36 @@ export const tour = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "priceVariable",
-      title: 'Cena zmienna (pokaż "Cena od")',
+      name: "priceOptions",
+      title: "Cennik szczegółowy",
+      type: "array",
+      group: "pricing",
+      of: [defineArrayMember({ type: "priceOption" })],
+      description:
+        "Pełny rozkład ceny (min. 1 pozycja). Wycieczki od osoby wpisują dorosły/dziecko; wycieczki od łodzi/pojazdu/kursu wpisują swoje warianty.",
+      validation: (rule) => rule.required().min(1),
+    }),
+    defineField({
+      name: "priceChildAgeMin",
+      title: "Wiek dziecka - od (opcjonalnie)",
+      type: "number",
+      group: "pricing",
+      description: "Poniżej tej granicy dziecko jest bezpłatne (dotyczy wyceny od osoby).",
+      validation: (rule) => rule.min(0).max(18),
+    }),
+    defineField({
+      name: "priceInfantFree",
+      title: "Najmłodsze dzieci bezpłatnie",
       type: "boolean",
       group: "pricing",
-      description: "Włącz, gdy końcowy koszt zależy od strefy transferu lub opcji dodatkowych.",
       initialValue: true,
+    }),
+    defineField({
+      name: "priceNote",
+      title: "Uwaga pod cennikiem (opcjonalnie)",
+      type: "string",
+      group: "pricing",
+      validation: (rule) => rule.max(200),
     }),
     defineField({
       name: "transferSupplements",
@@ -463,6 +511,21 @@ export const tour = defineType({
         "Obraz pokazywany przy udostępnianiu linku (Facebook, WhatsApp). Najlepiej kadr poziomy 1200x630. Puste = obraz główny wycieczki.",
     }),
     defineField({
+      name: "ogType",
+      title: "Typ Open Graph (zaawansowane)",
+      type: "string",
+      group: "seo",
+      description:
+        'Zwykle puste. Strony wycieczek domyślnie używają "article"; strony komercyjne mogą ustawić "website".',
+      options: {
+        list: [
+          { title: "Artykuł (domyślnie)", value: "article" },
+          { title: "Strona", value: "website" },
+        ],
+        layout: "radio",
+      },
+    }),
+    defineField({
       name: "published",
       title: "Opublikowana",
       type: "boolean",
@@ -485,7 +548,7 @@ export const tour = defineType({
       name: "featuredThenPrice",
       by: [
         { field: "featured", direction: "desc" },
-        { field: "adultPrice", direction: "asc" },
+        { field: "priceAmount", direction: "asc" },
       ],
     },
   ],
@@ -493,14 +556,20 @@ export const tour = defineType({
     select: {
       title: "title",
       departure: "departure",
-      adultPrice: "adultPrice",
+      priceAmount: "priceAmount",
+      priceFrom: "priceFrom",
       currency: "currency",
       published: "published",
       media: "heroImage",
     },
-    prepare: ({ title, departure, adultPrice, currency, published, media }) => ({
+    prepare: ({ title, departure, priceAmount, priceFrom, currency, published, media }) => ({
       title: published === false ? `${title} (ukryta)` : title,
-      subtitle: [departure, adultPrice != null ? `od ${adultPrice} ${currency ?? "USD"}` : null]
+      subtitle: [
+        departure,
+        priceAmount != null
+          ? `${priceFrom ? "od " : ""}${priceAmount} ${currency ?? "USD"}`
+          : null,
+      ]
         .filter(Boolean)
         .join(" - "),
       media,

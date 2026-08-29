@@ -41,6 +41,15 @@ export const destination = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "heroTitle",
+      title: "Nagłówek H1 (opcjonalnie)",
+      type: "string",
+      group: "content",
+      description:
+        'Nadpisuje domyślne "Wycieczki z {dopełniacz}". Ustaw tylko, gdy wygrywa mocniejsza fraza, np. "Wycieczki fakultatywne z Marsa Alam".',
+      validation: (rule) => rule.max(90),
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",

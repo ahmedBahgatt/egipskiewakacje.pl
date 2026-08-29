@@ -31,6 +31,8 @@ interface RawSeo {
   description?: string;
   canonicalPath?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  type?: "website" | "article";
 }
 interface RawBlock {
   _type?: string;
@@ -57,6 +59,8 @@ function mapSeo(raw: RawSeo | undefined): SeoMeta {
     description: raw?.description ?? "",
     canonicalPath: raw?.canonicalPath ?? "/",
     ogImage: raw?.ogImage || undefined,
+    ogImageAlt: raw?.ogImageAlt || undefined,
+    ...(raw?.type ? { type: raw.type } : {}),
   };
 }
 
@@ -150,6 +154,7 @@ interface RawDestination {
   routeBase?: string;
   name?: string;
   nameGenitive?: string;
+  heroTitle?: string;
   shortIntro?: string;
   heroImage?: SanityImage;
   practical?: string[];
@@ -166,6 +171,7 @@ export function mapDestination(raw: RawDestination): Destination | null {
     routeBase: raw.routeBase ?? `/wycieczki-z-${raw.slug}`,
     name: raw.name,
     nameGenitive: raw.nameGenitive,
+    ...(raw.heroTitle ? { heroTitle: raw.heroTitle } : {}),
     shortIntro: raw.shortIntro ?? "",
     heroImage: hero,
     practical: raw.practical ?? [],
@@ -213,6 +219,9 @@ interface RawTour {
   featured?: boolean;
   faqs?: { question?: string; answer?: string }[];
   relatedPostSlug?: string;
+  attractions?: { title?: string; body?: string }[];
+  planningNote?: string;
+  compare?: { note?: string; linkLabel?: string; href?: string };
   seo?: RawSeo;
   updatedAt?: string;
 }
@@ -252,8 +261,11 @@ export function mapTour(raw: RawTour): Tour | null {
               ? [{ label: "Dziecko", amount: p.child, currency: "USD" as const }]
               : []),
           ],
-      childAgeMin: typeof p.childAgeMin === "number" ? p.childAgeMin : 5,
-      infantFree: p.infantFree ?? true,
+      // Mirror local exactly: these optional fields are set only when the tour
+      // actually has them (per-person tours), not defaulted for boat/vehicle tours.
+      ...(typeof p.childAgeMin === "number" ? { childAgeMin: p.childAgeMin } : {}),
+      ...(typeof p.infantFree === "boolean" ? { infantFree: p.infantFree } : {}),
+      ...(p.note ? { note: p.note } : {}),
     },
     availabilityLabel: raw.availabilityLabel ?? "",
     availabilityDays: raw.availabilityDays ?? [],
@@ -285,9 +297,28 @@ export function mapTour(raw: RawTour): Tour | null {
     featured: !!raw.featured,
     faqs: mapFaqs(raw.faqs),
     relatedPostSlug: raw.relatedPostSlug || undefined,
+    ...mapTourSections(raw),
     seo: mapSeo(raw.seo),
     updatedAt: String(raw.updatedAt ?? ""),
   };
+}
+
+/** Opt-in entity-rich sections; omitted (not empty) when absent, to match local. */
+function mapTourSections(raw: RawTour): Partial<Pick<Tour, "attractions" | "planningNote" | "compare">> {
+  const out: Partial<Pick<Tour, "attractions" | "planningNote" | "compare">> = {};
+  const attractions = (raw.attractions ?? [])
+    .filter((a) => a.title && a.body)
+    .map((a) => ({ title: a.title as string, body: a.body as string }));
+  if (attractions.length) out.attractions = attractions;
+  if (raw.planningNote) out.planningNote = raw.planningNote;
+  if (raw.compare?.note && raw.compare.linkLabel && raw.compare.href) {
+    out.compare = {
+      note: raw.compare.note,
+      linkLabel: raw.compare.linkLabel,
+      href: raw.compare.href,
+    };
+  }
+  return out;
 }
 
 interface RawPost {

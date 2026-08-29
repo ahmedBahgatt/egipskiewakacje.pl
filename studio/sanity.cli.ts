@@ -10,4 +10,7 @@ export default defineCliConfig({
     projectId: process.env.SANITY_STUDIO_PROJECT_ID || "ej04dib0",
     dataset: process.env.SANITY_STUDIO_DATASET || "production",
   },
+  // Hosted Studio hostname -> https://egipskiewakacje.sanity.studio
+  // (admin-only editing UI; static/robots.txt keeps it out of search indexes).
+  studioHost: "egipskiewakacje",
 });

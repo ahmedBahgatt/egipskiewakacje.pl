@@ -15,11 +15,15 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [["list"], ["html", { open: "never" }]] : "list",
-  timeout: 30_000,
+  // Headroom for pages that pull images from the Sanity CDN (sanity mode) rather
+  // than same-origin files; a passing run is unaffected. CI runs workers:1 so
+  // there is no parallel-fetch contention there.
+  timeout: 45_000,
   use: {
     baseURL,
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    navigationTimeout: 40_000,
   },
   projects: [
     { name: "desktop-chromium", use: { ...devices["Desktop Chrome"] } },

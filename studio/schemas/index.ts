@@ -5,6 +5,9 @@ import { faqItem } from "./objects/faqItem";
 import { itineraryStep } from "./objects/itineraryStep";
 import { transferSupplement } from "./objects/transferSupplement";
 import { labelledNote } from "./objects/labelledNote";
+import { priceOption } from "./objects/priceOption";
+import { tourAttraction } from "./objects/tourAttraction";
+import { tourCompare } from "./objects/tourCompare";
 import { postBlockTypes } from "./objects/postBlocks";
 
 // Documents
@@ -40,6 +43,9 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   itineraryStep,
   transferSupplement,
   labelledNote,
+  priceOption,
+  tourAttraction,
+  tourCompare,
   ...postBlockTypes,
   // documents
   siteSettings,

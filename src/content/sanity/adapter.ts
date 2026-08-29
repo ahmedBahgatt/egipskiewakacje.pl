@@ -24,13 +24,37 @@ const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "ej04dib0";
 const DATASET = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 const API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2024-01-01";
 
+/**
+ * Optional server-only read token. This dataset requires authentication to read
+ * content (the project has private-dataset access control), so production builds
+ * pass a least-privilege Viewer token here. It is read from a NON-public env var
+ * (never `NEXT_PUBLIC_`), so it stays on the build machine and is never inlined
+ * into the browser bundle. When absent, the query falls back to an anonymous CDN
+ * read (works only if the dataset is genuinely public).
+ */
+const READ_TOKEN = process.env.SANITY_API_READ_TOKEN || process.env.SANITY_READ_TOKEN;
+// Token reads hit the live API for the freshest published content (§38: never let
+// stale CDN content become the static build). Anonymous reads use the cached CDN.
+const HOST = READ_TOKEN ? "api" : "apicdn";
+
 async function sanityQuery<T>(query: string): Promise<T> {
+  // `perspective=published` guarantees drafts never reach the static build, even
+  // when a token could otherwise see them (§57/§58).
   const url =
-    `https://${PROJECT_ID}.apicdn.sanity.io/v${API_VERSION}/data/query/${DATASET}` +
-    `?query=${encodeURIComponent(query)}`;
+    `https://${PROJECT_ID}.${HOST}.sanity.io/v${API_VERSION}/data/query/${DATASET}` +
+    `?perspective=published&query=${encodeURIComponent(query)}`;
   let res: Response;
   try {
-    res = await fetch(url, { cache: "force-cache" });
+    // force-cache is required for `output: export` (a no-store/revalidate:0 fetch
+    // would mark the route dynamic and fail the static export). Freshness instead
+    // comes from the transport: a tokened read hits the LIVE api.sanity.io (never
+    // the cached CDN), and Next's build fetch-cache is per-build - a clean CI
+    // checkout has no prior cache, so every production build reads current content
+    // (§38). Locally, `rm -rf .next/cache` before re-verifying a fresh publish.
+    res = await fetch(url, {
+      cache: "force-cache",
+      ...(READ_TOKEN ? { headers: { Authorization: `Bearer ${READ_TOKEN}` } } : {}),
+    });
   } catch (err) {
     throw new Error(
       `[content:sanity] Network error querying Sanity (${PROJECT_ID}/${DATASET}): ${String(err)}`,
@@ -39,7 +63,8 @@ async function sanityQuery<T>(query: string): Promise<T> {
   if (!res.ok) {
     throw new Error(
       `[content:sanity] Sanity query failed with HTTP ${res.status}. ` +
-        `Check NEXT_PUBLIC_SANITY_PROJECT_ID / DATASET and that the dataset is public.`,
+        `Check NEXT_PUBLIC_SANITY_PROJECT_ID / DATASET. This dataset needs a read token: ` +
+        `set SANITY_API_READ_TOKEN (server-only) to a Viewer token.`,
     );
   }
   const json = (await res.json()) as { result?: T };

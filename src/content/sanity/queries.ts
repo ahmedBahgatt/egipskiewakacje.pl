@@ -25,7 +25,7 @@ const BODY = `body[]{
   "tourSlug": tour->slug.current
 }`;
 
-const TOUR_SEO = `"seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url }`;
+const TOUR_SEO = `"seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt, "type": ogType }`;
 
 export const GROQ = {
   siteSettings: `*[_type == "siteSettings"][0]{ title, tagline, description, whatsappNumber }`,
@@ -37,29 +37,35 @@ export const GROQ = {
   }`,
 
   destinations: `*[_type == "destination"] | order(_createdAt asc){
-    "slug": slug.current, routeBase, name, nameGenitive, shortIntro,
+    "slug": slug.current, routeBase, name, nameGenitive, heroTitle, shortIntro,
     "heroImage": heroImage${IMG},
     "practical": practical,
     "faqs": faqs[]{ question, answer },
-    "seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url },
+    "seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt },
     primaryQuery
   }`,
 
-  tours: `*[_type == "tour" && published == true] | order(featured desc, adultPrice asc){
+  tours: `*[_type == "tour" && published == true] | order(featured desc, priceAmount asc){
     "slug": slug.current, route, title, h1,
     "destination": destination->slug.current,
+    "category": category[0]->slug.current,
     departure, shortDescription, overview,
     "heroImage": heroImage${IMG},
     "gallery": gallery[]${IMG},
     "price": {
-      "adult": adultPrice, "child": childPrice, "infantFree": infantFree,
-      "childAgeMin": childAgeMinimum, "childAgeMax": childAgeMaximum,
-      "currency": currency, "lastVerifiedAt": priceLastVerifiedAt, "variable": priceVariable
+      "mode": priceMode, "amount": priceAmount, "unit": priceUnit,
+      "currency": currency, "from": priceFrom,
+      "lastVerifiedAt": priceLastVerifiedAt,
+      "options": priceOptions[]{ label, amount, currency, unit, note, free },
+      "childAgeMin": priceChildAgeMin, "infantFree": priceInfantFree, "note": priceNote
     },
     availabilityLabel, availabilityDays, durationLabel,
     "pickupLabel": pickupTime, "returnLabel": returnTime, transport,
     "guide": { "label": guideLanguageLabel, "polishConfirmed": guidePolishConfirmed },
     highlights,
+    "attractions": attractions[]{ title, body },
+    planningNote,
+    "compare": compare{ note, linkLabel, href },
     "itinerary": itinerary[]{ time, title, description },
     included, excluded,
     "transferSupplements": transferSupplements[]{ zone, amount },
@@ -82,7 +88,7 @@ export const GROQ = {
     ${BODY},
     "faqs": faqs[]{ question, answer },
     "sources": sources[]{ label, note },
-    "seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url }
+    "seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt }
   }`,
 
   legalPages: `*[_type == "legalPage"] | order(_createdAt asc){

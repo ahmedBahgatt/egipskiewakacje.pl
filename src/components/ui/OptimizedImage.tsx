@@ -16,11 +16,13 @@ interface Props {
 }
 
 /**
- * Static-export friendly responsive image. Serves AVIF -> WebP -> JPG. Sources are:
- * - Sanity-hosted images: ready CDN transform URLs on `image.sources`.
- * - Responsive local images (`image.widths` set): width-suffixed variants
- *   (`${src}-${w}.avif|.webp|.jpg`) emitted as a srcSet + `sizes` so small
- *   viewports fetch small files (scripts/generate-tour-gallery.mjs).
+ * Static-export friendly responsive image. Serves AVIF -> WebP -> JPG. Three cases:
+ * - Sanity-hosted images (`image.sources` set to per-format srcSet candidate
+ *   lists + `image.widths`): the CDN ladder is emitted as a srcSet + `sizes`;
+ *   `image.src` is the single JPG fallback (see src/content/sanity/image.ts).
+ * - Responsive local images (`image.widths` set, no `sources`): width-suffixed
+ *   variants (`${src}-${w}.avif|.webp|.jpg`) emitted as a srcSet + `sizes` so
+ *   small viewports fetch small files (scripts/generate-tour-gallery.mjs).
  * - Plain local images: a single `${src}.avif|.webp|.jpg` triplet.
  * Explicit width/height reserve space so there is no layout shift.
  */
@@ -36,29 +38,32 @@ export function OptimizedImage({
   const { src, alt, width, height, sources, widths } = image;
   const pos = objectPosition ?? image.objectPosition;
 
-  const responsive = !sources && Array.isArray(widths) && widths.length > 0;
-  const maxW = responsive ? widths[widths.length - 1] : undefined;
+  const hasWidths = Array.isArray(widths) && widths.length > 0;
+  const localResponsive = !sources && hasWidths;
+  // Sanity images carry both `sources` (srcSet candidate lists) and `widths`.
+  const useSizes = hasWidths;
+  const maxW = hasWidths ? widths![widths!.length - 1] : undefined;
 
-  const avif = sources?.avif ?? (responsive ? undefined : `${src}.avif`);
-  const webp = sources?.webp ?? (responsive ? undefined : `${src}.webp`);
-  const jpg = sources?.jpg ?? (responsive ? `${src}-${maxW}.jpg` : `${src}.jpg`);
+  // Per-format value passed to <source srcSet> (either a CDN candidate list from
+  // `sources`, a local width srcSet, or a single-URL local triplet).
+  const avifSet =
+    sources?.avif ?? (localResponsive ? widths!.map((w) => `${src}-${w}.avif ${w}w`).join(", ") : `${src}.avif`);
+  const webpSet =
+    sources?.webp ?? (localResponsive ? widths!.map((w) => `${src}-${w}.webp ${w}w`).join(", ") : `${src}.webp`);
+  // JPG srcSet only exists for responsive cases; plain local has none (uses <img src>).
+  const jpgSet = sources?.jpg ?? (localResponsive ? widths!.map((w) => `${src}-${w}.jpg ${w}w`).join(", ") : undefined);
 
-  const srcSet = (ext: "avif" | "webp" | "jpg") =>
-    responsive ? widths!.map((w) => `${src}-${w}.${ext} ${w}w`).join(", ") : undefined;
+  // Single URL for <img src>: Sanity provides it directly; local builds it.
+  const imgSrc = sources ? src : localResponsive ? `${src}-${maxW}.jpg` : `${src}.jpg`;
 
   return (
     <picture className={`${styles.picture}${className ? ` ${className}` : ""}`}>
-      <source
-        {...(responsive ? { srcSet: srcSet("avif"), sizes } : { srcSet: avif })}
-        type="image/avif"
-      />
-      <source
-        {...(responsive ? { srcSet: srcSet("webp"), sizes } : { srcSet: webp })}
-        type="image/webp"
-      />
+      <source srcSet={avifSet} {...(useSizes ? { sizes } : null)} type="image/avif" />
+      <source srcSet={webpSet} {...(useSizes ? { sizes } : null)} type="image/webp" />
       <img
-        src={jpg}
-        {...(responsive ? { srcSet: srcSet("jpg"), sizes } : null)}
+        src={imgSrc}
+        {...(jpgSet ? { srcSet: jpgSet } : null)}
+        {...(useSizes ? { sizes } : null)}
         alt={alt}
         width={width}
         height={height}
