@@ -9,44 +9,45 @@ import { imageField } from "../objects/imageWithAlt";
  * Adding a fourth destination requires a frontend change (types.ts + routes),
  * so the list is intentionally closed here rather than free text.
  *
- * SEO fields are FLAT (seoTitle / seoDescription / canonicalPath / ogImage),
- * the same way `tour` and `blogPost` store them. GROQ assembles `SeoMeta` from
- * them - see src/content/sanity/queries.ts.
+ * SEO fields are FLAT (seoTitle / seoDescription / canonicalPath / ogImage).
+ * GROQ assembles `SeoMeta` from them - see src/content/sanity/queries.ts.
+ * Admin UI English; values stay Polish.
  */
 export const destination = defineType({
   name: "destination",
-  title: "Kierunek",
+  title: "Destination",
   type: "document",
   groups: [
-    { name: "content", title: "Treść", default: true },
+    { name: "content", title: "Content", default: true },
     { name: "media", title: "Media" },
     { name: "faq", title: "FAQ" },
-    { name: "seo", title: "SEO" },
+    { name: "seo", title: "SEO & Social" },
   ],
   fields: [
     defineField({
       name: "name",
-      title: "Nazwa",
+      title: "Name",
       type: "string",
       group: "content",
-      description: 'Mianownik, np. "Hurghada".',
+      description: 'Polish nominative form, e.g. "Hurghada".',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "nameGenitive",
-      title: "Nazwa w dopełniaczu",
+      title: "Name in genitive form",
       type: "string",
       group: "content",
-      description: 'Forma używana w zdaniach: "wycieczki z ...", np. "Hurghady".',
+      description:
+        'Polish grammatical (genitive) form used in phrases such as "wycieczki z ...", for example "Hurghady".',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "heroTitle",
-      title: "Nagłówek H1 (opcjonalnie)",
+      title: "H1 Heading (optional)",
       type: "string",
       group: "content",
       description:
-        'Nadpisuje domyślne "Wycieczki z {dopełniacz}". Ustaw tylko, gdy wygrywa mocniejsza fraza, np. "Wycieczki fakultatywne z Marsa Alam".',
+        'Optional Polish H1. Overrides the default "Wycieczki z {genitive}". Set only when a stronger phrase wins, e.g. "Wycieczki fakultatywne z Marsa Alam".',
       validation: (rule) => rule.max(90),
     }),
     defineField({
@@ -55,7 +56,7 @@ export const destination = defineType({
       type: "slug",
       group: "content",
       description:
-        "Musi być jedną z trzech wartości obsługiwanych przez frontend: hurghada, marsa-alam, sharm-el-sheikh.",
+        "Must be one of the three values the frontend supports: hurghada, marsa-alam, sharm-el-sheikh. Do not change on a published destination.",
       options: {
         source: "name",
         maxLength: 64,
@@ -64,54 +65,54 @@ export const destination = defineType({
       validation: (rule) =>
         rule.required().custom((value) => {
           const allowed = ["hurghada", "marsa-alam", "sharm-el-sheikh"];
-          if (!value?.current) return "Slug jest wymagany";
+          if (!value?.current) return "Slug is required";
           return allowed.includes(value.current)
             ? true
-            : `Dozwolone wartości: ${allowed.join(", ")} (typ DestinationSlug w src/content/types.ts)`;
+            : `Allowed values: ${allowed.join(", ")} (DestinationSlug in src/content/types.ts)`;
         }),
     }),
     defineField({
       name: "routeBase",
-      title: "Bazowa ścieżka URL",
+      title: "Base URL path",
       type: "string",
       group: "content",
-      description: 'Bez slasha na końcu, np. "/wycieczki-z-hurghady".',
+      description: 'Without a trailing slash, e.g. "/wycieczki-z-hurghady".',
       validation: (rule) =>
-        rule.required().regex(/^\/[a-z0-9]+(-[a-z0-9]+)*$/, { name: 'ścieżka typu "/wycieczki-z-..."' }),
+        rule.required().regex(/^\/[a-z0-9]+(-[a-z0-9]+)*$/, { name: 'path like "/wycieczki-z-..."' }),
     }),
     defineField({
       name: "shortIntro",
-      title: "Wprowadzenie",
+      title: "Intro",
       type: "text",
       group: "content",
       rows: 5,
-      description: "Kilka zdań o tym, czym wyróżnia się ten kierunek. Bez marketingowych obietnic.",
+      description: "A few Polish sentences on what makes this destination stand out. No marketing promises.",
       validation: (rule) => rule.required().min(80),
     }),
     defineField({
       name: "practical",
-      title: "Informacje praktyczne",
+      title: "Practical information",
       type: "array",
       group: "content",
       of: [defineArrayMember({ type: "string" })],
-      description: "Krótkie punkty: odbiór, transport, czas trwania, dopłaty.",
+      description: "Short Polish points: pickup, transport, duration, surcharges.",
       validation: (rule) => rule.min(1),
     }),
 
     // --- Media ---------------------------------------------------------------
     imageField({
       name: "heroImage",
-      title: "Obraz główny",
+      title: "Featured Image",
       group: "media",
       required: true,
       description:
-        "Przeciągnij zdjęcie kierunku. Punkt ostrości (hotspot) ustaw na tym, co musi zostać widoczne po przycięciu na wąskich ekranach.",
+        "Drag in the destination photo. Set the focus point (hotspot) on what must stay visible when cropped on narrow screens.",
     }),
 
     // --- FAQ -----------------------------------------------------------------
     defineField({
       name: "faqs",
-      title: "FAQ kierunku",
+      title: "Destination FAQ",
       type: "array",
       group: "faq",
       of: [defineArrayMember({ type: "faqItem" })],
@@ -121,47 +122,47 @@ export const destination = defineType({
     // --- SEO -----------------------------------------------------------------
     defineField({
       name: "primaryQuery",
-      title: "Główna fraza docelowa",
+      title: "Primary target query",
       type: "string",
       group: "seo",
       description:
-        'Jedna fraza na kierunek, np. "wycieczki z Hurghady". Różne frazy zapobiegają kanibalizacji.',
+        'Editorial only. One Polish phrase per destination, e.g. "wycieczki z Hurghady". Distinct phrases prevent cannibalisation.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "seoTitle",
-      title: "SEO - tytuł",
+      title: "SEO Title",
       type: "string",
       group: "seo",
-      description: "Do ok. 60 znaków, żeby nie był ucinany w wynikach wyszukiwania.",
+      description: "Polish. Up to ~60 characters so it is not truncated in search results.",
       validation: (rule) => rule.required().max(70),
     }),
     defineField({
       name: "seoDescription",
-      title: "SEO - opis",
+      title: "Meta Description",
       type: "text",
       group: "seo",
       rows: 3,
-      description: "Do ok. 160 znaków.",
+      description: "Polish. Up to ~160 characters.",
       validation: (rule) => rule.required().min(50).max(175),
     }),
     defineField({
       name: "canonicalPath",
-      title: "Ścieżka kanoniczna",
+      title: "Canonical path",
       type: "string",
       group: "seo",
-      description: 'Ze slashem na końcu, np. "/wycieczki-z-hurghady/".',
+      description: 'Advanced. With a trailing slash, e.g. "/wycieczki-z-hurghady/".',
       validation: (rule) =>
         rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
-          name: 'ścieżka zaczynająca i kończąca się "/"',
+          name: 'path starting and ending with "/"',
         }),
     }),
     imageField({
       name: "ogImage",
-      title: "Obraz Open Graph (opcjonalnie)",
+      title: "OG Image (optional)",
       group: "seo",
       description:
-        "Obraz pokazywany przy udostępnianiu linku (Facebook, WhatsApp). Najlepiej kadr poziomy 1200x630. Puste = obraz domyślny serwisu.",
+        "Image shown when the link is shared (Facebook, WhatsApp). Ideally a 1200x630 landscape crop. Empty = the site's default image.",
     }),
   ],
   preview: {

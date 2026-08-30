@@ -6,19 +6,19 @@ import { defineField, defineType } from "sanity";
  */
 export const transferSupplement = defineType({
   name: "transferSupplement",
-  title: "Dopłata za transfer",
+  title: "Transfer Supplement",
   type: "object",
   fields: [
     defineField({
       name: "zone",
-      title: "Strefa / hotele",
+      title: "Zone / hotels",
       type: "string",
-      description: "Czytelna etykieta stref hotelowych objętych dopłatą.",
+      description: "Clear Polish label for the hotel zones the surcharge applies to.",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "amount",
-      title: "Dopłata (USD od osoby)",
+      title: "Surcharge (USD per person)",
       type: "number",
       validation: (rule) => rule.required().min(0).precision(2),
     }),
@@ -27,7 +27,7 @@ export const transferSupplement = defineType({
     select: { title: "zone", amount: "amount" },
     prepare: ({ title, amount }) => ({
       title,
-      subtitle: typeof amount === "number" ? `+${amount} USD / os.` : undefined,
+      subtitle: typeof amount === "number" ? `+${amount} USD / person` : undefined,
     }),
   },
 });

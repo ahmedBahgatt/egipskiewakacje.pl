@@ -2,18 +2,19 @@ import { defineField, defineType } from "sanity";
 
 /**
  * Editorial grouping for tours. Organisational only - the current frontend
- * queries do not project it, so adding or renaming categories cannot break the
- * public site.
+ * queries reference it by slug, so the taxonomy stays code-owned. Admin UI
+ * English; values stay Polish.
  */
 export const tourCategory = defineType({
   name: "tourCategory",
-  title: "Kategoria wycieczek",
+  title: "Tour Category",
   type: "document",
   fields: [
     defineField({
       name: "title",
-      title: "Nazwa",
+      title: "Name",
       type: "string",
+      description: "Polish category name.",
       validation: (rule) => rule.required().max(80),
     }),
     defineField({
@@ -25,9 +26,10 @@ export const tourCategory = defineType({
     }),
     defineField({
       name: "description",
-      title: "Opis",
+      title: "Description",
       type: "text",
       rows: 3,
+      description: "Short Polish description of the category.",
     }),
   ],
   preview: {

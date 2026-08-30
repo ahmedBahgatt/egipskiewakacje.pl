@@ -3,22 +3,23 @@ import { defineField, defineType } from "sanity";
 /** Mirrors `FaqItem` in src/content/types.ts. Rendered as FAQPage JSON-LD. */
 export const faqItem = defineType({
   name: "faqItem",
-  title: "Pytanie i odpowiedź",
+  title: "Question & Answer",
   type: "object",
   fields: [
     defineField({
       name: "question",
-      title: "Pytanie",
+      title: "Question",
       type: "string",
+      description: "Polish question.",
       validation: (rule) => rule.required().min(5).max(180),
     }),
     defineField({
       name: "answer",
-      title: "Odpowiedź",
+      title: "Answer",
       type: "text",
       rows: 4,
       description:
-        "Konkretna odpowiedź. Nie obiecuj rzeczy niepotwierdzonych (np. języka przewodnika, jeśli nie jest pewny).",
+        "A concrete Polish answer. Do not promise unconfirmed things (e.g. guide language if it is not certain).",
       validation: (rule) => rule.required().min(10),
     }),
   ],

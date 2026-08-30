@@ -7,23 +7,11 @@ import { imageField, imageMember } from "./imageWithAlt";
  *
  * Portable Text is deliberately NOT used. The frontend renders these blocks
  * through a switch with no dangerouslySetInnerHTML, so no HTML from the CMS can
- * ever reach the DOM.
+ * ever reach the DOM. Each block is stored with Sanity's own `_type`
+ * ("blockHeading", "blockTable", ...); the GROQ projection in
+ * src/content/sanity/queries.ts maps `_type` onto the `PostBlock` discriminator.
  *
- * HOW THE FRONTEND TELLS THEM APART
- * Each block is stored with Sanity's own `_type` ("blockHeading", "blockTable",
- * ...). There is no second, hand-maintained `type` field: the GROQ projection in
- * src/content/sanity/queries.ts maps `_type` onto the `PostBlock` discriminator
- * from src/content/types.ts, e.g.
- *
- *   body[] {
- *     _type == "blockHeading"  => { "type": "heading", "id": anchor.current, text },
- *     _type == "blockParagraph"=> { "type": "paragraph", text },
- *     _type == "blockImage"    => { "type": "image", caption, "image": {...} },
- *     ...
- *   }
- *
- * Adding a block type here means adding one arm to that projection and one case
- * to the renderer. Nothing else.
+ * Admin UI is English; the text VALUES editors enter stay Polish.
  */
 
 /**
@@ -47,21 +35,22 @@ const slugifyAnchor = (input: string) =>
 
 export const blockHeading = defineType({
   name: "blockHeading",
-  title: "Nagłówek",
+  title: "Heading",
   type: "object",
   fields: [
     defineField({
       name: "text",
-      title: "Treść nagłówka",
+      title: "Heading text",
       type: "string",
+      description: "Polish heading text.",
       validation: (rule) => rule.required().max(140),
     }),
     defineField({
       name: "anchor",
-      title: "Kotwica (opcjonalnie)",
+      title: "Anchor (optional)",
       type: "slug",
       description:
-        'Identyfikator do spisu treści i linków w obrębie strony, np. "dokumenty". Kliknij "Generate", żeby utworzyć go z tekstu nagłówka. Musi być unikalny w obrębie dokumentu.',
+        'Identifier for the table of contents and in-page links, e.g. "dokumenty". Click "Generate" to build it from the heading text. Must be unique within the document.',
       options: {
         source: "text",
         maxLength: 96,
@@ -75,75 +64,76 @@ export const blockHeading = defineType({
     select: { title: "text", subtitle: "anchor.current" },
     prepare: ({ title, subtitle }) => ({
       title: `# ${title ?? ""}`,
-      subtitle: subtitle ? `#${subtitle}` : "Nagłówek (bez kotwicy)",
+      subtitle: subtitle ? `#${subtitle}` : "Heading (no anchor)",
     }),
   },
 });
 
 export const blockParagraph = defineType({
   name: "blockParagraph",
-  title: "Akapit",
+  title: "Paragraph",
   type: "object",
   fields: [
     defineField({
       name: "text",
-      title: "Treść",
+      title: "Text",
       type: "text",
       rows: 6,
-      description: "Zwykły tekst. Bez HTML - znaczniki nie zostaną zinterpretowane.",
+      description: "Plain Polish text. No HTML - tags are not interpreted.",
       validation: (rule) => rule.required().min(20),
     }),
   ],
   preview: {
     select: { title: "text" },
-    prepare: ({ title }) => ({ title: title || "(pusty akapit)", subtitle: "Akapit" }),
+    prepare: ({ title }) => ({ title: title || "(empty paragraph)", subtitle: "Paragraph" }),
   },
 });
 
 export const blockList = defineType({
   name: "blockList",
-  title: "Lista",
+  title: "List",
   type: "object",
   initialValue: { ordered: false },
   fields: [
     defineField({
       name: "ordered",
-      title: "Lista numerowana",
+      title: "Numbered list",
       type: "boolean",
-      description: "Wyłączone: lista punktowana. Włączone: lista numerowana 1, 2, 3.",
+      description: "Off: bulleted list. On: numbered list 1, 2, 3.",
       initialValue: false,
     }),
     defineField({
       name: "items",
-      title: "Pozycje",
+      title: "Items",
       type: "array",
       of: [defineArrayMember({ type: "string" })],
+      description: "Polish list items.",
       validation: (rule) => rule.required().min(1),
     }),
   ],
   preview: {
     select: { items: "items", ordered: "ordered" },
     prepare: ({ items, ordered }) => ({
-      title: Array.isArray(items) && items.length > 0 ? items.join(" | ") : "(pusta lista)",
-      subtitle: ordered ? "Lista numerowana" : "Lista punktowana",
+      title: Array.isArray(items) && items.length > 0 ? items.join(" | ") : "(empty list)",
+      subtitle: ordered ? "Numbered list" : "Bulleted list",
     }),
   },
 });
 
 export const blockCallout = defineType({
   name: "blockCallout",
-  title: "Wyróżnienie",
+  title: "Callout",
   type: "object",
   initialValue: { tone: "info" },
   fields: [
     defineField({
       name: "tone",
-      title: "Ton",
+      title: "Tone",
       type: "string",
       options: {
         list: [
-          { title: "Informacja", value: "info" },
-          { title: "Ostrzeżenie", value: "warning" },
+          { title: "Info", value: "info" },
+          { title: "Warning", value: "warning" },
         ],
         layout: "radio",
       },
@@ -152,46 +142,48 @@ export const blockCallout = defineType({
     }),
     defineField({
       name: "text",
-      title: "Treść",
+      title: "Text",
       type: "text",
       rows: 4,
+      description: "Polish callout text.",
       validation: (rule) => rule.required().min(10),
     }),
   ],
   preview: {
     select: { title: "text", tone: "tone" },
     prepare: ({ title, tone }) => ({
-      title: title || "(puste wyróżnienie)",
-      subtitle: tone === "warning" ? "Ostrzeżenie" : "Informacja",
+      title: title || "(empty callout)",
+      subtitle: tone === "warning" ? "Warning" : "Info",
     }),
   },
 });
 
 export const blockQuote = defineType({
   name: "blockQuote",
-  title: "Cytat",
+  title: "Quote",
   type: "object",
   fields: [
     defineField({
       name: "text",
-      title: "Treść cytatu",
+      title: "Quote text",
       type: "text",
       rows: 4,
+      description: "Polish quote text.",
       validation: (rule) => rule.required().min(10),
     }),
     defineField({
       name: "cite",
-      title: "Źródło (opcjonalnie)",
+      title: "Source (optional)",
       type: "string",
-      description: "Kto to powiedział lub skąd pochodzi cytat. Zostaw puste, jeśli nie wiadomo.",
+      description: "Who said it or where it is from. Leave empty if unknown.",
       validation: (rule) => rule.max(160),
     }),
   ],
   preview: {
     select: { title: "text", subtitle: "cite" },
     prepare: ({ title, subtitle }) => ({
-      title: title ? `„${title}”` : "(pusty cytat)",
-      subtitle: subtitle || "Cytat",
+      title: title ? `„${title}”` : "(empty quote)",
+      subtitle: subtitle || "Quote",
     }),
   },
 });
@@ -200,21 +192,21 @@ export const blockQuote = defineType({
 
 export const blockImage = defineType({
   name: "blockImage",
-  title: "Obraz",
+  title: "Image",
   type: "object",
   fields: [
     imageField({
       name: "image",
-      title: "Obraz",
-      description: "Przeciągnij plik. Punkt ostrości ustaw tak, żeby przetrwał kadrowanie.",
+      title: "Image",
+      description: "Drag a file in. Set the focus point so it survives cropping.",
       required: true,
     }),
     defineField({
       name: "caption",
-      title: "Podpis (opcjonalnie)",
+      title: "Caption (optional)",
       type: "string",
       description:
-        "Widoczny podpis pod obrazem. To NIE jest opis alt - alt uzupełnij w samym obrazie.",
+        "Visible Polish caption under the image. This is NOT the ALT text - set ALT on the image itself.",
       validation: (rule) => rule.max(200),
     }),
   ],
@@ -222,20 +214,20 @@ export const blockImage = defineType({
     select: { media: "image", alt: "image.alt", caption: "caption" },
     prepare: ({ media, alt, caption }) => ({
       media,
-      title: caption || alt || "(obraz bez podpisu)",
-      subtitle: "Obraz",
+      title: caption || alt || "(image without caption)",
+      subtitle: "Image",
     }),
   },
 });
 
 export const blockGallery = defineType({
   name: "blockGallery",
-  title: "Galeria",
+  title: "Gallery",
   type: "object",
   fields: [
     defineField({
       name: "images",
-      title: "Obrazy",
+      title: "Images",
       type: "array",
       of: [imageMember()],
       options: { layout: "grid" },
@@ -246,8 +238,8 @@ export const blockGallery = defineType({
     select: { media: "images.0", count: "images" },
     prepare: ({ media, count }) => ({
       media,
-      title: "Galeria",
-      subtitle: `${Array.isArray(count) ? count.length : 0} obraz(y/ów)`,
+      title: "Gallery",
+      subtitle: `${Array.isArray(count) ? count.length : 0} image(s)`,
     }),
   },
 });
@@ -256,48 +248,48 @@ export const blockGallery = defineType({
 
 export const tableRow = defineType({
   name: "tableRow",
-  title: "Wiersz",
+  title: "Row",
   type: "object",
   fields: [
     defineField({
       name: "cells",
-      title: "Komórki",
+      title: "Cells",
       type: "array",
       of: [defineArrayMember({ type: "string" })],
-      description: "Tyle pozycji, ile jest nagłówków kolumn - w tej samej kolejności.",
+      description: "As many entries as there are column headers, in the same order.",
       validation: (rule) => rule.required().min(1),
     }),
   ],
   preview: {
     select: { cells: "cells" },
     prepare: ({ cells }) => ({
-      title: Array.isArray(cells) && cells.length > 0 ? cells.join(" | ") : "(pusty wiersz)",
+      title: Array.isArray(cells) && cells.length > 0 ? cells.join(" | ") : "(empty row)",
     }),
   },
 });
 
 export const blockTable = defineType({
   name: "blockTable",
-  title: "Tabela",
+  title: "Table",
   type: "object",
   fields: [
     defineField({
       name: "caption",
-      title: "Podpis tabeli (opcjonalnie)",
+      title: "Table caption (optional)",
       type: "string",
-      description: "Krótko: co porównuje ta tabela. Pomaga też czytnikom ekranu.",
+      description: "Briefly, in Polish: what this table compares. Also helps screen readers.",
       validation: (rule) => rule.max(200),
     }),
     defineField({
       name: "headers",
-      title: "Nagłówki kolumn",
+      title: "Column headers",
       type: "array",
       of: [defineArrayMember({ type: "string" })],
       validation: (rule) => rule.required().min(2).max(6),
     }),
     defineField({
       name: "rows",
-      title: "Wiersze",
+      title: "Rows",
       type: "array",
       of: [defineArrayMember({ type: "tableRow" })],
       validation: (rule) =>
@@ -313,15 +305,15 @@ export const blockTable = defineType({
             );
             return bad === -1
               ? true
-              : `Wiersz ${bad + 1} ma inną liczbę komórek niż nagłówków (${headers.length})`;
+              : `Row ${bad + 1} has a different number of cells than headers (${headers.length})`;
           }),
     }),
   ],
   preview: {
     select: { caption: "caption", headers: "headers", rows: "rows" },
     prepare: ({ caption, headers, rows }) => ({
-      title: caption || (Array.isArray(headers) ? headers.join(" | ") : "Tabela"),
-      subtitle: `Tabela - ${Array.isArray(rows) ? rows.length : 0} wiersz(y)`,
+      title: caption || (Array.isArray(headers) ? headers.join(" | ") : "Table"),
+      subtitle: `Table - ${Array.isArray(rows) ? rows.length : 0} row(s)`,
     }),
   },
 });
@@ -330,51 +322,51 @@ export const blockTable = defineType({
 
 export const blockLinkButton = defineType({
   name: "blockLinkButton",
-  title: "Przycisk z linkiem",
+  title: "Link button",
   type: "object",
   initialValue: { external: true },
   fields: [
     defineField({
       name: "label",
-      title: "Napis na przycisku",
+      title: "Button label",
       type: "string",
-      description: 'Konkretnie, co się stanie po kliknięciu, np. "Sprawdź program wycieczki".',
+      description: 'Polish. Say exactly what happens on click, e.g. "Sprawdź program wycieczki".',
       validation: (rule) => rule.required().max(60),
     }),
     defineField({
       name: "href",
-      title: "Adres",
+      title: "URL",
       type: "url",
-      description: 'Pełny adres (https://...) albo ścieżka w serwisie (np. "/poradnik/").',
+      description: 'Full URL (https://...) or an in-site path (e.g. "/poradnik/").',
       validation: (rule) =>
         rule.required().uri({ scheme: ["http", "https"], allowRelative: true }),
     }),
     defineField({
       name: "external",
-      title: "Link zewnętrzny",
+      title: "External link",
       type: "boolean",
       description:
-        "Włączone dla adresów poza egipskiewakacje.pl - link otwiera się w nowej karcie z rel=\"noopener\". Wyłącz dla linków wewnętrznych.",
+        'On for addresses outside egipskiewakacje.pl - opens in a new tab with rel="noopener". Off for internal links.',
       initialValue: true,
     }),
   ],
   preview: {
     select: { title: "label", subtitle: "href", external: "external" },
     prepare: ({ title, subtitle, external }) => ({
-      title: title || "(przycisk bez napisu)",
-      subtitle: `${external ? "zewnętrzny" : "wewnętrzny"} - ${subtitle ?? ""}`,
+      title: title || "(button without label)",
+      subtitle: `${external ? "external" : "internal"} - ${subtitle ?? ""}`,
     }),
   },
 });
 
 export const blockRelatedTour = defineType({
   name: "blockRelatedTour",
-  title: "Polecana wycieczka",
+  title: "Related tour",
   type: "object",
   fields: [
     defineField({
       name: "tour",
-      title: "Wycieczka",
+      title: "Tour",
       type: "reference",
       to: [{ type: "tour" }],
       // Weak: deleting a tour must never be blocked by an article that links it.
@@ -385,8 +377,8 @@ export const blockRelatedTour = defineType({
   preview: {
     select: { title: "tour.title", price: "tour.priceAmount" },
     prepare: ({ title, price }) => ({
-      title: title || "(wybierz wycieczkę)",
-      subtitle: typeof price === "number" ? `Polecana wycieczka - od ${price} USD` : "Polecana wycieczka",
+      title: title || "(select a tour)",
+      subtitle: typeof price === "number" ? `Related tour - from ${price} USD` : "Related tour",
     }),
   },
 });

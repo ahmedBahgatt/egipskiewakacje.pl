@@ -1,43 +1,42 @@
 import type { StructureResolver } from "sanity/structure";
 
 /**
- * Desk structure. Two jobs:
+ * Desk structure (admin navigation, English labels). Two jobs:
  *  1. Pin siteSettings as a singleton at the fixed document id "siteSettings".
  *  2. Keep the legacy documents (old all-inclusive `tourPackage` concept)
  *     visible in their own list instead of hiding or deleting them. They are
- *     not part of this schema, so they render as "unknown type" - that is
- *     expected. Review them manually before removing anything.
+ *     not part of this schema, so they render as "unknown type" - expected.
  */
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Egipskie Wakacje")
     .items([
       S.listItem()
-        .title("Ustawienia serwisu")
+        .title("Site Settings")
         .id("siteSettings")
         .child(
           S.document()
             .schemaType("siteSettings")
             .documentId("siteSettings")
-            .title("Ustawienia serwisu"),
+            .title("Site Settings"),
         ),
       S.divider(),
-      S.documentTypeListItem("destination").title("Kierunki"),
-      S.documentTypeListItem("tour").title("Wycieczki"),
-      S.documentTypeListItem("tourCategory").title("Kategorie wycieczek"),
+      S.documentTypeListItem("destination").title("Destinations"),
+      S.documentTypeListItem("tour").title("Tours"),
+      S.documentTypeListItem("tourCategory").title("Tour Categories"),
       S.divider(),
-      S.documentTypeListItem("blogPost").title("Poradnik"),
-      S.documentTypeListItem("author").title("Autorzy"),
+      S.documentTypeListItem("blogPost").title("Blog Posts"),
+      S.documentTypeListItem("author").title("Authors"),
       S.documentTypeListItem("faq").title("FAQ"),
-      S.documentTypeListItem("review").title("Opinie"),
-      S.documentTypeListItem("legalPage").title("Strony prawne"),
+      S.documentTypeListItem("review").title("Reviews"),
+      S.documentTypeListItem("legalPage").title("Legal Pages"),
       S.divider(),
       S.listItem()
-        .title("Dokumenty legacy (do przeglądu)")
+        .title("Legacy Documents (Review Only)")
         .id("legacy")
         .child(
           S.documentList()
-            .title("Dokumenty legacy")
+            .title("Legacy Documents")
             .apiVersion("2024-01-01")
             .filter('_type == "tourPackage"'),
         ),

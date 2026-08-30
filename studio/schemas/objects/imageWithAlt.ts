@@ -29,13 +29,13 @@ import { defineArrayMember, defineField } from "sanity";
  */
 
 const ALT_DESCRIPTION =
-  "Rzetelny opis po polsku: co widać na zdjęciu. Czytają go osoby korzystające z czytnika ekranu i wyszukiwarki.";
+  "Accurate Polish description of what is in the photo. Read by screen-reader users and search engines. Required.";
 
 /** Fresh `alt` field definition. Never reuse one instance across two images. */
 const altField = () =>
   defineField({
     name: "alt",
-    title: "Opis obrazu (alt, po polsku)",
+    title: "Image ALT text (Polish)",
     type: "string",
     description: ALT_DESCRIPTION,
     validation: (rule) => rule.required().min(5).max(200),
@@ -68,7 +68,7 @@ export function imageField(options: {
       select: { media: "asset", title: "alt" },
       prepare: ({ media, title: alt }) => ({
         media,
-        title: alt || "(uzupełnij opis alt)",
+        title: alt || "(add ALT text)",
       }),
     },
   });
@@ -78,14 +78,14 @@ export function imageField(options: {
 export function imageMember() {
   return defineArrayMember({
     type: "image",
-    title: "Obraz",
+    title: "Image",
     options: { hotspot: true },
     fields: [altField()],
     preview: {
       select: { media: "asset", title: "alt" },
       prepare: ({ media, title: alt }) => ({
         media,
-        title: alt || "(uzupełnij opis alt)",
+        title: alt || "(add ALT text)",
       }),
     },
   });

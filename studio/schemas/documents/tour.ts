@@ -7,13 +7,15 @@ import { imageField, imageMember } from "../objects/imageWithAlt";
  *
  * FIELD NAMES ARE A CONTRACT with src/content/sanity/queries.ts, which flattens
  * some of them:
- *   adultPrice/childPrice/infantFree/childAgeMinimum/childAgeMaximum/currency/
- *   priceLastVerifiedAt/priceVariable  -> Tour.price
+ *   priceMode/priceAmount/priceUnit/currency/priceFrom/priceLastVerifiedAt/
+ *   priceOptions/priceChildAgeMin/priceInfantFree/priceNote  -> Tour.price
  *   guideLanguageLabel/guidePolishConfirmed -> Tour.guide
  *   pickupTime -> pickupLabel, returnTime -> returnLabel
  *   relatedPost-> relatedPostSlug
- *   seoTitle/seoDescription/canonicalPath/ogImage -> Tour.seo
+ *   seoTitle/seoDescription/canonicalPath/ogImage/ogType -> Tour.seo
  * Renaming any of these without editing queries.ts breaks sanity mode silently.
+ *
+ * Admin UI is English; VALUES entered stay Polish (the site is Polish).
  *
  * Honesty rules baked into the schema:
  *  - `guidePolishConfirmed` defaults to false. Tick it only when a
@@ -23,33 +25,33 @@ import { imageField, imageMember } from "../objects/imageWithAlt";
  */
 export const tour = defineType({
   name: "tour",
-  title: "Wycieczka",
+  title: "Tour",
   type: "document",
   groups: [
-    { name: "content", title: "Treść", default: true },
+    { name: "content", title: "Content", default: true },
     { name: "media", title: "Media" },
-    { name: "pricing", title: "Ceny" },
-    { name: "logistics", title: "Logistyka" },
-    { name: "program", title: "Program" },
-    { name: "relations", title: "Powiązania" },
-    { name: "seo", title: "SEO i publikacja" },
+    { name: "pricing", title: "Pricing" },
+    { name: "logistics", title: "Logistics" },
+    { name: "program", title: "Itinerary & Details" },
+    { name: "relations", title: "Relations" },
+    { name: "seo", title: "SEO & Publishing" },
   ],
   fields: [
-    // --- Treść ---------------------------------------------------------------
+    // --- Content -------------------------------------------------------------
     defineField({
       name: "title",
-      title: "Tytuł",
+      title: "Title",
       type: "string",
       group: "content",
-      description: 'Nazwa używana na kartach i w nawigacji, np. "Wycieczka z Hurghady do Kairu".',
+      description: 'Polish name used on cards and in navigation, e.g. "Wycieczka z Hurghady do Kairu".',
       validation: (rule) => rule.required().max(90),
     }),
     defineField({
       name: "h1",
-      title: "Nagłówek H1",
+      title: "H1 Heading",
       type: "string",
       group: "content",
-      description: "Nagłówek na stronie wycieczki. Zwykle identyczny z tytułem.",
+      description: "Polish heading on the tour page. Usually identical to the title.",
       validation: (rule) => rule.required().max(90),
     }),
     defineField({
@@ -57,24 +59,26 @@ export const tour = defineType({
       title: "Slug",
       type: "slug",
       group: "content",
+      description:
+        "URL identifier. Changing the slug of an existing published tour can break its URL and SEO - change it only when intentionally migrating a URL.",
       options: { source: "title", maxLength: 96 },
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "route",
-      title: "Pełna ścieżka URL",
+      title: "Full URL path",
       type: "string",
       group: "content",
       description:
-        'Razem z bazą kierunku, BEZ slasha na końcu, np. "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie".',
+        'Including the destination base, WITHOUT a trailing slash, e.g. "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie".',
       validation: (rule) =>
         rule.required().regex(/^\/[a-z0-9]+(-[a-z0-9]+)*\/[a-z0-9]+(-[a-z0-9]+)*$/, {
-          name: '"/kierunek/slug-wycieczki"',
+          name: '"/destination/tour-slug"',
         }),
     }),
     defineField({
       name: "destination",
-      title: "Kierunek",
+      title: "Destination",
       type: "reference",
       group: "content",
       to: [{ type: "destination" }],
@@ -82,30 +86,30 @@ export const tour = defineType({
     }),
     defineField({
       name: "departure",
-      title: "Miejsce wyjazdu",
+      title: "Departure point",
       type: "string",
       group: "content",
-      description: 'Etykieta pokazywana na karcie, np. "Hurghada".',
+      description: 'Polish label shown on the card, e.g. "Hurghada".',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "category",
-      title: "Kategorie",
+      title: "Categories",
       type: "array",
       group: "content",
       of: [defineArrayMember({ type: "reference", to: [{ type: "tourCategory" }] })],
-      description: "Porządkowanie w CMS. Nie wpływa na publiczne adresy URL.",
+      description: "Organisation inside the CMS. Does not affect public URLs.",
     }),
     defineField({
       name: "tourType",
-      title: "Typ wycieczki",
+      title: "Tour type",
       type: "string",
       group: "content",
       options: {
         list: [
-          { title: "Jednodniowa (całodniowa)", value: "jednodniowa" },
-          { title: "Półdniowa", value: "poldniowa" },
-          { title: "Wielodniowa", value: "wielodniowa" },
+          { title: "Full-day", value: "jednodniowa" },
+          { title: "Half-day", value: "poldniowa" },
+          { title: "Multi-day", value: "wielodniowa" },
         ],
         layout: "radio",
       },
@@ -113,104 +117,101 @@ export const tour = defineType({
     }),
     defineField({
       name: "shortDescription",
-      title: "Krótki opis",
+      title: "Short description",
       type: "text",
       group: "content",
       rows: 3,
-      description: "2-3 zdania na kartę wycieczki i listingi.",
+      description: "2-3 Polish sentences for the tour card and listings.",
       validation: (rule) => rule.required().min(60).max(320),
     }),
     defineField({
       name: "overview",
-      title: "Opis wycieczki",
+      title: "Overview",
       type: "text",
       group: "content",
       rows: 8,
-      description: "Rozwinięcie: co dokładnie obejmuje wyprawa i jak wygląda dzień.",
+      description: "Expanded Polish description: exactly what the trip covers and what the day looks like.",
       validation: (rule) => rule.required().min(120),
     }),
     defineField({
       name: "highlights",
-      title: "Główne atrakcje",
+      title: "Highlights",
       type: "array",
       group: "content",
       of: [defineArrayMember({ type: "string" })],
-      description: "Krótkie hasła pokazywane jako znaczniki na karcie, np. „Piramidy w Gizie”.",
+      description: 'Short Polish chips shown on the card, e.g. "Piramidy w Gizie".',
       validation: (rule) => rule.min(1).max(8),
     }),
     defineField({
       name: "attractions",
-      title: "Co zobaczysz (sekcje encji, opcjonalnie)",
+      title: "What you'll see (entity sections, optional)",
       type: "array",
       group: "content",
       of: [defineArrayMember({ type: "tourAttraction" })],
       description:
-        "Opcjonalne, bogate w treść sekcje H3 (np. Giza, Sfinks, Muzeum Egipskie). Renderowane jako czysty HTML pod kątem AEO/GEO.",
+        "Optional content-rich H3 sections (e.g. Giza, Sfinks, Muzeum Egipskie). Rendered as clean HTML for AEO/GEO. Polish content.",
     }),
     defineField({
       name: "planningNote",
-      title: "Ile trwa i jak daleko (opcjonalnie)",
+      title: "Duration & distance note (optional)",
       type: "text",
       group: "content",
       rows: 3,
-      description: "Krótki, faktyczny akapit o czasie trwania i odległości, renderowany jako osobna sekcja.",
+      description: "Short, factual Polish paragraph about duration and distance, rendered as its own section.",
     }),
     defineField({
       name: "compare",
-      title: "Porównanie / odnośnik wewnętrzny (opcjonalnie)",
+      title: "Comparison / internal link (optional)",
       type: "tourCompare",
       group: "content",
-      description: "Opcjonalny callout kierujący do powiązanej trasy (np. autokar vs samolot).",
+      description: "Optional callout linking to a related route (e.g. bus vs plane). Polish content.",
     }),
 
     // --- Media ---------------------------------------------------------------
     imageField({
       name: "heroImage",
-      title: "Obraz główny",
+      title: "Featured Image",
       group: "media",
       required: true,
       description:
-        "Przeciągnij zdjęcie. Ustaw punkt ostrości (hotspot) na najważniejszym elemencie - kadr na telefonie jest węższy niż na komputerze.",
+        "Drag an image in. Set the focus point (hotspot) on the most important element - the crop on phones is narrower than on desktop.",
     }),
     defineField({
       name: "gallery",
-      title: "Galeria",
+      title: "Gallery",
       type: "array",
       group: "media",
       of: [imageMember()],
       options: { layout: "grid" },
-      description: "Kilka zdjęć z trasy. Każde wymaga własnego opisu alt.",
+      description: "A few images from the trip. Each needs its own Polish ALT text.",
     }),
     defineField({
       name: "previewVideo",
-      title: "Krótkie wideo (opcjonalnie)",
+      title: "Short video (optional)",
       type: "file",
       group: "media",
       description:
-        "Opcjonalny materiał poglądowy. Frontend jest eksportem statycznym - plik trzeba dodatkowo zapisać w /public, jeśli ma być użyty na stronie.",
+        "Optional preview clip. The frontend is a static export - the file must also be saved in /public to be used on the site.",
       options: { accept: "video/mp4,video/webm" },
     }),
 
-    // --- Ceny ----------------------------------------------------------------
+    // --- Pricing -------------------------------------------------------------
     // Structured price model (mirrors PriceTier in src/content/types.ts). Not
     // every tour is per-person adult/child: per-boat, per-vehicle (quad/buggy),
     // per-course (diving) and per-package tours list their own `priceOptions`.
-    // queries.ts flattens priceMode/priceAmount/priceUnit/currency/priceFrom/
-    // priceLastVerifiedAt/priceOptions/priceChildAgeMin/priceInfantFree/priceNote
-    // -> Tour.price.
     defineField({
       name: "priceMode",
-      title: "Sposób wyceny",
+      title: "Pricing mode",
       type: "string",
       group: "pricing",
-      description: "Steruje jednostką pokazywaną przy cenie nagłówkowej.",
+      description: "Controls the unit shown next to the headline price.",
       options: {
         list: [
-          { title: "Za osobę", value: "perPerson" },
-          { title: "Za łódź", value: "perBoat" },
-          { title: "Za pojazd (quad/buggy)", value: "perVehicle" },
-          { title: "Za kurs (nurkowanie)", value: "perCourse" },
-          { title: "Za pakiet", value: "perPackage" },
+          { title: "Per person", value: "perPerson" },
+          { title: "Per boat", value: "perBoat" },
+          { title: "Per vehicle (quad/buggy)", value: "perVehicle" },
+          { title: "Per course (diving)", value: "perCourse" },
+          { title: "Per package", value: "perPackage" },
         ],
         layout: "radio",
       },
@@ -219,25 +220,24 @@ export const tour = defineType({
     }),
     defineField({
       name: "priceAmount",
-      title: "Cena nagłówkowa",
+      title: "Headline price",
       type: "number",
       group: "pricing",
-      description:
-        "Kwota pokazywana na kartach i w karcie rezerwacji. Zwykle równa pierwszej pozycji cennika.",
+      description: "Amount shown on cards and the booking card. Usually equals the first line in the price list.",
       validation: (rule) => rule.required().min(0).precision(2),
     }),
     defineField({
       name: "priceUnit",
-      title: "Jednostka ceny nagłówkowej",
+      title: "Headline price unit",
       type: "string",
       group: "pricing",
-      description: 'Etykieta obok ceny: "os.", "łódź", "buggy", "quad", "kurs", "pakiet".',
+      description: 'Polish label next to the price: "os.", "łódź", "buggy", "quad", "kurs", "pakiet".',
       initialValue: "os.",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "currency",
-      title: "Waluta nagłówkowa",
+      title: "Headline currency",
       type: "string",
       group: "pricing",
       options: {
@@ -252,110 +252,110 @@ export const tour = defineType({
     }),
     defineField({
       name: "priceFrom",
-      title: 'Cena zmienna (pokaż "Cena od")',
+      title: 'Variable price (show "from")',
       type: "boolean",
       group: "pricing",
       description:
-        "Włącz, gdy końcowy koszt zależy od strefy transferu, wariantu lub opcji dodatkowych.",
+        "Enable when the final cost depends on the transfer zone, variant or optional extras.",
       initialValue: true,
     }),
     defineField({
       name: "priceLastVerifiedAt",
-      title: "Cena zweryfikowana dnia",
+      title: "Price last verified on",
       type: "date",
       group: "pricing",
       options: { dateFormat: "YYYY-MM-DD" },
-      description: "Data ostatniego sprawdzenia ceny u operatora. Pokazywana na stronie.",
+      description: "Date the price was last checked with the operator. Shown on the page.",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "priceOptions",
-      title: "Cennik szczegółowy",
+      title: "Detailed price list",
       type: "array",
       group: "pricing",
       of: [defineArrayMember({ type: "priceOption" })],
       description:
-        "Pełny rozkład ceny (min. 1 pozycja). Wycieczki od osoby wpisują dorosły/dziecko; wycieczki od łodzi/pojazdu/kursu wpisują swoje warianty.",
+        "Full price breakdown (min. 1 line). Per-person tours list adult/child; per-boat/vehicle/course tours list their own variants.",
       validation: (rule) => rule.required().min(1),
     }),
     defineField({
       name: "priceChildAgeMin",
-      title: "Wiek dziecka - od (opcjonalnie)",
+      title: "Child age - from (optional)",
       type: "number",
       group: "pricing",
-      description: "Poniżej tej granicy dziecko jest bezpłatne (dotyczy wyceny od osoby).",
+      description: "Below this age a child is free (applies to per-person pricing).",
       validation: (rule) => rule.min(0).max(18),
     }),
     defineField({
       name: "priceInfantFree",
-      title: "Najmłodsze dzieci bezpłatnie",
+      title: "Youngest children free",
       type: "boolean",
       group: "pricing",
       initialValue: true,
     }),
     defineField({
       name: "priceNote",
-      title: "Uwaga pod cennikiem (opcjonalnie)",
+      title: "Note under the price list (optional)",
       type: "string",
       group: "pricing",
       validation: (rule) => rule.max(200),
     }),
     defineField({
       name: "transferSupplements",
-      title: "Dopłaty za transfer",
+      title: "Transfer Supplements",
       type: "array",
       group: "pricing",
       of: [defineArrayMember({ type: "transferSupplement" })],
-      description: "Tylko strefy, w których dopłata faktycznie obowiązuje.",
+      description: "Only zones where a surcharge actually applies.",
     }),
     defineField({
       name: "extras",
-      title: "Opcje dodatkowe (płatne na miejscu)",
+      title: "Optional extras (paid on site)",
       type: "array",
       group: "pricing",
       of: [defineArrayMember({ type: "labelledNote" })],
     }),
 
-    // --- Logistyka -----------------------------------------------------------
+    // --- Logistics -----------------------------------------------------------
     defineField({
       name: "availabilityLabel",
-      title: "Dostępność - etykieta",
+      title: "Availability - label",
       type: "string",
       group: "logistics",
-      description: 'Tekst pokazywany użytkownikowi, np. "Codziennie" albo "We wtorki".',
+      description: 'Polish text shown to the user, e.g. "Codziennie" or "We wtorki".',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "availabilityDays",
-      title: "Dni",
+      title: "Days",
       type: "array",
       group: "logistics",
       of: [defineArrayMember({ type: "string" })],
-      description: 'Wartości do filtrowania, np. ["Codziennie"] lub ["Wtorek"].',
+      description: 'Values used for filtering, e.g. ["Codziennie"] or ["Wtorek"].',
       validation: (rule) => rule.min(1),
     }),
     defineField({
       name: "durationLabel",
-      title: "Czas trwania",
+      title: "Duration",
       type: "string",
       group: "logistics",
-      description: 'Np. "ok. 20-22 godzin". Realny czas, łącznie z dojazdami.',
+      description: 'Polish, e.g. "ok. 20-22 godzin". Real time, including transfers.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "pickupTime",
-      title: "Godzina odbioru",
+      title: "Pickup time",
       type: "string",
       group: "logistics",
-      description: 'Przedział, np. "ok. 00:00-02:00". Dokładna godzina jest potwierdzana na WhatsApp.',
+      description: 'Range, e.g. "ok. 00:00-02:00". The exact time is confirmed on WhatsApp.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "returnTime",
-      title: "Godzina powrotu (opcjonalnie)",
+      title: "Return time (optional)",
       type: "string",
       group: "logistics",
-      description: "Wypełnij tylko wtedy, gdy powrót jest przewidywalny.",
+      description: "Fill in only when the return time is predictable.",
     }),
     defineField({
       name: "transport",
@@ -366,35 +366,35 @@ export const tour = defineType({
     }),
     defineField({
       name: "pickupZones",
-      title: "Strefy odbioru",
+      title: "Pickup zones",
       type: "array",
       group: "logistics",
       of: [defineArrayMember({ type: "string" })],
-      description: "Strefy hotelowe objęte odbiorem. Dopłaty ustaw w sekcji Ceny.",
+      description: "Hotel zones covered by pickup. Set surcharges in the Pricing section.",
     }),
     defineField({
       name: "guideLanguageLabel",
-      title: "Język przewodnika - etykieta",
+      title: "Guide language - label",
       type: "string",
       group: "logistics",
       description:
-        'Dokładnie to, co widzi użytkownik. Jeśli język nie jest pewny, wpisz "Potwierdzamy przed rezerwacją" i NIE zaznaczaj pola poniżej.',
+        'Exactly what the user sees. If the language is not certain, enter "Potwierdzamy przed rezerwacją" and do NOT tick the box below.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "guidePolishConfirmed",
-      title: "Polskojęzyczny przewodnik potwierdzony",
+      title: "Polish-speaking guide confirmed",
       type: "boolean",
       group: "logistics",
       description:
-        "Zaznacz wyłącznie wtedy, gdy operator jednoznacznie potwierdza polskojęzycznego przewodnika na tej trasie.",
+        "Tick only when the operator unambiguously confirms a Polish-speaking guide on this route.",
       initialValue: false,
     }),
 
-    // --- Program -------------------------------------------------------------
+    // --- Itinerary & Details -------------------------------------------------
     defineField({
       name: "itinerary",
-      title: "Plan dnia",
+      title: "Itinerary",
       type: "array",
       group: "program",
       of: [defineArrayMember({ type: "itineraryStep" })],
@@ -402,7 +402,7 @@ export const tour = defineType({
     }),
     defineField({
       name: "included",
-      title: "W cenie",
+      title: "Included",
       type: "array",
       group: "program",
       of: [defineArrayMember({ type: "string" })],
@@ -410,30 +410,30 @@ export const tour = defineType({
     }),
     defineField({
       name: "excluded",
-      title: "Poza ceną",
+      title: "Not included",
       type: "array",
       group: "program",
       of: [defineArrayMember({ type: "string" })],
-      description: "Wymień wszystko, co bywa mylone z pozycjami w cenie (napoje, bilety dodatkowe).",
+      description: "List everything people mistake for included items (drinks, extra tickets).",
       validation: (rule) => rule.min(1),
     }),
     defineField({
       name: "whatToBring",
-      title: "Co zabrać",
+      title: "What to bring",
       type: "array",
       group: "program",
       of: [defineArrayMember({ type: "string" })],
     }),
     defineField({
       name: "requirements",
-      title: "Wymagania i uwagi",
+      title: "Requirements & notes",
       type: "array",
       group: "program",
       of: [defineArrayMember({ type: "string" })],
     }),
     defineField({
       name: "cancellationPolicy",
-      title: "Warunki rezerwacji i odwołania",
+      title: "Booking & cancellation terms",
       type: "text",
       group: "program",
       rows: 4,
@@ -441,17 +441,17 @@ export const tour = defineType({
     }),
     defineField({
       name: "faqs",
-      title: "FAQ wycieczki",
+      title: "Tour FAQ",
       type: "array",
       group: "program",
       of: [defineArrayMember({ type: "faqItem" })],
       validation: (rule) => rule.min(1),
     }),
 
-    // --- Powiązania ----------------------------------------------------------
+    // --- Relations -----------------------------------------------------------
     defineField({
       name: "featured",
-      title: "Wyróżniona na stronie głównej",
+      title: "Featured on the homepage",
       type: "boolean",
       group: "relations",
       initialValue: false,
@@ -461,81 +461,84 @@ export const tour = defineType({
     // write mutual links without any ordering constraint.
     defineField({
       name: "relatedTours",
-      title: "Powiązane wycieczki",
+      title: "Related tours",
       type: "array",
       group: "relations",
       of: [defineArrayMember({ type: "reference", to: [{ type: "tour" }], weak: true })],
     }),
     defineField({
       name: "relatedPost",
-      title: "Polecany artykuł",
+      title: "Featured blog post",
       type: "reference",
       group: "relations",
       to: [{ type: "blogPost" }],
       weak: true,
-      description: "Jeden artykuł poradnika pokazywany na stronie wycieczki. Może zostać pusty.",
+      description: "One blog post shown on the tour page. May be left empty.",
     }),
 
-    // --- SEO i publikacja ----------------------------------------------------
+    // --- SEO & Publishing ----------------------------------------------------
     defineField({
       name: "seoTitle",
-      title: "SEO - tytuł",
+      title: "SEO Title",
       type: "string",
       group: "seo",
+      description: "Polish title shown in Google. Recommended up to ~60 characters.",
       validation: (rule) => rule.required().max(70),
     }),
     defineField({
       name: "seoDescription",
-      title: "SEO - opis",
+      title: "Meta Description",
       type: "text",
       group: "seo",
       rows: 3,
+      description: "Polish meta description. Recommended ~150-160 characters.",
       validation: (rule) => rule.required().min(50).max(175),
     }),
     defineField({
       name: "canonicalPath",
-      title: "Ścieżka kanoniczna",
+      title: "Canonical path",
       type: "string",
       group: "seo",
-      description: 'Ścieżka z pola wyżej, ale ZE slashem na końcu, np. "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/".',
+      description:
+        'Advanced. The path from the field above but WITH a trailing slash, e.g. "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/".',
       validation: (rule) =>
         rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
-          name: 'ścieżka zaczynająca i kończąca się "/"',
+          name: 'path starting and ending with "/"',
         }),
     }),
     imageField({
       name: "ogImage",
-      title: "Obraz Open Graph (opcjonalnie)",
+      title: "OG Image (optional)",
       group: "seo",
       description:
-        "Obraz pokazywany przy udostępnianiu linku (Facebook, WhatsApp). Najlepiej kadr poziomy 1200x630. Puste = obraz główny wycieczki.",
+        "Image shown when the link is shared (Facebook, WhatsApp). Ideally a 1200x630 landscape crop. Empty = the tour's featured image.",
     }),
     defineField({
       name: "ogType",
-      title: "Typ Open Graph (zaawansowane)",
+      title: "OG Type (advanced)",
       type: "string",
       group: "seo",
       description:
-        'Zwykle puste. Strony wycieczek domyślnie używają "article"; strony komercyjne mogą ustawić "website".',
+        'Usually empty. Tour pages default to "article"; commercial pages may set "website".',
       options: {
         list: [
-          { title: "Artykuł (domyślnie)", value: "article" },
-          { title: "Strona", value: "website" },
+          { title: "Article (default)", value: "article" },
+          { title: "Website", value: "website" },
         ],
         layout: "radio",
       },
     }),
     defineField({
       name: "published",
-      title: "Opublikowana",
+      title: "Published",
       type: "boolean",
       group: "seo",
-      description: "Odznacz, aby ukryć wycieczkę na stronie bez usuwania dokumentu.",
+      description: "Untick to hide the tour on the site without deleting the document.",
       initialValue: true,
     }),
     defineField({
       name: "updatedAt",
-      title: "Ostatnia aktualizacja treści",
+      title: "Content last updated",
       type: "date",
       group: "seo",
       options: { dateFormat: "YYYY-MM-DD" },
@@ -544,7 +547,7 @@ export const tour = defineType({
   ],
   orderings: [
     {
-      title: "Wyróżnione, potem cena rosnąco",
+      title: "Featured, then price ascending",
       name: "featuredThenPrice",
       by: [
         { field: "featured", direction: "desc" },
@@ -563,11 +566,11 @@ export const tour = defineType({
       media: "heroImage",
     },
     prepare: ({ title, departure, priceAmount, priceFrom, currency, published, media }) => ({
-      title: published === false ? `${title} (ukryta)` : title,
+      title: published === false ? `${title} (hidden)` : title,
       subtitle: [
         departure,
         priceAmount != null
-          ? `${priceFrom ? "od " : ""}${priceAmount} ${currency ?? "USD"}`
+          ? `${priceFrom ? "from " : ""}${priceAmount} ${currency ?? "USD"}`
           : null,
       ]
         .filter(Boolean)

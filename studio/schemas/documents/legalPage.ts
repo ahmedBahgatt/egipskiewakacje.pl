@@ -6,24 +6,20 @@ import { legalBodyMembers } from "../objects/postBlocks";
  * Mirrors `LegalPage` in src/content/types.ts (regulamin, polityka
  * prywatności, polityka cookies).
  *
- * These documents must describe what the site ACTUALLY does: static export,
- * no payments, no booking data stored, WhatsApp handover. Do not paste generic
- * templates - the operator's legal identity fields are still missing and are
- * flagged inside the seeded content with a warning callout.
- *
- * `body` is deliberately limited to the TEXT blocks (heading / paragraph /
- * list / callout). Images, promo buttons and tour cards do not belong in a
- * legal document.
+ * `body` is deliberately limited to TEXT blocks (heading / paragraph / list /
+ * callout). Images, promo buttons and tour cards do not belong in a legal
+ * document. Admin UI English; values stay Polish.
  */
 export const legalPage = defineType({
   name: "legalPage",
-  title: "Strona prawna",
+  title: "Legal Page",
   type: "document",
   fields: [
     defineField({
       name: "title",
-      title: "Tytuł",
+      title: "Title",
       type: "string",
+      description: "Polish page title.",
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -35,48 +31,50 @@ export const legalPage = defineType({
     }),
     defineField({
       name: "route",
-      title: "Ścieżka URL",
+      title: "URL path",
       type: "string",
-      description: 'Bez slasha na końcu, np. "/regulamin".',
+      description: 'Without a trailing slash, e.g. "/regulamin".',
       validation: (rule) =>
-        rule.required().regex(/^\/[a-z0-9]+(-[a-z0-9]+)*$/, { name: '"/slug-strony"' }),
+        rule.required().regex(/^\/[a-z0-9]+(-[a-z0-9]+)*$/, { name: '"/page-slug"' }),
     }),
     defineField({
       name: "updatedAt",
-      title: "Data aktualizacji",
+      title: "Last updated date",
       type: "date",
       options: { dateFormat: "YYYY-MM-DD" },
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "body",
-      title: "Treść",
+      title: "Body",
       type: "array",
       of: legalBodyMembers(),
-      description: "Tylko bloki tekstowe: nagłówek, akapit, lista, wyróżnienie.",
+      description: "Text blocks only: heading, paragraph, list, callout. Polish content.",
       validation: (rule) => rule.required().min(1),
     }),
     defineField({
       name: "seoTitle",
-      title: "SEO - tytuł",
+      title: "SEO Title",
       type: "string",
+      description: "Polish. Up to ~60 characters.",
       validation: (rule) => rule.required().max(70),
     }),
     defineField({
       name: "seoDescription",
-      title: "SEO - opis",
+      title: "Meta Description",
       type: "text",
       rows: 3,
+      description: "Polish. Up to ~160 characters.",
       validation: (rule) => rule.required().min(50).max(175),
     }),
     defineField({
       name: "canonicalPath",
-      title: "Ścieżka kanoniczna",
+      title: "Canonical path",
       type: "string",
-      description: 'Ścieżka z pola "Ścieżka URL", ale ZE slashem na końcu, np. "/regulamin/".',
+      description: 'Advanced. The path from "URL path" but WITH a trailing slash, e.g. "/regulamin/".',
       validation: (rule) =>
         rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
-          name: 'ścieżka zaczynająca i kończąca się "/"',
+          name: 'path starting and ending with "/"',
         }),
     }),
   ],

@@ -8,22 +8,23 @@ import { defineField, defineType } from "sanity";
  */
 export const labelledNote = defineType({
   name: "labelledNote",
-  title: "Pozycja z opisem",
+  title: "Labelled note",
   type: "object",
   fields: [
     defineField({
       name: "label",
-      title: "Nazwa",
+      title: "Label",
       type: "string",
+      description: "Polish label.",
       validation: (rule) => rule.required().max(140),
     }),
     defineField({
       name: "note",
-      title: "Opis / uwaga",
+      title: "Description / note",
       type: "text",
       rows: 2,
       description:
-        'Dla dopłat: co i ile, np. "ok. 10-12 USD od osoby, płatny na miejscu". Dla źródeł: czego dotyczy i gdzie sprawdzić aktualne zasady.',
+        'Polish. For extras: what and how much, e.g. "ok. 10-12 USD od osoby, płatny na miejscu". For sources: what it covers and where to check current rules.',
       validation: (rule) => rule.required(),
     }),
   ],

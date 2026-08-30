@@ -8,36 +8,36 @@ import { postBodyMembers } from "../objects/postBlocks";
  *
  * queries.ts flattens: author->name, relatedDestination->slug.current,
  * relatedTours[]->slug.current, seoTitle/seoDescription/canonicalPath/ogImage
- * -> BlogPost.seo. Keep the names as they are.
+ * -> BlogPost.seo. Keep the field NAMES as they are.
  *
- * `body` accepts the full block set (see ../objects/postBlocks.ts): heading,
- * paragraph, list, callout, image, gallery, quote, table, link button and a
- * related-tour card. There is still no rich-text or HTML field anywhere.
+ * `body` accepts the full block set (see ../objects/postBlocks.ts). There is no
+ * rich-text or HTML field anywhere. Admin UI English; values stay Polish.
  */
 export const blogPost = defineType({
   name: "blogPost",
-  title: "Artykuł poradnika",
+  title: "Blog Post",
   type: "document",
   groups: [
-    { name: "content", title: "Treść", default: true },
-    { name: "body", title: "Tekst artykułu" },
-    { name: "relations", title: "Powiązania" },
-    { name: "seo", title: "SEO i publikacja" },
+    { name: "content", title: "Content", default: true },
+    { name: "body", title: "Article Body" },
+    { name: "relations", title: "Relations" },
+    { name: "seo", title: "SEO & Publishing" },
   ],
   fields: [
     defineField({
       name: "title",
-      title: "Tytuł",
+      title: "Title",
       type: "string",
       group: "content",
+      description: "Polish title used on the listing.",
       validation: (rule) => rule.required().max(110),
     }),
     defineField({
       name: "h1",
-      title: "Nagłówek H1",
+      title: "H1 Heading",
       type: "string",
       group: "content",
-      description: "Może być krótszy niż tytuł listingowy.",
+      description: "Polish. May be shorter than the listing title.",
       validation: (rule) => rule.required().max(110),
     }),
     defineField({
@@ -45,149 +45,152 @@ export const blogPost = defineType({
       title: "Slug",
       type: "slug",
       group: "content",
+      description:
+        "URL identifier. Changing it on a published article can break its URL and SEO - change only for an intentional URL migration.",
       options: { source: "title", maxLength: 96 },
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "route",
-      title: "Pełna ścieżka URL",
+      title: "Full URL path",
       type: "string",
       group: "content",
-      description: 'Bez slasha na końcu, np. "/poradnik/co-zabrac-na-wycieczke-do-kairu".',
+      description: 'Without a trailing slash, e.g. "/poradnik/co-zabrac-na-wycieczke-do-kairu".',
       validation: (rule) =>
         rule.required().regex(/^\/poradnik\/[a-z0-9]+(-[a-z0-9]+)*$/, {
-          name: '"/poradnik/slug-artykulu"',
+          name: '"/poradnik/article-slug"',
         }),
     }),
     defineField({
       name: "excerpt",
-      title: "Zajawka",
+      title: "Excerpt",
       type: "text",
       group: "content",
       rows: 3,
-      description: "Krótkie streszczenie na listing poradnika.",
+      description: "Short Polish summary for the blog listing.",
       validation: (rule) => rule.required().min(60).max(320),
     }),
     defineField({
       name: "directAnswer",
-      title: "Odpowiedź wprost",
+      title: "Direct answer",
       type: "text",
       group: "content",
       rows: 5,
       description:
-        "Zwięzła odpowiedź na pytanie z tytułu, pokazywana na górze artykułu (pod kątem wyników z odpowiedzią). Pełne zdania, konkrety.",
+        "Concise Polish answer to the title question, shown at the top of the article (for featured-snippet / AIO intent). Full sentences, specifics.",
       validation: (rule) => rule.required().min(80),
     }),
     imageField({
       name: "featuredImage",
-      title: "Obraz wyróżniający",
+      title: "Featured Image",
       group: "content",
       required: true,
       description:
-        "Zdjęcie na listingu poradnika i na górze artykułu. Ustaw punkt ostrości - kadr na karcie jest szerszy niż na stronie artykułu.",
+        "Image on the blog listing and at the top of the article. Set the focus point - the card crop is wider than the article page.",
     }),
     defineField({
       name: "category",
-      title: "Kategoria",
+      title: "Category",
       type: "string",
       group: "content",
-      description: 'Np. "Przed wyjazdem".',
+      description: 'Polish, e.g. "Przed wyjazdem".',
       validation: (rule) => rule.required(),
     }),
 
-    // --- Tekst artykułu ------------------------------------------------------
+    // --- Article Body --------------------------------------------------------
     defineField({
       name: "body",
-      title: "Treść",
+      title: "Body",
       type: "array",
       group: "body",
       of: postBodyMembers(),
       description:
-        "Zamknięty zestaw bloków: nagłówek, akapit, lista, wyróżnienie, obraz, galeria, cytat, tabela, przycisk i polecana wycieczka. Bez HTML - frontend renderuje bloki bezpiecznie.",
+        "Closed set of blocks: heading, paragraph, list, callout, image, gallery, quote, table, button and related-tour card. No HTML - the frontend renders blocks safely. Polish content.",
       validation: (rule) => rule.required().min(1),
     }),
     defineField({
       name: "faqs",
-      title: "FAQ artykułu",
+      title: "Article FAQ",
       type: "array",
       group: "body",
       of: [defineArrayMember({ type: "faqItem" })],
-      description: "Pytania i odpowiedzi renderowane jako FAQPage JSON-LD.",
+      description: "Questions and answers rendered as FAQPage JSON-LD.",
     }),
     defineField({
       name: "sources",
-      title: "Źródła",
+      title: "Sources",
       type: "array",
       group: "body",
       of: [defineArrayMember({ type: "labelledNote" })],
       description:
-        "Uzupełnij zawsze, gdy artykuł dotyka zmiennych zasad urzędowych (dokumenty, wjazd, przepisy).",
+        "Always fill in when the article touches changeable official rules (documents, entry, regulations).",
     }),
 
-    // --- Powiązania ----------------------------------------------------------
+    // --- Relations -----------------------------------------------------------
     defineField({
       name: "author",
-      title: "Autor",
+      title: "Author",
       type: "reference",
       group: "relations",
       to: [{ type: "author" }],
       validation: (rule) => rule.required(),
     }),
-    // Editorial cross-links are WEAK - see the same note in tour.ts.
     defineField({
       name: "relatedDestination",
-      title: "Powiązany kierunek",
+      title: "Related destination",
       type: "reference",
       group: "relations",
       to: [{ type: "destination" }],
       weak: true,
-      description: "Zostaw puste, jeśli artykuł dotyczy wszystkich kierunków.",
+      description: "Leave empty if the article applies to all destinations.",
     }),
     defineField({
       name: "relatedTours",
-      title: "Powiązane wycieczki",
+      title: "Related tours",
       type: "array",
       group: "relations",
       of: [defineArrayMember({ type: "reference", to: [{ type: "tour" }], weak: true })],
     }),
 
-    // --- SEO i publikacja ----------------------------------------------------
+    // --- SEO & Publishing ----------------------------------------------------
     defineField({
       name: "seoTitle",
-      title: "SEO - tytuł",
+      title: "SEO Title",
       type: "string",
       group: "seo",
+      description: "Polish title shown in Google. Recommended up to ~60 characters.",
       validation: (rule) => rule.required().max(70),
     }),
     defineField({
       name: "seoDescription",
-      title: "SEO - opis",
+      title: "Meta Description",
       type: "text",
       group: "seo",
       rows: 3,
+      description: "Polish meta description. Recommended ~150-160 characters.",
       validation: (rule) => rule.required().min(50).max(175),
     }),
     defineField({
       name: "canonicalPath",
-      title: "Ścieżka kanoniczna",
+      title: "Canonical path",
       type: "string",
       group: "seo",
-      description: 'Ścieżka z pola "Pełna ścieżka URL", ale ZE slashem na końcu.',
+      description: 'Advanced. The path from "Full URL path" but WITH a trailing slash.',
       validation: (rule) =>
         rule.required().regex(/^\/([a-z0-9-]+\/)*$/, {
-          name: 'ścieżka zaczynająca i kończąca się "/"',
+          name: 'path starting and ending with "/"',
         }),
     }),
     imageField({
       name: "ogImage",
-      title: "Obraz Open Graph (opcjonalnie)",
+      title: "OG Image (optional)",
       group: "seo",
       description:
-        "Obraz pokazywany przy udostępnianiu linku (Facebook, WhatsApp). Najlepiej kadr poziomy 1200x630. Puste = obraz wyróżniający.",
+        "Image shown when the link is shared (Facebook, WhatsApp). Ideally a 1200x630 landscape crop. Empty = the featured image.",
     }),
     defineField({
       name: "publishedAt",
-      title: "Data publikacji",
+      title: "Publication date",
       type: "date",
       group: "seo",
       options: { dateFormat: "YYYY-MM-DD" },
@@ -195,7 +198,7 @@ export const blogPost = defineType({
     }),
     defineField({
       name: "updatedAt",
-      title: "Data aktualizacji",
+      title: "Last updated date",
       type: "date",
       group: "seo",
       options: { dateFormat: "YYYY-MM-DD" },
@@ -205,20 +208,21 @@ export const blogPost = defineType({
           if (!value || !published) return true;
           return value >= published
             ? true
-            : "Data aktualizacji nie może być wcześniejsza niż data publikacji";
+            : "The updated date cannot be earlier than the publication date";
         }),
     }),
     defineField({
       name: "published",
-      title: "Opublikowany",
+      title: "Published",
       type: "boolean",
       group: "seo",
+      description: "Untick to hide the article on the site without deleting the document.",
       initialValue: true,
     }),
   ],
   orderings: [
     {
-      title: "Najnowsze",
+      title: "Newest",
       name: "publishedAtDesc",
       by: [{ field: "publishedAt", direction: "desc" }],
     },
@@ -231,7 +235,7 @@ export const blogPost = defineType({
       media: "featuredImage",
     },
     prepare: ({ title, subtitle, published, media }) => ({
-      title: published === false ? `${title} (ukryty)` : title,
+      title: published === false ? `${title} (hidden)` : title,
       subtitle,
       media,
     }),

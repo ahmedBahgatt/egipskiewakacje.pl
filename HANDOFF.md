@@ -1,12 +1,15 @@
 # Egipskie Wakacje — Project Handoff (current state)
 
 Single source of truth for a fresh session. Describes CURRENT production, not
-history. Last update: **Sanity CMS migration built + verified end-to-end (78/78 parity), NOT yet cut over** (working tree, not committed).
+history. Last update: **Sanity CMS migration LIVE — production cut over to Sanity, webhook publish→deploy proven end-to-end**.
 
 ---
 
-## 0. Sanity CMS migration (built + verified; production still on `local`)
+## 0. Sanity CMS migration (LIVE — production source of truth = Sanity)
 
+- **Status:** CUT OVER. Repo Variable `CONTENT_SOURCE=sanity`; production builds read Sanity via the Viewer token secret `SANITY_API_READ_TOKEN`. Studio live at **https://egipskiewakacje.sanity.studio/**. Publish→deploy webhook live + proven (edit → publish → repository_dispatch → Actions → Pages → live HTML changed, then reverted). Live verified: all 78 tours, Cairo/Orange Bay gold-standard, sitemap (78 tours, no Studio URL). Dataset backup: `~/sanity-backups/egipskiewakacje-production-20260829-130229.tar.gz`.
+- **Rollback:** set repo Variable `CONTENT_SOURCE=local`, rerun workflow. `src/content/local/*` retained as the proven fallback — do NOT delete until a stability period passes (separate cleanup task).
+- **Tokens:** Viewer `github-actions-read` (build reads) + the GitHub fine-grained PAT inside the Sanity webhook are RETAINED. The temporary Editor (`egipskie-wakacje-migration`) + Developer (`Claude Temporary Cutover`) tokens were REVOKED. No tokens on disk.
 - **Goal:** make Sanity the editorial source of truth; preserve visual frontend, URLs, SEO, static export, GitHub Pages. Redesign = none.
 - **Sanity project:** `Egipskie Wakacje` — projectId **`ej04dib0`**, dataset **`production`**, org `oNWjhT16I`. No new project/dataset created. Dataset is **PRIVATE** (project has private-dataset access control): content reads require a token.
 - **Architecture (unchanged principle):** `src/content/index.ts` swaps `local` ↔ `sanity` by `NEXT_PUBLIC_CONTENT_SOURCE` (default `local`). `sanity` adapter (`src/content/sanity/*`) fetches at BUILD time in Node via GROQ, maps to the exact same `Tour[]`/etc. types, and is STRICT (throws on missing/invalid — no silent local fallback). Public frontend ships zero Sanity runtime JS.
@@ -17,8 +20,8 @@ history. Last update: **Sanity CMS migration built + verified end-to-end (78/78 
 - **Categories:** taxonomy stays **code-owned** (`src/lib/categories.ts` + `content/local/categories.ts`) in both modes — preserves keyword ownership + hub layout; tourCategory docs are reference targets so `tour.category` resolves and category pages populate. (Editable hub prose = future phase; schema ready.)
 - **Deploy/webhook:** `.github/workflows/deploy.yml` already has `repository_dispatch: [sanity-publish]` + reads `NEXT_PUBLIC_CONTENT_SOURCE` from repo var + `SANITY_API_READ_TOKEN` from secret. Publish flow (to enable at cutover): Sanity webhook → GitHub `repository_dispatch` → build (sanity) → Pages. Deploy never mutates Sanity → no loop.
 - **Editor guide:** `SANITY_EDITOR_GUIDE.md` (Polish, non-dev). Setup runbook: `SANITY_SETUP.md`.
-- **CUTOVER (NOT done — needs owner):** (1) create Viewer token → GitHub secret `SANITY_API_READ_TOKEN`; (2) create the Sanity→GitHub webhook (needs a fine-grained PAT, Contents: read/write — see SANITY_SETUP §6); (3) set repo **Variable** `NEXT_PUBLIC_CONTENT_SOURCE=sanity`; (4) rerun workflow. **Rollback:** set the variable back to `local`, rerun. `src/content/local/*` remains the proven fallback — do not delete until cutover is proven.
-- **Security:** write token used only for the seed, lives in `studio/.env.local` (gitignored) — **rotate it** (was pasted in chat). No secrets committed (secret-scan clean).
+- **CUTOVER: DONE** (see status bullet above). Editor/Developer tokens revoked; Viewer secret + webhook PAT retained. No secrets on disk or committed (secret-scan clean).
+- **Search Console:** ready — separate phase (verify sitemap, request indexing of priority URLs). Not started here.
 
 ---
 

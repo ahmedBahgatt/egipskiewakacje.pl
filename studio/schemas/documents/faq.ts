@@ -6,7 +6,7 @@ import { defineField, defineType } from "sanity";
  *
  * Tour-specific and destination-specific questions live INSIDE those documents
  * (tour.faqs, destination.faqs). Use `scope` here to keep the site-wide set
- * separate from anything added later.
+ * separate from anything added later. Admin UI English; values stay Polish.
  */
 export const faq = defineType({
   name: "faq",
@@ -15,27 +15,29 @@ export const faq = defineType({
   fields: [
     defineField({
       name: "question",
-      title: "Pytanie",
+      title: "Question",
       type: "string",
+      description: "Polish question.",
       validation: (rule) => rule.required().min(5).max(180),
     }),
     defineField({
       name: "answer",
-      title: "Odpowiedź",
+      title: "Answer",
       type: "text",
       rows: 5,
+      description: "Polish answer.",
       validation: (rule) => rule.required().min(10),
     }),
     defineField({
       name: "scope",
-      title: "Zakres",
+      title: "Scope",
       type: "string",
       options: {
         list: [
-          { title: "Cały serwis", value: "site" },
-          { title: "Rezerwacja", value: "booking" },
-          { title: "Ceny", value: "pricing" },
-          { title: "Logistyka", value: "logistics" },
+          { title: "Whole site", value: "site" },
+          { title: "Booking", value: "booking" },
+          { title: "Pricing", value: "pricing" },
+          { title: "Logistics", value: "logistics" },
         ],
       },
       initialValue: "site",

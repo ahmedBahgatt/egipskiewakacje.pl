@@ -5,35 +5,32 @@ import { defineField, defineType } from "sanity";
  * breakdown (adult, child, a boat variant, a diving course, ...).
  *
  * Stored on `tour.priceOptions`. GROQ projects it verbatim into
- * `Tour.price.options` (see src/content/sanity/queries.ts). Not every tour is
- * per-person adult/child: per-boat, per-vehicle (quad/buggy) and per-course
- * (diving) tours list their own variants here, so this object is deliberately
- * generic - a label plus an amount, with an optional per-line unit override and
- * a `free` flag for infants.
+ * `Tour.price.options`. Not every tour is per-person adult/child, so this
+ * object is deliberately generic. Admin UI English; values stay Polish.
  */
 export const priceOption = defineType({
   name: "priceOption",
-  title: "Pozycja cennika",
+  title: "Price line",
   type: "object",
   fields: [
     defineField({
       name: "label",
-      title: "Etykieta",
+      title: "Label",
       type: "string",
       description:
-        'Np. "Dorosły", "Dziecko 5-11 lat", "2-osobowe buggy", "Kurs (2 nurkowania)".',
+        'Polish, e.g. "Dorosły", "Dziecko 5-11 lat", "2-osobowe buggy", "Kurs (2 nurkowania)".',
       validation: (rule) => rule.required().max(120),
     }),
     defineField({
       name: "amount",
-      title: "Kwota",
+      title: "Amount",
       type: "number",
-      description: 'Kwota w walucie wycieczki. Dla pozycji bezpłatnych wpisz 0 i zaznacz "Bezpłatnie".',
+      description: 'Amount in the tour currency. For free lines enter 0 and tick "Free".',
       validation: (rule) => rule.required().min(0).precision(2),
     }),
     defineField({
       name: "currency",
-      title: "Waluta",
+      title: "Currency",
       type: "string",
       options: {
         list: [
@@ -47,22 +44,22 @@ export const priceOption = defineType({
     }),
     defineField({
       name: "unit",
-      title: "Jednostka (opcjonalnie)",
+      title: "Unit (optional)",
       type: "string",
       description:
-        'Nadpisuje jednostkę nagłówkową tylko dla tej pozycji, np. "łódź", "buggy". Puste = jednostka wycieczki.',
+        'Polish. Overrides the headline unit for this line only, e.g. "łódź", "buggy". Empty = the tour unit.',
     }),
     defineField({
       name: "note",
-      title: "Uwaga (opcjonalnie)",
+      title: "Note (optional)",
       type: "string",
       validation: (rule) => rule.max(160),
     }),
     defineField({
       name: "free",
-      title: "Bezpłatnie",
+      title: "Free",
       type: "boolean",
-      description: 'Pokaż "bezpłatnie" zamiast kwoty (np. najmłodsze dzieci).',
+      description: 'Show "bezpłatnie" instead of an amount (e.g. the youngest children).',
       initialValue: false,
     }),
   ],
@@ -71,7 +68,7 @@ export const priceOption = defineType({
     prepare: ({ label, amount, currency, unit, free }) => ({
       title: label,
       subtitle: free
-        ? "bezpłatnie"
+        ? "free"
         : `${amount ?? "?"} ${currency ?? "USD"}${unit ? ` / ${unit}` : ""}`,
     }),
   },
