@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { priceLabel, priceUnit, priceHeadline, formatMoney } from "@/lib/format";
+import { priceLabel, priceUnit, priceHeadline, formatMoney, childFreeUnderAge } from "@/lib/format";
 
 /**
  * Guards the tour-CARD price presentation: the vague "od" (from) prefix must never
@@ -41,5 +41,32 @@ describe("priceHeadline - tour-detail booking card (unchanged, no 'od')", () => 
 describe("formatMoney - unchanged numeric formatting", () => {
   it("keeps the currency suffix and no 'od'", () => {
     expect(formatMoney(60, "USD")).toBe("60 USD");
+  });
+});
+
+/**
+ * The booking-form "children under N free" hint must be data-driven, never
+ * hardcoded: shown only when a tour's pricing actually carries a free-infant
+ * rule. Per-person adult/child tours keep it; per-boat / per-vehicle / per-course
+ * tours (whole-boat speed boat, buggy, diving course) must NOT emit it.
+ */
+describe("childFreeUnderAge - booking-form free-infant hint", () => {
+  it("returns the age for per-person tours with a real free-under rule", () => {
+    expect(childFreeUnderAge({ infantFree: true, childAgeMin: 5 })).toBe(5);
+    expect(childFreeUnderAge({ infantFree: true, childAgeMin: 4 })).toBe(4);
+  });
+
+  it("returns undefined for whole-boat pricing (no child rule)", () => {
+    // Speed Boat: per-boat variants, no infantFree, no childAgeMin.
+    expect(childFreeUnderAge({ infantFree: false })).toBeUndefined();
+    expect(childFreeUnderAge({})).toBeUndefined();
+  });
+
+  it("returns undefined when infantFree is set but no age is defined", () => {
+    expect(childFreeUnderAge({ infantFree: true })).toBeUndefined();
+  });
+
+  it("returns undefined when infantFree is false even if an age is present", () => {
+    expect(childFreeUnderAge({ infantFree: false, childAgeMin: 5 })).toBeUndefined();
   });
 });

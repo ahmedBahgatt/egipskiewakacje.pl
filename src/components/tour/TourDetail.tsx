@@ -22,7 +22,7 @@ import {
   IconWhatsApp,
   IconX,
 } from "@/components/ui/icons";
-import { priceHeadline, optionAmount, formatMoney, formatDatePl } from "@/lib/format";
+import { priceHeadline, optionAmount, formatMoney, formatDatePl, childFreeUnderAge } from "@/lib/format";
 import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import {
@@ -82,6 +82,7 @@ export function TourDetail({
     departure: tour.departure,
     destination: tour.destination,
     canonicalPath: tour.seo.canonicalPath,
+    childFreeUnderAge: childFreeUnderAge(tour.price),
   };
 
   const head = priceHeadline(tour.price);

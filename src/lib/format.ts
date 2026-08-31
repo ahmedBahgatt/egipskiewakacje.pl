@@ -49,6 +49,22 @@ export function optionAmount(opt: PriceOption): string {
   return opt.free ? "bezpłatnie" : formatMoney(opt.amount, opt.currency);
 }
 
+/**
+ * Age below which children travel free, for the booking-form hint. Returns a
+ * number ONLY when the tour's structured pricing actually carries a free-infant
+ * rule (`infantFree` + a real `childAgeMin`). Per-boat / per-vehicle / per-course
+ * tours - and any tour with no free-under rule - return undefined, so the form
+ * never makes an unsupported "children under N free" claim. Presentation only:
+ * no pricing data changes.
+ */
+export function childFreeUnderAge(
+  price: Pick<PriceTier, "infantFree" | "childAgeMin">,
+): number | undefined {
+  return price.infantFree && typeof price.childAgeMin === "number" && price.childAgeMin > 0
+    ? price.childAgeMin
+    : undefined;
+}
+
 /** "8 sierpnia 2026" */
 export function formatDatePl(iso: string): string {
   const d = new Date(`${iso}T00:00:00`);

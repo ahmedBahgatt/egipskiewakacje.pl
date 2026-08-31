@@ -3,6 +3,7 @@ import { content } from "@/content";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BookingForm, type BookingTourOption } from "@/components/booking/BookingForm";
+import { childFreeUnderAge } from "@/lib/format";
 import { JsonLd } from "@/components/seo/JsonLd";
 import styles from "./rezerwacja.module.css";
 
@@ -32,6 +33,7 @@ export default async function Page() {
     departure: t.departure,
     destination: t.destination,
     canonicalPath: t.seo.canonicalPath,
+    childFreeUnderAge: childFreeUnderAge(t.price),
   }));
 
   return (

@@ -14,6 +14,13 @@ export interface BookingTourOption {
   departure: string;
   destination: string;
   canonicalPath: string;
+  /**
+   * Age below which children are free on THIS tour, when its pricing actually
+   * offers that rule. Omitted for per-boat / per-vehicle / per-course tours so
+   * the form shows no unsupported "children free" hint. Derived via
+   * `childFreeUnderAge(tour.price)`.
+   */
+  childFreeUnderAge?: number;
 }
 
 interface Props {
@@ -53,6 +60,10 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
   const [started, setStarted] = useState(false);
 
   const activeTour = tours.find((t) => t.slug === tourSlug) ?? tours[0];
+  // Only shown when the active tour's pricing genuinely offers a free-under rule
+  // (per-person adult/child tours). Undefined for per-boat / per-vehicle / per-
+  // course tours, so no unsupported "children free" claim appears.
+  const childFree = activeTour?.childFreeUnderAge;
 
   function onFirstInteraction() {
     if (started) return;
@@ -234,11 +245,13 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
               value={children}
               onChange={(e) => setChildCount(Number(e.target.value))}
               onFocus={onFirstInteraction}
-              aria-describedby={`${p}children-hint`}
+              aria-describedby={childFree ? `${p}children-hint` : undefined}
             />
-            <span id={`${p}children-hint`} className={styles.hint}>
-              Dzieci poniżej 5 lat bezpłatnie
-            </span>
+            {childFree ? (
+              <span id={`${p}children-hint`} className={styles.hint}>
+                Dzieci poniżej {childFree} lat bezpłatnie
+              </span>
+            ) : null}
           </div>
         </div>
 
