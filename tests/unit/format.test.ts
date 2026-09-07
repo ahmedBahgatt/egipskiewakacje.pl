@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { priceLabel, priceUnit, priceHeadline, formatMoney, childFreeUnderAge } from "@/lib/format";
+import { priceLabel, priceUnit, priceHeadline, formatMoney, optionAmount, childFreeUnderAge } from "@/lib/format";
 
 /**
  * Guards the tour-CARD price presentation: the vague "od" (from) prefix must never
@@ -41,6 +41,31 @@ describe("priceHeadline - tour-detail booking card (unchanged, no 'od')", () => 
 describe("formatMoney - unchanged numeric formatting", () => {
   it("keeps the currency suffix and no 'od'", () => {
     expect(formatMoney(60, "USD")).toBe("60 USD");
+  });
+});
+
+/**
+ * A genuine free child/infant price option (flagged `free` or stored as amount 0)
+ * must render "Bezpłatnie" in every shared pricing surface, never "0 USD". Paid
+ * options render exactly, and the stored numeric amount is never mutated.
+ */
+describe("optionAmount - free child/infant renders 'Bezpłatnie'", () => {
+  it("renders 'Bezpłatnie' for an explicit free flag", () => {
+    expect(optionAmount({ label: "Dziecko do 5 lat", amount: 0, currency: "USD", free: true } as never)).toBe("Bezpłatnie");
+  });
+
+  it("renders 'Bezpłatnie' for a 0-amount option (no flag needed)", () => {
+    expect(optionAmount({ label: "Dziecko do 5 lat", amount: 0, currency: "USD" } as never)).toBe("Bezpłatnie");
+  });
+
+  it("never renders '0 USD' / 'Gratis' / 'Free' for a free tier", () => {
+    const out = optionAmount({ label: "Dziecko do 5 lat", amount: 0, currency: "USD" } as never);
+    for (const bad of ["0 USD", "0$", "Gratis", "Free"]) expect(out).not.toContain(bad);
+  });
+
+  it("leaves paid prices exactly as formatMoney", () => {
+    expect(optionAmount({ label: "Dorosły", amount: 18, currency: "USD" } as never)).toBe("18 USD");
+    expect(optionAmount({ label: "Dziecko 5-11 lat", amount: 10, currency: "USD" } as never)).toBe("10 USD");
   });
 });
 

@@ -44,9 +44,15 @@ export function priceHeadline(
   return { value, captionLong: long, captionShort: unit };
 }
 
-/** Amount cell for a single price option ("bezpłatnie" when free). */
+/**
+ * Amount cell for a single price option. A genuine free child/infant tier -
+ * flagged `free` or priced at 0 - renders "Bezpłatnie" instead of "0 USD" in
+ * every shared pricing surface (booking card, sticky sheet, Ceny table).
+ * Presentation only: the stored numeric `amount` (0) is unchanged, and every
+ * paid price still renders exactly (e.g. "18 USD").
+ */
 export function optionAmount(opt: PriceOption): string {
-  return opt.free ? "bezpłatnie" : formatMoney(opt.amount, opt.currency);
+  return opt.free || opt.amount === 0 ? "Bezpłatnie" : formatMoney(opt.amount, opt.currency);
 }
 
 /**
