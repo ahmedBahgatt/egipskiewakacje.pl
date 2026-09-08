@@ -45,7 +45,8 @@
    redundant floating button (shared state via the body attribute set by the
    drawer - no z-index war). */
 :global(body[data-menu-open="true"]) .float,
-:global(body[data-lightbox-open="true"]) .float {
+:global(body[data-lightbox-open="true"]) .float,
+:global(body[data-sheet-open="true"]) .float {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -62,7 +63,13 @@
 @media (max-width: 959px) {
   :global(main:has([data-sticky-booking])) ~ .float,
   :global(body[data-tour-page="true"]) .float {
-    --float-offset: 64px;
+    /* Dock the FAB flush onto the top edge of the sticky bar. The paper "ring"
+       (box-shadow spread in the bar's surface colour) makes it read as seated
+       into the bar rather than floating loose - a premium, intentional dock -
+       while the green-tinted drop shadow lifts it off the page. The flush
+       offset keeps the circle above the bar's CTA (no hit-area overlap). */
+    --float-offset: 50px;
+    box-shadow: 0 0 0 4px var(--bg-paper), 0 8px 22px rgba(4, 51, 26, 0.28);
   }
 }
 /* Reveal the label on hover/focus (desktop). Mobile stays a compact icon. */

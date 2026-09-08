@@ -50,6 +50,9 @@ export function StickyBookingBar({
     if (!open) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // Hide the floating WhatsApp FAB while the sheet is open so it can never sit
+    // over the form (robust across safe-area/notch + first-open on iOS).
+    document.body.dataset.sheetOpen = "true";
     const panel = panelRef.current;
     const opener = openerRef.current;
     const focusable = panel?.querySelector<HTMLElement>(
@@ -85,6 +88,7 @@ export function StickyBookingBar({
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = prevOverflow;
+      delete document.body.dataset.sheetOpen;
       opener?.focus();
     };
   }, [open, close]);

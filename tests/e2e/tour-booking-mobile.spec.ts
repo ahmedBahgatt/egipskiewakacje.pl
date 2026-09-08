@@ -66,21 +66,30 @@ test.describe("tour page - mobile booking + responsive", () => {
     });
   }
 
-  test("booking sheet opens, exposes submit, and closes", async ({ page }) => {
+  test("booking sheet opens on first tap (no scroll), hides the FAB, closes", async ({ page }) => {
     await gotoMobile(page, TOURS[0]);
 
+    const fab = page.getByRole("link", { name: "Napisz do nas na WhatsApp" });
+    await expect(fab).toBeVisible();
+
+    // First interaction, no prior scroll (repro of the iPhone-X open bug).
     await page.getByRole("button", { name: "Zarezerwuj", exact: true }).click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();
+
+    // The FAB must NOT sit over the form once the sheet is open.
+    await expect(fab).toBeHidden();
+
     // Submit CTA is present and inside the viewport.
     const submit = dialog.getByRole("button", { name: /Wyślij rezerwację przez WhatsApp/ });
     await expect(submit).toBeVisible();
     const box = await submit.boundingBox();
     expect(box!.y + box!.height).toBeLessThanOrEqual(PHONE.height + 1);
 
-    // Escape closes it.
+    // Escape closes it and the FAB returns.
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
+    await expect(fab).toBeVisible();
   });
 
   test("sheet submit stays WhatsApp-based (no online checkout)", async ({ page }) => {
