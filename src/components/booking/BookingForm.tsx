@@ -191,11 +191,7 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
               value={children}
               onChange={(e) => setChildren(Math.max(0, Math.min(10, Number(e.target.value) || 0)))}
               onFocus={onFirstInteraction}
-              aria-describedby={`${p}children-hint`}
             />
-            <span id={`${p}children-hint`} className={styles.hint}>
-              Dzieci poniżej 5 lat – bezpłatnie
-            </span>
           </div>
         </div>
 
