@@ -12,6 +12,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/motion/Reveal";
 import { DestinationExperience } from "./DestinationExperience";
 import { DestinationSignature } from "./DestinationSignature";
+import { WhatsAppContextSetter } from "@/components/booking/WhatsAppContextSetter";
 import { IconArrowRight, IconCheck, IconWhatsApp } from "@/components/ui/icons";
 import { formatMoney } from "@/lib/format";
 import { hubFacts, fromPriceLabel } from "@/lib/facts";
@@ -96,6 +97,7 @@ export function DestinationPage({
           faqJsonLd(destination.faqs),
         ]}
       />
+      <WhatsAppContextSetter type="destination" title={destination.nameGenitive} />
 
       {/* hero */}
       <PageHero

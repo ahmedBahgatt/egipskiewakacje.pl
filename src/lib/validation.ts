@@ -1,26 +1,21 @@
 /**
  * Booking form validation. Pure and deterministic (accepts `today` for tests).
  * The form must NOT open WhatsApp unless this returns `valid: true`.
+ *
+ * Minimum-friction booking: no name, no per-child ages. `children` is the count
+ * of paying children aged 5-11 only (under-5s are free and not collected).
  */
 
 export interface BookingValues {
-  name: string;
   date: string; // ISO yyyy-mm-dd from <input type="date">
   hotel: string;
   adults: number;
+  /** Paying children aged 5-11. */
   children: number;
-  /** One age per child; required when children > 0. */
-  childrenAges: (number | null)[];
   notes?: string;
 }
 
-export type BookingField =
-  | "name"
-  | "date"
-  | "hotel"
-  | "adults"
-  | "children"
-  | "childrenAges";
+export type BookingField = "date" | "hotel" | "adults" | "children";
 
 export interface ValidationResult {
   valid: boolean;
@@ -29,14 +24,7 @@ export interface ValidationResult {
   firstInvalidField: BookingField | null;
 }
 
-const FIELD_ORDER: BookingField[] = [
-  "name",
-  "date",
-  "hotel",
-  "adults",
-  "children",
-  "childrenAges",
-];
+const FIELD_ORDER: BookingField[] = ["date", "hotel", "adults", "children"];
 
 /** yyyy-mm-dd for a given date, in local time. */
 export function toISODate(d: Date): string {
@@ -51,10 +39,6 @@ export function validateBooking(
   today: Date = new Date(),
 ): ValidationResult {
   const errors: Partial<Record<BookingField, string>> = {};
-
-  if (!values.name || values.name.trim().length < 2) {
-    errors.name = "Podaj imię (min. 2 znaki).";
-  }
 
   if (!values.date) {
     errors.date = "Wybierz datę wycieczki.";
@@ -78,17 +62,6 @@ export function validateBooking(
 
   if (!Number.isFinite(values.children) || values.children < 0) {
     errors.children = "Podaj liczbę dzieci (0 lub więcej).";
-  }
-
-  // Children's ages become REQUIRED when at least one child is selected.
-  if (Number.isFinite(values.children) && values.children > 0) {
-    const provided = values.childrenAges.slice(0, values.children);
-    const allValid =
-      provided.length === values.children &&
-      provided.every((a) => a !== null && Number.isFinite(a) && a >= 0 && a <= 17);
-    if (!allValid) {
-      errors.childrenAges = "Podaj wiek każdego dziecka (0-17 lat).";
-    }
   }
 
   const firstInvalidField = FIELD_ORDER.find((f) => errors[f]) ?? null;

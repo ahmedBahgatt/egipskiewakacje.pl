@@ -45,9 +45,24 @@ test.describe("tour page - mobile booking + responsive", () => {
       expect(box!.x + box!.width).toBeLessThanOrEqual(PHONE.width + 1);
     });
 
-    test(`standalone WhatsApp FAB is hidden on tour pages: ${url}`, async ({ page }) => {
+    test(`floating WhatsApp stays visible ABOVE the sticky bar (no overlap): ${url}`, async ({
+      page,
+    }) => {
       await gotoMobile(page, url);
-      await expect(page.getByRole("link", { name: "Napisz do nas na WhatsApp" })).toBeHidden();
+      const fab = page.getByRole("link", { name: "Napisz do nas na WhatsApp" });
+      const cta = page.getByRole("button", { name: "Zarezerwuj", exact: true });
+      await expect(fab).toBeVisible();
+      await expect(cta).toBeVisible();
+
+      const fabBox = await fab.boundingBox();
+      const ctaBox = await cta.boundingBox();
+      expect(fabBox).not.toBeNull();
+      expect(ctaBox).not.toBeNull();
+      // FAB sits entirely above the sticky booking bar CTA - no vertical overlap.
+      expect(fabBox!.y + fabBox!.height).toBeLessThanOrEqual(ctaBox!.y + 1);
+      // No horizontal overflow: FAB stays within the viewport.
+      expect(fabBox!.x).toBeGreaterThanOrEqual(0);
+      expect(fabBox!.x + fabBox!.width).toBeLessThanOrEqual(PHONE.width + 1);
     });
   }
 
@@ -58,7 +73,7 @@ test.describe("tour page - mobile booking + responsive", () => {
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();
     // Submit CTA is present and inside the viewport.
-    const submit = dialog.getByRole("button", { name: /Wyślij zapytanie przez WhatsApp/ });
+    const submit = dialog.getByRole("button", { name: /Wyślij rezerwację przez WhatsApp/ });
     await expect(submit).toBeVisible();
     const box = await submit.boundingBox();
     expect(box!.y + box!.height).toBeLessThanOrEqual(PHONE.height + 1);
@@ -79,10 +94,9 @@ test.describe("tour page - mobile booking + responsive", () => {
     await gotoMobile(page, TOURS[0]);
     await page.getByRole("button", { name: "Zarezerwuj", exact: true }).click();
     const dialog = page.getByRole("dialog");
-    await dialog.locator("#bfm-name").fill("Anna");
     await dialog.locator("#bfm-date").fill("2027-01-15");
     await dialog.locator("#bfm-hotel").fill("Steigenberger");
-    await dialog.getByRole("button", { name: /Wyślij zapytanie przez WhatsApp/ }).click();
+    await dialog.getByRole("button", { name: /Wyślij rezerwację przez WhatsApp/ }).click();
     const urls = await page.evaluate(
       () => (window as unknown as { __opened: string[] }).__opened,
     );

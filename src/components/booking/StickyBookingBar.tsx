@@ -11,8 +11,8 @@ import styles from "./StickyBookingBar.module.css";
  * Mobile-only booking entry. A compact single-row bar (price + primary CTA) that
  * opens a full-height accessible booking sheet with the shared BookingForm.
  * While mounted it flags `body[data-tour-page]` so the global WhatsApp FAB is
- * hidden on tour pages (contact is available through the booking UI) - the two
- * floating actions never overlap.
+ * lifted clear of this bar on mobile (see WhatsAppFloat.module.css) - both stay
+ * reachable and never overlap.
  */
 export function StickyBookingBar({
   priceValue,
@@ -35,7 +35,7 @@ export function StickyBookingBar({
 
   useEffect(() => setMounted(true), []);
 
-  // Hide the standalone WhatsApp FAB on tour pages (single source of truth).
+  // Flag tour pages so the global WhatsApp FAB lifts above this bar on mobile.
   useEffect(() => {
     document.body.dataset.tourPage = "true";
     return () => {
@@ -99,7 +99,7 @@ export function StickyBookingBar({
 
   return (
     <>
-      <div className={styles.bar}>
+      <div className={styles.bar} data-sticky-booking>
         <div className={styles.price}>
           <span className={styles.value}>{priceValue}</span>
           {priceCaption ? (

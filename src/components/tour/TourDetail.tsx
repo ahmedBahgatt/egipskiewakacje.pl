@@ -11,6 +11,7 @@ import { TourGallery } from "./TourGallery";
 import { TourCard } from "./TourCard";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { StickyBookingBar } from "@/components/booking/StickyBookingBar";
+import { WhatsAppContextSetter } from "@/components/booking/WhatsAppContextSetter";
 import {
   IconArrowRight,
   IconBus,
@@ -22,8 +23,8 @@ import {
   IconWhatsApp,
   IconX,
 } from "@/components/ui/icons";
-import { priceHeadline, optionAmount, formatMoney, formatDatePl, childFreeUnderAge } from "@/lib/format";
-import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
+import { priceHeadline, optionAmount, formatMoney, formatDatePl } from "@/lib/format";
+import { buildQuestionWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import {
   breadcrumbJsonLd,
@@ -66,14 +67,11 @@ export function TourDetail({
     },
   ];
 
-  const waQuick = buildBookingWhatsappUrl({
-    tourTitle: tour.title,
-    departure: tour.departure,
-    date: "(do ustalenia)",
-    hotel: "(do podania)",
-    adults: 2,
-    name: "(do podania)",
-    pageUrl: absoluteUrl(tour.seo.canonicalPath),
+  // Quick question = a pure question intent (title + URL only), never booking data.
+  const waQuick = buildQuestionWhatsappUrl({
+    type: "tour",
+    title: tour.title,
+    url: absoluteUrl(tour.seo.canonicalPath),
   });
 
   const bookingOption = {
@@ -82,7 +80,6 @@ export function TourDetail({
     departure: tour.departure,
     destination: tour.destination,
     canonicalPath: tour.seo.canonicalPath,
-    childFreeUnderAge: childFreeUnderAge(tour.price),
   };
 
   const head = priceHeadline(tour.price);
@@ -92,6 +89,7 @@ export function TourDetail({
       <JsonLd
         data={[breadcrumbJsonLd(crumbs), tourJsonLd(tour), faqJsonLd(tour.faqs)]}
       />
+      <WhatsAppContextSetter type="tour" title={tour.title} />
 
       <div className="container">
         <Breadcrumbs crumbs={crumbs} />

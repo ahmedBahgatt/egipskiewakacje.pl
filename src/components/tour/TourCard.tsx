@@ -6,7 +6,7 @@ import type { Tour } from "@/content/types";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { IconArrowRight, IconClock, IconMapPin, IconWhatsApp, IconGlobe } from "@/components/ui/icons";
 import { priceLabel, priceUnit, formatMoney } from "@/lib/format";
-import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
+import { buildQuestionWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import { track } from "@/lib/analytics";
 import styles from "./TourCard.module.css";
@@ -44,14 +44,12 @@ export function TourCard({
 
   const childOpt = tour.price.options.find((o) => /dziecko/i.test(o.label) && !o.free);
 
-  const waUrl = buildBookingWhatsappUrl({
-    tourTitle: tour.title,
-    departure: tour.departure,
-    date: "(do ustalenia)",
-    hotel: "(do podania)",
-    adults: 2,
-    name: "(do podania)",
-    pageUrl: absoluteUrl(tour.seo.canonicalPath),
+  // Card WhatsApp CTA is a question ("Zapytaj o..."), not a booking - no
+  // placeholder date/hotel/adults; just the tour title + its URL.
+  const waUrl = buildQuestionWhatsappUrl({
+    type: "tour",
+    title: tour.title,
+    url: absoluteUrl(tour.seo.canonicalPath),
   });
 
   return (

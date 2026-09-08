@@ -13,6 +13,7 @@ import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { PostBody, tableOfContents, relatedTourSlugsInBody } from "@/components/content/PostBody";
 import { ToursGrid } from "@/components/tour/ToursGrid";
 import { Button } from "@/components/ui/Button";
+import { WhatsAppContextSetter } from "@/components/booking/WhatsAppContextSetter";
 import { IconArrowRight, IconWhatsApp } from "@/components/ui/icons";
 import { formatDatePl } from "@/lib/format";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
@@ -62,6 +63,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <JsonLd
         data={[breadcrumbJsonLd(crumbs), blogPostingJsonLd(post), faqJsonLd(post.faqs)]}
       />
+      <WhatsAppContextSetter type="post" title={post.title} />
 
       <div className="container">
         <Breadcrumbs crumbs={crumbs} />
