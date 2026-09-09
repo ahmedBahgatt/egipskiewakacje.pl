@@ -113,12 +113,15 @@
 }
 .close svg { font-size: 1.2rem; }
 .close:hover { background: var(--sand-200); }
+/* Passthrough flex context for the form's 3-row layout. The scroll now lives on
+   the form's .fields (see BookingForm.module.css .panel .fields); the form's
+   .actions footer sits below it as a real row - so the CTA never overlaps
+   fields. This body no longer scrolls or pads (fields/footer own their padding). */
 .panelBody {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 1rem 1.1rem 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fade { from { opacity: 0; } }
