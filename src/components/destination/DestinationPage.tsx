@@ -5,7 +5,6 @@ import { PageIntro } from "@/components/ui/PageIntro";
 import { RelatedLinks, type RelatedLink } from "@/components/ui/RelatedLinks";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { DataTable } from "@/components/ui/DataTable";
 import { Faq } from "@/components/ui/Faq";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -14,7 +13,6 @@ import { DestinationExperience } from "./DestinationExperience";
 import { DestinationSignature } from "./DestinationSignature";
 import { WhatsAppContextSetter } from "@/components/booking/WhatsAppContextSetter";
 import { IconArrowRight, IconCheck, IconWhatsApp } from "@/components/ui/icons";
-import { formatMoney } from "@/lib/format";
 import { hubFacts, fromPriceLabel } from "@/lib/facts";
 import { orderedPresentCategories } from "@/lib/grouping";
 import { categoryLabel } from "@/lib/categories";
@@ -68,19 +66,6 @@ export function DestinationPage({
       blurb: "Pełna oferta z trzech kurortów - filtruj po kurorcie i rodzaju.",
     },
   ];
-
-  // Aggregate the distinct transfer-supplement zones across THIS resort's tours
-  // (the lowest per-person amount seen for each zone). This is destination-level
-  // and honest - it never promises one universal pickup time or fee; exact times
-  // and fees live on each tour page.
-  const zoneMap = new Map<string, number>();
-  for (const t of tours) {
-    for (const ts of t.transferSupplements) {
-      const cur = zoneMap.get(ts.zone);
-      if (cur == null || ts.amount < cur) zoneMap.set(ts.zone, ts.amount);
-    }
-  }
-  const transferRows = [...zoneMap.entries()].sort((a, b) => a[1] - b[1]);
 
   return (
     <article>
@@ -168,36 +153,30 @@ export function DestinationPage({
       {/* grouped experience sections + quick finder */}
       <DestinationExperience destination={destination} tours={tours} />
 
-      {/* pickup + transfers (destination-level, not one universal promise) */}
+      {/* pickup + transfers (destination-level, not one universal promise).
+          No aggregated fee table: transfer supplements vary per tour AND the
+          per-tour zone labels are inconsistent (grouped vs individual, e.g.
+          "Safaga, Soma Bay, Abu Soma" vs "Safaga"), so any cross-tour numeric
+          aggregation is misleading. The exact, per-zone amount lives on each
+          tour page and in the destination FAQ (both authored in Sanity). */}
       <section className="section">
-        <div className={`container ${styles.detailGrid}`}>
-          <div>
-            <h2 className={styles.h2}>Odbiór z hotelu i transfery</h2>
-            <p className={styles.para}>
-              Prawie każda wycieczka z {destination.nameGenitive} obejmuje odbiór spod hotelu i
-              powrót w to samo miejsce. Godzina odbioru zależy od konkretnej wyprawy i strefy hotelu
-              - przy krótkich atrakcjach jest to zwykle poranek lub popołudnie, przy dalekich trasach
-              (Kair, Luksor) często noc. Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem, a
-              precyzyjne dane znajdziesz na stronie każdej wycieczki.
-            </p>
-            <Button href="#wycieczki" variant="outline" iconRight={<IconArrowRight />}>
-              Wybierz wycieczkę
-            </Button>
-          </div>
-
-          {transferRows.length > 0 && (
-            <div>
-              <h2 className={styles.h2}>Przykładowe dopłaty za transfer</h2>
-              <DataTable
-                columns={["Strefa / hotele", "Dopłata od osoby"]}
-                rows={transferRows.map(([zone, amount]) => [zone, `od ${formatMoney(amount, "USD")}`])}
-              />
-              <p className={styles.note}>
-                Dopłaty dotyczą wybranych, bardziej oddalonych stref i różnią się w zależności od
-                wycieczki. Ostateczną kwotę dla Twojego hotelu potwierdzamy przy rezerwacji.
-              </p>
-            </div>
-          )}
+        <div className="container container-narrow">
+          <h2 className={styles.h2}>Odbiór z hotelu i transfery</h2>
+          <p className={styles.para}>
+            Prawie każda wycieczka z {destination.nameGenitive} obejmuje odbiór spod hotelu i powrót
+            w to samo miejsce. Godzina odbioru zależy od konkretnej wyprawy i strefy hotelu - przy
+            krótkich atrakcjach jest to zwykle poranek lub popołudnie, przy dalekich trasach (Kair,
+            Luksor) często noc. Dokładną godzinę potwierdzamy na WhatsApp przed wyjazdem, a precyzyjne
+            dane znajdziesz na stronie każdej wycieczki.
+          </p>
+          <p className={styles.para}>
+            Przy części hoteli położonych dalej od centrum kurortu może obowiązywać dopłata za
+            transfer. Jej wysokość zależy od konkretnej wycieczki i lokalizacji hotelu - dokładną
+            kwotę podajemy na stronie danej wycieczki i potwierdzamy przy rezerwacji.
+          </p>
+          <Button href="#wycieczki" variant="outline" iconRight={<IconArrowRight />}>
+            Wybierz wycieczkę
+          </Button>
         </div>
       </section>
 
