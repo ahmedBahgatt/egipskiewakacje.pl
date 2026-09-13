@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig, absoluteUrl } from "@/content/config";
 import type { BlogPost, Destination, FaqItem, Tour } from "@/content/types";
-import { imageJpgUrl, mediaOgImageUrl, ogImageUrl } from "@/lib/media";
+import { mediaOgImageUrl, ogImageUrl } from "@/lib/media";
 
 const DEFAULT_OG = "/media/og/default.jpg";
 
@@ -193,7 +193,7 @@ export function tourJsonLd(tour: Tour) {
     name: tour.title,
     description: tour.shortDescription,
     url: absoluteUrl(tour.seo.canonicalPath),
-    image: (tour.gallery?.length ? tour.gallery : [tour.heroImage]).map(imageJpgUrl),
+    image: (tour.gallery?.length ? tour.gallery : [tour.heroImage]).map(mediaOgImageUrl),
     itinerary: {
       "@type": "ItemList",
       itemListElement: tour.itinerary.map((step, i) => ({
@@ -228,7 +228,7 @@ export function blogPostingJsonLd(post: BlogPost) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: imageJpgUrl(post.featuredImage),
+    image: mediaOgImageUrl(post.featuredImage),
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     inLanguage: "pl-PL",
