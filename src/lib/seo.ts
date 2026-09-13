@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig, absoluteUrl } from "@/content/config";
 import type { BlogPost, Destination, FaqItem, Tour } from "@/content/types";
-import { imageJpgUrl, ogImageUrl } from "@/lib/media";
+import { imageJpgUrl, mediaOgImageUrl, ogImageUrl } from "@/lib/media";
 
 const DEFAULT_OG = "/media/og/default.jpg";
 
@@ -12,6 +12,9 @@ export interface PageSeo {
   ogImage?: string;
   /** Accurate description of the OG IMAGE itself (not the page). Falls back to title. */
   ogImageAlt?: string;
+  /** Actual OG image dimensions. Default 1200x630 (the branded default/OG cards). */
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   type?: "website" | "article";
 }
 
@@ -20,6 +23,8 @@ export function buildMetadata(seo: PageSeo): Metadata {
   const url = absoluteUrl(seo.canonicalPath);
   const ogImage = ogImageUrl(seo.ogImage ?? DEFAULT_OG);
   const ogImageAlt = seo.ogImageAlt ?? seo.title;
+  const ogWidth = seo.ogImageWidth ?? 1200;
+  const ogHeight = seo.ogImageHeight ?? 630;
   return {
     title: seo.title,
     description: seo.description,
@@ -31,7 +36,7 @@ export function buildMetadata(seo: PageSeo): Metadata {
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: seo.type ?? "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: ogImageAlt }],
+      images: [{ url: ogImage, width: ogWidth, height: ogHeight, alt: ogImageAlt }],
     },
     twitter: {
       card: "summary_large_image",
@@ -40,6 +45,23 @@ export function buildMetadata(seo: PageSeo): Metadata {
       images: [{ url: ogImage, alt: ogImageAlt }],
     },
   };
+}
+
+/**
+ * Metadata for a destination landing page. Identical to `buildMetadata` on the
+ * destination's own SEO, except the social (OG/Twitter) image is the SAME hero
+ * photo shown on the page - a single source of truth, so the visual hero and the
+ * share preview never drift. Falls back to the destination's `seo.ogImage`/title
+ * only if the hero lacks alt text. Frontend-only; reads existing content fields.
+ */
+export function destinationMetadata(dest: Destination): Metadata {
+  return buildMetadata({
+    ...dest.seo,
+    ogImage: mediaOgImageUrl(dest.heroImage),
+    ogImageAlt: dest.heroImage.alt || dest.seo.ogImageAlt,
+    ogImageWidth: dest.heroImage.width,
+    ogImageHeight: dest.heroImage.height,
+  });
 }
 
 // --- JSON-LD builders --------------------------------------------------------
