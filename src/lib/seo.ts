@@ -48,19 +48,23 @@ export function buildMetadata(seo: PageSeo): Metadata {
 }
 
 /**
- * Metadata for a destination landing page. Identical to `buildMetadata` on the
- * destination's own SEO, except the social (OG/Twitter) image is the SAME hero
- * photo shown on the page - a single source of truth, so the visual hero and the
- * share preview never drift. Falls back to the destination's `seo.ogImage`/title
- * only if the hero lacks alt text. Frontend-only; reads existing content fields.
+ * Metadata for a destination landing page. The CMS `seo.ogImage` (edited in
+ * Sanity) is the authoritative social image: change it there and the live
+ * OG/Twitter image follows after the normal publish -> webhook -> build, with no
+ * code change. The page hero is used ONLY as a fallback when `seo.ogImage` is
+ * empty (protects local/legacy data without overriding a valid CMS value).
+ * Dimensions track whichever image is chosen so og:image:width/height stay
+ * truthful. Always one single absolute URL (mediaOgImageUrl / ogImageUrl).
  */
 export function destinationMetadata(dest: Destination): Metadata {
+  const { seo, heroImage } = dest;
+  const useCmsOg = Boolean(seo.ogImage);
   return buildMetadata({
-    ...dest.seo,
-    ogImage: mediaOgImageUrl(dest.heroImage),
-    ogImageAlt: dest.heroImage.alt || dest.seo.ogImageAlt,
-    ogImageWidth: dest.heroImage.width,
-    ogImageHeight: dest.heroImage.height,
+    ...seo,
+    ogImage: seo.ogImage ?? mediaOgImageUrl(heroImage),
+    ogImageAlt: seo.ogImageAlt ?? heroImage.alt,
+    ogImageWidth: useCmsOg ? seo.ogImageWidth : heroImage.width,
+    ogImageHeight: useCmsOg ? seo.ogImageHeight : heroImage.height,
   });
 }
 

@@ -41,7 +41,7 @@ export const GROQ = {
     "heroImage": heroImage${IMG},
     "practical": practical,
     "faqs": faqs[]{ question, answer },
-    "seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt },
+    "seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt, "ogImageWidth": ogImage.asset->metadata.dimensions.width, "ogImageHeight": ogImage.asset->metadata.dimensions.height },
     primaryQuery
   }`,
 

@@ -32,6 +32,8 @@ interface RawSeo {
   canonicalPath?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   type?: "website" | "article";
 }
 interface RawBlock {
@@ -60,6 +62,8 @@ function mapSeo(raw: RawSeo | undefined): SeoMeta {
     canonicalPath: raw?.canonicalPath ?? "/",
     ogImage: raw?.ogImage || undefined,
     ogImageAlt: raw?.ogImageAlt || undefined,
+    ...(raw?.ogImageWidth ? { ogImageWidth: raw.ogImageWidth } : {}),
+    ...(raw?.ogImageHeight ? { ogImageHeight: raw.ogImageHeight } : {}),
     ...(raw?.type ? { type: raw.type } : {}),
   };
 }
