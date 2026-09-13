@@ -29,14 +29,18 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  // Icons live under /icons/* (versioned path). The retired v1 brand shipped at
+  // the old flat URLs (/icon-192.png, etc.); moving to a fresh path forces
+  // browsers/Google/social to refetch the current crest instead of serving the
+  // long-cached old artwork. Root /favicon.ico stays for the convention probe.
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon-48.png", type: "image/png", sizes: "48x48" },
-      { url: "/icon-96.png", type: "image/png", sizes: "96x96" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icons/icon-48.png", type: "image/png", sizes: "48x48" },
+      { url: "/icons/icon-96.png", type: "image/png", sizes: "96x96" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
   manifest: "/manifest.webmanifest",
 };
