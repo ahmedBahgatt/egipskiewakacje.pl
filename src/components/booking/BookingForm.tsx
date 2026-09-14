@@ -53,7 +53,6 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
   function onFirstInteraction() {
     if (started) return;
     setStarted(true);
-    track("booking_form_start", activeTour ? { tour_slug: activeTour.slug, destination: activeTour.destination } : undefined);
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -62,14 +61,8 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
     const result = validateBooking(values);
 
     if (!result.valid) {
+      // A failed submit is NOT a conversion: no generate_lead, no whatsapp_click.
       setErrors(result.errors);
-      const analyticsCtx = activeTour
-        ? { tour_slug: activeTour.slug, destination: activeTour.destination }
-        : {};
-      track("booking_form_validation_error", {
-        ...analyticsCtx,
-        ...(result.firstInvalidField ? { error_field: result.firstInvalidField } : {}),
-      });
       if (result.firstInvalidField) {
         const el = document.getElementById(fieldId[result.firstInvalidField]);
         el?.focus();
@@ -90,8 +83,17 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
       pageUrl: absoluteUrl(tour.canonicalPath),
     });
 
-    track("booking_form_valid", { tour_slug: tour.slug, destination: tour.destination });
-    track("booking_whatsapp_open", { tour_slug: tour.slug, destination: tour.destination });
+    // One valid final handoff = three distinct meanings, each fired exactly once:
+    // the button click (cta_click), the WhatsApp handoff (whatsapp_click), and the
+    // completed enquiry flow (generate_lead). No PII / no message text is sent.
+    const leadCtx = {
+      tour_slug: tour.slug,
+      destination: tour.destination,
+      placement: "booking_form",
+    } as const;
+    track("cta_click", { ...leadCtx, cta_id: "booking_submit", cta_type: "booking" });
+    track("whatsapp_click", { ...leadCtx, whatsapp_intent: "booking" });
+    track("generate_lead", { ...leadCtx, lead_source: "whatsapp_booking_form" });
     // Opened from the validated user action so popup blockers do not interfere.
     window.open(url, "_blank", "noopener,noreferrer");
   }

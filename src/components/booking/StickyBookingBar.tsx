@@ -95,9 +95,10 @@ export function StickyBookingBar({
 
   function openSheet() {
     setOpen(true);
-    track("booking_sheet_open", {
+    track("booking_open", {
       tour_slug: bookingOption.slug,
       destination: bookingOption.destination,
+      placement: "sticky_bar",
     });
   }
 
@@ -115,7 +116,15 @@ export function StickyBookingBar({
             </span>
           ) : null}
         </div>
-        <button ref={openerRef} type="button" className={styles.cta} onClick={openSheet}>
+        <button
+          ref={openerRef}
+          type="button"
+          className={styles.cta}
+          onClick={openSheet}
+          data-cta-id="sticky_booking"
+          data-cta-type="booking"
+          data-placement="sticky_bar"
+        >
           Zarezerwuj
         </button>
       </div>

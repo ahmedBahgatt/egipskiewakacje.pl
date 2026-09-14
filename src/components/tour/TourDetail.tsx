@@ -148,7 +148,18 @@ export function TourDetail({
             </ul>
 
             <div className={styles.ctaGroup}>
-              <Button href="#rezerwacja" size="md" fullWidth>
+              <Button
+                href="#rezerwacja"
+                size="md"
+                fullWidth
+                analytics={{
+                  ctaId: "tour_booking",
+                  ctaType: "booking",
+                  placement: "tour_booking",
+                  tourSlug: tour.slug,
+                  destination: tour.destination,
+                }}
+              >
                 Zarezerwuj wycieczkę
               </Button>
               <Button
@@ -158,6 +169,14 @@ export function TourDetail({
                 size="sm"
                 fullWidth
                 iconLeft={<IconWhatsApp />}
+                analytics={{
+                  ctaId: "tour_quick_whatsapp",
+                  ctaType: "whatsapp",
+                  placement: "quick_question",
+                  waIntent: "enquiry",
+                  tourSlug: tour.slug,
+                  destination: tour.destination,
+                }}
               >
                 Szybkie pytanie na WhatsApp
               </Button>
@@ -347,7 +366,7 @@ export function TourDetail({
               <h2 className={styles.h2}>Podobne wycieczki</h2>
               <div className={styles.relatedTours}>
                 {relatedTours.map((rt) => (
-                  <TourCard key={rt.route} tour={rt} />
+                  <TourCard key={rt.route} tour={rt} placement="related_tours" />
                 ))}
               </div>
             </section>

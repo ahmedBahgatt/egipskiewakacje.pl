@@ -195,10 +195,21 @@ export function FinalCta() {
               variant="whatsapp"
               size="lg"
               iconLeft={<IconWhatsApp />}
+              analytics={{
+                ctaId: "homepage_final_whatsapp",
+                ctaType: "whatsapp",
+                placement: "homepage_cta",
+                waIntent: "enquiry",
+              }}
             >
               Napisz na WhatsApp
             </Button>
-            <Button href="/wycieczki/" variant="outline" size="lg">
+            <Button
+              href="/wycieczki/"
+              variant="outline"
+              size="lg"
+              analytics={{ ctaId: "homepage_final_browse", ctaType: "tour", placement: "homepage_cta" }}
+            >
               Zobacz wycieczki
             </Button>
           </div>

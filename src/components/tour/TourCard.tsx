@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import type { Tour } from "@/content/types";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
@@ -8,40 +5,18 @@ import { IconArrowRight, IconClock, IconMapPin, IconWhatsApp, IconGlobe } from "
 import { priceLabel, priceUnit, formatMoney } from "@/lib/format";
 import { buildQuestionWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
-import { track } from "@/lib/analytics";
 import styles from "./TourCard.module.css";
 
 export function TourCard({
   tour,
-  position,
   priority = false,
+  placement = "tour_grid",
 }: {
   tour: Tour;
-  position?: number;
+  /** Stable analytics placement, e.g. all_tours / related_tours / destination_listing. */
+  placement?: string;
   priority?: boolean;
 }) {
-  const ref = useRef<HTMLElement>(null);
-  const seen = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || seen.current) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting && !seen.current) {
-            seen.current = true;
-            track("tour_card_view", { tour_slug: tour.slug, destination: tour.destination });
-            io.disconnect();
-          }
-        }
-      },
-      { threshold: 0.4 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [tour.slug, tour.destination]);
-
   const childOpt = tour.price.options.find((o) => /dziecko/i.test(o.label) && !o.free);
 
   // Card WhatsApp CTA is a question ("Zapytaj o..."), not a booking - no
@@ -53,7 +28,14 @@ export function TourCard({
   });
 
   return (
-    <article ref={ref} className={styles.card} data-testid="tour-card">
+    <article
+      className={styles.card}
+      data-testid="tour-card"
+      data-card="tour"
+      data-tour-slug={tour.slug}
+      data-destination={tour.destination}
+      data-placement={placement}
+    >
       <Link href={`${tour.route}/`} className={styles.media} tabIndex={-1} aria-hidden="true">
         <OptimizedImage image={tour.heroImage} priority={priority} className={styles.img} />
         <span className={styles.badge}>{tour.availabilityLabel}</span>
@@ -70,17 +52,7 @@ export function TourCard({
         </div>
 
         <h3 className={styles.title}>
-          <Link
-            href={`${tour.route}/`}
-            className={styles.titleLink}
-            onClick={() =>
-              track("tour_details_click", {
-                tour_slug: tour.slug,
-                destination: tour.destination,
-                ...(position ? { position } : {}),
-              })
-            }
-          >
+          <Link href={`${tour.route}/`} className={styles.titleLink}>
             {tour.title}
           </Link>
         </h3>
@@ -108,13 +80,7 @@ export function TourCard({
         </div>
 
         <div className={styles.actions}>
-          <Link
-            href={`${tour.route}/`}
-            className={styles.details}
-            onClick={() =>
-              track("tour_details_click", { tour_slug: tour.slug, destination: tour.destination })
-            }
-          >
+          <Link href={`${tour.route}/`} className={styles.details}>
             Szczegóły <IconArrowRight />
           </Link>
           <a
@@ -123,6 +89,12 @@ export function TourCard({
             rel="noopener noreferrer"
             className={styles.wa}
             aria-label={`Zapytaj o wycieczkę ${tour.title} na WhatsApp`}
+            data-cta-id="tour_card_whatsapp"
+            data-cta-type="whatsapp"
+            data-placement="tour_card"
+            data-wa-intent="enquiry"
+            data-tour-slug={tour.slug}
+            data-destination={tour.destination}
           >
             <IconWhatsApp /> WhatsApp
           </a>

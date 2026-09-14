@@ -327,10 +327,10 @@ export function TourSlider({ tours }: { tours: Tour[] }) {
                 tabIndex={real ? undefined : -1}
                 onClick={() =>
                   real &&
-                  track("tour_details_click", {
+                  track("tour_card_click", {
                     tour_slug: t.slug,
                     destination: t.destination,
-                    source: "slider",
+                    placement: "homepage_bestseller",
                   })
                 }
               >

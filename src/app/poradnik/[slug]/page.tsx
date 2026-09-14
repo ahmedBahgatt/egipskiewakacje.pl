@@ -147,10 +147,17 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               variant="whatsapp"
               size="lg"
               iconLeft={<IconWhatsApp />}
+              analytics={{ ctaId: "guide_whatsapp", ctaType: "whatsapp", placement: "guide", waIntent: "enquiry" }}
             >
               Napisz na WhatsApp
             </Button>
-            <Button href="/wycieczki/" variant="outline" size="lg" iconRight={<IconArrowRight />}>
+            <Button
+              href="/wycieczki/"
+              variant="outline"
+              size="lg"
+              iconRight={<IconArrowRight />}
+              analytics={{ ctaId: "guide_browse", ctaType: "tour", placement: "guide" }}
+            >
               Zobacz wycieczki
             </Button>
           </div>

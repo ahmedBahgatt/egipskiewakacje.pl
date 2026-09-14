@@ -10,15 +10,19 @@ import {
   getWhatsAppContext,
   subscribeWhatsAppContext,
 } from "@/lib/whatsappContext";
-import { track } from "@/lib/analytics";
 import styles from "./WhatsAppFloat.module.css";
 
 /**
- * Site-wide floating WhatsApp contact button. This is a CONTACT/QUESTION click,
- * never a completed booking - it fires `whatsapp_floating_click` and carries a
- * route/context-aware question message (page title + current URL only, never
- * booking data). Shared page components register their title via
- * <WhatsAppContextSetter>; unregistered routes fall back to home vs. generic.
+ * Site-wide floating WhatsApp contact button. This is a CONTACT/QUESTION intent,
+ * never a completed booking. It carries a route/context-aware question message
+ * (page title + current URL only, never booking data). Shared page components
+ * register their title via <WhatsAppContextSetter>; unregistered routes fall
+ * back to home vs. generic.
+ *
+ * Analytics is centralised: the data-* attributes below are read by the global
+ * delegated click listener (see AnalyticsRuntime), which fires cta_click +
+ * whatsapp_click (placement=floating_fab, intent=enquiry). The listener never
+ * reads the href, so the message text can never reach GA4.
  */
 export function WhatsAppFloat() {
   const pathname = usePathname();
@@ -40,7 +44,10 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Napisz do nas na WhatsApp"
-      onClick={() => track("whatsapp_floating_click", { source: "floating" })}
+      data-cta-id="floating_whatsapp"
+      data-cta-type="whatsapp"
+      data-placement="floating_fab"
+      data-wa-intent="enquiry"
     >
       <span className={styles.icon}>
         <IconWhatsApp />

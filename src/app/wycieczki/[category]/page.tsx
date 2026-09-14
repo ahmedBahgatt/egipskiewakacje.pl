@@ -128,7 +128,12 @@ export default async function Page({ params }: { params: Promise<{ category: str
         imagePriority
         actions={
           <>
-            <Button href="#wycieczki" variant="gold" iconRight={<IconArrowRight />}>
+            <Button
+              href="#wycieczki"
+              variant="gold"
+              iconRight={<IconArrowRight />}
+              analytics={{ ctaId: "category_browse", ctaType: "tour", placement: "category_hero" }}
+            >
               Zobacz wycieczki
             </Button>
             <Button
@@ -136,6 +141,12 @@ export default async function Page({ params }: { params: Promise<{ category: str
               external
               variant="whatsappOutline"
               iconLeft={<IconWhatsApp />}
+              analytics={{
+                ctaId: "category_whatsapp",
+                ctaType: "whatsapp",
+                placement: "category_hero",
+                waIntent: "enquiry",
+              }}
             >
               Napisz na WhatsApp
             </Button>
@@ -235,6 +246,7 @@ export default async function Page({ params }: { params: Promise<{ category: str
         title={`Masz pytania o wycieczki ${c.shortLabel}?`}
         text="Napisz na WhatsApp - potwierdzimy dostępność, godzinę odbioru i cenę dla Twojego hotelu. Bez przedpłaty."
         message={`Cześć! Mam pytanie o wycieczki: ${c.shortLabel}.`}
+        placement="category_cta"
       />
     </>
   );

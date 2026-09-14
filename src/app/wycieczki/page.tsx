@@ -96,7 +96,12 @@ export default async function Page() {
         imagePriority
         actions={
           <>
-            <Button href="#wycieczki" variant="gold" iconRight={<IconArrowRight />}>
+            <Button
+              href="#wycieczki"
+              variant="gold"
+              iconRight={<IconArrowRight />}
+              analytics={{ ctaId: "listing_browse", ctaType: "tour", placement: "listing_hero" }}
+            >
               Zobacz wycieczki
             </Button>
             <Button
@@ -104,6 +109,12 @@ export default async function Page() {
               external
               variant="whatsappOutline"
               iconLeft={<IconWhatsApp />}
+              analytics={{
+                ctaId: "listing_whatsapp",
+                ctaType: "whatsapp",
+                placement: "listing_hero",
+                waIntent: "enquiry",
+              }}
             >
               Napisz na WhatsApp
             </Button>
@@ -170,6 +181,7 @@ export default async function Page() {
         title="Nie wiesz, którą wycieczkę wybrać?"
         text="Napisz na WhatsApp - doradzimy, potwierdzimy dostępność i cenę dla Twojego hotelu. Bez przedpłaty."
         message="Cześć! Pomóżcie mi wybrać wycieczkę fakultatywną w Egipcie."
+        placement="listing_cta"
       />
     </>
   );

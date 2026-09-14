@@ -94,7 +94,12 @@ export function DestinationPage({
         imagePriority
         actions={
           <>
-            <Button href="#wycieczki" variant="gold" iconRight={<IconArrowRight />}>
+            <Button
+              href="#wycieczki"
+              variant="gold"
+              iconRight={<IconArrowRight />}
+              analytics={{ ctaId: "destination_browse", ctaType: "destination", placement: "destination_hero" }}
+            >
               Zobacz wycieczki
             </Button>
             <Button
@@ -104,6 +109,12 @@ export function DestinationPage({
               external
               variant="whatsappOutline"
               iconLeft={<IconWhatsApp />}
+              analytics={{
+                ctaId: "destination_whatsapp",
+                ctaType: "whatsapp",
+                placement: "destination_hero",
+                waIntent: "enquiry",
+              }}
             >
               Napisz na WhatsApp
             </Button>
@@ -174,7 +185,12 @@ export function DestinationPage({
             transfer. Jej wysokość zależy od konkretnej wycieczki i lokalizacji hotelu - dokładną
             kwotę podajemy na stronie danej wycieczki i potwierdzamy przy rezerwacji.
           </p>
-          <Button href="#wycieczki" variant="outline" iconRight={<IconArrowRight />}>
+          <Button
+            href="#wycieczki"
+            variant="outline"
+            iconRight={<IconArrowRight />}
+            analytics={{ ctaId: "destination_browse", ctaType: "destination", placement: "destination_transfers" }}
+          >
             Wybierz wycieczkę
           </Button>
         </div>
@@ -230,6 +246,12 @@ export function DestinationPage({
             variant="whatsapp"
             size="lg"
             iconLeft={<IconWhatsApp />}
+            analytics={{
+              ctaId: "destination_final_whatsapp",
+              ctaType: "whatsapp",
+              placement: "destination_cta",
+              waIntent: "enquiry",
+            }}
           >
             Napisz na WhatsApp
           </Button>

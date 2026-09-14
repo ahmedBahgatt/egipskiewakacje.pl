@@ -13,6 +13,20 @@ type Variant =
   | "ghost";
 type Size = "sm" | "md" | "lg";
 
+/**
+ * Non-PII analytics annotation. Emitted as data-* attributes and read by the
+ * global delegated click listener (see AnalyticsRuntime). Presence of `waIntent`
+ * marks a WhatsApp handoff; it NEVER carries user-entered text.
+ */
+export interface CtaAnalytics {
+  ctaId: string;
+  ctaType?: "whatsapp" | "booking" | "contact" | "tour" | "destination" | "phone" | "email";
+  placement?: string;
+  waIntent?: "enquiry" | "booking";
+  tourSlug?: string;
+  destination?: string;
+}
+
 interface CommonProps {
   variant?: Variant;
   size?: Size;
@@ -21,6 +35,18 @@ interface CommonProps {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   fullWidth?: boolean;
+  analytics?: CtaAnalytics;
+}
+
+function dataAttrs(a?: CtaAnalytics): Record<string, string> {
+  if (!a) return {};
+  const out: Record<string, string> = { "data-cta-id": a.ctaId };
+  if (a.ctaType) out["data-cta-type"] = a.ctaType;
+  if (a.placement) out["data-placement"] = a.placement;
+  if (a.waIntent) out["data-wa-intent"] = a.waIntent;
+  if (a.tourSlug) out["data-tour-slug"] = a.tourSlug;
+  if (a.destination) out["data-destination"] = a.destination;
+  return out;
 }
 
 type AsLink = CommonProps & {
@@ -49,7 +75,9 @@ export function Button(props: AsLink | AsButton) {
     iconLeft,
     iconRight,
     fullWidth,
+    analytics,
   } = props;
+  const data = dataAttrs(analytics);
 
   const inner = (
     <>
@@ -70,21 +98,28 @@ export function Button(props: AsLink | AsButton) {
           rel="noopener noreferrer"
           onClick={props.onClick}
           aria-label={props.ariaLabel}
+          {...data}
         >
           {inner}
         </a>
       );
     }
     return (
-      <Link href={props.href} className={cls} onClick={props.onClick} aria-label={props.ariaLabel}>
+      <Link
+        href={props.href}
+        className={cls}
+        onClick={props.onClick}
+        aria-label={props.ariaLabel}
+        {...data}
+      >
         {inner}
       </Link>
     );
   }
 
-  const { type = "button", ...rest } = props as AsButton;
+  const { type = "button", analytics: _analytics, ...rest } = props as AsButton;
   return (
-    <button className={classes(variant, size, fullWidth, className)} type={type} {...rest}>
+    <button className={classes(variant, size, fullWidth, className)} type={type} {...rest} {...data}>
       {inner}
     </button>
   );

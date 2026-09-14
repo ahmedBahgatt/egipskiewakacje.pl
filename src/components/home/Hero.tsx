@@ -148,7 +148,13 @@ export function Hero({ total }: { total: number }) {
         </p>
 
         <div className={styles.ctas}>
-          <Button href="/wycieczki/" variant="gold" size="md" iconRight={<IconArrowRight />}>
+          <Button
+            href="/wycieczki/"
+            variant="gold"
+            size="md"
+            iconRight={<IconArrowRight />}
+            analytics={{ ctaId: "homepage_browse", ctaType: "tour", placement: "hero_cta" }}
+          >
             Zobacz wycieczki
           </Button>
           <Button
@@ -157,6 +163,12 @@ export function Hero({ total }: { total: number }) {
             variant="whatsappOutline"
             size="md"
             iconLeft={<IconWhatsApp />}
+            analytics={{
+              ctaId: "homepage_whatsapp",
+              ctaType: "whatsapp",
+              placement: "hero_cta",
+              waIntent: "enquiry",
+            }}
           >
             Napisz na WhatsApp
           </Button>

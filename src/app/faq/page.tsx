@@ -45,6 +45,7 @@ export default async function Page() {
               variant="whatsapp"
               size="lg"
               iconLeft={<IconWhatsApp />}
+              analytics={{ ctaId: "faq_whatsapp", ctaType: "whatsapp", placement: "faq", waIntent: "enquiry" }}
             >
               Napisz na WhatsApp
             </Button>

@@ -5,6 +5,8 @@ import { MotionProvider } from "@/components/motion/MotionProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/booking/WhatsAppFloat";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { AnalyticsRuntime } from "@/components/analytics/AnalyticsRuntime";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
@@ -56,6 +58,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pl" className={`${fraunces.variable} ${manrope.variable}`}>
       <body>
+        {/* GA4 + Consent Mode v2. Loads early, non-blocking (async gtag.js); the
+            inline bootstrap sets consent defaults to denied before gtag.js runs. */}
+        <GoogleAnalytics />
         {/* Reading must never depend on animation: force reveal content visible without JS. */}
         <noscript>
           <style
@@ -74,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <WhatsAppFloat />
         </MotionProvider>
+        <AnalyticsRuntime />
       </body>
     </html>
   );

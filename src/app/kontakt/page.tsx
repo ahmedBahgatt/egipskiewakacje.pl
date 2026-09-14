@@ -48,6 +48,12 @@ export default function Page() {
                 variant="whatsapp"
                 size="lg"
                 iconLeft={<IconWhatsApp />}
+                analytics={{
+                  ctaId: "contact_whatsapp",
+                  ctaType: "whatsapp",
+                  placement: "contact_section",
+                  waIntent: "enquiry",
+                }}
               >
                 Napisz na WhatsApp
               </Button>
@@ -78,7 +84,12 @@ export default function Page() {
                   wiadomość na WhatsApp, a szczegóły potwierdzamy indywidualnie.
                 </p>
               </div>
-              <Button href="/rezerwacja/" variant="outline" size="lg">
+              <Button
+                href="/rezerwacja/"
+                variant="outline"
+                size="lg"
+                analytics={{ ctaId: "contact_booking", ctaType: "booking", placement: "contact_section" }}
+              >
                 Przejdź do rezerwacji
               </Button>
             </div>

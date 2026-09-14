@@ -5,7 +5,6 @@ import type { CategorySlug, Tour } from "@/content/types";
 import { categoryLabel } from "@/lib/categories";
 import { pluralTours } from "@/lib/polish";
 import { TourCard } from "./TourCard";
-import { track } from "@/lib/analytics";
 import styles from "./ToursFilter.module.css";
 
 type Departure = "all" | "hurghada" | "marsa-alam" | "sharm-el-sheikh";
@@ -67,11 +66,7 @@ export function ToursFilter({
             <select
               id="f-departure"
               value={departure}
-              onChange={(e) => {
-                const v = e.target.value as Departure;
-                setDeparture(v);
-                if (v !== "all") track("destination_select", { destination: v, source: "filter" });
-              }}
+              onChange={(e) => setDeparture(e.target.value as Departure)}
             >
               {DEPARTURES.map((d) => (
                 <option key={d.value} value={d.value}>
@@ -117,7 +112,7 @@ export function ToursFilter({
       {filtered.length > 0 ? (
         <div className={styles.grid}>
           {filtered.map((tour, i) => (
-            <TourCard key={tour.route} tour={tour} position={i + 1} priority={i === 0} />
+            <TourCard key={tour.route} tour={tour} placement="all_tours" priority={i === 0} />
           ))}
         </div>
       ) : (

@@ -34,8 +34,8 @@ export function CategoryDestinationSection({
         linkLabel={`Wszystkie wycieczki z ${destination.nameGenitive}`}
       />
       <div className={styles.grid}>
-        {tours.map((t, i) => (
-          <TourCard key={t.route} tour={t} position={i + 1} />
+        {tours.map((t) => (
+          <TourCard key={t.route} tour={t} placement="category_listing" />
         ))}
       </div>
     </section>

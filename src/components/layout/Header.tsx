@@ -173,7 +173,12 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <Button href="/rezerwacja/" size="sm" className={styles.cta}>
+          <Button
+            href="/rezerwacja/"
+            size="sm"
+            className={styles.cta}
+            analytics={{ ctaId: "header_booking", ctaType: "booking", placement: "header" }}
+          >
             Zarezerwuj wycieczkę
           </Button>
           <button

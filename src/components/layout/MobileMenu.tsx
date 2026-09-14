@@ -133,7 +133,14 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
         </nav>
 
         <div className={styles.footer}>
-          <Button href="/rezerwacja/" variant="gold" size="md" fullWidth iconRight={<IconArrowRight />}>
+          <Button
+            href="/rezerwacja/"
+            variant="gold"
+            size="md"
+            fullWidth
+            iconRight={<IconArrowRight />}
+            analytics={{ ctaId: "mobile_menu_booking", ctaType: "booking", placement: "header" }}
+          >
             Zarezerwuj wycieczkę
           </Button>
           <Button
@@ -143,6 +150,12 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
             size="md"
             fullWidth
             iconLeft={<IconWhatsApp />}
+            analytics={{
+              ctaId: "mobile_menu_whatsapp",
+              ctaType: "whatsapp",
+              placement: "header",
+              waIntent: "enquiry",
+            }}
           >
             Napisz na WhatsApp
           </Button>

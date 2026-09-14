@@ -101,8 +101,8 @@ export function DestinationExperience({
                   linkLabel={route ? "Zobacz tę kategorię z innych kurortów" : undefined}
                 />
                 <div className={styles.grid}>
-                  {list.map((t, i) => (
-                    <TourCard key={t.route} tour={t} position={i + 1} />
+                  {list.map((t) => (
+                    <TourCard key={t.route} tour={t} placement="destination_listing" />
                   ))}
                 </div>
               </section>

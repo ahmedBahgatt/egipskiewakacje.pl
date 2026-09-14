@@ -69,10 +69,17 @@ export default function Page() {
                 variant="whatsapp"
                 size="lg"
                 iconLeft={<IconWhatsApp />}
+                analytics={{ ctaId: "about_whatsapp", ctaType: "whatsapp", placement: "about", waIntent: "enquiry" }}
               >
                 Napisz na WhatsApp
               </Button>
-              <Button href="/wycieczki/" variant="outline" size="lg" iconRight={<IconArrowRight />}>
+              <Button
+                href="/wycieczki/"
+                variant="outline"
+                size="lg"
+                iconRight={<IconArrowRight />}
+                analytics={{ ctaId: "about_browse", ctaType: "tour", placement: "about" }}
+              >
                 Zobacz wycieczki
               </Button>
             </div>

@@ -8,7 +8,7 @@ export function ToursGrid({ tours, priorityFirst = false }: { tours: Tour[]; pri
     <div className={styles.grid}>
       {tours.map((tour, i) => (
         <Reveal key={tour.slug} delay={i * 0.06} className={styles.cell}>
-          <TourCard tour={tour} position={i + 1} priority={priorityFirst && i === 0} />
+          <TourCard tour={tour} placement="all_tours" priority={priorityFirst && i === 0} />
         </Reveal>
       ))}
     </div>

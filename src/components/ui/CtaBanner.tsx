@@ -12,11 +12,14 @@ export function CtaBanner({
   title,
   text,
   message,
+  placement = "hub_cta",
 }: {
   title: string;
   text: string;
   /** Pre-filled WhatsApp message. */
   message: string;
+  /** Stable analytics placement for the CTA click. */
+  placement?: string;
 }) {
   return (
     <section className={`${styles.cta} motif-dark on-dark`}>
@@ -29,6 +32,7 @@ export function CtaBanner({
           variant="whatsapp"
           size="lg"
           iconLeft={<IconWhatsApp />}
+          analytics={{ ctaId: "hub_whatsapp", ctaType: "whatsapp", placement, waIntent: "enquiry" }}
         >
           Napisz na WhatsApp
         </Button>
