@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./fixtures";
 
 /**
  * Tour CARDS must show the stored base price plainly ("60 USD / os.") with NO

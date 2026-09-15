@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 
 test.describe("desktop navigation", () => {
   // Desktop-only: the primary nav and hover dropdown are hidden below 900px.

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 
 const TOURS: { url: string; h1: string }[] = [
   { url: "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/", h1: "Wycieczka z Hurghady do Kairu autokarem" },

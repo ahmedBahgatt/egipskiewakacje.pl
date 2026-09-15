@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./fixtures";
 
 const TOUR_URL = "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/";
 const SUBMIT = /Wyślij rezerwację przez WhatsApp/;

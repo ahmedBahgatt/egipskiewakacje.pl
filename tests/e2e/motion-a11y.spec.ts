@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 
 test.describe("accessibility & motion", () => {
   test("floating WhatsApp button has the correct accessible label", async ({ page }) => {

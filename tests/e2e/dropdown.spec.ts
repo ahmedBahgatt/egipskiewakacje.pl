@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures";
 
 /**
  * Regression guard for the "Wycieczki dropdown stays open after navigation" bug.

@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./fixtures";
 
 /** Representative tours across data shapes (pricing tiers, transfer rows, categories). */
 const TOURS = [
