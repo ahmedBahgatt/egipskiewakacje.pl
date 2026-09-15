@@ -1,16 +1,16 @@
-import { GA_MEASUREMENT_ID, CONSENT_STORAGE_KEY } from "@/lib/ga";
+import { GA_MEASUREMENT_ID } from "@/lib/ga";
 
 /**
- * Google tag (GA4) loader with Consent Mode v2. Rendered once in the root
- * layout so it ships in every statically exported page.
+ * Google tag (GA4) loader with advanced Consent Mode - storage permanently
+ * denied (cookieless). Rendered once in the root layout so it ships in every
+ * statically exported page.
  *
  * Order is load-bearing:
  *  1. dataLayer + gtag stub are defined.
- *  2. `consent default` sets EVERY storage type to `denied` BEFORE gtag.js runs.
- *  3. A previously stored `granted` choice is restored via `consent update`
- *     (analytics_storage only) so returning visitors are not re-prompted and
- *     analytics resumes without a page reload.
- *  4. `config` sends the initial page_view; Enhanced Measurement (enabled on the
+ *  2. `consent default` sets EVERY storage type to `denied` BEFORE gtag.js runs,
+ *     and stays denied - there is no consent UI and no `consent update`. gtag
+ *     therefore sends cookieless measurement pings (no _ga/_gid, no ad signals).
+ *  3. `config` sends the initial page_view; Enhanced Measurement (enabled on the
  *     stream) owns client-side History navigations - no custom route tracker,
  *     so exactly one logical page_view fires per page state.
  *
@@ -27,14 +27,8 @@ gtag('consent', 'default', {
   ad_storage: 'denied',
   ad_user_data: 'denied',
   ad_personalization: 'denied',
-  analytics_storage: 'denied',
-  wait_for_update: 500
+  analytics_storage: 'denied'
 });
-try {
-  if (localStorage.getItem('${CONSENT_STORAGE_KEY}') === 'granted') {
-    gtag('consent', 'update', { analytics_storage: 'granted' });
-  }
-} catch (e) {}
 gtag('js', new Date());
 gtag('config', '${GA_MEASUREMENT_ID}');
 `.trim();

@@ -1,9 +1,0 @@
-{
-  "cookies": [],
-  "origins": [
-    {
-      "origin": "http://localhost:4321",
-      "localStorage": [{ "name": "ew_consent_v1", "value": "denied" }]
-    }
-  ]
-}

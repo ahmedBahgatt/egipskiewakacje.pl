@@ -24,10 +24,6 @@ export default defineConfig({
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     navigationTimeout: 40_000,
-    // Seed a prior analytics-consent choice so the first-visit consent banner
-    // does not overlay page controls during UI geometry/click tests. The consent
-    // banner itself is covered by consent.spec.ts, which clears this state.
-    storageState: "tests/e2e/storage-state.json",
   },
   projects: [
     { name: "desktop-chromium", use: { ...devices["Desktop Chrome"] } },

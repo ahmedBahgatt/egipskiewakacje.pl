@@ -48,25 +48,6 @@
   font-size: 0.88rem;
 }
 .note { color: var(--text-on-dark-muted); }
-.bottomLinks {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem 1.25rem;
-}
-.cookieBtn {
-  appearance: none;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  font: inherit;
-  color: var(--text-on-dark-muted);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.cookieBtn:hover { color: #fff; }
-.cookieBtn:focus-visible { outline: 2px solid var(--gold-300, #e6cd7f); outline-offset: 2px; border-radius: 4px; }
 
 @media (min-width: 720px) {
   .inner { grid-template-columns: 1.1fr 2fr; gap: 3rem; }

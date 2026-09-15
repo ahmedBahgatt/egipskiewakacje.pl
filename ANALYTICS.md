@@ -1,40 +1,37 @@
 # Analytics
 
-egipskiewakacje.pl runs **one** GA4 installation (`G-TH6P4SF2SN`) with **Google
-Consent Mode v2**, analytics denied by default. The whole layer is small,
-vendor-owned in a few files, and cannot forward PII.
+egipskiewakacje.pl runs **one** GA4 installation (`G-TH6P4SF2SN`) under
+**advanced Google Consent Mode with storage permanently denied** (cookieless).
+The whole layer is small, vendor-owned in a few files, and cannot forward PII.
 
-The Measurement ID is public configuration, not a secret.
+There is **no consent banner and no visitor decision**: the tag loads, consent
+defaults are set to `denied` for every storage type and never change, so GA4
+receives cookieless measurement pings only - no `_ga`/`_gid` and no advertising
+cookies. The Measurement ID is public configuration, not a secret.
 
 ## Files
 
 | File | Role |
 | --- | --- |
-| `src/lib/ga.ts` | Measurement ID, consent persistence key/helpers, consent-update helper |
-| `src/components/analytics/GoogleAnalytics.tsx` | Server component: Consent Mode v2 bootstrap (defaults denied) + async `gtag.js`, rendered once in the root layout |
-| `src/components/analytics/AnalyticsRuntime.tsx` | Client runtime: the delegated click listener (all business events) + the consent banner |
-| `src/components/analytics/CookieSettingsButton.tsx` | Footer "Ustawienia cookies" control to reopen the banner |
+| `src/lib/ga.ts` | Measurement ID |
+| `src/components/analytics/GoogleAnalytics.tsx` | Server component: consent-default (all denied) bootstrap + async `gtag.js`, rendered once in the root layout |
+| `src/components/analytics/AnalyticsRuntime.tsx` | Client runtime: the delegated click listener that fires all business events (no UI) |
 | `src/lib/analytics.ts` | `track()` + `pageContext()` + the PII allow-list |
 
-## Consent Mode v2
+## Consent Mode (permanently denied, cookieless)
 
-The bootstrap runs before `gtag.js` and sets **every** storage type to `denied`:
+The bootstrap runs before `gtag.js` and sets **every** storage type to `denied`,
+and nothing ever updates it:
 
 ```
-ad_storage, ad_user_data, ad_personalization, analytics_storage = denied (wait_for_update: 500)
+ad_storage, ad_user_data, ad_personalization, analytics_storage = denied
 ```
 
-- **Accept** → `consent update { analytics_storage: 'granted' }`. Advertising
-  consents are never touched; the site runs no ad/personalisation storage.
-- **Reject** → `consent update { analytics_storage: 'denied' }`.
-- The choice is persisted in `localStorage` under `ew_consent_v1`
-  (`granted` | `denied`) - choice only, no identifier. A returning visitor's
-  `granted` choice is restored in the bootstrap before `gtag.js` runs, so
-  analytics resumes without a reload and the banner does not reappear.
-- Bump the `ew_consent_v1` suffix to re-prompt everyone if the model changes.
-
-WhatsApp, booking and navigation work identically whether analytics is accepted
-or rejected. Tracking is never required to book.
+This is advanced Consent Mode: the tag still loads and sends cookieless pings,
+but sets no analytics/ad cookies and stores no identifiers. Cookieless
+measurement is **not** identical to full-consent cookie tracking - attribution
+and audience features are limited by design. WhatsApp, booking and navigation
+work identically regardless; tracking is never required to book.
 
 ## Page views
 
@@ -55,7 +52,7 @@ explicit params win. Events:
 | `whatsapp_click` | Any handoff toward WhatsApp (`whatsapp_intent`: enquiry \| booking) | Secondary (micro) |
 | `tour_card_click` | A tour card is selected | No |
 | `booking_open` | The mobile booking sheet opens | Funnel |
-| `generate_lead` | The booking form passes validation and opens the WhatsApp booking enquiry | **Primary lead** |
+| `generate_lead` | The booking form passes validation and opens the WhatsApp booking enquiry | **Primary lead (Key Event)** |
 | `phone_click` / `email_click` | `tel:` / `mailto:` clicked | No (no such links today) |
 
 `generate_lead` fires **once**, only on the valid final handoff - never on form
@@ -83,11 +80,10 @@ Never sent, under any circumstance: name, phone, email, hotel, notes, travel
 date, adults/children counts, the booking message, any `wa.me` URL with a `text`
 payload, `link_url`, or any query string. `page_path` is the pathname only.
 
-## GA4 account (out of code)
+## GA4 account
 
-Mark **`generate_lead`** as the Key Event once it appears in the property.
-Optionally add `whatsapp_click` as a secondary Key Event. Do not mark ordinary
-`cta_click` as a conversion.
+`generate_lead` is the Key Event. Optionally add `whatsapp_click` as a secondary
+Key Event. Do not mark ordinary `cta_click` as a conversion.
 
 ## Tests
 

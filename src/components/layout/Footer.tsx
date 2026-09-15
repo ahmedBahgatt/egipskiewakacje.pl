@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { CookieSettingsButton } from "@/components/analytics/CookieSettingsButton";
 import { IconWhatsApp } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/content/config";
@@ -62,10 +61,7 @@ export function Footer() {
         <p>
           &copy; {year} {siteConfig.name} - {siteConfig.domain}
         </p>
-        <div className={styles.bottomLinks}>
-          <CookieSettingsButton className={styles.cookieBtn} />
-          <p className={styles.note}>Brak płatności online. Rezerwacje potwierdzamy na WhatsApp.</p>
-        </div>
+        <p className={styles.note}>Brak płatności online. Rezerwacje potwierdzamy na WhatsApp.</p>
       </div>
     </footer>
   );
