@@ -1,13 +1,16 @@
 # Analytics
 
 egipskiewakacje.pl runs **one** GA4 installation (`G-TH6P4SF2SN`) under
-**advanced Google Consent Mode with storage permanently denied** (cookieless).
-The whole layer is small, vendor-owned in a few files, and cannot forward PII.
+**advanced Google Consent Mode, region-scoped**. The whole layer is small,
+vendor-owned in a few files, and cannot forward PII.
 
-There is **no consent banner and no visitor decision**: the tag loads, consent
-defaults are set to `denied` for every storage type and never change, so GA4
-receives cookieless measurement pings only - no `_ga`/`_gid` and no advertising
-cookies. The Measurement ID is public configuration, not a secret.
+There is **no consent banner and no visitor decision**. The tag always loads.
+Consent defaults are `denied` **only for the EEA + UK + related European region**
+(see `DENIED_REGION` in `GoogleAnalytics.tsx`); in-region visitors get cookieless
+pings (no `_ga`/`_gid`, no ad signals). Visitors **outside** that region are not
+covered by the denied default, so Google tags treat consent as granted and GA4
+runs normally with `_ga`/`_ga_*` cookies and full client-side measurement. The
+Measurement ID is public configuration, not a secret.
 
 ## Files
 
@@ -18,20 +21,25 @@ cookies. The Measurement ID is public configuration, not a secret.
 | `src/components/analytics/AnalyticsRuntime.tsx` | Client runtime: the delegated click listener that fires all business events (no UI) |
 | `src/lib/analytics.ts` | `track()` + `pageContext()` + the PII allow-list |
 
-## Consent Mode (permanently denied, cookieless)
+## Consent Mode (region-scoped, no UI)
 
-The bootstrap runs before `gtag.js` and sets **every** storage type to `denied`,
-and nothing ever updates it:
+The bootstrap runs before `gtag.js` and sets a single region-scoped default:
 
 ```
-ad_storage, ad_user_data, ad_personalization, analytics_storage = denied
+gtag('consent','default',{ ad_storage, ad_user_data, ad_personalization,
+  analytics_storage: 'denied', region: [EEA + UK + CH/NO/IS/LI] });
 ```
 
-This is advanced Consent Mode: the tag still loads and sends cookieless pings,
-but sets no analytics/ad cookies and stores no identifiers. Cookieless
-measurement is **not** identical to full-consent cookie tracking - attribution
-and audience features are limited by design. WhatsApp, booking and navigation
-work identically regardless; tracking is never required to book.
+- **In-region (EEA/UK/…, incl. PL):** all four denied, never updated (no UI) →
+  cookieless pings, no `_ga`/`_gid`, no ad storage/personalization. Cookieless
+  measurement is **not** identical to full-consent cookie tracking - attribution
+  and audience features are limited by design.
+- **Outside the region (e.g. Egypt):** the denied default does not apply, consent
+  is unset → treated as granted → GA4 sets `_ga`/`_ga_*` and measures normally.
+
+The region enforcement is Google's own geo decision inside `gtag.js`; the site
+only declares the list. WhatsApp, booking and navigation work identically for
+every visitor; tracking is never required to book.
 
 ## Page views
 
