@@ -1,9 +1,24 @@
 import type { MediaImage } from "@/content/types";
 import { absoluteUrl } from "@/content/config";
 
-/** Resolve an OG image reference (path or absolute URL) to an absolute URL. */
+/**
+ * Resolve an OG image reference (path or absolute URL) to a single absolute,
+ * social-safe URL.
+ *
+ * Sanity-hosted images are served through a bounded CDN derivative
+ * (1200x630, JPEG, q80, focal-point crop) so a heavy original - e.g. a 2.6 MB
+ * PNG - never exceeds WhatsApp/Meta's ~600 KB preview limit and silently falls
+ * back to the site logo. Same asset, resized + re-encoded on the fly; the
+ * derived size also matches the og:image:width/height we declare (1200x630).
+ * Non-Sanity references (local /media logo, already-parameterised URLs) pass
+ * through unchanged.
+ */
 export function ogImageUrl(ogImage: string): string {
-  return ogImage.startsWith("http") ? ogImage : absoluteUrl(ogImage);
+  const url = ogImage.startsWith("http") ? ogImage : absoluteUrl(ogImage);
+  if (url.includes("cdn.sanity.io/images/") && !url.includes("?")) {
+    return `${url}?w=1200&h=630&fit=crop&fm=jpg&q=80`;
+  }
+  return url;
 }
 
 /**
