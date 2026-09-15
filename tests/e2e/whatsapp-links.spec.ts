@@ -9,8 +9,11 @@ import { test, expect, type Page } from "./fixtures";
  *    are the device-specific / intermediary forms we must not emit ourselves);
  *  - point at the single configured business number;
  *  - carry at most one `?text=` query param, correctly URL-encoded;
- *  - navigate in the SAME context (no target="_blank"), so Android App Links /
- *    iOS Universal Links can intercept the tap and hand off straight to the app.
+ *  - open in a NEW tab (target="_blank"), so the WhatsApp handoff never replaces
+ *    the visitor's current page. Returning from the WhatsApp app then lands them
+ *    back on the tour page instead of stranded on wa.me / the api.whatsapp.com
+ *    interstitial. This matches the sekretyegiptu.pl reference (Joinchat's
+ *    window.open(...,"joinchat") + target="_blank" tour CTAs).
  *
  * This runs against the static export, so it covers the real rendered anchors on
  * every page shape (home, listing, category, destination, tour, contact, FAQ,
@@ -48,7 +51,7 @@ async function whatsappAnchors(page: Page): Promise<WaAnchor[]> {
   );
 }
 
-test.describe("WhatsApp links are canonical and same-context on every page", () => {
+test.describe("WhatsApp links are canonical and open in a new tab on every page", () => {
   for (const path of PAGES) {
     test(`canonical wa.me handoff on ${path}`, async ({ page }) => {
       await page.goto(path);
@@ -61,8 +64,8 @@ test.describe("WhatsApp links are canonical and same-context on every page", () 
         expect(href, href).not.toContain("api.whatsapp.com");
         expect(href, href).not.toContain("web.whatsapp.com");
         expect(href, href).not.toContain("whatsapp://");
-        // Same-context navigation for the cleanest App/Universal Link handoff.
-        expect(target, `WhatsApp anchor opens a new tab (target=${target}): ${href}`).not.toBe(
+        // New-tab handoff so the current page is preserved on app return.
+        expect(target, `WhatsApp anchor must open a new tab (target=${target}): ${href}`).toBe(
           "_blank",
         );
         // At most one query string, and it is only `text`, cleanly encoded.

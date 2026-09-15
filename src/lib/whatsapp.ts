@@ -121,21 +121,28 @@ export function contactWhatsappUrl(prefill?: string): string {
  * Programmatic WhatsApp handoff for the ONE non-anchor CTA (the booking-form
  * submit, which must validate before it can hand off).
  *
- * It performs a same-context navigation ("_self"), deliberately mirroring the
- * plain-anchor CTAs so every WhatsApp handoff behaves identically:
- *  - A same-context, user-activated navigation is the most reliable trigger for
- *    native Android App Link / iOS Universal Link interception, so the OS hands
- *    off straight to the WhatsApp app instead of the browser following wa.me's
- *    302 redirect to the api.whatsapp.com "Continue to Chat" interstitial.
- *  - Unlike a "_blank" window it can never be popup-blocked and leaves no stray
- *    blank browser tab behind.
- * Call it AFTER analytics is recorded on this page: gtag sends via sendBeacon,
- * which survives the navigation, so the event is initiated before handoff and
- * never depends on the WhatsApp destination loading. No-op during SSR/build.
+ * It opens wa.me in a SEPARATE browsing context (a new tab), never same-context.
+ * This is deliberate and mirrors the anchor CTAs (target="_blank"):
+ *  - The visitor's original tour page stays intact in its own tab, so returning
+ *    from the WhatsApp app lands them back on the tour - not stranded on wa.me /
+ *    the api.whatsapp.com interstitial. Same-context navigation replaced the page
+ *    and broke this return flow on iOS.
+ *  - This matches the reference implementation on sekretyegiptu.pl, whose
+ *    floating button hands off via window.open(wa.me, "joinchat", "noopener")
+ *    (Joinchat plugin) and whose tour CTAs are <a target="_blank"> links.
+ *  - window.open inside the validated submit handler is not popup-blocked (it is
+ *    a user-activated gesture) and the page never unloads, so the analytics hits
+ *    fired just before it complete normally.
+ * Note: the Android api.whatsapp.com "Continue to Chat" interstitial is WhatsApp
+ * server-side behaviour of wa.me when the OS does not intercept the App Link; it
+ * is identical on the Sekrety reference and is not removable from the site side
+ * without a custom scheme (whatsapp://), which is unreliable and intentionally
+ * avoided. Opening in a new tab keeps that interstitial off the tour page.
+ * No-op during SSR/build.
  */
 export function openWhatsApp(url: string): void {
   if (typeof window === "undefined") return;
-  window.open(url, "_self");
+  window.open(url, "_blank", "noopener");
 }
 
 export const WHATSAPP_NUMBER = siteConfig.whatsappNumber;

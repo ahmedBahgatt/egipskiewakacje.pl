@@ -41,6 +41,7 @@ export function WhatsAppFloat() {
     <a
       className={styles.float}
       href={buildQuestionWhatsappUrl(ctx)}
+      target="_blank"
       rel="noopener noreferrer"
       aria-label="Napisz do nas na WhatsApp"
       data-cta-id="floating_whatsapp"

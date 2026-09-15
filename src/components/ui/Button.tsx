@@ -66,12 +66,12 @@ function classes(v: Variant, s: Size, full?: boolean, extra?: string) {
 }
 
 /**
- * Shared button/link. External links (the WhatsApp CTAs) render a plain <a> with
- * same-context navigation - NO target="_blank" - so Android App Links / iOS
- * Universal Links intercept the tap and hand off to the WhatsApp app directly,
- * rather than the browser following wa.me's redirect to the api.whatsapp.com
- * interstitial. rel="noopener noreferrer" is kept (harmless without _blank; keeps
- * the referrer off the outbound request).
+ * Shared button/link. External links (the WhatsApp CTAs) render a plain <a> that
+ * opens in a NEW tab (target="_blank" rel="noopener noreferrer"). This keeps the
+ * visitor's original page intact so returning from the WhatsApp app lands them
+ * back on the tour, not stranded on wa.me / the api.whatsapp.com interstitial -
+ * matching the sekretyegiptu.pl reference (its tour CTAs are target="_blank"
+ * wa.me links). Same-context navigation was tried and broke this iOS return flow.
  */
 export function Button(props: AsLink | AsButton) {
   const {
@@ -101,6 +101,7 @@ export function Button(props: AsLink | AsButton) {
         <a
           href={props.href}
           className={cls}
+          target="_blank"
           rel="noopener noreferrer"
           onClick={props.onClick}
           aria-label={props.ariaLabel}
