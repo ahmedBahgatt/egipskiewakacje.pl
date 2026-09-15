@@ -65,7 +65,14 @@ function classes(v: Variant, s: Size, full?: boolean, extra?: string) {
     .join(" ");
 }
 
-/** Shared button/link. External links get rel="noopener noreferrer". */
+/**
+ * Shared button/link. External links (the WhatsApp CTAs) render a plain <a> with
+ * same-context navigation - NO target="_blank" - so Android App Links / iOS
+ * Universal Links intercept the tap and hand off to the WhatsApp app directly,
+ * rather than the browser following wa.me's redirect to the api.whatsapp.com
+ * interstitial. rel="noopener noreferrer" is kept (harmless without _blank; keeps
+ * the referrer off the outbound request).
+ */
 export function Button(props: AsLink | AsButton) {
   const {
     variant = "primary",
@@ -94,7 +101,6 @@ export function Button(props: AsLink | AsButton) {
         <a
           href={props.href}
           className={cls}
-          target="_blank"
           rel="noopener noreferrer"
           onClick={props.onClick}
           aria-label={props.ariaLabel}

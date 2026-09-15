@@ -85,7 +85,6 @@ export function TourCard({
           </Link>
           <a
             href={waUrl}
-            target="_blank"
             rel="noopener noreferrer"
             className={styles.wa}
             aria-label={`Zapytaj o wycieczkę ${tour.title} na WhatsApp`}

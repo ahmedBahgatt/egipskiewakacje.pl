@@ -130,3 +130,39 @@ describe("contactWhatsappUrl", () => {
     expect(contactWhatsappUrl()).toBe("https://wa.me/201055850536");
   });
 });
+
+describe("canonical wa.me link shape (cross-platform compatibility)", () => {
+  it("the number is the international wa.me format: digits only, no + / spaces / 00 prefix", () => {
+    // 8-15 digits, no leading zero -> valid for wa.me on every platform.
+    expect(WHATSAPP_NUMBER).toMatch(/^[1-9]\d{7,14}$/);
+    expect(WHATSAPP_NUMBER).not.toContain("+");
+    expect(WHATSAPP_NUMBER).not.toContain(" ");
+    expect(WHATSAPP_NUMBER).not.toContain("-");
+    expect(WHATSAPP_NUMBER.startsWith("00")).toBe(false);
+  });
+
+  it("every generated link is https://wa.me/<number> with exactly one ?text= and clean encoding", () => {
+    const links = [
+      contactWhatsappUrl(),
+      contactWhatsappUrl("Cześć! Pytanie o wycieczki & ceny (2 osoby)."),
+      buildQuestionWhatsappUrl({ type: "home", url: "https://egipskiewakacje.pl/" }),
+      buildBookingWhatsappUrl(base),
+    ];
+    for (const url of links) {
+      // Canonical HTTPS universal link, correct number, never a device-specific host.
+      expect(url.startsWith(`https://wa.me/${WHATSAPP_NUMBER}`)).toBe(true);
+      expect(url).not.toContain("api.whatsapp.com");
+      expect(url).not.toContain("web.whatsapp.com");
+      expect(url).not.toContain("whatsapp://");
+      // At most one query string, and it is only `text`.
+      const qs = url.split("?").slice(1);
+      expect(qs.length).toBeLessThanOrEqual(1);
+      if (qs.length === 1) {
+        const params = new URLSearchParams(qs[0]);
+        expect([...params.keys()]).toEqual(["text"]);
+        // No double-encoding: a single decode restores clean text (no leftover %25).
+        expect(decodeURIComponent(qs[0].slice("text=".length))).not.toContain("%");
+      }
+    }
+  });
+});

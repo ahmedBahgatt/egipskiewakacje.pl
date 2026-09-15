@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { validateBooking, toISODate, type BookingField } from "@/lib/validation";
-import { buildBookingWhatsappUrl } from "@/lib/whatsapp";
+import { buildBookingWhatsappUrl, openWhatsApp } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import { track } from "@/lib/analytics";
 import { IconWhatsApp } from "@/components/ui/icons";
@@ -94,8 +94,10 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
     track("cta_click", { ...leadCtx, cta_id: "booking_submit", cta_type: "booking" });
     track("whatsapp_click", { ...leadCtx, whatsapp_intent: "booking" });
     track("generate_lead", { ...leadCtx, lead_source: "whatsapp_booking_form" });
-    // Opened from the validated user action so popup blockers do not interfere.
-    window.open(url, "_blank", "noopener,noreferrer");
+    // Same-context handoff from the validated submit: never popup-blocked, and
+    // the cleanest trigger for native App/Universal Link interception. Analytics
+    // above is already queued (sendBeacon) before this navigation. See openWhatsApp.
+    openWhatsApp(url);
   }
 
   const err = (f: BookingField) =>

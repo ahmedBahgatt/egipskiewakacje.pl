@@ -117,4 +117,25 @@ export function contactWhatsappUrl(prefill?: string): string {
   return whatsappLink(prefill);
 }
 
+/**
+ * Programmatic WhatsApp handoff for the ONE non-anchor CTA (the booking-form
+ * submit, which must validate before it can hand off).
+ *
+ * It performs a same-context navigation ("_self"), deliberately mirroring the
+ * plain-anchor CTAs so every WhatsApp handoff behaves identically:
+ *  - A same-context, user-activated navigation is the most reliable trigger for
+ *    native Android App Link / iOS Universal Link interception, so the OS hands
+ *    off straight to the WhatsApp app instead of the browser following wa.me's
+ *    302 redirect to the api.whatsapp.com "Continue to Chat" interstitial.
+ *  - Unlike a "_blank" window it can never be popup-blocked and leaves no stray
+ *    blank browser tab behind.
+ * Call it AFTER analytics is recorded on this page: gtag sends via sendBeacon,
+ * which survives the navigation, so the event is initiated before handoff and
+ * never depends on the WhatsApp destination loading. No-op during SSR/build.
+ */
+export function openWhatsApp(url: string): void {
+  if (typeof window === "undefined") return;
+  window.open(url, "_self");
+}
+
 export const WHATSAPP_NUMBER = siteConfig.whatsappNumber;
