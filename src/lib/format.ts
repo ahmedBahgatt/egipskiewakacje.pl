@@ -25,16 +25,25 @@ export function priceUnit(price: Pick<PriceTier, "unit">): string {
 }
 
 /**
- * Headline price for the booking card / sticky bar. The full breakdown (adult /
- * child / free) is shown separately, so the headline drops the vague "od" and
- * states the base price plainly with a data-driven caption: per-person tours read
- * as the adult price, other modes fall back to their unit (per boat / vehicle).
- * No pricing data changes - `amount` is the existing headline base.
+ * Headline price for the booking card / sticky bar. States the base price with a
+ * data-driven caption: per-person tours read as the adult price, other modes fall
+ * back to their unit (per boat / vehicle). The full breakdown (adult / child /
+ * free) is shown directly below.
+ *
+ * The "od" (from) prefix is DATA-DRIVEN by `price.from`: a genuine variable-price
+ * tour (adult per-person price changes by group size, e.g. Private Cairo: 2 os.
+ * 220 / 3-4 os. 200 / 5-9 os. 160, `priceFrom=true`, headline base = the lowest
+ * qualifying tier 160) renders "od 160 USD" so the base is never read as a flat
+ * per-person price. A fixed-price tour (`priceFrom=false`/unset) renders the plain
+ * base with NO "od". No pricing data changes - `amount` is the existing headline
+ * base; the caption is unchanged. (Listing tour cards use `priceLabel`, which
+ * deliberately stays "od"-free - the full matrix lives on the detail page.)
  */
 export function priceHeadline(
-  price: Pick<PriceTier, "amount" | "currency" | "unit">,
+  price: Pick<PriceTier, "amount" | "currency" | "unit"> & { from?: boolean },
 ): { value: string; captionLong: string; captionShort: string } {
-  const value = formatMoney(price.amount, price.currency);
+  const base = formatMoney(price.amount, price.currency);
+  const value = price.from ? `od ${base}` : base;
   const unit = price.unit ?? "";
   if (unit === "os." || unit === "osoba") {
     return { value, captionLong: "za osobę dorosłą", captionShort: "dorosły" };

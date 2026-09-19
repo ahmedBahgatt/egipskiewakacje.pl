@@ -29,12 +29,30 @@ describe("priceLabel - tour card headline (no 'od')", () => {
   });
 });
 
-describe("priceHeadline - tour-detail booking card (unchanged, no 'od')", () => {
-  it("returns the plain base value with a per-person caption", () => {
+describe("priceHeadline - tour-detail booking card ('od' is data-driven by price.from)", () => {
+  it("fixed-price tour: plain base value, NO 'od', per-person caption", () => {
     const h = priceHeadline({ amount: 60, currency: "USD", unit: "os." });
     expect(h.value).toBe("60 USD");
     expect(h.value.startsWith("od ")).toBe(false);
     expect(h.captionLong).toBe("za osobę dorosłą");
+  });
+
+  it("fixed-price tour: from=false stays 'od'-free", () => {
+    const h = priceHeadline({ amount: 62, currency: "USD", unit: "os.", from: false });
+    expect(h.value).toBe("62 USD");
+  });
+
+  it("genuine variable-price tour: from=true prepends 'od' to the base (caption unchanged)", () => {
+    const h = priceHeadline({ amount: 160, currency: "USD", unit: "os.", from: true });
+    expect(h.value).toBe("od 160 USD");
+    expect(h.captionLong).toBe("za osobę dorosłą");
+    expect(h.captionShort).toBe("dorosły");
+  });
+
+  it("variable-price non-per-person unit: 'od' still applies, unit caption preserved", () => {
+    const h = priceHeadline({ amount: 75, currency: "USD", unit: "łódź", from: true });
+    expect(h.value).toBe("od 75 USD");
+    expect(h.captionLong).toBe("za łódź");
   });
 });
 
