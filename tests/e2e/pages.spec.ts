@@ -3,7 +3,7 @@ import { test, expect } from "./fixtures";
 const TOURS: { url: string; h1: string }[] = [
   { url: "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie/", h1: "Wycieczka z Hurghady do Kairu autokarem" },
   { url: "/wycieczki-z-marsa-alam/kair-stary-kair-piramidy/", h1: "Wycieczka z Marsa Alam do Kairu" },
-  { url: "/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/", h1: "Wycieczka z Sharm el Sheikh do Kairu" },
+  { url: "/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/", h1: "Wycieczka z Sharm el Sheikh do Kairu – GEM i piramidy w Gizie" },
 ];
 
 test.describe("tour pages render", () => {
