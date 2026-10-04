@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { CategorySlug, Tour } from "@/content/types";
 import { categoryLabel } from "@/lib/categories";
 import { pluralTours } from "@/lib/polish";
+import { IconChevronDown } from "@/components/ui/icons";
 import { TourCard } from "./TourCard";
 import styles from "./ToursFilter.module.css";
 
@@ -17,9 +18,12 @@ const DEPARTURES: { value: Departure; label: string }[] = [
   { value: "sharm-el-sheikh", label: "Sharm el Sheikh" },
 ];
 
+const A = "/media/filter";
+
 /**
  * Client-side filtering only (no URL query params) so no indexable filter
  * combinations are ever generated. Only controls that actually work are shown.
+ * Decorations and icons are supplied gold-line WebP assets under /media/filter.
  */
 export function ToursFilter({
   tours,
@@ -34,8 +38,9 @@ export function ToursFilter({
   hideCategory?: boolean;
   hideDeparture?: boolean;
 }) {
+  const baseCategory: CategorySlug | "all" = initialCategory ?? "all";
   const [departure, setDeparture] = useState<Departure>(initialDeparture);
-  const [category, setCategory] = useState<CategorySlug | "all">(initialCategory ?? "all");
+  const [category, setCategory] = useState<CategorySlug | "all">(baseCategory);
   const [sort, setSort] = useState<Sort>("default");
 
   // categories that actually exist in the current tour set, in a stable order
@@ -57,56 +62,133 @@ export function ToursFilter({
     return list;
   }, [tours, departure, category, sort]);
 
+  const reset = () => {
+    setDeparture(initialDeparture);
+    setCategory(baseCategory);
+    setSort("default");
+  };
+
   return (
     <div>
-      <div className={styles.controls}>
-        {!hideDeparture && (
-          <div className={styles.control}>
-            <label htmlFor="f-departure">Miejsce wyjazdu</label>
-            <select
-              id="f-departure"
-              value={departure}
-              onChange={(e) => setDeparture(e.target.value as Departure)}
-            >
-              {DEPARTURES.map((d) => (
-                <option key={d.value} value={d.value}>
-                  {d.label}
-                </option>
-              ))}
-            </select>
+      <div className={styles.panel}>
+        <div className={styles.header}>
+          <div className={styles.headerText}>
+            <img
+              className={styles.ornament}
+              src={`${A}/ornament.webp`}
+              alt=""
+              width={820}
+              height={130}
+              decoding="async"
+            />
+            <h2 className={styles.title}>Znajdź odpowiednią wycieczkę</h2>
+            <p className={styles.subtitle}>
+              Wybierz kierunek, rodzaj wycieczki i sposób sortowania, aby znaleźć idealną ofertę
+              dopasowaną do Twoich planów.
+            </p>
           </div>
-        )}
-
-        {!hideCategory && (
-          <div className={styles.control}>
-            <label htmlFor="f-category">Rodzaj wycieczki</label>
-            <select
-              id="f-category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value as CategorySlug | "all")}
-            >
-              <option value="all">Wszystkie rodzaje</option>
-              {categoryOptions.map((c) => (
-                <option key={c} value={c}>
-                  {categoryLabel[c]}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
-        <div className={styles.control}>
-          <label htmlFor="f-sort">Sortuj</label>
-          <select id="f-sort" value={sort} onChange={(e) => setSort(e.target.value as Sort)}>
-            <option value="default">Domyślnie</option>
-            <option value="price-asc">Cena: rosnąco</option>
-            <option value="price-desc">Cena: malejąco</option>
-          </select>
+          <img
+            className={styles.scene}
+            src={`${A}/scene.webp`}
+            alt=""
+            width={1120}
+            height={594}
+            decoding="async"
+          />
         </div>
 
-        <p className={styles.count} aria-live="polite">
-          {filtered.length} {pluralTours(filtered.length)}
-        </p>
+        <div className={styles.controls}>
+          {!hideDeparture && (
+            <div className={styles.control}>
+              <label className={styles.label} htmlFor="f-departure">
+                <img className={styles.labelIcon} src={`${A}/icon-pin.webp`} alt="" width={49} height={64} />
+                Miejsce wyjazdu
+              </label>
+              <div className={styles.selectWrap}>
+                <img className={styles.badge} src={`${A}/badge-palm.webp`} alt="" width={120} height={120} />
+                <select
+                  id="f-departure"
+                  value={departure}
+                  onChange={(e) => setDeparture(e.target.value as Departure)}
+                >
+                  {DEPARTURES.map((d) => (
+                    <option key={d.value} value={d.value}>
+                      {d.label}
+                    </option>
+                  ))}
+                </select>
+                <IconChevronDown className={styles.chev} />
+              </div>
+            </div>
+          )}
+
+          {!hideCategory && (
+            <div className={styles.control}>
+              <label className={styles.label} htmlFor="f-category">
+                <img className={styles.labelIcon} src={`${A}/icon-map.webp`} alt="" width={64} height={56} />
+                Rodzaj wycieczki
+              </label>
+              <div className={styles.selectWrap}>
+                <img className={styles.badge} src={`${A}/badge-boat.webp`} alt="" width={120} height={119} />
+                <select
+                  id="f-category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as CategorySlug | "all")}
+                >
+                  <option value="all">Wszystkie rodzaje</option>
+                  {categoryOptions.map((c) => (
+                    <option key={c} value={c}>
+                      {categoryLabel[c]}
+                    </option>
+                  ))}
+                </select>
+                <IconChevronDown className={styles.chev} />
+              </div>
+            </div>
+          )}
+
+          <div className={styles.control}>
+            <label className={styles.label} htmlFor="f-sort">
+              <img className={styles.labelIcon} src={`${A}/icon-sort.webp`} alt="" width={64} height={62} />
+              Sortuj
+            </label>
+            <div className={styles.selectWrap}>
+              <img className={styles.badge} src={`${A}/badge-list.webp`} alt="" width={120} height={120} />
+              <select id="f-sort" value={sort} onChange={(e) => setSort(e.target.value as Sort)}>
+                <option value="default">Domyślnie</option>
+                <option value="price-asc">Cena: rosnąco</option>
+                <option value="price-desc">Cena: malejąco</option>
+              </select>
+              <IconChevronDown className={styles.chev} />
+            </div>
+          </div>
+
+          <div className={styles.divider} aria-hidden="true" />
+
+          <div className={styles.results}>
+            <p className={styles.count} aria-live="polite">
+              <img
+                className={styles.countIcon}
+                src={`${A}/icon-binoculars.webp`}
+                alt=""
+                width={120}
+                height={119}
+              />
+              <span className={styles.countNum}>{filtered.length}</span>{" "}
+              {pluralTours(filtered.length)}
+            </p>
+            <button type="button" className={styles.reset} onClick={reset}>
+              <img
+                className={styles.resetIcon}
+                src={`${A}/icon-reset.webp`}
+                alt=""
+                width={96}
+                height={95}
+              />
+              Wyczyść
+            </button>
+          </div>
+        </div>
       </div>
 
       {filtered.length > 0 ? (
