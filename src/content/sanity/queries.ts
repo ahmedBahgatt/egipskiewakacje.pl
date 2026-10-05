@@ -55,7 +55,6 @@ export const GROQ = {
     "price": {
       "mode": priceMode, "amount": priceAmount, "unit": priceUnit,
       "currency": currency, "from": priceFrom,
-      "lastVerifiedAt": priceLastVerifiedAt,
       "options": priceOptions[]{ label, amount, currency, unit, note, free },
       "childAgeMin": priceChildAgeMin, "infantFree": priceInfantFree, "note": priceNote
     },

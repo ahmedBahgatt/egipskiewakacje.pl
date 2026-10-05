@@ -7,7 +7,7 @@ import { imageField, imageMember } from "../objects/imageWithAlt";
  *
  * FIELD NAMES ARE A CONTRACT with src/content/sanity/queries.ts, which flattens
  * some of them:
- *   priceMode/priceAmount/priceUnit/currency/priceFrom/priceLastVerifiedAt/
+ *   priceMode/priceAmount/priceUnit/currency/priceFrom/
  *   priceOptions/priceChildAgeMin/priceInfantFree/priceNote  -> Tour.price
  *   guideLanguageLabel/guidePolishConfirmed -> Tour.guide
  *   pickupTime -> pickupLabel, returnTime -> returnLabel
@@ -20,7 +20,6 @@ import { imageField, imageMember } from "../objects/imageWithAlt";
  * Honesty rules baked into the schema:
  *  - `guidePolishConfirmed` defaults to false. Tick it only when a
  *    Polish-speaking guide is unambiguously confirmed by the operator.
- *  - `priceLastVerifiedAt` is required; the frontend shows that date.
  *  - No "old price" / discount / countdown fields exist, by design.
  */
 export const tour = defineType({
@@ -258,15 +257,6 @@ export const tour = defineType({
       description:
         "Enable when the final cost depends on the transfer zone, variant or optional extras.",
       initialValue: true,
-    }),
-    defineField({
-      name: "priceLastVerifiedAt",
-      title: "Price last verified on",
-      type: "date",
-      group: "pricing",
-      options: { dateFormat: "YYYY-MM-DD" },
-      description: "Date the price was last checked with the operator. Shown on the page.",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "priceOptions",

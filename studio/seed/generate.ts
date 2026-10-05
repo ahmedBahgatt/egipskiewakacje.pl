@@ -215,7 +215,6 @@ function tourDoc(t: Tour): Doc {
     priceUnit: p.unit,
     currency: p.currency,
     priceFrom: p.from,
-    priceLastVerifiedAt: p.lastVerifiedAt,
     priceOptions: p.options.map((o) => ({
       _type: "priceOption",
       label: o.label,

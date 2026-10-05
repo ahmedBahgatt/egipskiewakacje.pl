@@ -318,7 +318,6 @@ export const tours = [
     infantFree: true,
     childAgeMinimum: 5,
     childAgeMaximum: 11,
-    priceLastVerifiedAt: VERIFIED,
     priceVariable: true,
     transferSupplements: [
       fee("Safaga, Soma Bay, Abu Soma, El Gouna", 10),
@@ -456,7 +455,6 @@ export const tours = [
     infantFree: true,
     childAgeMinimum: 5,
     childAgeMaximum: 11,
-    priceLastVerifiedAt: VERIFIED,
     priceVariable: true,
     transferSupplements: [
       fee(
@@ -590,7 +588,6 @@ export const tours = [
     infantFree: true,
     childAgeMinimum: 5,
     childAgeMaximum: 11,
-    priceLastVerifiedAt: VERIFIED,
     priceVariable: true,
     transferSupplements: [],
     extras: [note("Rejs po Nilu", "ok. 10-12 USD od osoby, płatny na miejscu")],

@@ -23,7 +23,7 @@ import {
   IconWhatsApp,
   IconX,
 } from "@/components/ui/icons";
-import { priceHeadline, optionAmount, formatMoney, formatDatePl } from "@/lib/format";
+import { priceHeadline, optionAmount, formatMoney } from "@/lib/format";
 import { buildQuestionWhatsappUrl } from "@/lib/whatsapp";
 import { absoluteUrl } from "@/content/config";
 import {
@@ -186,9 +186,6 @@ export function TourDetail({
               <IconCheck className={styles.noPayIcon} />
               <span>Bez przedpłaty - płacisz dopiero przy rozpoczęciu wycieczki.</span>
             </p>
-            <p className={styles.verified}>
-              Cena zweryfikowana: {formatDatePl(tour.price.lastVerifiedAt)}
-            </p>
           </div>
         </aside>
       </section>
@@ -275,9 +272,8 @@ export function TourDetail({
             <p className={styles.note}>
               Ceny w {tour.price.currency}.{" "}
               {tour.price.note
-                ? `${tour.price.note} `
-                : "Ostateczny koszt może zależeć od strefy hotelowej i opcjonalnych atrakcji. "}
-              Cena zweryfikowana {formatDatePl(tour.price.lastVerifiedAt)}.
+                ? tour.price.note
+                : "Ostateczny koszt może zależeć od strefy hotelowej i opcjonalnych atrakcji."}
             </p>
           </section>
 

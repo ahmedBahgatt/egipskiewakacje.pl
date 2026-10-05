@@ -113,8 +113,6 @@ export interface PriceTier {
   currency: Currency;
   /** True when the final cost can vary (transfers/extras/variants) -> render "Cena od". */
   from: boolean;
-  /** ISO date (YYYY-MM-DD) the price was last verified against the operator. */
-  lastVerifiedAt: string;
   /**
    * Full price breakdown (always >= 1 line). Person tours list adult/child here;
    * per-boat/vehicle/course tours list their variants. Drives the price tables.

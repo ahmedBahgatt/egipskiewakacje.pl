@@ -77,7 +77,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -309,7 +308,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -443,7 +441,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -580,7 +577,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -712,7 +708,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły, 2 osoby",
@@ -908,7 +903,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -1041,7 +1035,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły, 2 osoby",
@@ -1230,7 +1223,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -1349,7 +1341,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -1556,7 +1547,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-29",
       "options": [
         {
           "label": "Dorosły",
@@ -1806,7 +1796,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -1942,7 +1931,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -2106,7 +2094,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -2281,7 +2268,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -2447,7 +2433,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -2615,7 +2600,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -2783,7 +2767,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -2942,7 +2925,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -3083,7 +3065,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -3210,7 +3191,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -3334,7 +3314,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -3471,7 +3450,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -3605,7 +3583,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -3756,7 +3733,6 @@ export const tours: Tour[] = [
       "unit": "łódź",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Łódź 1-4 osoby",
@@ -3892,7 +3868,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -4013,7 +3988,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -4129,7 +4103,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -4285,7 +4258,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -4438,7 +4410,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -4572,7 +4543,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -4740,7 +4710,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -4911,7 +4880,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -5070,7 +5038,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -5235,7 +5202,6 @@ export const tours: Tour[] = [
       "unit": "buggy",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Buggy 2-osobowy",
@@ -5389,7 +5355,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Jazda konno 1h po pustyni",
@@ -5547,7 +5512,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "1 godzina",
@@ -5687,7 +5651,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Lot samodzielny",
@@ -5839,7 +5802,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -5990,7 +5952,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -6133,7 +6094,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -6295,7 +6255,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -6436,7 +6395,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -6574,7 +6532,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły (2 osoby)",
@@ -6760,7 +6717,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -6903,7 +6859,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły (2 osoby)",
@@ -7097,7 +7052,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -7232,7 +7186,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -7381,7 +7334,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -7524,7 +7476,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -7665,7 +7616,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -7801,7 +7751,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -7951,7 +7900,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -8088,7 +8036,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -8238,7 +8185,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -8368,7 +8314,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -8503,7 +8448,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -8639,7 +8583,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -8773,7 +8716,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Pojedynczy quad",
@@ -8913,7 +8855,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -9070,7 +9011,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -9228,7 +9168,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -9376,7 +9315,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -9504,7 +9442,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -9627,7 +9564,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -9764,7 +9700,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -9906,7 +9841,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -10059,7 +9993,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -10209,7 +10142,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -10343,7 +10275,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -10482,7 +10413,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -10617,7 +10547,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Lot pojedynczy (1 osoba)",
@@ -10746,7 +10675,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Quad pojedynczy (1 osoba)",
@@ -10874,7 +10802,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Pojedynczy quad (1 osoba)",
@@ -11009,7 +10936,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -11149,7 +11075,6 @@ export const tours: Tour[] = [
       "unit": "buggy",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Buggy 2-osobowy",
@@ -11289,7 +11214,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Osoba",
@@ -11401,7 +11325,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": true,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",
@@ -11565,7 +11488,6 @@ export const tours: Tour[] = [
       "unit": "os.",
       "currency": "USD",
       "from": false,
-      "lastVerifiedAt": "2026-08-09",
       "options": [
         {
           "label": "Dorosły",

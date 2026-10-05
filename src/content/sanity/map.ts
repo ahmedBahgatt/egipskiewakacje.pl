@@ -256,7 +256,6 @@ export function mapTour(raw: RawTour): Tour | null {
       unit: p.unit ?? "os.",
       currency: (p.currency ?? "USD") as Tour["price"]["currency"],
       from: p.from ?? p.variable ?? true,
-      lastVerifiedAt: String(p.lastVerifiedAt ?? ""),
       options: Array.isArray(p.options) && p.options.length
         ? p.options
         : [
