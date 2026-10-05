@@ -70,7 +70,7 @@ and an OG preview.
 
 | Sanity field | Frontend |
 | --- | --- |
-| `adultPrice`, `childPrice`, `infantFree`, `childAgeMinimum`, `childAgeMaximum`, `currency`, `priceLastVerifiedAt`, `priceVariable` | `Tour.price` |
+| `adultPrice`, `childPrice`, `infantFree`, `childAgeMinimum`, `childAgeMaximum`, `currency`, `priceVariable` | `Tour.price` |
 | `guideLanguageLabel`, `guidePolishConfirmed` | `Tour.guide` |
 | `pickupTime`, `returnTime` | `pickupLabel`, `returnLabel` |
 | `relatedPost` (single reference) | `relatedPostSlug` |
@@ -396,10 +396,8 @@ trustworthy:
   unambiguously confirms a Polish-speaking guide. The Sharm el Sheikh tour is
   seeded with `false` and the label "Potwierdzamy przed rezerwacją" because the
   operator's own page contradicts itself. Do not "fix" that by guessing.
-- **`priceLastVerifiedAt` is required** and shown on the page. Update it when
-  you re-check a price, not when you edit unrelated copy.
-- **There are no discount, old-price, countdown or bestseller fields.** That is
-  deliberate. Do not add them.
+- **There are no discount, old-price, countdown, bestseller or
+  price-verification-date fields.** That is deliberate. Do not add them.
 - **`excluded` should list everything people mistake for included** - drinks,
   the pyramid interior ticket, the Nile cruise.
 - **Every image needs a real Polish `alt`.** It is a required field, and it
