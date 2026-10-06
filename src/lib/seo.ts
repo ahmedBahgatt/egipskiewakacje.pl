@@ -78,7 +78,9 @@ export function organizationJsonLd() {
     "@type": "Organization",
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
-    url: siteConfig.url,
+    // Canonical homepage identity (trailing slash) - matches the <link rel=canonical>,
+    // og:url and the #organization @id host, so the brand entity resolves to one URL.
+    url: absoluteUrl("/"),
     logo: ogImageUrl("/media/brand/egipskie-wakacje-logo.png"),
     description: siteConfig.description,
     slogan: "Wycieczki fakultatywne w Egipcie dla polskich turystów",
@@ -106,7 +108,11 @@ export function websiteJsonLd() {
     "@type": "WebSite",
     "@id": `${siteConfig.url}/#website`,
     name: siteConfig.name,
-    url: siteConfig.url,
+    // Truthful alternate identity (the bare domain) - the only alternateName.
+    // Helps Google's site-name algorithm bind the domain to the "Egipskie Wakacje"
+    // brand. Deliberately NOT a keyword-stuffed alt name.
+    alternateName: siteConfig.domain,
+    url: absoluteUrl("/"),
     inLanguage: "pl-PL",
     publisher: { "@id": `${siteConfig.url}/#organization` },
   };
