@@ -180,24 +180,39 @@ export function collectionPageJsonLd(opts: {
 }
 
 /**
- * TouristTrip for a tour. Price is represented honestly via an Offer carrying only
- * the adult from-price in USD. There is NO live inventory (availability is confirmed
- * on WhatsApp), so no `availability`, `priceValidUntil` or quantity is emitted.
+ * Tour detail entity: a single node multi-typed `["Product", "TouristTrip"]`.
+ *  - TouristTrip keeps the correct travel-experience semantics (itinerary, provider).
+ *  - Product expresses that this is a commercially offered, bookable experience and
+ *    makes the page eligible for Google Product snippets (price). schema.org Product
+ *    is explicitly "any offered product OR service" (e.g. a concert ticket), so an
+ *    excursion is a valid Product - it is NOT misrepresented as a physical retail item.
+ * One node, one stable `@id` - no duplicate Product/TouristTrip describing the same tour.
  *
- * No `touristType` is emitted. It used to be hardcoded to "Wycieczka jednodniowa",
- * which is wrong for the multi-day trips, PADI courses and packages now in the
- * catalogue, and schema.org `touristType` is about the audience/type of tourist a
- * trip suits - which we do not have reliable data for. Omitting it is more correct
- * than asserting a false, generic value.
+ * Offer carries ONLY the real, authoritative headline price (`tour.price.amount`, the
+ * single source of truth that also drives the booking card and listing cards). It always
+ * maps to a genuine bookable option (adult / one-dive / per-buggy base), never a free
+ * infant price. Deliberately absent, because we cannot state them truthfully:
+ *  - NO AggregateOffer for variants (Google advises against it for product variants);
+ *    the full breakdown stays in the visible price table only.
+ *  - NO `availability` / `InStock` - booking is confirmed on WhatsApp, we hold no live
+ *    inventory; "daily/selected days" is a schedule, not stock.
+ *  - NO `priceValidUntil`, no `sku`/`gtin`/`mpn`/condition, no merchant-listing fields.
+ *  - NO `aggregateRating` / `review` - there is no verified per-tour review data yet.
+ *
+ * No `touristType` is emitted: schema.org `touristType` is about the kind of tourist a
+ * trip suits, which we do not have reliable data for.
  */
 export function tourJsonLd(tour: Tour) {
+  const url = absoluteUrl(tour.seo.canonicalPath);
   return {
     "@context": "https://schema.org",
-    "@type": "TouristTrip",
+    "@type": ["Product", "TouristTrip"],
+    "@id": `${url}#tour`,
     name: tour.title,
     description: tour.shortDescription,
-    url: absoluteUrl(tour.seo.canonicalPath),
+    url,
     image: (tour.gallery?.length ? tour.gallery : [tour.heroImage]).map(mediaOgImageUrl),
+    brand: { "@id": `${siteConfig.url}/#organization` },
     itinerary: {
       "@type": "ItemList",
       itemListElement: tour.itinerary.map((step, i) => ({
@@ -210,7 +225,7 @@ export function tourJsonLd(tour: Tour) {
       "@type": "Offer",
       price: tour.price.amount,
       priceCurrency: tour.price.currency,
-      url: absoluteUrl(tour.seo.canonicalPath),
+      url,
     },
     provider: { "@id": `${siteConfig.url}/#organization` },
   };

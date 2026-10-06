@@ -19,7 +19,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tour } = await params;
   const t = (await content.getToursByDestination("sharm-el-sheikh")).find((x) => x.slug === tour);
-  return t ? buildMetadata({ ...t.seo, type: "article" }) : {};
+  // Tour pages are commercial offers, not articles -> default og:type "website";
+  // an individual tour can still opt into another type via Sanity seo.type.
+  return t ? buildMetadata({ ...t.seo, type: t.seo.type ?? "website" }) : {};
 }
 
 export default async function Page({ params }: { params: Promise<{ tour: string }> }) {

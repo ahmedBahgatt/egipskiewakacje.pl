@@ -266,7 +266,7 @@ export interface SeoMeta {
   /** Intrinsic dimensions of `ogImage`, when the source (e.g. Sanity) exposes them. */
   ogImageWidth?: number;
   ogImageHeight?: number;
-  /** Open Graph type override. Tour pages default to "article"; commercial pages may set "website". */
+  /** Open Graph type override. Tour pages default to "website" (commercial offer); set per page if needed. */
   type?: "website" | "article";
 }
 
