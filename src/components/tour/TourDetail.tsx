@@ -194,35 +194,6 @@ export function TourDetail({
       <div className={`container ${styles.contentWrap}`}>
         <div className={styles.content}>
           <section className={styles.block}>
-            <h2 className={styles.h2}>O wycieczce</h2>
-            {tour.overview.split("\n\n").map((p) => (
-              <p key={p.slice(0, 24)} className={styles.para}>
-                {p}
-              </p>
-            ))}
-            {tour.compare && (
-              <p className={styles.compare}>
-                {tour.compare.note}{" "}
-                <Link href={tour.compare.href} className={styles.compareLink}>
-                  {tour.compare.linkLabel} <IconArrowRight />
-                </Link>
-              </p>
-            )}
-          </section>
-
-          {tour.attractions && tour.attractions.length > 0 && (
-            <section className={styles.block}>
-              <h2 className={styles.h2}>Co zobaczysz</h2>
-              {tour.attractions.map((a) => (
-                <div key={a.title} className={styles.attraction}>
-                  <h3 className={styles.h3}>{a.title}</h3>
-                  <p className={styles.para}>{a.body}</p>
-                </div>
-              ))}
-            </section>
-          )}
-
-          <section className={styles.block}>
             <h2 className={styles.h2}>Plan dnia</h2>
             <ItineraryTimeline steps={tour.itinerary} />
           </section>
@@ -299,6 +270,35 @@ export function TourDetail({
               dnia.
             </p>
           </section>
+
+          <section className={styles.block}>
+            <h2 className={styles.h2}>O wycieczce</h2>
+            {tour.overview.split("\n\n").map((p) => (
+              <p key={p.slice(0, 24)} className={styles.para}>
+                {p}
+              </p>
+            ))}
+            {tour.compare && (
+              <p className={styles.compare}>
+                {tour.compare.note}{" "}
+                <Link href={tour.compare.href} className={styles.compareLink}>
+                  {tour.compare.linkLabel} <IconArrowRight />
+                </Link>
+              </p>
+            )}
+          </section>
+
+          {tour.attractions && tour.attractions.length > 0 && (
+            <section className={styles.block}>
+              <h2 className={styles.h2}>Co zobaczysz</h2>
+              {tour.attractions.map((a) => (
+                <div key={a.title} className={styles.attraction}>
+                  <h3 className={styles.h3}>{a.title}</h3>
+                  <p className={styles.para}>{a.body}</p>
+                </div>
+              ))}
+            </section>
+          )}
 
           <section className={styles.block}>
             <div className={styles.twoCol}>
