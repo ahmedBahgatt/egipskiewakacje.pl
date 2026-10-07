@@ -1337,32 +1337,32 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPackage",
-      "amount": 225,
+      "amount": 230,
       "unit": "os.",
       "currency": "USD",
       "from": true,
       "options": [
         {
           "label": "Dorosły",
-          "amount": 225,
+          "amount": 230,
           "currency": "USD",
           "note": "5-8 osób"
         },
         {
           "label": "Dorosły",
-          "amount": 240,
+          "amount": 245,
           "currency": "USD",
           "note": "3-4 osoby"
         },
         {
           "label": "Dorosły",
-          "amount": 270,
+          "amount": 275,
           "currency": "USD",
           "note": "2 osoby"
         },
         {
           "label": "Dziecko 5-11 lat",
-          "amount": 185,
+          "amount": 190,
           "currency": "USD"
         },
         {
@@ -1468,17 +1468,17 @@ export const tours: Tour[] = [
       },
       {
         "question": "Dlaczego cena zależy od liczby osób?",
-        "answer": "Im większa grupa, tym niższa cena od osoby - dlatego podajemy widełki: 2 osoby 270 USD, 3-4 osoby 240 USD, 5-8 osób 225 USD od osoby."
+        "answer": "Im większa grupa, tym niższa cena od osoby - dlatego podajemy widełki: 2 osoby 275 USD, 3-4 osoby 245 USD, 5-8 osób 230 USD od osoby."
       }
     ],
     "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
     "seo": {
       "title": "Luksor z Hurghady 2 dni z lotem balonem | Egipt",
-      "description": "Dwudniowa wycieczka z Hurghady do Luksoru z noclegiem i lotem balonem: Dolina Królów, Hatszepsut, Karnak. Cena od 225 USD. Rezerwacja przez WhatsApp.",
+      "description": "Dwudniowa wycieczka z Hurghady do Luksoru z noclegiem i lotem balonem: Dolina Królów, Hatszepsut, Karnak. Cena od 230 USD. Rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-hurghady/luksor-2-dni-lot-balonem/",
       "ogImage": "/media/og/hurghada.jpg"
     },
-    "updatedAt": "2026-08-09"
+    "updatedAt": "2026-10-07"
   },
   {
     "slug": "orange-bay",
