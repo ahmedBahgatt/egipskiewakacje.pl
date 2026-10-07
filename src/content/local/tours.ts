@@ -734,7 +734,7 @@ export const tours: Tour[] = [
           "unit": "os."
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "unit": "os.",
@@ -849,7 +849,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 55 USD za osobę, a dzieci do 5 lat jadą bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 55 USD za osobę, a dzieci poniżej 5 lat jadą bezpłatnie."
       },
       {
         "question": "O której godzinie jest odbiór z hotelu?",
@@ -1061,7 +1061,7 @@ export const tours: Tour[] = [
           "unit": "os."
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "unit": "os.",
@@ -1177,7 +1177,7 @@ export const tours: Tour[] = [
       },
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 110 USD za osobę, a dzieci do 5 lat jadą bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 110 USD za osobę, a dzieci poniżej 5 lat jadą bezpłatnie."
       },
       {
         "question": "Czy przewodnik mówi po polsku?",
@@ -1943,7 +1943,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -2041,7 +2041,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 55 USD, a dzieci do 5 lat są zwolnione z opłaty. Dorosły to 97 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 55 USD, a dzieci poniżej 5 lat są zwolnione z opłaty. Dorosły to 97 USD za osobę."
       },
       {
         "question": "Jak wygląda obiad na wyspie?",
@@ -2106,7 +2106,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -2215,7 +2215,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje udział dziecka?",
-        "answer": "Dzieci w wieku 5-10 lat płacą 38 USD, a dzieci do 5 lat są zwolnione z opłaty. Cena dla dorosłego to 75 USD za osobę."
+        "answer": "Dzieci w wieku 5-10 lat płacą 38 USD, a dzieci poniżej 5 lat są zwolnione z opłaty. Cena dla dorosłego to 75 USD za osobę."
       },
       {
         "question": "Co jest wliczone w cenę?",
@@ -2280,7 +2280,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -2380,7 +2380,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 38 USD za osobę, a dzieci do 5 lat biorą udział bezpłatnie. Dorosły to 75 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 38 USD za osobę, a dzieci poniżej 5 lat biorą udział bezpłatnie. Dorosły to 75 USD za osobę."
       },
       {
         "question": "Czy trzeba umieć nurkować, żeby zobaczyć rafę?",
@@ -2445,7 +2445,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -2547,7 +2547,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje bilet dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci do 5 lat płyną bezpłatnie. Dorosły to 30 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci poniżej 5 lat płyną bezpłatnie. Dorosły to 30 USD za osobę."
       },
       {
         "question": "O której godzinie jest odbiór z hotelu?",
@@ -2612,7 +2612,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -2714,7 +2714,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje udział dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci do 5 lat bezpłatnie. Cena dla dorosłego to 30 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci poniżej 5 lat bezpłatnie. Cena dla dorosłego to 30 USD za osobę."
       },
       {
         "question": "Czy woda przy wyspie jest głęboka?",
@@ -2779,7 +2779,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -2872,7 +2872,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 25 USD, a dzieci do 5 lat biorą udział bezpłatnie. Dorosły to 50 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 25 USD, a dzieci poniżej 5 lat biorą udział bezpłatnie. Dorosły to 50 USD za osobę."
       },
       {
         "question": "O której godzinie jest powrót?",
@@ -3597,7 +3597,7 @@ export const tours: Tour[] = [
           "unit": "os."
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "unit": "os.",
@@ -3680,7 +3680,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 20 USD za osobę, a dzieci do 5 lat płyną bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 20 USD za osobę, a dzieci poniżej 5 lat płyną bezpłatnie."
       },
       {
         "question": "Ile trwa wycieczka?",
@@ -4115,7 +4115,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -4555,7 +4555,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -4657,7 +4657,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje udział dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 13 USD, a dzieci do 5 lat bezpłatnie. Dorosły to 25 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 13 USD, a dzieci poniżej 5 lat bezpłatnie. Dorosły to 25 USD za osobę."
       },
       {
         "question": "Od jakiego wieku można samodzielnie prowadzić quada lub buggy?",
@@ -4722,7 +4722,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -4827,7 +4827,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci do 5 lat biorą udział bezpłatnie. Dorosły to 30 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci poniżej 5 lat biorą udział bezpłatnie. Dorosły to 30 USD za osobę."
       },
       {
         "question": "Co znajduje się w programie?",
@@ -4892,7 +4892,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -4985,7 +4985,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 13 USD, a dzieci do 5 lat biorą udział bezpłatnie. Dorosły to 25 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 13 USD, a dzieci poniżej 5 lat biorą udział bezpłatnie. Dorosły to 25 USD za osobę."
       },
       {
         "question": "Od ilu lat można samodzielnie kierować quadem?",
@@ -5050,7 +5050,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -5149,7 +5149,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci do 5 lat biorą udział bezpłatnie. Dorosły to 30 USD za osobę."
+        "answer": "Dzieci w wieku 5-11 lat płacą 15 USD, a dzieci poniżej 5 lat biorą udział bezpłatnie. Dorosły to 30 USD za osobę."
       },
       {
         "question": "Czym różni się wersja 5h od wersji 3h?",
@@ -6554,7 +6554,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -6663,7 +6663,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje prywatna wycieczka do Kairu z Marsa Alam?",
-        "answer": "Cena za osobę zależy od liczby uczestników: 160 USD przy 5-9 osobach, 200 USD przy 3-4 osobach i 220 USD dla 2 osób. Dziecko 5-11 lat 110 USD, do 5 lat bezpłatnie."
+        "answer": "Cena za osobę zależy od liczby uczestników: 160 USD przy 5-9 osobach, 200 USD przy 3-4 osobach i 220 USD dla 2 osób. Dziecko 5-11 lat 110 USD, poniżej 5 lat bezpłatnie."
       },
       {
         "question": "O której zaczyna się wycieczka?",
@@ -6886,7 +6886,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -6998,7 +6998,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje prywatna wycieczka z Marsa Alam do Luksoru i Dendery?",
-        "answer": "Cena za osobę zależy od liczby uczestników: 220 USD przy 5-8 osobach, 225 USD przy 4 osobach, 235 USD przy 3 osobach i 245 USD dla 2 osób. Dziecko 5-11 lat 125 USD, do 5 lat bezpłatnie."
+        "answer": "Cena za osobę zależy od liczby uczestników: 220 USD przy 5-8 osobach, 225 USD przy 4 osobach, 235 USD przy 3 osobach i 245 USD dla 2 osób. Dziecko 5-11 lat 125 USD, poniżej 5 lat bezpłatnie."
       },
       {
         "question": "W jakie dni odbywa się wycieczka?",
@@ -7165,7 +7165,7 @@ export const tours: Tour[] = [
     "category": "snorkeling-delfiny",
     "departure": "Marsa Alam",
     "shortDescription": "Rejs statkiem z Marsa Alam do rafy Sha'ab Samadai, znanej jako dom delfinów, z dwoma postojami na snorkeling. Lunch, napoje, sprzęt i transfer w cenie. Dla osób, które chcą zobaczyć delfiny i kolorowe rafy.",
-    "overview": "Sha'ab Samadai to podkowiasta rafa koralowa w okolicach Marsa Alam, nazywana domem delfinów ze względu na stada, które przebywają w tym rejonie. Rejs statkiem obejmuje dwa postoje na snorkeling oraz możliwość obserwacji delfinów w ich naturalnym środowisku.\n\nW cenie znajduje się transfer, rejs statkiem, dwa postoje na snorkeling, sprzęt, lunch oraz ciepłe i zimne napoje. To całodniowa forma wypoczynku łącząca pływanie nad rafami z szansą spotkania delfinów.\n\nWycieczka realizowana jest w poniedziałki, środy i piątki. Dzieci w wieku 5-11 lat płacą 34 USD, a dzieci do 5 lat uczestniczą bezpłatnie.",
+    "overview": "Sha'ab Samadai to podkowiasta rafa koralowa w okolicach Marsa Alam, nazywana domem delfinów ze względu na stada, które przebywają w tym rejonie. Rejs statkiem obejmuje dwa postoje na snorkeling oraz możliwość obserwacji delfinów w ich naturalnym środowisku.\n\nW cenie znajduje się transfer, rejs statkiem, dwa postoje na snorkeling, sprzęt, lunch oraz ciepłe i zimne napoje. To całodniowa forma wypoczynku łącząca pływanie nad rafami z szansą spotkania delfinów.\n\nWycieczka realizowana jest w poniedziałki, środy i piątki. Dzieci w wieku 5-11 lat płacą 34 USD, a dzieci poniżej 5 lat uczestniczą bezpłatnie.",
     "heroImage": {
       "src": "/media/tours/ma-samadai-dom-delfinow",
       "alt": "Sha'ab Samadai z Marsa Alam - dom delfinów - zdjęcie poglądowe",
@@ -7198,7 +7198,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -7281,7 +7281,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 34 USD, a dzieci do 5 lat uczestniczą bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 34 USD, a dzieci poniżej 5 lat uczestniczą bezpłatnie."
       },
       {
         "question": "Czy na pewno zobaczę delfiny?",
@@ -7346,7 +7346,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -7423,7 +7423,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 30 USD, a dzieci do 5 lat wchodzą bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 30 USD, a dzieci poniżej 5 lat wchodzą bezpłatnie."
       },
       {
         "question": "Czy zobaczę żółwie?",
@@ -7628,13 +7628,13 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
         }
       ],
-      "note": "Cena za osobę: dorosły 63 USD, dziecko 5-11 lat 48 USD, dzieci do 5 lat bezpłatnie."
+      "note": "Cena za osobę: dorosły 63 USD, dziecko 5-11 lat 48 USD, dzieci poniżej 5 lat bezpłatnie."
     },
     "availabilityLabel": "Niedziela, wtorek i czwartek",
     "availabilityDays": [
@@ -7710,7 +7710,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka na wyspy Hamata?",
-        "answer": "Cena za osobę: dorosły 63 USD, dziecko 5-11 lat 48 USD, dzieci do 5 lat bezpłatnie; w cenie transfer z hotelu, rejs, lunch i napoje."
+        "answer": "Cena za osobę: dorosły 63 USD, dziecko 5-11 lat 48 USD, dzieci poniżej 5 lat bezpłatnie; w cenie transfer z hotelu, rejs, lunch i napoje."
       },
       {
         "question": "W jakie dni odbywa się rejs?",
@@ -7775,7 +7775,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -7859,7 +7859,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje rejs łodzią Nefertari z Marsa Alam?",
-        "answer": "Dorosły 87 USD, dziecko 5-11 lat 50 USD, dziecko do 5 lat bezpłatnie."
+        "answer": "Dorosły 87 USD, dziecko 5-11 lat 50 USD, dziecko poniżej 5 lat bezpłatnie."
       },
       {
         "question": "Co jest w cenie?",
@@ -7924,7 +7924,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -7932,7 +7932,7 @@ export const tours: Tour[] = [
       ],
       "childAgeMin": 5,
       "infantFree": true,
-      "note": "Dzieci 5-11 lat: 32 USD, dzieci do 5 lat: bezpłatnie."
+      "note": "Dzieci 5-11 lat: 32 USD, dzieci poniżej 5 lat: bezpłatnie."
     },
     "availabilityLabel": "Codziennie",
     "availabilityDays": [
@@ -7999,7 +7999,7 @@ export const tours: Tour[] = [
       },
       {
         "question": "Ile kosztuje bilet dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 32 USD, a dzieci do 5 lat wchodzą za darmo. Bilet dla dorosłego to 62 USD od osoby."
+        "answer": "Dzieci w wieku 5-11 lat płacą 32 USD, a dzieci poniżej 5 lat wchodzą za darmo. Bilet dla dorosłego to 62 USD od osoby."
       },
       {
         "question": "Czy trzeba umieć nurkować lub pływać?",
@@ -8060,7 +8060,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -8144,7 +8144,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka na plażę Sharm el Lulli?",
-        "answer": "Dorosły 53 USD, dziecko 5-11 lat 30 USD, dziecko do 5 lat bezpłatnie."
+        "answer": "Dorosły 53 USD, dziecko 5-11 lat 30 USD, dziecko poniżej 5 lat bezpłatnie."
       },
       {
         "question": "O której jest odbiór i powrót?",
@@ -8879,7 +8879,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -8970,7 +8970,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje jeep safari z Marsa Alam?",
-        "answer": "Dorosły 42 USD, dziecko 5-11 lat 22 USD, dziecko do 5 lat bezpłatnie."
+        "answer": "Dorosły 42 USD, dziecko 5-11 lat 22 USD, dziecko poniżej 5 lat bezpłatnie."
       },
       {
         "question": "O której zaczyna się wycieczka?",
@@ -9865,7 +9865,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -9952,7 +9952,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 18 USD, a dzieci do 5 lat wchodzą bezpłatnie. Cena dla osoby dorosłej to 28 USD."
+        "answer": "Dzieci w wieku 5-11 lat płacą 18 USD, a dzieci poniżej 5 lat wchodzą bezpłatnie. Cena dla osoby dorosłej to 28 USD."
       },
       {
         "question": "O której wracamy do hotelu?",
@@ -10017,7 +10017,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -10101,7 +10101,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 23 USD, a dzieci do 5 lat podróżują gratis. Cena dla osoby dorosłej to 38 USD."
+        "answer": "Dzieci w wieku 5-11 lat płacą 23 USD, a dzieci poniżej 5 lat podróżują gratis. Cena dla osoby dorosłej to 38 USD."
       },
       {
         "question": "Ile jest sesji snorkelingu?",
@@ -10299,7 +10299,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -10376,7 +10376,7 @@ export const tours: Tour[] = [
       },
       {
         "question": "Ile kosztuje bilet dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 14 USD, a dzieci do 5 lat wchodzą bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 14 USD, a dzieci poniżej 5 lat wchodzą bezpłatnie."
       },
       {
         "question": "Czy można popływać z delfinami?",
@@ -10437,7 +10437,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -10514,7 +10514,7 @@ export const tours: Tour[] = [
       },
       {
         "question": "Ile kosztuje bilet dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 20 USD, a dzieci do 5 lat wchodzą bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 20 USD, a dzieci poniżej 5 lat wchodzą bezpłatnie."
       },
       {
         "question": "Jak ogląda się rafy?",
@@ -10960,7 +10960,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
@@ -11610,7 +11610,7 @@ export const tours: Tour[] = [
     ],
     "seo": {
       "title": "Klasztor św. Katarzyny z Sharm el Sheikh - wycieczka na Synaj (UNESCO)",
-      "description": "Wycieczka na Synaj do Klasztoru św. Katarzyny (UNESCO) z Sharm el Sheikh: dzienne zwiedzanie klasztoru, bez nocnego wejścia na Górę Mojżesza. Dorosły 33 USD, dziecko 17 USD, do 5 lat gratis. Rezerwacja przez WhatsApp.",
+      "description": "Wycieczka na Synaj do Klasztoru św. Katarzyny (UNESCO) z Sharm el Sheikh: dzienne zwiedzanie klasztoru, bez nocnego wejścia na Górę Mojżesza. Dorosły 33 USD, dziecko 17 USD, poniżej 5 lat gratis. Rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-sharm-el-sheikh/klasztor-sw-katarzyny-synaj/",
       "ogImage": "/media/og/default.jpg"
     },
