@@ -7623,12 +7623,12 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dzieci 5-11 lat",
+          "label": "Dziecko 5-11 lat",
           "amount": 48,
           "currency": "USD"
         },
         {
-          "label": "Dzieci do 5 lat",
+          "label": "Dziecko do 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
