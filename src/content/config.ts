@@ -25,6 +25,19 @@ export const siteConfig = {
 
   description:
     "Wycieczki fakultatywne w Egipcie dla polskich turystów. Kair i piramidy z Hurghady, Marsa Alam i Sharm el Sheikh. Przejrzyste ceny, odbiór z hotelu, rezerwacja przez WhatsApp.",
+
+  /**
+   * Official, verified public profiles for the "Egipskie Wakacje" brand. Single
+   * source of truth: fed to the Organization JSON-LD `sameAs` (entity linking)
+   * AND to the visible footer social links, so the two never drift. Only exact,
+   * genuinely owned, publicly branded URLs belong here - no fabricated/placeholder
+   * accounts. `googleBusiness` is the official Google Maps share link.
+   */
+  social: {
+    facebook: "https://www.facebook.com/egipskiewakacje",
+    instagram: "https://www.instagram.com/egipskiewakacje/",
+    googleBusiness: "https://maps.app.goo.gl/GhLmkkM8cRCWWQXt6",
+  },
 } as const;
 
 export type SiteConfig = typeof siteConfig;

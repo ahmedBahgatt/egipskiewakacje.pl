@@ -15,6 +15,26 @@
 .tagline { color: var(--text-on-dark-muted); font-size: 0.98rem; }
 .wa { font-weight: 700; color: var(--teal-400); font-size: 1.05rem; }
 
+.social { display: flex; gap: 0.75rem; margin-top: 0.1rem; }
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--text-on-dark-muted);
+  font-size: 1.15rem;
+  transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+.socialLink:hover,
+.socialLink:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 .cols {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

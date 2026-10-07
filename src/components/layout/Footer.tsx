@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { IconWhatsApp } from "@/components/ui/icons";
+import { IconWhatsApp, IconFacebook, IconInstagram } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/content/config";
 import { footerNav } from "./nav";
@@ -37,6 +37,33 @@ export function Footer() {
             Napisz na WhatsApp
           </Button>
           <p className={styles.wa}>{siteConfig.whatsappDisplay}</p>
+          {/* Official brand profiles. rel="me" marks them as our own identities
+              (entity verification); external links open in a new tab to match the
+              site's other external CTAs. */}
+          <ul className={styles.social} aria-label="Profile społecznościowe Egipskie Wakacje">
+            <li>
+              <a
+                href={siteConfig.social.facebook}
+                className={styles.socialLink}
+                target="_blank"
+                rel="me noopener noreferrer"
+                aria-label="Egipskie Wakacje na Facebooku"
+              >
+                <IconFacebook />
+              </a>
+            </li>
+            <li>
+              <a
+                href={siteConfig.social.instagram}
+                className={styles.socialLink}
+                target="_blank"
+                rel="me noopener noreferrer"
+                aria-label="Egipskie Wakacje na Instagramie"
+              >
+                <IconInstagram />
+              </a>
+            </li>
+          </ul>
         </div>
 
         <nav className={styles.cols} aria-label="Stopka">

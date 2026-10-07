@@ -85,6 +85,18 @@ export function organizationJsonLd() {
     description: siteConfig.description,
     slogan: "Wycieczki fakultatywne w Egipcie dla polskich turystów",
     knowsLanguage: ["pl"],
+    // Official, verified brand profiles. These let Google bind the entity
+    // "Egipskie Wakacje" to its egipskiewakacje.pl site and its off-site
+    // presences. Only genuinely owned, publicly branded URLs (sourced once from
+    // siteConfig.social). Type stays "Organization": although a Google Business
+    // Profile now exists, no physical street address/geo is verified in this
+    // codebase, so we do NOT upgrade to LocalBusiness/TravelAgency (that would
+    // require fabricating an office/address).
+    sameAs: [
+      siteConfig.social.facebook,
+      siteConfig.social.instagram,
+      siteConfig.social.googleBusiness,
+    ],
     // Egypt-based resorts the excursions depart from. No physical address is
     // claimed - none is verified - so no LocalBusiness/TravelAgency type is used.
     areaServed: [
