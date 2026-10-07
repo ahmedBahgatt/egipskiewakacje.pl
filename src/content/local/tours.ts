@@ -7612,17 +7612,29 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 60,
+      "amount": 63,
       "unit": "os.",
       "currency": "USD",
       "from": false,
       "options": [
         {
           "label": "Dorosły",
-          "amount": 60,
+          "amount": 63,
           "currency": "USD"
+        },
+        {
+          "label": "Dzieci 5-11 lat",
+          "amount": 48,
+          "currency": "USD"
+        },
+        {
+          "label": "Dzieci do 5 lat",
+          "amount": 0,
+          "currency": "USD",
+          "free": true
         }
-      ]
+      ],
+      "note": "Cena za osobę: dorosły 63 USD, dziecko 5-11 lat 48 USD, dzieci do 5 lat bezpłatnie."
     },
     "availabilityLabel": "Niedziela, wtorek i czwartek",
     "availabilityDays": [
@@ -7698,7 +7710,7 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka na wyspy Hamata?",
-        "answer": "Cena wynosi 60 USD za osobę; w cenie transfer z hotelu, rejs, lunch i napoje."
+        "answer": "Cena za osobę: dorosły 63 USD, dziecko 5-11 lat 48 USD, dzieci do 5 lat bezpłatnie; w cenie transfer z hotelu, rejs, lunch i napoje."
       },
       {
         "question": "W jakie dni odbywa się rejs?",
@@ -7715,11 +7727,11 @@ export const tours: Tour[] = [
     ],
     "seo": {
       "title": "Wyspy Hamata z Marsa Alam - Egipskie Malediwy",
-      "description": "Rejs z Marsa Alam na wyspy Hamata, zwane Egipskimi Malediwami: snorkeling przy rafach, plażowanie, lunch i transfer w cenie. Od 60 USD za osobę.",
+      "description": "Rejs z Marsa Alam na wyspy Hamata, zwane Egipskimi Malediwami: snorkeling przy rafach, plażowanie, lunch i transfer w cenie. Dorosły 63 USD, dziecko 5-11 lat 48 USD.",
       "canonicalPath": "/wycieczki-z-marsa-alam/wyspy-hamata/",
       "ogImage": "/media/og/marsa-alam.jpg"
     },
-    "updatedAt": "2026-08-09"
+    "updatedAt": "2026-10-07"
   },
   {
     "slug": "rejs-nefertari",
