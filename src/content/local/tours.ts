@@ -1366,7 +1366,7 @@ export const tours: Tour[] = [
           "currency": "USD"
         },
         {
-          "label": "Dziecko do 5 lat",
+          "label": "Dziecko poniżej 5 lat",
           "amount": 0,
           "currency": "USD",
           "free": true
