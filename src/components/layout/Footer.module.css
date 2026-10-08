@@ -64,17 +64,9 @@
   height: 22px;
   background: rgba(255, 255, 255, 0.2);
 }
-.email {
-  color: var(--text-on-dark-muted);
-  font-size: 0.92rem;
-  text-decoration: none;
-  word-break: break-word;
-}
 @media (min-width: 720px) {
   .divider { display: block; }
 }
-.email:hover,
-.email:focus-visible { color: #fff; text-decoration: underline; }
 
 .cols {
   display: grid;

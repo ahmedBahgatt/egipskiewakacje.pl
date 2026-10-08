@@ -38,10 +38,11 @@ export function Footer() {
             Napisz na WhatsApp
           </Button>
 
-          {/* Premium contact row. The phone leads in gold (a tel: call link);
-              below it the shared gold-bordered Facebook / Instagram / Email icons
-              (FB/IG keep rel="me" for entity linking) and the email address in a
-              softer secondary tone so the phone stays the strongest element. */}
+          {/* Compact single-row contact: the phone leads in gold (a tel: call
+              link), then the shared gold-bordered Facebook / Instagram / Email
+              icons (FB/IG keep rel="me" for entity linking). The email is the
+              icon only - its mailto + hover tooltip carry the action, so no
+              address text is rendered (keeps the footer short). */}
           <div className={styles.contact}>
             <a
               className={styles.phone}
@@ -55,13 +56,6 @@ export function Footer() {
             </a>
             <span className={styles.divider} aria-hidden="true" />
             <SocialLinks variant="footer" />
-            <a
-              className={styles.email}
-              href={`mailto:${siteConfig.email}`}
-              aria-label="Napisz e-mail do Egipskie Wakacje"
-            >
-              {siteConfig.email}
-            </a>
           </div>
         </div>
 

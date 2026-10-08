@@ -52,6 +52,7 @@ export function SocialLinks({
           href={`mailto:${siteConfig.email}`}
           className={styles.icon}
           aria-label="Napisz e-mail do Egipskie Wakacje"
+          title="Napisz e-mail"
         >
           <IconMail />
         </a>
