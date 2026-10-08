@@ -1,0 +1,27 @@
+.updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--sand-100);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.updatedDot { width: 7px; height: 7px; border-radius: 999px; background: var(--gold-500); flex: none; }
+
+.contact {
+  margin-top: 2.5rem;
+  padding: 1.3rem 1.5rem;
+  background: var(--sand-100);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.contactTitle { font-size: var(--step-0); font-weight: 800; margin-bottom: 0.3rem; }
+.contactText { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.9rem; }
+.contactText a { color: var(--link); font-weight: 600; text-decoration: none; }
+.contactText a:hover { color: var(--accent-strong); text-decoration: underline; }
+.contactActions { display: flex; flex-wrap: wrap; gap: 0.6rem; }

@@ -1,0 +1,16 @@
+.cta {
+  margin-top: 2.2rem;
+  padding: 1.6rem;
+  background: var(--sand-100);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.ctaTitle { font-size: var(--step-1); font-weight: 800; margin-bottom: 0.3rem; }
+.ctaText { color: var(--text-muted); margin-bottom: 1.1rem; }
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}

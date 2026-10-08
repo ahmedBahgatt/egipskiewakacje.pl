@@ -1,6 +1,7 @@
 import type { LegalPage } from "@/content/types";
 
-const UPDATED = "2026-08-08";
+const UPDATED_LEGAL = "2026-10-09";
+const UPDATED_COOKIES = "2026-09-15";
 
 /**
  * Legal pages describe the ACTUAL implementation: a static website with local
@@ -16,7 +17,7 @@ export const legalPages: LegalPage[] = [
     slug: "polityka-prywatnosci",
     route: "/polityka-prywatnosci",
     title: "Polityka prywatności",
-    updatedAt: UPDATED,
+    updatedAt: UPDATED_LEGAL,
     body: [
       {
         type: "callout",
@@ -26,7 +27,7 @@ export const legalPages: LegalPage[] = [
       { type: "heading", id: "administrator", text: "1. Administrator danych" },
       {
         type: "paragraph",
-        text: "Administratorem danych związanych z serwisem egipskiewakacje.pl jest operator marki Egipskie Wakacje. Pełne dane identyfikacyjne i kontaktowe operatora zostaną uzupełnione po ich potwierdzeniu. Kontakt w sprawach bieżących odbywa się przez WhatsApp podany w serwisie.",
+        text: "Administratorem danych związanych z serwisem egipskiewakacje.pl jest operator marki Egipskie Wakacje. Pełne dane identyfikacyjne i kontaktowe operatora zostaną uzupełnione po ich potwierdzeniu. Kontakt w sprawach bieżących odbywa się przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com podany w serwisie.",
       },
       { type: "heading", id: "zakres", text: "2. Jakie dane przetwarzamy" },
       {
@@ -41,12 +42,12 @@ export const legalPages: LegalPage[] = [
       { type: "heading", id: "cookies", text: "4. Pliki cookies i analityka" },
       {
         type: "paragraph",
-        text: "W obecnej wersji serwis nie używa plików cookies do śledzenia ani zewnętrznych narzędzi analitycznych. Jeśli w przyszłości wprowadzimy analitykę, przed uruchomieniem śledzenia poprosimy o zgodę. Szczegóły opisuje Polityka cookies.",
+        text: "Serwis egipskiewakacje.pl korzysta z Google Analytics 4 (GA4) do zbiorczego pomiaru ruchu i ważnych interakcji na stronie. Zgoda na przechowywanie danych (Google Consent Mode) jest skonfigurowana regionalnie: dla użytkowników z Europejskiego Obszaru Gospodarczego i Wielkiej Brytanii (w tym z Polski) przechowywanie danych analitycznych i reklamowych jest domyślnie wyłączone, a pomiar działa w trybie bezplikowym. Do GA4 nie wysyłamy treści formularza rezerwacji ani danych osobowych (imię, numer telefonu, adres e-mail, treść wiadomości). Szczegóły opisuje Polityka cookies.",
       },
       { type: "heading", id: "prawa", text: "5. Twoje prawa" },
       {
         type: "paragraph",
-        text: "Przysługują Ci prawa wynikające z RODO, w tym prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Ponieważ serwis nie przechowuje danych z formularza, dotyczą one przede wszystkim korespondencji prowadzonej przez WhatsApp. W sprawach dotyczących danych napisz do nas przez WhatsApp.",
+        text: "Przysługują Ci prawa wynikające z RODO, w tym prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Ponieważ serwis nie przechowuje danych z formularza, dotyczą one przede wszystkim korespondencji prowadzonej przez WhatsApp. W sprawach dotyczących danych napisz do nas przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com.",
       },
     ],
     seo: {
@@ -60,7 +61,7 @@ export const legalPages: LegalPage[] = [
     slug: "polityka-cookies",
     route: "/polityka-cookies",
     title: "Polityka cookies",
-    updatedAt: UPDATED,
+    updatedAt: UPDATED_COOKIES,
     body: [
       { type: "heading", id: "czym-sa", text: "1. Czym są pliki cookies" },
       {
@@ -70,12 +71,12 @@ export const legalPages: LegalPage[] = [
       { type: "heading", id: "jak-uzywamy", text: "2. Jak używamy cookies" },
       {
         type: "paragraph",
-        text: "W obecnej wersji serwis egipskiewakacje.pl nie stosuje plików cookies do śledzenia ani nie ładuje zewnętrznych skryptów analitycznych i reklamowych. Z tego powodu nie wyświetlamy banera zgody na cookies - nie ma do tego niezbędnej podstawy.",
+        text: "Serwis egipskiewakacje.pl korzysta z Google Analytics 4 (GA4) do zbiorczego pomiaru sposobu korzystania ze strony oraz ważnych interakcji - m.in. odsłon stron, kliknięć przycisków (CTA), kontaktów przez WhatsApp i działań związanych z rezerwacją. Zgoda na przechowywanie danych (Google Consent Mode) jest skonfigurowana regionalnie. Dla użytkowników z Europejskiego Obszaru Gospodarczego, Wielkiej Brytanii oraz Szwajcarii, Norwegii, Islandii i Liechtensteinu (w tym z Polski) domyślnie wyłączamy przechowywanie danych analitycznych i reklamowych (analytics_storage, ad_storage, ad_user_data i ad_personalization = denied) - w tych krajach strona nie zapisuje analitycznych plików cookies Google, takich jak _ga czy _gid, a pomiar odbywa się w trybie bezplikowym (cookieless) tam, gdzie jest to obsługiwane. Dla użytkowników spoza tego regionu Google Analytics może korzystać ze standardowego pomiaru i zapisywać analityczne pliki cookies (np. _ga). W żadnym przypadku nie wysyłamy do GA4 treści formularza rezerwacji ani innych danych osobowych, takich jak imię, numer telefonu, adres e-mail czy treść wiadomości. Nie wyświetlamy okna zgody na cookies.",
       },
       { type: "heading", id: "w-przyszlosci", text: "3. Ewentualne zmiany" },
       {
         type: "paragraph",
-        text: "Jeśli w przyszłości wprowadzimy narzędzia analityczne (np. statystyki odwiedzin), zaktualizujemy ten dokument, a przed uruchomieniem śledzenia poprosimy o zgodę zgodnie z obowiązującymi przepisami.",
+        text: "Jeśli w przyszłości wprowadzimy narzędzia wymagające zapisu plików cookies lub innych informacji w Twoim urządzeniu (np. w celach reklamowych albo statystycznych z użyciem cookies), zaktualizujemy ten dokument i udostępnimy odpowiedni mechanizm zgody, zgodnie z obowiązującymi przepisami.",
       },
       { type: "heading", id: "zarzadzanie", text: "4. Zarządzanie cookies" },
       {
@@ -86,7 +87,7 @@ export const legalPages: LegalPage[] = [
     seo: {
       title: "Polityka cookies | Egipskie Wakacje",
       description:
-        "Polityka cookies serwisu egipskiewakacje.pl. Obecnie strona nie stosuje cookies śledzących ani zewnętrznych skryptów analitycznych.",
+        "Polityka cookies egipskiewakacje.pl. Google Analytics 4 z regionalnym trybem zgody: w UE/EOG i Wielkiej Brytanii bez plików cookies, poza tym regionem pomiar standardowy.",
       canonicalPath: "/polityka-cookies/",
     },
   },
@@ -94,7 +95,7 @@ export const legalPages: LegalPage[] = [
     slug: "regulamin",
     route: "/regulamin",
     title: "Regulamin",
-    updatedAt: UPDATED,
+    updatedAt: UPDATED_LEGAL,
     body: [
       {
         type: "callout",
@@ -114,7 +115,7 @@ export const legalPages: LegalPage[] = [
       { type: "heading", id: "ceny", text: "3. Ceny" },
       {
         type: "paragraph",
-        text: "Ceny podawane są w USD i dotyczą aktualnej oferty. Ostateczny koszt może zależeć od strefy hotelowej (dopłata za transfer) oraz opcjonalnych atrakcji. Datę ostatniej weryfikacji ceny podajemy przy każdej wycieczce.",
+        text: "Aktualne ceny podajemy w USD na stronie każdej wycieczki. Ostateczny koszt może zależeć od strefy hotelowej (dopłata za transfer) oraz wybranych atrakcji opcjonalnych. Ostateczną cenę i dostępność potwierdzamy przy rezerwacji, w korespondencji z naszą ekipą.",
       },
       { type: "heading", id: "zakres", text: "4. Zakres usługi" },
       {
@@ -124,7 +125,7 @@ export const legalPages: LegalPage[] = [
       { type: "heading", id: "kontakt", text: "5. Kontakt i reklamacje" },
       {
         type: "paragraph",
-        text: "W sprawach dotyczących rezerwacji i ewentualnych reklamacji kontaktuj się z nami przez WhatsApp podany w serwisie. Pełne dane operatora i procedura reklamacyjna zostaną uzupełnione po ich potwierdzeniu.",
+        text: "W sprawach dotyczących rezerwacji i ewentualnych reklamacji kontaktuj się z nami przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com podany w serwisie. Pełne dane operatora i procedura reklamacyjna zostaną uzupełnione po ich potwierdzeniu.",
       },
     ],
     seo: {

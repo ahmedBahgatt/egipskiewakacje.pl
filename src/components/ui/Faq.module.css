@@ -24,12 +24,22 @@
 }
 .summary::-webkit-details-marker { display: none; }
 .summary:hover { color: var(--accent-strong); }
+.summary:focus-visible {
+  outline: 2px solid var(--gold-500);
+  outline-offset: -2px;
+  border-radius: var(--radius);
+}
+.item[open] { border-color: color-mix(in srgb, var(--gold-500) 55%, var(--line)); }
+.item[open] .summary { color: var(--accent-strong); }
+/* Gold chevron indicator (matches the site's premium gold accents), rotating on open. */
 .chev {
   flex: none;
   font-size: 1.25rem;
-  color: var(--accent-strong);
-  transition: transform 0.2s ease;
+  color: var(--gold-600);
+  transition: transform 0.2s ease, color 0.15s ease;
 }
+.summary:hover .chev,
+.item[open] .chev { color: var(--gold-500); }
 .item[open] .chev { transform: rotate(180deg); }
 .answer {
   padding: 0 1.3rem 1.2rem;

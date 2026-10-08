@@ -837,7 +837,8 @@ export const posts = [
 
 // --- legal pages -----------------------------------------------------------
 
-const LEGAL_UPDATED = "2026-08-08";
+const LEGAL_UPDATED = "2026-10-09";
+const COOKIES_UPDATED = "2026-09-15";
 
 export const legalPages = [
   {
@@ -854,7 +855,7 @@ export const legalPages = [
       ),
       heading("administrator", "1. Administrator danych"),
       paragraph(
-        "Administratorem danych związanych z serwisem egipskiewakacje.pl jest operator marki Egipskie Wakacje. Pełne dane identyfikacyjne i kontaktowe operatora zostaną uzupełnione po ich potwierdzeniu. Kontakt w sprawach bieżących odbywa się przez WhatsApp podany w serwisie.",
+        "Administratorem danych związanych z serwisem egipskiewakacje.pl jest operator marki Egipskie Wakacje. Pełne dane identyfikacyjne i kontaktowe operatora zostaną uzupełnione po ich potwierdzeniu. Kontakt w sprawach bieżących odbywa się przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com podany w serwisie.",
       ),
       heading("zakres", "2. Jakie dane przetwarzamy"),
       paragraph(
@@ -866,11 +867,11 @@ export const legalPages = [
       ),
       heading("cookies", "4. Pliki cookies i analityka"),
       paragraph(
-        "W obecnej wersji serwis nie używa plików cookies do śledzenia ani zewnętrznych narzędzi analitycznych. Jeśli w przyszłości wprowadzimy analitykę, przed uruchomieniem śledzenia poprosimy o zgodę. Szczegóły opisuje Polityka cookies.",
+        "Serwis egipskiewakacje.pl korzysta z Google Analytics 4 (GA4) do zbiorczego pomiaru ruchu i ważnych interakcji na stronie. Zgoda na przechowywanie danych (Google Consent Mode) jest skonfigurowana regionalnie: dla użytkowników z Europejskiego Obszaru Gospodarczego i Wielkiej Brytanii (w tym z Polski) przechowywanie danych analitycznych i reklamowych jest domyślnie wyłączone, a pomiar działa w trybie bezplikowym. Do GA4 nie wysyłamy treści formularza rezerwacji ani danych osobowych (imię, numer telefonu, adres e-mail, treść wiadomości). Szczegóły opisuje Polityka cookies.",
       ),
       heading("prawa", "5. Twoje prawa"),
       paragraph(
-        "Przysługują Ci prawa wynikające z RODO, w tym prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Ponieważ serwis nie przechowuje danych z formularza, dotyczą one przede wszystkim korespondencji prowadzonej przez WhatsApp. W sprawach dotyczących danych napisz do nas przez WhatsApp.",
+        "Przysługują Ci prawa wynikające z RODO, w tym prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Ponieważ serwis nie przechowuje danych z formularza, dotyczą one przede wszystkim korespondencji prowadzonej przez WhatsApp. W sprawach dotyczących danych napisz do nas przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com.",
       ),
     ],
     seoTitle: "Polityka prywatności | Egipskie Wakacje",
@@ -884,7 +885,7 @@ export const legalPages = [
     slug: slug("polityka-cookies"),
     route: "/polityka-cookies",
     title: "Polityka cookies",
-    updatedAt: LEGAL_UPDATED,
+    updatedAt: COOKIES_UPDATED,
     body: [
       heading("czym-sa", "1. Czym są pliki cookies"),
       paragraph(
@@ -892,11 +893,11 @@ export const legalPages = [
       ),
       heading("jak-uzywamy", "2. Jak używamy cookies"),
       paragraph(
-        "W obecnej wersji serwis egipskiewakacje.pl nie stosuje plików cookies do śledzenia ani nie ładuje zewnętrznych skryptów analitycznych i reklamowych. Z tego powodu nie wyświetlamy banera zgody na cookies - nie ma do tego niezbędnej podstawy.",
+        "Serwis egipskiewakacje.pl korzysta z Google Analytics 4 (GA4) do zbiorczego pomiaru sposobu korzystania ze strony oraz ważnych interakcji - m.in. odsłon stron, kliknięć przycisków (CTA), kontaktów przez WhatsApp i działań związanych z rezerwacją. Zgoda na przechowywanie danych (Google Consent Mode) jest skonfigurowana regionalnie. Dla użytkowników z Europejskiego Obszaru Gospodarczego, Wielkiej Brytanii oraz Szwajcarii, Norwegii, Islandii i Liechtensteinu (w tym z Polski) domyślnie wyłączamy przechowywanie danych analitycznych i reklamowych (analytics_storage, ad_storage, ad_user_data i ad_personalization = denied) - w tych krajach strona nie zapisuje analitycznych plików cookies Google, takich jak _ga czy _gid, a pomiar odbywa się w trybie bezplikowym (cookieless) tam, gdzie jest to obsługiwane. Dla użytkowników spoza tego regionu Google Analytics może korzystać ze standardowego pomiaru i zapisywać analityczne pliki cookies (np. _ga). W żadnym przypadku nie wysyłamy do GA4 treści formularza rezerwacji ani innych danych osobowych, takich jak imię, numer telefonu, adres e-mail czy treść wiadomości. Nie wyświetlamy okna zgody na cookies.",
       ),
       heading("w-przyszlosci", "3. Ewentualne zmiany"),
       paragraph(
-        "Jeśli w przyszłości wprowadzimy narzędzia analityczne (np. statystyki odwiedzin), zaktualizujemy ten dokument, a przed uruchomieniem śledzenia poprosimy o zgodę zgodnie z obowiązującymi przepisami.",
+        "Jeśli w przyszłości wprowadzimy narzędzia wymagające zapisu plików cookies lub innych informacji w Twoim urządzeniu (np. w celach reklamowych albo statystycznych z użyciem cookies), zaktualizujemy ten dokument i udostępnimy odpowiedni mechanizm zgody, zgodnie z obowiązującymi przepisami.",
       ),
       heading("zarzadzanie", "4. Zarządzanie cookies"),
       paragraph(
@@ -905,7 +906,7 @@ export const legalPages = [
     ],
     seoTitle: "Polityka cookies | Egipskie Wakacje",
     seoDescription:
-      "Polityka cookies serwisu egipskiewakacje.pl. Obecnie strona nie stosuje cookies śledzących ani zewnętrznych skryptów analitycznych.",
+      "Polityka cookies egipskiewakacje.pl. Google Analytics 4 z regionalnym trybem zgody: w UE/EOG i Wielkiej Brytanii bez plików cookies, poza tym regionem pomiar standardowy.",
     canonicalPath: "/polityka-cookies/",
   },
   {
@@ -930,7 +931,7 @@ export const legalPages = [
       ),
       heading("ceny", "3. Ceny"),
       paragraph(
-        "Ceny podawane są w USD i dotyczą aktualnej oferty. Ostateczny koszt może zależeć od strefy hotelowej (dopłata za transfer) oraz opcjonalnych atrakcji. Datę ostatniej weryfikacji ceny podajemy przy każdej wycieczce.",
+        "Aktualne ceny podajemy w USD na stronie każdej wycieczki. Ostateczny koszt może zależeć od strefy hotelowej (dopłata za transfer) oraz wybranych atrakcji opcjonalnych. Ostateczną cenę i dostępność potwierdzamy przy rezerwacji, w korespondencji z naszą ekipą.",
       ),
       heading("zakres", "4. Zakres usługi"),
       paragraph(
@@ -938,7 +939,7 @@ export const legalPages = [
       ),
       heading("kontakt", "5. Kontakt i reklamacje"),
       paragraph(
-        "W sprawach dotyczących rezerwacji i ewentualnych reklamacji kontaktuj się z nami przez WhatsApp podany w serwisie. Pełne dane operatora i procedura reklamacyjna zostaną uzupełnione po ich potwierdzeniu.",
+        "W sprawach dotyczących rezerwacji i ewentualnych reklamacji kontaktuj się z nami przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com podany w serwisie. Pełne dane operatora i procedura reklamacyjna zostaną uzupełnione po ich potwierdzeniu.",
       ),
     ],
     seoTitle: "Regulamin | Egipskie Wakacje",

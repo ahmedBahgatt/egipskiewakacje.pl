@@ -5,8 +5,10 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Faq } from "@/components/ui/Faq";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { IconWhatsApp } from "@/components/ui/icons";
+import { IconWhatsApp, IconMail } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
+import { siteConfig } from "@/content/config";
+import styles from "./faq.module.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "Najczęstsze pytania o wycieczki w Egipcie | FAQ",
@@ -35,20 +37,33 @@ export default async function Page() {
       <section className="section">
         <div className="container container-narrow">
           <Faq items={faqs} />
-          <div style={{ marginTop: "2rem", textAlign: "center" }}>
-            <p style={{ color: "var(--text-muted)", marginBottom: "1rem" }}>
-              Nie znalazłeś odpowiedzi? Napisz do nas.
+          <div className={styles.cta}>
+            <p className={styles.ctaTitle}>Nie znalazłeś odpowiedzi?</p>
+            <p className={styles.ctaText}>
+              Napisz do Egipskie Wakacje na WhatsApp lub e-mail - odpowiadamy po polsku.
             </p>
-            <Button
-              href={contactWhatsappUrl("Cześć! Mam pytanie o wycieczki w Egipcie.")}
-              external
-              variant="whatsapp"
-              size="lg"
-              iconLeft={<IconWhatsApp />}
-              analytics={{ ctaId: "faq_whatsapp", ctaType: "whatsapp", placement: "faq", waIntent: "enquiry" }}
-            >
-              Napisz na WhatsApp
-            </Button>
+            <div className={styles.ctaActions}>
+              <Button
+                href={contactWhatsappUrl("Cześć! Mam pytanie o wycieczki w Egipcie.")}
+                external
+                variant="whatsapp"
+                size="lg"
+                iconLeft={<IconWhatsApp />}
+                analytics={{ ctaId: "faq_whatsapp", ctaType: "whatsapp", placement: "faq", waIntent: "enquiry" }}
+              >
+                Napisz na WhatsApp
+              </Button>
+              <Button
+                href={`mailto:${siteConfig.email}`}
+                variant="outline"
+                size="lg"
+                iconLeft={<IconMail />}
+                ariaLabel="Napisz e-mail do Egipskie Wakacje"
+                analytics={{ ctaId: "faq_email", ctaType: "email", placement: "faq" }}
+              >
+                Napisz e-mail
+              </Button>
+            </div>
           </div>
         </div>
       </section>

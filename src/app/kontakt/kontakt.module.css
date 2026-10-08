@@ -32,4 +32,72 @@
 .note { padding: 1rem 1.2rem; background: var(--sand-200); border-radius: var(--radius); }
 .note p { color: var(--ink-700); font-size: 0.92rem; }
 
+/* --- secondary channels: phone + e-mail/social with the shared gold icons --- */
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--navy-900);
+}
+.phoneIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+  color: var(--navy-900);
+  box-shadow: 0 4px 14px rgba(190, 147, 48, 0.28);
+}
+.phoneIcon svg { display: block; width: 20px; height: 20px; }
+.channelLabel {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.channelValue { display: block; font-size: var(--step-1); font-weight: 800; color: var(--navy-900); }
+.phone:hover .channelValue { color: var(--gold-600); }
+.social { display: flex; flex-direction: column; gap: 0.45rem; }
+
+/* --- "what to include" tips ------------------------------------------------ */
+.tips { display: flex; flex-direction: column; gap: 0.6rem; }
+.tipsTitle { font-size: var(--step-0); font-weight: 800; }
+.tips ul { display: flex; flex-direction: column; gap: 0.5rem; }
+.tips li { display: flex; align-items: flex-start; gap: 0.6rem; color: var(--ink-700); }
+.tipCheck { flex: none; margin-top: 3px; color: var(--accent-strong); font-size: 1.05rem; }
+
+/* --- internal links row ---------------------------------------------------- */
+.links {
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.2rem;
+}
+.linksLabel { font-weight: 800; color: var(--navy-900); }
+.links ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; }
+.links a {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.links a:hover { color: var(--accent-strong); border-bottom-color: currentColor; }
+
 @media (min-width: 820px) { .grid { grid-template-columns: 1fr 1fr; align-items: start; } }

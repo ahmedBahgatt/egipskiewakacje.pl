@@ -148,6 +148,48 @@ export function breadcrumbJsonLd(crumbs: Crumb[]) {
   };
 }
 
+/**
+ * ContactPage node for /kontakt/. Binds to the EXISTING Organization
+ * (`/#organization`) and WebSite (`/#website`) entities - never a duplicate
+ * entity - so search/AI systems read this as the official contact page of
+ * Egipskie Wakacje. Carries only the real, owner-approved channels.
+ */
+export function contactPageJsonLd(opts: { name: string; canonicalPath: string; description?: string }) {
+  const url = absoluteUrl(opts.canonicalPath);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${url}#contactpage`,
+    url,
+    name: opts.name,
+    ...(opts.description ? { description: opts.description } : {}),
+    inLanguage: siteConfig.lang,
+    isPartOf: { "@id": `${siteConfig.url}/#website` },
+    about: { "@id": `${siteConfig.url}/#organization` },
+    mainEntity: { "@id": `${siteConfig.url}/#organization` },
+  };
+}
+
+/**
+ * Generic WebPage node for the legal + reservation pages. Binds to the existing
+ * Organization + WebSite entities; invents nothing. Used where no more specific
+ * type (ContactPage/FAQPage) applies.
+ */
+export function webPageJsonLd(opts: { name: string; canonicalPath: string; description?: string }) {
+  const url = absoluteUrl(opts.canonicalPath);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: opts.name,
+    ...(opts.description ? { description: opts.description } : {}),
+    inLanguage: siteConfig.lang,
+    isPartOf: { "@id": `${siteConfig.url}/#website` },
+    publisher: { "@id": `${siteConfig.url}/#organization` },
+  };
+}
+
 export function itemListJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",

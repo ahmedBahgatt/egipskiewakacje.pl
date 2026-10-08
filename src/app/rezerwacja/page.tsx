@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { content } from "@/content";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BookingForm, type BookingTourOption } from "@/components/booking/BookingForm";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { IconCheck } from "@/components/ui/icons";
 import styles from "./rezerwacja.module.css";
 
 export const metadata: Metadata = buildMetadata({
@@ -18,10 +19,18 @@ const crumbs = [
   { name: "Rezerwacja", path: "/rezerwacja/" },
 ];
 
-const STEPS = [
-  "Wybierz wycieczkę i uzupełnij dane.",
-  "Wyślij zgłoszenie - otworzy się WhatsApp z gotową wiadomością.",
-  "Potwierdzamy dostępność, godzinę odbioru i cenę.",
+const STEPS: { title: string; text: string }[] = [
+  { title: "Wypełnij formularz", text: "Wybierz wycieczkę, termin i liczbę osób." },
+  { title: "Wyślij przez WhatsApp", text: "Zgłoszenie otwiera gotową wiadomość na WhatsApp." },
+  { title: "Potwierdzamy szczegóły", text: "Dostępność, godzinę odbioru i ostateczną cenę." },
+];
+
+/** Trust points - only facts already true on the live site. */
+const TRUST = [
+  "Bez przedpłaty",
+  "Płatność przy rozpoczęciu wycieczki",
+  "Potwierdzenie przez WhatsApp",
+  "Obsługa po polsku",
 ];
 
 export default async function Page() {
@@ -36,33 +45,59 @@ export default async function Page() {
 
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(crumbs),
+          webPageJsonLd({
+            name: "Rezerwacja wycieczki - Egipskie Wakacje",
+            canonicalPath: "/rezerwacja/",
+            description:
+              "Oficjalny formularz rezerwacji Egipskie Wakacje. Krótki formularz tworzy gotową wiadomość WhatsApp. Bez płatności online.",
+          }),
+        ]}
+      />
       <PageHeader
         eyebrow="Rezerwacja"
         title="Zarezerwuj wycieczkę"
-        intro="Wypełnij krótki formularz - przygotujemy gotową wiadomość na WhatsApp. Bez płatności online."
+        intro="Rezerwację w Egipskie Wakacje składasz w kilka chwil: wypełnij krótki formularz, a przygotujemy gotową wiadomość na WhatsApp. Bez płatności online."
         crumbs={crumbs}
       />
       <section className="section">
-        <div className={`container ${styles.layout}`}>
-          <div className={styles.formCol}>
-            <BookingForm tours={options} variant="page" />
+        <div className="container">
+          <ol className={styles.steps} aria-label="Jak to działa?">
+            {STEPS.map((s, i) => (
+              <li key={i} className={styles.step}>
+                <span className={styles.stepNum}>{i + 1}</span>
+                <span className={styles.stepBody}>
+                  <span className={styles.stepTitle}>{s.title}</span>
+                  <span className={styles.stepText}>{s.text}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
+
+          <div className={styles.layout}>
+            <div className={styles.formCol}>
+              <BookingForm tours={options} variant="page" />
+            </div>
+            <aside className={styles.aside}>
+              <div className={styles.trust}>
+                <h2 className={styles.asideTitle}>Dlaczego Egipskie Wakacje?</h2>
+                <ul className={styles.trustList}>
+                  {TRUST.map((t) => (
+                    <li key={t}>
+                      <IconCheck className={styles.trustCheck} />
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p className={styles.note}>
+                Nie przechowujemy danych z formularza. Wiadomość powstaje lokalnie w Twojej
+                przeglądarce i otwiera się w aplikacji WhatsApp.
+              </p>
+            </aside>
           </div>
-          <aside className={styles.aside}>
-            <h2 className={styles.asideTitle}>Jak to działa?</h2>
-            <ol className={styles.steps}>
-              {STEPS.map((s, i) => (
-                <li key={i}>
-                  <span className={styles.stepNum}>{i + 1}</span>
-                  {s}
-                </li>
-              ))}
-            </ol>
-            <p className={styles.note}>
-              Nie przechowujemy danych z formularza. Wiadomość powstaje lokalnie w Twojej
-              przeglądarce i otwiera się w aplikacji WhatsApp.
-            </p>
-          </aside>
         </div>
       </section>
     </>
