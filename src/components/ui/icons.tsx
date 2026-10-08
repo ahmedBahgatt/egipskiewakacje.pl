@@ -58,6 +58,17 @@ export const IconMenu = (p: IconProps) => (
     <path d="M4 7h16M4 12h16M4 17h16" />
   </Base>
 );
+export const IconMail = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="3" y="5" width="18" height="14" rx="2.2" />
+    <path d="M3.5 6.5 12 13l8.5-6.5" />
+  </Base>
+);
+export const IconPhone = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M21 16.9v2.1a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.3 2 2 0 0 1 3.1 1h2.1a2 2 0 0 1 2 1.7c.1.9.3 1.8.7 2.7a2 2 0 0 1-.5 2.1L6.6 10.5a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
+  </Base>
+);
 export const IconMapPin = (p: IconProps) => (
   <Base {...p}>
     <path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" />

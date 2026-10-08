@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { IconWhatsApp, IconFacebook, IconInstagram } from "@/components/ui/icons";
+import { IconWhatsApp, IconPhone } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/content/config";
 import { footerNav } from "./nav";
+import { SocialLinks } from "./SocialLinks";
 import styles from "./Footer.module.css";
 
 export function Footer() {
@@ -36,34 +37,32 @@ export function Footer() {
           >
             Napisz na WhatsApp
           </Button>
-          <p className={styles.wa}>{siteConfig.whatsappDisplay}</p>
-          {/* Official brand profiles. rel="me" marks them as our own identities
-              (entity verification); external links open in a new tab to match the
-              site's other external CTAs. */}
-          <ul className={styles.social} aria-label="Profile społecznościowe Egipskie Wakacje">
-            <li>
-              <a
-                href={siteConfig.social.facebook}
-                className={styles.socialLink}
-                target="_blank"
-                rel="me noopener noreferrer"
-                aria-label="Egipskie Wakacje na Facebooku"
-              >
-                <IconFacebook />
-              </a>
-            </li>
-            <li>
-              <a
-                href={siteConfig.social.instagram}
-                className={styles.socialLink}
-                target="_blank"
-                rel="me noopener noreferrer"
-                aria-label="Egipskie Wakacje na Instagramie"
-              >
-                <IconInstagram />
-              </a>
-            </li>
-          </ul>
+
+          {/* Premium contact row. The phone leads in gold (a tel: call link);
+              below it the shared gold-bordered Facebook / Instagram / Email icons
+              (FB/IG keep rel="me" for entity linking) and the email address in a
+              softer secondary tone so the phone stays the strongest element. */}
+          <div className={styles.contact}>
+            <a
+              className={styles.phone}
+              href={`tel:+${siteConfig.whatsappNumber}`}
+              aria-label={`Zadzwoń: ${siteConfig.whatsappDisplay}`}
+            >
+              <span className={styles.phoneIcon}>
+                <IconPhone />
+              </span>
+              <span>{siteConfig.whatsappDisplay}</span>
+            </a>
+            <span className={styles.divider} aria-hidden="true" />
+            <SocialLinks variant="footer" />
+            <a
+              className={styles.email}
+              href={`mailto:${siteConfig.email}`}
+              aria-label="Napisz e-mail do Egipskie Wakacje"
+            >
+              {siteConfig.email}
+            </a>
+          </div>
         </div>
 
         <nav className={styles.cols} aria-label="Stopka">

@@ -20,6 +20,13 @@ export const siteConfig = {
   whatsappNumber: "201055850536",
   whatsappDisplay: "+20 105 585 0536",
 
+  /**
+   * Official contact email, used for the mailto: links in the header and footer
+   * contact UI. Deliberately kept OUT of `social` so it never leaks into the
+   * Organization `sameAs` set (that must stay exactly the three owned profiles).
+   */
+  email: "info.egipskiewakacje@gmail.com",
+
   /** Main currency for all displayed prices. No PLN conversion in v1. */
   currency: "USD" as const,
 

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { IconArrowRight, IconWhatsApp, IconX } from "@/components/ui/icons";
 import { contactWhatsappUrl } from "@/lib/whatsapp";
 import { primaryNav } from "./nav";
+import { SocialLinks } from "./SocialLinks";
 import styles from "./MobileMenu.module.css";
 
 interface Props {
@@ -159,6 +160,7 @@ export function MobileMenu({ open, onClose, pathname }: Props) {
           >
             Napisz na WhatsApp
           </Button>
+          <SocialLinks variant="drawer" className={styles.social} />
         </div>
       </div>
     </div>,

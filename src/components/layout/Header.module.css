@@ -112,8 +112,14 @@
 .dropLink.active { color: var(--accent-strong); background: rgba(14, 131, 120, 0.06); }
 
 /* --- actions ------------------------------------------------------------- */
-.actions { display: flex; align-items: center; gap: 0.6rem; }
+/* The gap gives the social-icon group clear breathing room from the booking CTA
+   so the right side reads as two distinct clusters, not one cramped strip. */
+.actions { display: flex; align-items: center; gap: 0.9rem; }
 .cta { display: none; }
+/* Social icons are a desktop-only nicety: hidden until there is genuine room
+   beside the full nav + CTA (they would crowd the 900-1099px band), and absent
+   from the mobile bar entirely - their mobile home is the drawer. */
+.social { display: none; }
 .burger {
   display: inline-flex;
   align-items: center;
@@ -140,4 +146,8 @@
   .nav { display: block; }
   .cta { display: inline-flex; }
   .burger { display: none; }
+}
+
+@media (min-width: 1100px) {
+  .social { display: flex; }
 }

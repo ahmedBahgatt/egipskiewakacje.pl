@@ -1,0 +1,50 @@
+/* Shared premium contact-icon group (Facebook / Instagram / Email). One visual
+   language across the header, mobile drawer and footer: a gold-bordered navy
+   circle with a soft-gold glyph that sits on navy on every surface - so it reads
+   the same over the dark hero, the cream inner header and the navy footer. */
+.list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold-500);
+  background: rgba(8, 26, 53, 0.55);
+  color: var(--gold-300);
+  text-decoration: none;
+  transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.18s ease;
+}
+.icon:hover,
+.icon:focus-visible {
+  color: #fff;
+  border-color: var(--gold-400);
+  background: var(--navy-900);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.28);
+  transform: translateY(-1px);
+}
+/* Explicit pixel sizing (never font-relative em) so the inline SVG can't collapse
+   or render as an empty box on iOS Safari; currentColor keeps the glyph gold. */
+.icon svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+
+/* --- header: compact, pointer-only (gated to wide viewports in Header.css) --- */
+.header { gap: 0.5rem; }
+.header .icon { width: 40px; height: 40px; }
+
+/* --- drawer + footer: >=44px touch targets, a touch more breathing room ----- */
+.drawer,
+.footer { gap: 0.75rem; }
+.drawer .icon,
+.footer .icon { width: 44px; height: 44px; }
+.drawer .icon svg,
+.footer .icon svg { width: 19px; height: 19px; }

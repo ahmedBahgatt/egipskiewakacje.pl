@@ -5,9 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
-import { IconChevronDown, IconMenu } from "@/components/ui/icons";
+import { IconArrowRight, IconChevronDown, IconMenu } from "@/components/ui/icons";
 import { primaryNav } from "./nav";
 import { MobileMenu } from "./MobileMenu";
+import { SocialLinks } from "./SocialLinks";
 import styles from "./Header.module.css";
 
 function isActive(pathname: string, href: string): boolean {
@@ -173,10 +174,13 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
+          <SocialLinks variant="header" className={styles.social} />
           <Button
             href="/rezerwacja/"
+            variant="gold"
             size="sm"
             className={styles.cta}
+            iconRight={<IconArrowRight />}
             analytics={{ ctaId: "header_booking", ctaType: "booking", placement: "header" }}
           >
             Zarezerwuj wycieczkę

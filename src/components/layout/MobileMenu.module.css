@@ -92,6 +92,8 @@
   padding: 0.95rem 1.3rem calc(0.95rem + env(safe-area-inset-bottom));
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+/* Social / email row sits under the CTAs, centred with a little breathing room. */
+.social { justify-content: center; margin-top: 0.35rem; }
 
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slide { from { transform: translateX(100%); } to { transform: translateX(0); } }
