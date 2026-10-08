@@ -14,24 +14,29 @@
 .brandLink { display: inline-flex; color: #fff; text-decoration: none; }
 .tagline { color: var(--text-on-dark-muted); font-size: 0.98rem; }
 
-/* --- premium contact block (phone leads in gold, then social + email) ----- */
+/* --- premium contact block: ONE compact wrapping row ---------------------
+   phone (gold) - separator - social icons - email. Sits on a single line where
+   the column is wide enough, and wraps gracefully (icons, then email) on
+   narrower columns / phones instead of the old 4-stacked-rows block that made
+   this column far taller than the link columns beside it. */
 .contact {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.9rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.7rem;
   width: 100%;
-  margin-top: 0.1rem;
+  margin-top: 0.25rem;
 }
 .phone {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.6rem;
   color: var(--gold-300);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.02rem;
   letter-spacing: 0.01em;
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.18s ease;
 }
 .phone:hover,
@@ -41,26 +46,32 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
   color: var(--navy-900);
   box-shadow: 0 4px 14px rgba(190, 147, 48, 0.3);
 }
 /* Explicit px sizing so the glyph never collapses to an empty box on iOS Safari. */
-.phoneIcon svg { display: block; width: 20px; height: 20px; }
+.phoneIcon svg { display: block; width: 19px; height: 19px; }
+/* Thin vertical separator between the phone and the icon group. Shown only on
+   wider columns (>=720px), where phone + icons share one line; hidden on phones
+   where the row wraps and a vertical rule would dangle at a line start. */
 .divider {
-  width: 100%;
-  max-width: 240px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.14);
+  display: none;
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.2);
 }
 .email {
   color: var(--text-on-dark-muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   text-decoration: none;
   word-break: break-word;
+}
+@media (min-width: 720px) {
+  .divider { display: block; }
 }
 .email:hover,
 .email:focus-visible { color: #fff; text-decoration: underline; }
@@ -86,9 +97,9 @@
 .bottom {
   position: relative;
   z-index: 1;
-  margin-top: 2.5rem;
-  padding-top: 1.4rem;
-  padding-bottom: calc(1.6rem + env(safe-area-inset-bottom));
+  margin-top: 2rem;
+  padding-top: 1.3rem;
+  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom));
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-wrap: wrap;
