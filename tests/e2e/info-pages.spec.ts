@@ -89,8 +89,9 @@ test.describe("legal pages - schema + contact block", () => {
       const html = await page.content();
       expect(html).toContain('"WebPage"');
       expect(html).toContain("Ostatnia aktualizacja");
+      // The in-page contact block e-mail (not the header icon, which is hidden on mobile).
       await expect(
-        page.locator('a[href="mailto:info.egipskiewakacje@gmail.com"]').first(),
+        page.locator("section.section").locator('a[href="mailto:info.egipskiewakacje@gmail.com"]').first(),
       ).toBeVisible();
     });
   }
