@@ -34,13 +34,26 @@ export const categories: TourCategory[] = [
         answer:
           "Klasyczne Muzeum Egipskie leży w centrum Kairu i ma bogaty, historyczny zbiór. Wielkie Muzeum Egipskie (GEM) to nowoczesna, ogromna placówka przy płaskowyżu w Gizie. Część naszych tras obejmuje właśnie GEM.",
       },
+      {
+        question: "Ile trwa wycieczka do Kairu?",
+        answer:
+          "To wyprawa całodniowa. Autokarem wyjeżdżasz nocą lub wczesnym rankiem i wracasz wieczorem, więc sporą część doby zajmuje droga. Samolotem lecisz rano i wracasz tego samego dnia, z wyraźnie krótszym czasem w podróży. Dokładne godziny zależą od kurortu i wariantu - podajemy je na stronie każdej wycieczki.",
+      },
+      {
+        question: "Czy wycieczka do Kairu jest odpowiednia dla dzieci?",
+        answer:
+          "Tak, warto jednak pamiętać o długim dojeździe - przy małych dzieciach wygodniejszy bywa wariant samolotem, który skraca czas w drodze. Zasady cen dla dzieci różnią się między wariantami, dlatego potwierdzamy je przy rezerwacji na WhatsApp.",
+      },
     ],
     seo: {
       title: "Wycieczki do Kairu i piramid w Egipcie | Egipskie Wakacje",
       description:
         "Wycieczka do Kairu z Hurghady, Marsa Alam i Sharm el Sheikh: piramidy w Gizie, Sfinks, Muzeum Egipskie w Kairze i nowe GEM. Autokarem lub samolotem, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/kair-i-piramidy/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/kair.jpg",
+      ogImageAlt: "Piramida w Gizie i Sfinks o zachodzie słońca",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "wycieczka do Kairu",
   },
@@ -63,13 +76,26 @@ export const categories: TourCategory[] = [
         answer:
           "Lot balonem nad Luksorem o wschodzie słońca to jedno z najbardziej widowiskowych przeżyć w Egipcie - widok na Nil, świątynie i Dolinę Królów z góry. Jeśli budżet pozwala, warto.",
       },
+      {
+        question: "Czym różni się jednodniowy wyjazd do Luksoru od dwudniowego?",
+        answer:
+          "Wariant jednodniowy to intensywny dzień: Dolina Królów i wybrane świątynie, z powrotem do hotelu tego samego dnia. Wariant dwudniowy daje więcej czasu na zwiedzanie i nocleg w Luksorze, a często łączy się z lotem balonem o wschodzie słońca. Dostępne warianty znajdziesz na liście wycieczek powyżej.",
+      },
+      {
+        question: "Co zobaczę w Dolinie Królów?",
+        answer:
+          "To nekropolia faraonów z grobowcami wykutymi w skale. Bilet standardowo obejmuje wejście do kilku udostępnionych grobowców; wybrane, najbardziej znane komory (np. Tutanchamona) bywają biletowane osobno. Program dnia obejmuje zwykle także świątynię Hatszepsut i Kolosy Memnona.",
+      },
     ],
     seo: {
       title: "Wycieczki do Luksoru i Doliny Królów | Egipskie Wakacje",
       description:
         "Wycieczki do Luksoru: Dolina Królów, Karnak, świątynia Hatszepsut i lot balonem. Wyjazdy z Hurghady i Marsa Alam, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/luksor/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/luksor.jpg",
+      ogImageAlt: "Kolumny i obelisk świątyni w Karnaku w Luksorze w złotym świetle",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "wycieczki do Luksoru",
   },
@@ -92,13 +118,26 @@ export const categories: TourCategory[] = [
         answer:
           "Tak, to jedna z najbardziej rodzinnych opcji. Płytka woda przy plażach, krótkie postoje i lunch na łodzi sprawiają, że dzieci dobrze znoszą taki dzień. Dla najmłodszych zwykle obowiązuje niższa cena.",
       },
+      {
+        question: "Rejs na wyspę czy wyprawa snorkelingowa - co wybrać?",
+        answer:
+          "Rejs na wyspę to głównie relaks: plażowanie na piaszczystych łachach, kąpiele i zwykle jeden-dwa postoje na snorkeling. Jeśli najważniejszy jest dla Ciebie czas w wodzie nad rafami i szansa na spotkanie delfinów, zajrzyj do sekcji Snorkeling i delfiny. Obie opcje łączą pływanie łodzią i snorkeling, różnią się proporcją plażowania do nurkowania z maską.",
+      },
+      {
+        question: "Którą wyspę wybrać na wyjazd z Hurghady?",
+        answer:
+          "Orange Bay to duża, popularna wyspa z rozbudowaną infrastrukturą i plażową atmosferą. Paradise Island jest mniejsza i spokojniejsza. Z Marsa Alam popłyniesz na dziewicze wyspy Hamata, a z Sharm el Sheikh na White Island. Każdy rejs opisujemy osobno - szczegóły i punkt wyjazdu znajdziesz na jego stronie.",
+      },
     ],
     seo: {
       title: "Rejsy i wyspy na Morzu Czerwonym | Orange Bay, Mahmya, Hamata",
       description:
         "Rejsy łodzią na wyspy Morza Czerwonego z Hurghady, Marsa Alam i Sharm el Sheikh: Orange Bay, Paradise, Mahmya, Hamata, White Island. Snorkeling i lunch na łodzi.",
       canonicalPath: "/wycieczki/rejsy-i-wyspy/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/rejsy-wyspy.jpg",
+      ogImageAlt: "Biały jacht na turkusowym Morzu Czerwonym przy piaszczystej wyspie",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "rejsy i wyspy Egipt",
   },
@@ -121,13 +160,26 @@ export const categories: TourCategory[] = [
         answer:
           "Podstawy się przydają, ale kamizelki asekuracyjne i bliskość łodzi sprawiają, że snorkeling jest dostępny także dla mniej pewnych pływaków. Przewodnicy pomagają wejść do wody i pilnują grupy.",
       },
+      {
+        question: "Snorkeling z łodzi czy z brzegu?",
+        answer:
+          "Większość naszych wypraw to rejsy łodzią z postojami na snorkeling nad rafami (Sataya, Samadai, Dom Delfinów). Zatoka Abu Dabbab to z kolei snorkeling z wejściem z plaży, znany z szansy na spotkanie żółwi i diugoni. Z łodzi dopływasz dalej od brzegu, z plaży wchodzisz spokojnie własnym tempem.",
+      },
+      {
+        question: "Snorkeling czy nurkowanie - co wybrać?",
+        answer:
+          "Snorkeling to pływanie po powierzchni z maską i fajką - nie wymaga uprawnień ani doświadczenia i jest dostępny niemal dla każdego. Nurkowanie oznacza zejście pod wodę i, nawet w wersji na próbę, odbywa się pod opieką instruktora. Jeśli chcesz zejść głębiej, zajrzyj do sekcji Nurkowanie.",
+      },
     ],
     seo: {
       title: "Snorkeling i pływanie z delfinami w Egipcie | Sataya, Samadai",
       description:
         "Wycieczki snorkelingowe z delfinami, żółwiami i diugoniami: Dom Delfinów, Sataya, Samadai, Abu Dabbab. Wyjazdy z Hurghady i Marsa Alam, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/snorkeling-i-delfiny/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/snorkeling-delfiny.jpg",
+      ogImageAlt: "Snorkeling z dzikimi delfinami w przejrzystej wodzie Morza Czerwonego",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "snorkeling z delfinami Egipt",
   },
@@ -150,13 +202,26 @@ export const categories: TourCategory[] = [
         answer:
           "Do nurkowania na próbę nie potrzebujesz żadnych uprawnień. Przy wyprawach z butlą dobieramy głębokość i miejsce do Twojego doświadczenia, a przed każdym zejściem otrzymujesz instruktaż.",
       },
+      {
+        question: "Nurkowanie czy snorkeling - co wybrać?",
+        answer:
+          "Jeśli chcesz tylko popływać po powierzchni i oglądać rafę z góry, wystarczy snorkeling - bez uprawnień i doświadczenia. Nurkowanie pozwala zejść pod wodę; w wersji na próbę prowadzi Cię instruktor i nie potrzebujesz uprawnień. Wyprawy bez butli znajdziesz w sekcji Snorkeling i delfiny.",
+      },
+      {
+        question: "Czy są przeciwwskazania zdrowotne do nurkowania?",
+        answer:
+          "Nurkowanie na próbę jest dostępne dla zdrowych osób. Przy dolegliwościach serca, uszu, zatok lub układu oddechowego, a także w ciąży, skonsultuj się wcześniej z lekarzem. Przed zejściem wypełniasz krótką ankietę zdrowotną i otrzymujesz instruktaż od instruktora.",
+      },
     ],
     seo: {
       title: "Nurkowanie w Egipcie - rafy Morza Czerwonego | Hurghada, Marsa Alam, Sharm",
       description:
         "Nurkowanie w Egipcie: nurkowanie na próbę i wyprawy z butlą na rafach Morza Czerwonego z Hurghady, Marsa Alam i Sharm el Sheikh. Dla początkujących i doświadczonych nurków. Rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/nurkowanie/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/nurkowanie.jpg",
+      ogImageAlt: "Nurek z butlą nad kolorową rafą koralową Morza Czerwonego",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "nurkowanie w Egipcie",
   },
@@ -179,13 +244,26 @@ export const categories: TourCategory[] = [
         answer:
           "Przyda się chusta lub komin na twarz (chroni przed pyłem), okulary, zamknięte buty i coś ciepłego na wieczór - po zachodzie słońca na pustyni potrafi się ochłodzić.",
       },
+      {
+        question: "Quad, buggy czy jeep - czym się różnią?",
+        answer:
+          "Quadem jedziesz sam na jednoosobowym pojeździe (dzieci zwykle jako pasażer z dorosłym lub pojazdem dwuosobowym). Buggy to pojazd z kierownicą dla jednej-dwóch osób, a jego cena bywa podawana za pojazd, nie za osobę. Jeepem jedziesz jako pasażer, a prowadzi doświadczony kierowca - to opcja dla całej rodziny bez samodzielnego kierowania. Model ceny podajemy przy każdej wycieczce.",
+      },
+      {
+        question: "O jakiej porze odbywa się safari?",
+        answer:
+          "Najpopularniejsze są wyjazdy po południu, połączone z zachodem słońca na pustyni i wieczorem w wiosce beduińskiej. Pamiętaj, że po zmroku na pustyni robi się chłodno. Godziny wyjazdu zależą od wariantu i podajemy je na stronie każdej wycieczki.",
+      },
     ],
     seo: {
       title: "Safari, quady i buggy w Egipcie | Hurghada, Marsa Alam, Sharm",
       description:
         "Wycieczki safari: quady, buggy, jeep, zachód słońca na pustyni i wioska beduińska. Wyjazdy z Hurghady, Marsa Alam i Sharm el Sheikh, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/safari-i-quady/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/safari.jpg",
+      ogImageAlt: "Quad na pustyni w Egipcie o zachodzie słońca wśród gór",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "safari quady Egipt",
   },
@@ -208,13 +286,26 @@ export const categories: TourCategory[] = [
         answer:
           "W większości przypadków tak - transfer z hotelu i z powrotem jest wliczony lub dostępny za dopłatą zależną od strefy. Szczegóły potwierdzamy przy rezerwacji na WhatsApp.",
       },
+      {
+        question: "Czym atrakcje różnią się od całodniowych wycieczek?",
+        answer:
+          "Atrakcje to krótsze propozycje blisko kurortu - akwarium, pokaz delfinów, aquapark, łódź z podwodnym pokładem czy parasailing. Zajmują zwykle część dnia, nie wymagają dalekiej podróży i dobrze sprawdzają się jako pomysł na popołudnie lub przerwę między większymi wyprawami.",
+      },
+      {
+        question: "Czy atrakcje trzeba rezerwować wcześniej?",
+        answer:
+          "Tak - dostępność, godzinę i odbiór z hotelu potwierdzamy przez WhatsApp, bo część atrakcji działa w wybrane dni lub godziny. Rezerwacja z wyprzedzeniem pozwala dopasować termin do planu wakacji, a za atrakcję płacisz dopiero na miejscu, bez przedpłaty.",
+      },
     ],
     seo: {
       title: "Atrakcje w Egipcie - Hurghada i Marsa Alam | Akwarium, delfiny",
       description:
         "Atrakcje blisko kurortu w Hurghadzie i Marsa Alam: Hurghada Grand Aquarium, delfinarium, aquaparki, łódź seascope, parasailing i zwiedzanie miasta. Rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/atrakcje-i-rozrywka/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/atrakcje.jpg",
+      ogImageAlt: "Wieczorny pokaz kolorowych fontann i iluminacji przy egipskim kurorcie",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "atrakcje i rozrywka w Egipcie",
   },
@@ -237,13 +328,26 @@ export const categories: TourCategory[] = [
         answer:
           "Tak, w rozsądnym zakresie. Ponieważ jedziesz tylko ze swoją grupą, można dopasować tempo, kolejność i czas na poszczególne miejsca. Szczegóły ustalamy przed wyjazdem.",
       },
+      {
+        question: "Czym wycieczka prywatna różni się od grupowej?",
+        answer:
+          "Na wycieczce grupowej jedziesz z innymi turystami według stałego planu - jest taniej. Wycieczka prywatna oznacza własny samochód, kierowcę i przewodnika tylko dla Twojej grupy oraz plan dnia dopasowany do Was. Jest droższa w przeliczeniu na osobę, ale daje komfort i elastyczność.",
+      },
+      {
+        question: "Dla kogo najlepiej sprawdzi się wycieczka prywatna?",
+        answer:
+          "Najczęściej wybierają ją rodziny z dziećmi, seniorzy oraz osoby, które cenią własne tempo i nie chcą trzymać się grafiku dużej grupy. Sprawdza się też, gdy zależy Ci na większej swobodzie w układaniu planu zwiedzania Kairu lub Luksoru.",
+      },
     ],
     seo: {
       title: "Wycieczki prywatne w Egipcie | Kair i Luksor dla Twojej grupy",
       description:
         "Prywatne wycieczki do Kairu i Luksoru z Hurghady i Marsa Alam: własny kierowca, przewodnik i elastyczny plan. Cena od osoby, rezerwacja przez WhatsApp.",
       canonicalPath: "/wycieczki/wycieczki-prywatne/",
-      ogImage: "/media/og/default.jpg",
+      ogImage: "/media/categories/prywatne.jpg",
+      ogImageAlt: "Prywatny przewodnik i komfortowy van podczas prywatnej wycieczki w Egipcie",
+      ogImageWidth: 1200,
+      ogImageHeight: 800,
     },
     primaryQuery: "prywatne wycieczki Egipt",
   },
