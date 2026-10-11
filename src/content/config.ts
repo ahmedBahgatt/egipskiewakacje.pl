@@ -22,10 +22,11 @@ export const siteConfig = {
 
   /**
    * Official contact email, used for the mailto: links in the header and footer
-   * contact UI. Deliberately kept OUT of `social` so it never leaks into the
-   * Organization `sameAs` set (that must stay exactly the three owned profiles).
+   * contact UI and as the visible footer/legal address. Deliberately kept OUT of
+   * `social` so it never leaks into the Organization `sameAs` set (that must stay
+   * exactly the three owned profiles).
    */
-  email: "info.egipskiewakacje@gmail.com",
+  email: "info@egipskiewakacje.pl",
 
   /** Main currency for all displayed prices. No PLN conversion in v1. */
   currency: "USD" as const,

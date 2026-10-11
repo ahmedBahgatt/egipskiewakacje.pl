@@ -40,9 +40,11 @@ export function Footer() {
 
           {/* Compact single-row contact: the phone leads in gold (a tel: call
               link), then the shared gold-bordered Facebook / Instagram / Email
-              icons (FB/IG keep rel="me" for entity linking). The email is the
-              icon only - its mailto + hover tooltip carry the action, so no
-              address text is rendered (keeps the footer short). */}
+              icons (FB/IG keep rel="me" for entity linking), then a subtle
+              vertical separator and the clickable official e-mail address. The
+              row sits on one line on desktop (>=1200px, where the brand column
+              is widened to fit it) and wraps gracefully below without ever
+              overflowing. */}
           <div className={styles.contact}>
             <a
               className={styles.phone}
@@ -56,6 +58,10 @@ export function Footer() {
             </a>
             <span className={styles.divider} aria-hidden="true" />
             <SocialLinks variant="footer" />
+            <span className={`${styles.divider} ${styles.dividerEmail}`} aria-hidden="true" />
+            <a className={styles.emailLink} href={`mailto:${siteConfig.email}`}>
+              {siteConfig.email}
+            </a>
           </div>
         </div>
 

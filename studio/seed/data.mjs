@@ -855,7 +855,7 @@ export const legalPages = [
       ),
       heading("administrator", "1. Administrator danych"),
       paragraph(
-        "Administratorem danych związanych z serwisem egipskiewakacje.pl jest operator marki Egipskie Wakacje. Pełne dane identyfikacyjne i kontaktowe operatora zostaną uzupełnione po ich potwierdzeniu. Kontakt w sprawach bieżących odbywa się przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com podany w serwisie.",
+        "Administratorem danych związanych z serwisem egipskiewakacje.pl jest operator marki Egipskie Wakacje. Pełne dane identyfikacyjne i kontaktowe operatora zostaną uzupełnione po ich potwierdzeniu. Kontakt w sprawach bieżących odbywa się przez WhatsApp lub na adres e-mail info@egipskiewakacje.pl podany w serwisie.",
       ),
       heading("zakres", "2. Jakie dane przetwarzamy"),
       paragraph(
@@ -871,7 +871,7 @@ export const legalPages = [
       ),
       heading("prawa", "5. Twoje prawa"),
       paragraph(
-        "Przysługują Ci prawa wynikające z RODO, w tym prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Ponieważ serwis nie przechowuje danych z formularza, dotyczą one przede wszystkim korespondencji prowadzonej przez WhatsApp. W sprawach dotyczących danych napisz do nas przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com.",
+        "Przysługują Ci prawa wynikające z RODO, w tym prawo dostępu do danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Ponieważ serwis nie przechowuje danych z formularza, dotyczą one przede wszystkim korespondencji prowadzonej przez WhatsApp. W sprawach dotyczących danych napisz do nas przez WhatsApp lub na adres e-mail info@egipskiewakacje.pl.",
       ),
     ],
     seoTitle: "Polityka prywatności | Egipskie Wakacje",
@@ -939,7 +939,7 @@ export const legalPages = [
       ),
       heading("kontakt", "5. Kontakt i reklamacje"),
       paragraph(
-        "W sprawach dotyczących rezerwacji i ewentualnych reklamacji kontaktuj się z nami przez WhatsApp lub na adres e-mail info.egipskiewakacje@gmail.com podany w serwisie. Pełne dane operatora i procedura reklamacyjna zostaną uzupełnione po ich potwierdzeniu.",
+        "W sprawach dotyczących rezerwacji i ewentualnych reklamacji kontaktuj się z nami przez WhatsApp lub na adres e-mail info@egipskiewakacje.pl podany w serwisie. Pełne dane operatora i procedura reklamacyjna zostaną uzupełnione po ich potwierdzeniu.",
       ),
     ],
     seoTitle: "Regulamin | Egipskie Wakacje",

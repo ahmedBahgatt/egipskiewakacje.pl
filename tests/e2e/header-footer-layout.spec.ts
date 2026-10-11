@@ -74,13 +74,14 @@ test.describe("footer contact block is a compact single row on desktop", () => {
     const footer = page.locator("footer");
     const phone = footer.locator('a[href^="tel:"]');
     const social = footer.locator('ul[aria-label^="Profile i kontakt"]');
-    // Email is icon-only now: the mailto link exists (the icon), but the address
-    // text must NOT be rendered anywhere in the footer.
-    const emailIcon = footer.locator('a[href^="mailto:"]');
+    // The footer carries the e-mail both as the shared icon (mailto) and as a
+    // visible clickable address next to the social icons; both point to the
+    // official domain e-mail.
+    const emailLinks = footer.locator('a[href^="mailto:"]');
 
     await expect(phone).toHaveAttribute("href", "tel:+201055850536");
-    await expect(emailIcon).toHaveAttribute("href", "mailto:info.egipskiewakacje@gmail.com");
-    await expect(footer).not.toContainText("info.egipskiewakacje@gmail.com");
+    await expect(emailLinks.first()).toHaveAttribute("href", "mailto:info@egipskiewakacje.pl");
+    await expect(footer).toContainText("info@egipskiewakacje.pl");
 
     const phoneBox = await phone.boundingBox();
     const socialBox = await social.boundingBox();

@@ -41,7 +41,7 @@ test.describe("kontakt - channels + schema", () => {
     await page.goto("/kontakt/");
     const main = page.locator("section.section");
     await expect(main.locator('a[href="tel:+201055850536"]')).toHaveCount(1);
-    await expect(main.locator('a[href="mailto:info.egipskiewakacje@gmail.com"]')).toHaveCount(1);
+    await expect(main.locator('a[href="mailto:info@egipskiewakacje.pl"]')).toHaveCount(1);
     await expect(main.locator('a[href="https://www.facebook.com/egipskiewakacje"]')).toHaveCount(1);
     await expect(main.locator('a[href="https://www.instagram.com/egipskiewakacje/"]')).toHaveCount(1);
     await expect(main.getByRole("link", { name: "Napisz na WhatsApp" })).toBeVisible();
@@ -91,7 +91,7 @@ test.describe("legal pages - schema + contact block", () => {
       expect(html).toContain("Ostatnia aktualizacja");
       // The in-page contact block e-mail (not the header icon, which is hidden on mobile).
       await expect(
-        page.locator("section.section").locator('a[href="mailto:info.egipskiewakacje@gmail.com"]').first(),
+        page.locator("section.section").locator('a[href="mailto:info@egipskiewakacje.pl"]').first(),
       ).toBeVisible();
     });
   }
