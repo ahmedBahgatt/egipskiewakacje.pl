@@ -1774,8 +1774,8 @@ export const tours: Tour[] = [
     "destination": "hurghada",
     "category": "rejsy-wyspy",
     "departure": "Hurghada",
-    "shortDescription": "Rejs z Hurghady na Paradise Island z jednym lub dwoma postojami na snorkeling, około dwiema godzinami na plaży, sportami wodnymi i lunchem. Prosty, całodniowy dzień nad Morzem Czerwonym.",
-    "overview": "Paradise Island to niewielka wyspa u wybrzeży Hurghady, popularny cel jednodniowych rejsów z plażą i snorkelingiem. Wycieczka trwa około 7-8 godzin i łączy czas na wodzie z wypoczynkiem na piasku.\n\nPo odbiorze z hotelu w Hurghadzie i transferze do portu wypływasz łodzią na wyspę. Po drodze przewidziano jeden lub dwa postoje na snorkeling, a sprzęt jest zapewniony. Na Paradise Beach masz około dwóch godzin relaksu, dostępne są też sporty wodne - banan lub kanapa.\n\nW cenie jest lunch w restauracji na plaży oraz napoje na łodzi. Wycieczka jest dostępna codziennie, w zależności od bieżącej dostępności. Za okolice poza Hurghadą mogą obowiązywać dopłaty do transferu.",
+    "shortDescription": "Całodniowy rejs z Hurghady na Wyspę Paradise (Paradise Island): biała plaża, postój na snorkeling nad rafą ze sprzętem w cenie, około 3-4 godziny relaksu nad wodą i lunch w restauracji na plaży. Dorosły 60 USD, dziecko 5-11 lat 30 USD, poniżej 5 lat gratis.",
+    "overview": "Wyspa Paradise (Paradise Island) to niewielka wyspa u wybrzeży Hurghady, popularny cel jednodniowych rejsów z plażą i snorkelingiem. Wycieczka trwa około 7-8 godzin i łączy czas na wodzie z wypoczynkiem na białym piasku nad Morzem Czerwonym.\n\nPo odbiorze z hotelu w Hurghadzie i transferze do portu wypływasz łodzią na wyspę. Po drodze przewidziany jest postój na snorkeling nad rafą, a sprzęt jest w cenie. Na Paradise Beach masz około 3-4 godzin na kąpiel, pływanie i relaks na piasku.\n\nW cenie są transfer z i do hotelu, rejs, sprzęt do snorkelingu, lunch w restauracji na plaży oraz ciepłe i zimne napoje na łodzi. To spokojna, rodzinna wyspa. Wycieczka jest dostępna codziennie, w zależności od bieżącej dostępności. Za okolice poza Hurghadą mogą obowiązywać dopłaty do transferu.",
     "heroImage": {
       "src": "/media/tours/h-wyspa-paradise",
       "alt": "Wyspa Paradise - rejs z Hurghady - zdjęcie poglądowe",
@@ -1792,17 +1792,30 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 45,
+      "amount": 60,
       "unit": "os.",
       "currency": "USD",
-      "from": false,
+      "from": true,
       "options": [
         {
           "label": "Dorosły",
-          "amount": 45,
+          "amount": 60,
           "currency": "USD"
+        },
+        {
+          "label": "Dziecko 5-11 lat",
+          "amount": 30,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko poniżej 5 lat",
+          "amount": 0,
+          "currency": "USD",
+          "free": true
         }
       ],
+      "childAgeMin": 5,
+      "infantFree": true,
       "note": "Za okolice poza Hurghadą mogą obowiązywać dopłaty do transferu."
     },
     "availabilityLabel": "Codziennie (w zależności od dostępności)",
@@ -1810,18 +1823,18 @@ export const tours: Tour[] = [
       "Codziennie"
     ],
     "durationLabel": "ok. 7-8 godzin",
-    "pickupLabel": "Do ustalenia",
+    "pickupLabel": "ok. 07:30-08:30",
     "transport": "Rejs łodzią, transfer z/do hotelu",
     "guide": {
       "label": "Potwierdzamy przed rezerwacją",
       "polishConfirmed": false
     },
     "highlights": [
-      "Paradise Island",
-      "Snorkeling",
-      "Plaża i relaks",
-      "Sporty wodne",
-      "Lunch w restauracji na plaży"
+      "Wyspa Paradise (Paradise Island)",
+      "Postój na snorkeling nad rafą",
+      "Ok. 3-4 godziny na plaży",
+      "Lunch w restauracji na plaży",
+      "Spokojna, rodzinna zatoka"
     ],
     "itinerary": [
       {
@@ -1830,7 +1843,7 @@ export const tours: Tour[] = [
       },
       {
         "title": "Rejs na Paradise Island",
-        "description": "Rejs łodzią na wyspę z jednym lub dwoma postojami na snorkeling."
+        "description": "Rejs łodzią na wyspę; po drodze postój na snorkeling nad rafą."
       },
       {
         "title": "Snorkeling",
@@ -1838,7 +1851,7 @@ export const tours: Tour[] = [
       },
       {
         "title": "Plaża",
-        "description": "Około 2 godziny relaksu na Paradise Beach; dostępne sporty wodne - banan lub kanapa."
+        "description": "Około 3-4 godziny relaksu na Paradise Beach - czas na kąpiel, pływanie i leżenie na piasku."
       },
       {
         "title": "Lunch",
@@ -1878,11 +1891,11 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka?",
-        "answer": "Cena dla osoby dorosłej wynosi 45 USD. Za odbiór z hoteli poza Hurghadą mogą obowiązywać dopłaty do transferu."
+        "answer": "Dorosły płaci 60 USD, dziecko 5-11 lat 30 USD, a dziecko poniżej 5 lat korzysta z wycieczki bezpłatnie. Za odbiór z hoteli poza Hurghadą mogą obowiązywać dopłaty do transferu."
       },
       {
         "question": "Ile trwa wycieczka?",
-        "answer": "Wyprawa trwa około 7-8 godzin i obejmuje rejs, snorkeling oraz około dwie godziny na plaży."
+        "answer": "Wyprawa trwa około 7-8 godzin i obejmuje rejs, postój na snorkeling oraz około 3-4 godziny na plaży."
       },
       {
         "question": "Co jest wliczone w cenę?",
@@ -1894,12 +1907,12 @@ export const tours: Tour[] = [
       }
     ],
     "seo": {
-      "title": "Wyspa Paradise - rejs z Hurghady",
-      "description": "Rejs z Hurghady na Paradise Island: 1-2 postoje na snorkeling, ok. 2 godziny na plaży, sporty wodne i lunch. Cena od 45 USD za osobę.",
+      "title": "Wyspa Paradise Egipt - rejs z Hurghady z plażą i snorkelingiem",
+      "description": "Rejs z Hurghady na Wyspę Paradise: biała plaża, postój na snorkeling nad rafą, ok. 3-4 h na plaży, lunch i napoje na łodzi. Dorosły 60 USD, dziecko 30 USD, poniżej 5 lat gratis. Bez przedpłaty.",
       "canonicalPath": "/wycieczki-z-hurghady/wyspa-paradise/",
       "ogImage": "/media/og/hurghada.jpg"
     },
-    "updatedAt": "2026-08-09"
+    "updatedAt": "2026-10-11"
   },
   {
     "slug": "wyspa-mahmya",

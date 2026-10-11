@@ -793,3 +793,50 @@ All 12 hub pages upgraded on top of the approved shared components (no redesign)
 - Only **one** real `/poradnik/` article exists; the homepage guide shows it (do not fabricate more URLs).
 - Hero video rights item was flagged in memory — treat the current `egipskie-wakacje-hero.mp4` as the approved asset unless told otherwise.
 - No secrets in this repo/handoff; Sanity mode (if ever enabled) uses `NEXT_PUBLIC_SANITY_*` env vars — names only, never commit values.
+
+## 2026-10-11 — Price update (LIVE, completed)
+Surgical production price update of ONE tour. Appended note only; no other project/hub state changed.
+
+- **Tour:** Góra Mojżesza i klasztor św. Katarzyny — https://egipskiewakacje.pl/wycieczki-z-sharm-el-sheikh/gora-mojzesza-klasztor-sw-katarzyny/
+- **Final pricing:** Adult 40 USD / Child 5-11 20 USD / Under 5 Free.
+- Sanity is the source of truth (published document patched in place; no duplicate, slug/canonical unchanged).
+- Existing age rules preserved (under-5-free tier kept; `priceFrom` false, currency USD, `priceChildAgeMin` 5, `priceInfantFree` true).
+- Product/TouristTrip Offer schema uses the adult headline price = 40 USD (single Offer, no AggregateOffer/fake fields).
+- Destination, master `/wycieczki/`, and related-tour cards update dynamically from Sanity (verified 40/20).
+- Live production page and rendered JSON-LD both verified at 40/20.
+- Deployment run: 38134095347 (repository_dispatch → Build and Deploy to GitHub Pages, green).
+- No application code change was required.
+
+## 2026-10-11 — Official domain email migration (LIVE, completed)
+
+- New official email: info@egipskiewakacje.pl
+- Old Gmail address removed from live site, code, tests, and Sanity.
+- Header mailto updated.
+- Footer now shows the visible clickable domain email next to the social/contact icons on desktop.
+- Contact, privacy, regulations, FAQ, and relevant legal/contact content updated.
+- Sanity legal documents patched in place.
+- Structured-data architecture unchanged; no duplicate Organization/WebSite entities.
+- Desktop/mobile responsive QA passed with no horizontal overflow.
+- Commit: 5364835
+- Deployment run: 38145326074
+- Pages deploy: 114488981496
+- Sanity tx: t0hf7Q9c3wIKOAzdF8b9Yp
+
+## 2026-10-11 — Wyspa Paradise reprice + program update (LIVE, completed)
+
+- Tour: Wyspa Paradise - rejs z Hurghady
+- URL: https://egipskiewakacje.pl/wycieczki-z-hurghady/wyspa-paradise/
+- Sanity doc: tour.hurghada.wyspa-paradise
+- Adult: 60 USD
+- Child 5–11: 30 USD
+- Under 5: Free
+- Program updated to 1 snorkeling stop + approx. 3–4 hours on Paradise Beach.
+- Lunch remains in the beach restaurant; hot/cold drinks remain on the boat.
+- Unverified banana/sofa water-sports claims removed.
+- Product/TouristTrip Offer schema uses 60 USD as the adult headline price.
+- Hurghada/master/rejsy-i-wyspy cards verified at 60/30.
+- Booking flow remains Sanity-driven; WhatsApp message carries no price.
+- Cross-site factual alignment with Sekrety confirmed while Egipskie SEO/editorial copy remains independently written.
+- CI run: 38153719493
+- Pages deploy: 114513461917
+- Published Sanity revision: f7aH9a3Oi0VDzlftHMg3nv
