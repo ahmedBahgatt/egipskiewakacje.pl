@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/booking/WhatsAppFloat";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { AnalyticsRuntime } from "@/components/analytics/AnalyticsRuntime";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -61,6 +62,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* GA4 + Consent Mode v2. Loads early, non-blocking (async gtag.js); the
             inline bootstrap sets consent defaults to denied before gtag.js runs. */}
         <GoogleAnalytics />
+        {/* Microsoft Clarity (heatmaps + session replay). Loads once, async;
+            in-region (EEA/UK/CH) visitors stay cookieless via Clarity's own
+            Consent Signal enforcement, consistent with the GA4 consent model. */}
+        <MicrosoftClarity />
         {/* Reading must never depend on animation: force reveal content visible without JS. */}
         <noscript>
           <style
