@@ -840,3 +840,24 @@ Surgical production price update of ONE tour. Appended note only; no other proje
 - CI run: 38153719493
 - Pages deploy: 114513461917
 - Published Sanity revision: f7aH9a3Oi0VDzlftHMg3nv
+
+## 2026-10-12 — Plaża Ozirea reprice + program update (LIVE, completed)
+
+- Tour: Wycieczka na plażę Ozirea z Hurghady
+- URL: https://egipskiewakacje.pl/wycieczki-z-hurghady/plaza-orange-ozirea/
+- Sanity doc: tour.hurghada.plaza-orange-ozirea
+- Adult: 60 USD
+- Child 5–11: 30 USD
+- Under 5: Free
+- Program updated to 1 snorkeling stop + approx. 3–4 hours on Ozirea Beach.
+- Lunch now served in the restaurant on Ozirea Beach; hot/cold drinks remain on the boat.
+- Stale 2-snorkeling-stop and "lunch on boat" claims removed; no "VIP"/voucher copy propagated.
+- Transfer supplements kept: El Gouna +10, Sahl Hasheesh +5, Makadi +5, Safaga/Soma Bay/Abu Soma +10 USD/os.
+- Product/TouristTrip Offer schema uses 60 USD as the adult headline price (priceFrom true).
+- Hurghada/master/rejsy-i-wyspy cards verified at 60/30.
+- Local fallback (src/content/local/tours.ts) Ozirea entry synced; zero stale 40/20/two-stop references.
+- Booking flow remains Sanity-driven; WhatsApp message carries no price.
+- Cross-site factual alignment with Sekrety confirmed; Egipskie SEO/editorial copy independently written.
+- Published Sanity revision: HImU8A7ifPpReLTr8xhTTX
+- CI run: 38227135809
+- Pages deploy: 7010358225

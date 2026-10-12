@@ -3574,8 +3574,8 @@ export const tours: Tour[] = [
     "destination": "hurghada",
     "category": "rejsy-wyspy",
     "departure": "Hurghada",
-    "shortDescription": "Całodniowy rejs z Hurghady na plażę Ozirea z dwoma przystankami na snorkeling i czasem na relaks nad wodą. W cenie transfer z hotelu, sprzęt do snorkelingu, obiad i napoje. Dobra opcja dla rodzin - dzieci 5-11 lat płacą mniej, młodsze bezpłatnie.",
-    "overview": "Wycieczka na plażę Ozirea to całodniowy rejs łodzią z Hurghady, łączący snorkeling z wypoczynkiem na plaży. Transfer prowadzi z hotelu do mariny, skąd wypływasz na Morze Czerwone.\n\nW programie są dwa przystanki na snorkeling na rafach - sprzęt zapewniamy na miejscu. Po nurkowaniu z rurką czeka Cię czas na relaks i kąpiel na plaży Ozirea. Na pokładzie serwowany jest obiad wraz z napojami.\n\nW cenie są transfer, rejs łodzią, sprzęt do snorkelingu, obiad, napoje oraz pobyt na plaży Ozirea. Dzieci w wieku 5-11 lat płacą 20 USD, a młodsze jadą bezpłatnie. Godzinę odbioru i szczegóły rejsu potwierdzimy na WhatsApp.",
+    "shortDescription": "Całodniowy rejs z Hurghady na plażę Ozirea z jednym postojem na snorkeling i czasem na relaks nad wodą. W cenie transfer z hotelu, sprzęt do snorkelingu, obiad w restauracji na plaży i napoje na łodzi. Dobra opcja dla rodzin - dzieci 5-11 lat płacą mniej, młodsze bezpłatnie.",
+    "overview": "Wycieczka na plażę Ozirea to całodniowy rejs łodzią z Hurghady, łączący snorkeling z wypoczynkiem na plaży. Transfer prowadzi z hotelu do mariny, skąd wypływasz na Morze Czerwone.\n\nW programie jest jeden postój na snorkeling nad rafą - sprzęt zapewniamy na miejscu. Po nurkowaniu z rurką masz około 3-4 godzin na relaks i kąpiel na plaży Ozirea. Obiad serwowany jest w restauracji na plaży, a ciepłe i zimne napoje są dostępne na łodzi.\n\nW cenie są transfer, rejs łodzią, sprzęt do snorkelingu, obiad w restauracji na plaży, napoje na łodzi oraz pobyt na plaży Ozirea. Dzieci w wieku 5-11 lat płacą 30 USD, a młodsze jadą bezpłatnie. Godzinę odbioru i szczegóły rejsu potwierdzimy na WhatsApp.",
     "heroImage": {
       "src": "/media/tours/h-plaza-orange-ozirea",
       "alt": "Wycieczka na plażę Ozirea z Hurghady - zdjęcie poglądowe",
@@ -3592,20 +3592,20 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 40,
+      "amount": 60,
       "unit": "os.",
       "currency": "USD",
-      "from": false,
+      "from": true,
       "options": [
         {
           "label": "Dorosły",
-          "amount": 40,
+          "amount": 60,
           "currency": "USD",
           "unit": "os."
         },
         {
           "label": "Dziecko 5-11 lat",
-          "amount": 20,
+          "amount": 30,
           "currency": "USD",
           "unit": "os."
         },
@@ -3633,8 +3633,9 @@ export const tours: Tour[] = [
     },
     "highlights": [
       "Plaża Ozirea",
-      "2 przystanki na snorkeling",
-      "Obiad i napoje w cenie",
+      "Postój na snorkeling nad rafą",
+      "Ok. 3-4 godziny na plaży",
+      "Obiad w restauracji na plaży, napoje na łodzi",
       "Rejs łodzią",
       "Transfer z hotelu"
     ],
@@ -3648,16 +3649,16 @@ export const tours: Tour[] = [
         "description": "Wypłynięcie łodzią na Morze Czerwone."
       },
       {
-        "title": "2 przystanki na snorkeling",
-        "description": "Dwa postoje na rafach; sprzęt do snorkelingu zapewniamy."
+        "title": "Snorkeling",
+        "description": "Postój na snorkeling nad rafą; sprzęt do snorkelingu zapewniamy."
       },
       {
         "title": "Plaża Ozirea",
-        "description": "Czas na relaks i kąpiel na plaży Ozirea."
+        "description": "Około 3-4 godziny na relaks i kąpiel na plaży Ozirea."
       },
       {
-        "title": "Obiad i napoje",
-        "description": "Posiłek i napoje serwowane w ramach wycieczki."
+        "title": "Obiad w restauracji na plaży",
+        "description": "Obiad serwowany w restauracji na plaży Ozirea; ciepłe i zimne napoje dostępne na łodzi."
       },
       {
         "title": "Powrót do hotelu",
@@ -3668,9 +3669,9 @@ export const tours: Tour[] = [
       "Transfer z/do hotelu w Hurghadzie",
       "Rejs łodzią",
       "Sprzęt do snorkelingu",
-      "Obiad",
-      "Napoje",
-      "Pobyt na plaży Ozirea"
+      "Obiad w restauracji na plaży Ozirea",
+      "Ciepłe i zimne napoje na łodzi",
+      "Pobyt na plaży Ozirea (ok. 3-4 godziny)"
     ],
     "excluded": [
       "Napiwki",
@@ -3693,28 +3694,28 @@ export const tours: Tour[] = [
     "faqs": [
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci w wieku 5-11 lat płacą 20 USD za osobę, a dzieci poniżej 5 lat płyną bezpłatnie."
+        "answer": "Dzieci w wieku 5-11 lat płacą 30 USD za osobę, a dzieci poniżej 5 lat płyną bezpłatnie."
       },
       {
         "question": "Ile trwa wycieczka?",
-        "answer": "Wycieczka zajmuje cały dzień, razem z transferem z hotelu i z powrotem."
+        "answer": "Wycieczka zajmuje cały dzień, razem z transferem z hotelu i z powrotem; na plaży Ozirea spędzasz około 3-4 godzin."
       },
       {
         "question": "Co jest w cenie?",
-        "answer": "Transfer, rejs łodzią, sprzęt do snorkelingu, obiad, napoje oraz pobyt na plaży Ozirea."
+        "answer": "Transfer, rejs łodzią, sprzęt do snorkelingu, obiad w restauracji na plaży, napoje na łodzi oraz pobyt na plaży Ozirea."
       },
       {
         "question": "Ile jest przystanków na snorkeling?",
-        "answer": "Podczas rejsu przewidziane są dwa przystanki na snorkeling na rafach."
+        "answer": "Podczas rejsu przewidziany jest jeden postój na snorkeling nad rafą."
       }
     ],
     "seo": {
       "title": "Plaża Ozirea z Hurghady - rejs i snorkeling",
-      "description": "Rejs z Hurghady na plażę Ozirea: 2 przystanki na snorkeling, obiad, napoje i relaks na plaży. Transfer z hotelu w cenie. Dorosły 40 USD, dziecko 20 USD.",
+      "description": "Rejs z Hurghady na plażę Ozirea: postój na snorkeling nad rafą, ok. 3-4 h na plaży, obiad w restauracji na plaży i napoje na łodzi. Transfer z hotelu w cenie. Dorosły 60 USD, dziecko 30 USD, poniżej 5 lat gratis.",
       "canonicalPath": "/wycieczki-z-hurghady/plaza-orange-ozirea/",
       "ogImage": "/media/og/hurghada.jpg"
     },
-    "updatedAt": "2026-08-09"
+    "updatedAt": "2026-10-12"
   },
   {
     "slug": "prywatny-speedboat",
