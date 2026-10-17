@@ -1219,14 +1219,29 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 155,
+      "amount": 180,
       "unit": "os.",
       "currency": "USD",
       "from": true,
       "options": [
         {
-          "label": "Osoba",
-          "amount": 155,
+          "label": "2 osoby",
+          "amount": 210,
+          "currency": "USD"
+        },
+        {
+          "label": "3 osoby",
+          "amount": 190,
+          "currency": "USD"
+        },
+        {
+          "label": "4-5 osób",
+          "amount": 185,
+          "currency": "USD"
+        },
+        {
+          "label": "6-8 osób",
+          "amount": 180,
           "currency": "USD"
         }
       ]
@@ -1305,11 +1320,11 @@ export const tours: Tour[] = [
     "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
     "seo": {
       "title": "Luksor z Hurghady z lotem balonem | Nocleg",
-      "description": "Wyjazd z Hurghady do Luksoru z noclegiem i porannym lotem balonem nad Nilem i świątyniami. Cena od 155 USD. Rezerwacja przez WhatsApp.",
+      "description": "Wyjazd z Hurghady do Luksoru z noclegiem i porannym lotem balonem nad Nilem i świątyniami. Cena od 180 USD. Rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-hurghady/luksor-lot-balonem/",
       "ogImage": "/media/og/hurghada.jpg"
     },
-    "updatedAt": "2026-08-09"
+    "updatedAt": "2026-10-17"
   },
   {
     "slug": "luksor-2-dni-lot-balonem",

@@ -27,7 +27,7 @@ Wakacje. Source checked: 2026-08-09. Prices are the CURRENT selling prices
 | 12 | Hurghada | Kair i piramidy | `/wycieczki-z-hurghady/super-kair-piramidy-rejs-po-nilu` | 70 USD / os. | /tour/super-kair-z-hurghady-piramidy-muzeum-i-rejs-po-nilu/ |
 | 13 | Hurghada | Kair i piramidy | `/wycieczki-z-hurghady/kair-samolotem` | 300 USD / os. | /tour/wycieczka-z-hurghady-do-kairu-samolotem/ |
 | 14 | Hurghada | Luksor | `/wycieczki-z-hurghady/luksor-dolina-krolow` | 70 USD / os. | /tour/wycieczka-do-luksoru-z-hurghady-4/ |
-| 15 | Hurghada | Luksor | `/wycieczki-z-hurghady/luksor-lot-balonem` | od 155 USD / os. | /tour/wycieczka-z-hurghady-lot-balonem-nad-luksorem/ |
+| 15 | Hurghada | Luksor | `/wycieczki-z-hurghady/luksor-lot-balonem` | od 180 USD / os. | /tour/wycieczka-z-hurghady-lot-balonem-nad-luksorem/ |
 | 16 | Hurghada | Luksor | `/wycieczki-z-hurghady/luksor-2-dni-lot-balonem` | od 225 USD / os. | /tour/2-dniowa-wycieczka-z-hurghady-do-luksoru-lot-balonem/ |
 | 17 | Hurghada | Nurkowanie | `/wycieczki-z-hurghady/dom-delfinow-nurkowanie` | 35 USD / os. | /tour/dolphin-house-hurghada-nurkowanie-z-butla/ |
 | 18 | Hurghada | Nurkowanie | `/wycieczki-z-hurghady/nurkowanie-na-probe` | od 38 USD / os. | /tour/wycieczka-z-hurghady-nurkowanie-z-butla/ |
