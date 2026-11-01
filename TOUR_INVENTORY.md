@@ -93,7 +93,7 @@ Wakacje. Source checked: 2026-08-09. Prices are the CURRENT selling prices
 | 78 | Sharm el Sheikh | Safari i quady | `/wycieczki-z-sharm-el-sheikh/buggy-safari` | od 45 USD / buggy | /tour/buggy-safari-sharm-el-sheikh/ |
 | 79 | Sharm el Sheikh | Safari i quady | `/wycieczki-z-sharm-el-sheikh/jazda-na-wielbladzie` | od 28 USD / os. | /tour/jazda-na-wielbladzie-lub-konno-sharm-el-sheikh/ |
 | 80 | Sharm el Sheikh | Synaj | `/wycieczki-z-sharm-el-sheikh/gora-mojzesza-klasztor-sw-katarzyny` | 35 USD / os. | /tour/wycieczka-z-sharm-el-sheikh-na-gore-mojzesza-klasztor-sw-katarzyny/ |
-| 81 | Sharm el Sheikh | Synaj | `/wycieczki-z-sharm-el-sheikh/blue-hole-kolorowy-kanion` | 41 USD / os. | /tour/wycieczka-z-sharm-el-sheikh-do-blue-hole-i-kolorowego-kanionu/ |
+| 81 | Sharm el Sheikh | Synaj | `/wycieczki-z-sharm-el-sheikh/blue-hole-kolorowy-kanion` | 45 USD / os. | /tour/wycieczka-z-sharm-el-sheikh-do-blue-hole-i-kolorowego-kanionu/ |
 
 ## Excluded / consolidated
 

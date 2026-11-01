@@ -9479,14 +9479,14 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 41,
+      "amount": 45,
       "unit": "os.",
       "currency": "USD",
       "from": false,
       "options": [
         {
           "label": "Dorosły",
-          "amount": 41,
+          "amount": 45,
           "currency": "USD"
         }
       ]
@@ -9569,7 +9569,7 @@ export const tours: Tour[] = [
     ],
     "seo": {
       "title": "Blue Hole i Kolorowy Kanion z Sharm el Sheikh",
-      "description": "Całodniowa wycieczka z Sharm el Sheikh do Dahab: snorkeling w Blue Hole i Kolorowy Kanion. Obiad i bilet do parku w cenie, od 41 USD. Rezerwacja przez WhatsApp.",
+      "description": "Całodniowa wycieczka z Sharm el Sheikh do Dahab: snorkeling w Blue Hole i Kolorowy Kanion. Obiad i bilet do parku w cenie, od 45 USD. Rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-sharm-el-sheikh/blue-hole-kolorowy-kanion/",
       "ogImage": "/media/og/sharm-el-sheikh.jpg"
     },
