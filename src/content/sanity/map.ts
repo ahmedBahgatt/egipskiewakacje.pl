@@ -269,6 +269,7 @@ export function mapTour(raw: RawTour): Tour | null {
       ...(typeof p.childAgeMin === "number" ? { childAgeMin: p.childAgeMin } : {}),
       ...(typeof p.infantFree === "boolean" ? { infantFree: p.infantFree } : {}),
       ...(p.note ? { note: p.note } : {}),
+      ...(p.choiceLabel ? { choiceLabel: p.choiceLabel } : {}),
     },
     availabilityLabel: raw.availabilityLabel ?? "",
     availabilityDays: raw.availabilityDays ?? [],

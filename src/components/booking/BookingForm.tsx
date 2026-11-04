@@ -16,6 +16,13 @@ export interface BookingTourOption {
   canonicalPath: string;
 }
 
+/** A selectable purchase choice (e.g. a guide-language fare tier). */
+export interface BookingPriceChoice {
+  label: string;
+  amount: number;
+  currency: string;
+}
+
 interface Props {
   tours: BookingTourOption[];
   /** When set, the tour is fixed (tour page) and no selector is shown. */
@@ -26,9 +33,24 @@ interface Props {
    * sheet) without duplicate ids. Defaults to the historical "bf-".
    */
   idPrefix?: string;
+  /**
+   * Selectable fare options (e.g. guide-language tiers). When provided, a
+   * labelled selector is rendered and the chosen fare is carried into the
+   * WhatsApp request. Omitted for ordinary single-fare tours.
+   */
+  priceChoices?: BookingPriceChoice[];
+  /** Label for the price-choice selector (e.g. "Język przewodnika"). */
+  choiceLabel?: string;
 }
 
-export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix = "bf-" }: Props) {
+export function BookingForm({
+  tours,
+  fixedTourSlug,
+  variant = "page",
+  idPrefix = "bf-",
+  priceChoices,
+  choiceLabel,
+}: Props) {
   const p = idPrefix;
   const fieldId: Record<BookingField, string> = {
     date: `${p}date`,
@@ -43,6 +65,8 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
   const [hotel, setHotel] = useState("");
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
+  const hasChoices = Array.isArray(priceChoices) && priceChoices.length > 0;
+  const [choiceIdx, setChoiceIdx] = useState(0);
   const [notes, setNotes] = useState("");
   const [notesOpen, setNotesOpen] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<BookingField, string>>>({});
@@ -72,6 +96,7 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
 
     setErrors({});
     const tour = activeTour!;
+    const chosen = hasChoices ? priceChoices![Math.min(choiceIdx, priceChoices!.length - 1)] : undefined;
     const url = buildBookingWhatsappUrl({
       tourTitle: tour.title,
       departure: tour.departure,
@@ -79,6 +104,7 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
       hotel,
       adults,
       children,
+      ...(chosen ? { choice: chosen } : {}),
       notes,
       pageUrl: absoluteUrl(tour.canonicalPath),
     });
@@ -110,6 +136,24 @@ export function BookingForm({ tours, fixedTourSlug, variant = "page", idPrefix =
   return (
     <form className={`${styles.form} ${variant === "panel" ? styles.panel : ""}`} onSubmit={handleSubmit} noValidate>
       <div className={styles.fields}>
+        {hasChoices && (
+          <div className={styles.field}>
+            <label htmlFor={`${p}choice`}>{choiceLabel ?? "Opcja ceny"}</label>
+            <select
+              id={`${p}choice`}
+              value={choiceIdx}
+              onChange={(e) => setChoiceIdx(Number(e.target.value))}
+              onFocus={onFirstInteraction}
+            >
+              {priceChoices!.map((c, i) => (
+                <option key={i} value={i}>
+                  {c.label} - {c.amount} {c.currency}/os.
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         {!fixedTourSlug && tours.length > 1 && (
           <div className={styles.field}>
             <label htmlFor={`${p}tour`}>Wycieczka</label>

@@ -23,7 +23,7 @@ Wakacje. Source checked: 2026-08-09. Prices are the CURRENT selling prices
 | 8 | Hurghada | Atrakcje i rozrywka | `/wycieczki-z-hurghady/city-tour` | od 12 USD / os. | /tour/wycieczka-city-tour-z-hurghady/ |
 | 9 | Hurghada | Atrakcje i rozrywka | `/wycieczki-z-hurghady/el-gouna` | od 27 USD / os. | /tour/wycieczka-z-hurghady-do-el-gouny/ |
 | 10 | Hurghada | Kair i piramidy | `/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie` | 60 USD / os. | /tour/wycieczka-z-hurghady-do-kairu/ |
-| 11 | Hurghada | Kair i piramidy | `/wycieczki-z-hurghady/kair-wielkie-muzeum-gem` | od 90 USD / os. | /tour/wycieczka-gem-kair-z-hurghady/ |
+| 11 | Hurghada | Kair i piramidy | `/wycieczki-z-hurghady/kair-wielkie-muzeum-gem` | 95 USD / os. | /tour/wycieczka-gem-kair-z-hurghady/ |
 | 12 | Hurghada | Kair i piramidy | `/wycieczki-z-hurghady/super-kair-piramidy-rejs-po-nilu` | 70 USD / os. | /tour/super-kair-z-hurghady-piramidy-muzeum-i-rejs-po-nilu/ |
 | 13 | Hurghada | Kair i piramidy | `/wycieczki-z-hurghady/kair-samolotem` | 300 USD / os. | /tour/wycieczka-z-hurghady-do-kairu-samolotem/ |
 | 14 | Hurghada | Luksor | `/wycieczki-z-hurghady/luksor-dolina-krolow` | 70 USD / os. | /tour/wycieczka-do-luksoru-z-hurghady-4/ |
@@ -56,7 +56,7 @@ Wakacje. Source checked: 2026-08-09. Prices are the CURRENT selling prices
 | 41 | Hurghada | Snorkeling i delfiny | `/wycieczki-z-hurghady/abu-dabbab-snorkeling` | 62 USD / os. | /tour/wycieczka-z-hurghady-do-abu-dabbab/ |
 | 42 | Marsa Alam | Atrakcje i rozrywka | `/wycieczki-z-marsa-alam/lodz-seascope` | 62 USD / os. | /tour/wycieczka-z-marsa-alam-lodzia-seascope/ |
 | 43 | Marsa Alam | Kair i piramidy | `/wycieczki-z-marsa-alam/kair-stary-kair-piramidy` | 80 USD / os. | /tour/wycieczka-z-marsa-alam-kair-stary-kair/ |
-| 44 | Marsa Alam | Kair i piramidy | `/wycieczki-z-marsa-alam/kair-wielkie-muzeum-gem` | 130 USD / os. | /tour/kair-i-grand-egyptian-museum-gem-z-marsa-alam/ |
+| 44 | Marsa Alam | Kair i piramidy | `/wycieczki-z-marsa-alam/kair-wielkie-muzeum-gem` | 135 USD / os. | /tour/kair-i-grand-egyptian-museum-gem-z-marsa-alam/ |
 | 45 | Marsa Alam | Kair i piramidy | `/wycieczki-z-marsa-alam/kair-samolotem` | 345 USD / os. | /tour/wycieczka-z-marsa-alam-do-kairu-samolotem/ |
 | 46 | Marsa Alam | Luksor | `/wycieczki-z-marsa-alam/luksor-dolina-krolow` | 95 USD / os. | /tour/wycieczka-do-luksoru-z-marsa-alam/ |
 | 47 | Marsa Alam | Nurkowanie | `/wycieczki-z-marsa-alam/nurkowanie-z-plazy` | 70 USD / os. | /tour/wycieczka-z-marsa-alam-nurkowanie-z-plazy/ |
@@ -80,8 +80,8 @@ Wakacje. Source checked: 2026-08-09. Prices are the CURRENT selling prices
 | 65 | Sharm el Sheikh | Atrakcje i rozrywka | `/wycieczki-z-sharm-el-sheikh/dolphin-show` | od 25 USD / os. | /tour/dolphin-show-w-sharm-el-sheikh/ |
 | 66 | Sharm el Sheikh | Atrakcje i rozrywka | `/wycieczki-z-sharm-el-sheikh/lodz-seascope` | od 38 USD / os. | /tour/wycieczka-lodzia-polpodwodna-seascope-w-sharm-el-sheikh/ |
 | 67 | Sharm el Sheikh | Atrakcje i rozrywka | `/wycieczki-z-sharm-el-sheikh/parasailing` | od 37 USD / os. | /tour/parasailing-w-sharm-el-sheikh/ |
-| 68 | Sharm el Sheikh | Kair i piramidy | `/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy` | 93 USD / os. | /tour/wycieczka-z-sharm-el-sheikh-do-kairu-gem/ |
-| 69 | Sharm el Sheikh | Kair i piramidy | `/wycieczki-z-sharm-el-sheikh/kair-samolotem` | 299 USD / os. | /tour/wycieczka-samolotem-do-kairu-z-sharm-el-sheikh/ |
+| 68 | Sharm el Sheikh | Kair i piramidy | `/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy` | 98 USD / os. | /tour/wycieczka-z-sharm-el-sheikh-do-kairu-gem/ |
+| 69 | Sharm el Sheikh | Kair i piramidy | `/wycieczki-z-sharm-el-sheikh/kair-samolotem` | od 305 USD / os. (ang.) / 340 USD (pol.) | /tour/wycieczka-samolotem-do-kairu-z-sharm-el-sheikh/ |
 | 70 | Sharm el Sheikh | Międzynarodowe | `/wycieczki-z-sharm-el-sheikh/jordania-petra-morze-martwe` | 255 USD / os. | /tour/wycieczka-z-sharm-el-sheikh-do-jordanii-petra-morze-martwe/ |
 | 71 | Sharm el Sheikh | Nurkowanie | `/wycieczki-z-sharm-el-sheikh/wyspa-tiran-nurkowanie` | od 49 USD / os. | /tour/wycieczka-z-sharm-el-sheikh-wyspa-tiran-z-nurkowaniem/ |
 | 72 | Sharm el Sheikh | Rejsy i wyspy | `/wycieczki-z-sharm-el-sheikh/white-island-ras-mohamed` | 47 USD / os. | /tour/rejs-na-white-island-ras-mohamed-z-nurkowaniem-z-butla/ |
@@ -151,7 +151,7 @@ Revised totals: **78** implemented (Hurghada 39 - Marsa Alam 20 - Sharm el Sheik
 
 Distinct-product notes (anti-cannibalization):
 - New Cairo-flight page = CLASSIC Muzeum Egipskie (Tahrir). Pre-existing Sharm
-  `kair-samolotem` (299 USD) = new GEM by plane. Different museum + price + slug.
+  `kair-samolotem` (od 305 USD ang. / 340 USD pol., dwa warianty językowe przewodnika) = new GEM by plane. Different museum + price + slug.
 - New monastery page = DAY visit to St Catherine's Monastery only. Pre-existing Sharm
   `gora-mojzesza-klasztor-sw-katarzyny` (35 USD) = NIGHT ascent of Mount Moses + sunrise +
   monastery. The source URL slug is misleading: its live program is monastery-only.

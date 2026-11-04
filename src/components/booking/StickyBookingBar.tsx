@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { BookingForm, type BookingTourOption } from "./BookingForm";
+import { BookingForm, type BookingTourOption, type BookingPriceChoice } from "./BookingForm";
 import { IconX } from "@/components/ui/icons";
 import { track } from "@/lib/analytics";
 import styles from "./StickyBookingBar.module.css";
@@ -20,12 +20,16 @@ export function StickyBookingBar({
   priceCaptionShort,
   bookingOption,
   tourTitle,
+  priceChoices,
+  choiceLabel,
 }: {
   priceValue: string;
   priceCaption?: string;
   priceCaptionShort?: string;
   bookingOption: BookingTourOption;
   tourTitle: string;
+  priceChoices?: BookingPriceChoice[];
+  choiceLabel?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -160,6 +164,8 @@ export function StickyBookingBar({
                     fixedTourSlug={bookingOption.slug}
                     variant="panel"
                     idPrefix="bfm-"
+                    priceChoices={priceChoices}
+                    choiceLabel={choiceLabel}
                   />
                 </div>
               </div>

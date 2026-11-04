@@ -83,6 +83,16 @@ export function TourDetail({
   };
 
   const head = priceHeadline(tour.price);
+  // When the tour prices its options as selectable purchase choices (e.g.
+  // guide-language tiers), surface them in the booking selector. Ordinary
+  // adult/child/free tiers leave this undefined and nothing changes.
+  const bookingChoices = tour.price.choiceLabel
+    ? tour.price.options.map((o) => ({
+        label: o.label,
+        amount: o.amount,
+        currency: o.currency ?? tour.price.currency,
+      }))
+    : undefined;
 
   return (
     <article className={styles.page}>
@@ -347,7 +357,12 @@ export function TourDetail({
               dostępność, godzinę odbioru i cenę.
             </p>
             <div className={styles.formShell}>
-              <BookingForm tours={[bookingOption]} fixedTourSlug={tour.slug} />
+              <BookingForm
+                tours={[bookingOption]}
+                fixedTourSlug={tour.slug}
+                priceChoices={bookingChoices}
+                choiceLabel={tour.price.choiceLabel}
+              />
             </div>
           </section>
 
@@ -405,6 +420,8 @@ export function TourDetail({
         priceCaptionShort={head.captionShort}
         bookingOption={bookingOption}
         tourTitle={tour.title}
+        priceChoices={bookingChoices}
+        choiceLabel={tour.price.choiceLabel}
       />
     </article>
   );

@@ -56,7 +56,8 @@ export const GROQ = {
       "mode": priceMode, "amount": priceAmount, "unit": priceUnit,
       "currency": currency, "from": priceFrom,
       "options": priceOptions[]{ label, amount, currency, unit, note, free },
-      "childAgeMin": priceChildAgeMin, "infantFree": priceInfantFree, "note": priceNote
+      "childAgeMin": priceChildAgeMin, "infantFree": priceInfantFree, "note": priceNote,
+      "choiceLabel": priceChoiceLabel
     },
     availabilityLabel, availabilityDays, durationLabel,
     "pickupLabel": pickupTime, "returnLabel": returnTime, transport,

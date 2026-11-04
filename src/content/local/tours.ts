@@ -304,23 +304,34 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 90,
+      "amount": 95,
       "unit": "os.",
       "currency": "USD",
-      "from": true,
+      "from": false,
       "options": [
         {
           "label": "Dorosły",
-          "amount": 90,
+          "amount": 95,
           "currency": "USD"
+        },
+        {
+          "label": "Dziecko 5-11 lat",
+          "amount": 50,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko poniżej 5 lat",
+          "amount": 0,
+          "currency": "USD",
+          "free": true
         }
       ]
     },
-    "availabilityLabel": "Wtorek, czwartek, niedziela",
+    "availabilityLabel": "Sobota, poniedziałek, środa",
     "availabilityDays": [
-      "Wtorek",
-      "Czwartek",
-      "Niedziela"
+      "Sobota",
+      "Poniedziałek",
+      "Środa"
     ],
     "durationLabel": "ok. 20-22 godzin",
     "pickupLabel": "Noc, ok. 00:00-02:00",
@@ -399,13 +410,13 @@ export const tours: Tour[] = [
       },
       {
         "question": "W które dni odbywa się ta wycieczka?",
-        "answer": "Zwykle we wtorki, czwartki i niedziele. Dostępność w danym tygodniu potwierdzamy na WhatsApp."
+        "answer": "Zwykle w soboty, poniedziałki i środy. Dostępność w danym tygodniu potwierdzamy na WhatsApp."
       }
     ],
     "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
     "seo": {
       "title": "Wycieczka z Hurghady do Kairu z GEM | Piramidy",
-      "description": "Kair z Hurghady z Wielkim Muzeum Egipskim (GEM), piramidami w Gizie i Sfinksem. Autokar, polski przewodnik, cena od 90 USD. Rezerwacja przez WhatsApp.",
+      "description": "Kair z Hurghady z Wielkim Muzeum Egipskim (GEM), piramidami w Gizie i Sfinksem. Autokar, polski przewodnik, cena 95 USD. Rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-hurghady/kair-wielkie-muzeum-gem/",
       "ogImage": "/media/og/hurghada.jpg"
     },
@@ -6263,7 +6274,7 @@ export const tours: Tour[] = [
     "category": "kair",
     "departure": "Marsa Alam",
     "shortDescription": "Nocna, jednodniowa wycieczka z Marsa Alam do Kairu: Grand Egyptian Museum, piramidy w Gizie i Sfinks. Dojazd mikrobusem do Hurghady, a dalej klimatyzowanym autokarem.",
-    "overview": "Nocna, jednodniowa wycieczka z Marsa Alam do Kairu, której głównym punktem jest Grand Egyptian Museum (GEM) - nowe muzeum egipskie w pobliżu płaskowyżu w Gizie. W programie są także piramidy w Gizie i Sfinks.\n\nWyjazd odbywa się nocą, około 21:00-23:00. Najpierw mikrobusem lub vanem docierasz z Marsa Alam do Hurghady, a następnie klimatyzowanym autokarem jedziesz do Kairu. Powrót planowany jest na wieczór.\n\nWycieczka dostępna jest we wtorki, czwartki i niedziele. W cenie są transport oraz obiad w restauracji.",
+    "overview": "Nocna, jednodniowa wycieczka z Marsa Alam do Kairu, której głównym punktem jest Grand Egyptian Museum (GEM) - nowe muzeum egipskie w pobliżu płaskowyżu w Gizie. W programie są także piramidy w Gizie i Sfinks.\n\nWyjazd odbywa się nocą, około 21:00-23:00. Najpierw mikrobusem lub vanem docierasz z Marsa Alam do Hurghady, a następnie klimatyzowanym autokarem jedziesz do Kairu. Powrót planowany jest na wieczór.\n\nWycieczka dostępna jest w soboty, poniedziałki i środy. W cenie są transport oraz obiad w restauracji.",
     "heroImage": {
       "src": "/media/tours/ma-kair-wielkie-muzeum-gem",
       "alt": "Kair i Grand Egyptian Museum (GEM) z Marsa Alam - zdjęcie poglądowe",
@@ -6280,24 +6291,34 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 130,
+      "amount": 135,
       "unit": "os.",
       "currency": "USD",
       "from": false,
       "options": [
         {
-          "label": "Osoba",
-          "amount": 130,
+          "label": "Dorosły",
+          "amount": 135,
           "currency": "USD"
+        },
+        {
+          "label": "Dziecko 5-11 lat",
+          "amount": 70,
+          "currency": "USD"
+        },
+        {
+          "label": "Dziecko poniżej 5 lat",
+          "amount": 0,
+          "currency": "USD",
+          "free": true
         }
-      ],
-      "note": "Ceny dla dzieci potwierdzamy na WhatsApp."
+      ]
     },
-    "availabilityLabel": "Wtorek, czwartek i niedziela",
+    "availabilityLabel": "Sobota, poniedziałek i środa",
     "availabilityDays": [
-      "Wtorek",
-      "Czwartek",
-      "Niedziela"
+      "Sobota",
+      "Poniedziałek",
+      "Środa"
     ],
     "durationLabel": "ok. 1 dzień (wyjazd nocny)",
     "pickupLabel": "wieczór/noc, ok. 21:00-23:00",
@@ -6374,7 +6395,7 @@ export const tours: Tour[] = [
       },
       {
         "question": "W jakie dni odbywa się wycieczka?",
-        "answer": "We wtorki, czwartki i niedziele. Dostępność potwierdzamy na WhatsApp."
+        "answer": "W soboty, poniedziałki i środy. Dostępność potwierdzamy na WhatsApp."
       },
       {
         "question": "Czym jest Grand Egyptian Museum?",
@@ -6388,7 +6409,7 @@ export const tours: Tour[] = [
     "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
     "seo": {
       "title": "Kair i GEM z Marsa Alam - Piramidy w Gizie",
-      "description": "Wycieczka z Marsa Alam do Kairu: Grand Egyptian Museum, Piramidy w Gizie i Sfinks, obiad w cenie. Wt, czw i niedz. Cena 130 USD.",
+      "description": "Wycieczka z Marsa Alam do Kairu: Grand Egyptian Museum, Piramidy w Gizie i Sfinks, obiad w cenie. Sob, pon i śr. Cena 135 USD.",
       "canonicalPath": "/wycieczki-z-marsa-alam/kair-wielkie-muzeum-gem/",
       "ogImage": "/media/og/marsa-alam.jpg"
     },
@@ -9048,14 +9069,14 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 93,
+      "amount": 98,
       "unit": "os.",
       "currency": "USD",
-      "from": true,
+      "from": false,
       "options": [
         {
           "label": "Dorosły",
-          "amount": 93,
+          "amount": 98,
           "currency": "USD"
         },
         {
@@ -9082,8 +9103,8 @@ export const tours: Tour[] = [
     "returnLabel": "ok. 22:00-23:00",
     "transport": "Klimatyzowany autokar z Sharm el Sheikh do Kairu i z powrotem",
     "guide": {
-      "label": "Potwierdzamy przed rezerwacją",
-      "polishConfirmed": false
+      "label": "Polski",
+      "polishConfirmed": true
     },
     "highlights": [
       "Wielkie Muzeum Egipskie (GEM)",
@@ -9167,13 +9188,13 @@ export const tours: Tour[] = [
       },
       {
         "question": "Ile kosztuje wycieczka dla dziecka?",
-        "answer": "Dzieci 5-11 lat: 60 USD. Dzieci poniżej 5 lat bezpłatnie. Dorośli: 93 USD od osoby."
+        "answer": "Dzieci 5-11 lat: 60 USD. Dzieci poniżej 5 lat bezpłatnie. Dorośli: 98 USD od osoby."
       }
     ],
     "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
     "seo": {
       "title": "Wycieczka z Sharm el Sheikh do Kairu | GEM i Piramidy",
-      "description": "Wycieczka z Sharm el Sheikh do Kairu: Wielkie Muzeum Egipskie (GEM), piramidy w Gizie i Sfinks. Cena od 93 USD, odbiór z hotelu, rezerwacja przez WhatsApp.",
+      "description": "Wycieczka z Sharm el Sheikh do Kairu: Wielkie Muzeum Egipskie (GEM), piramidy w Gizie i Sfinks. Cena 98 USD, polski przewodnik, rezerwacja przez WhatsApp.",
       "canonicalPath": "/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy/",
       "ogImage": "/media/og/sharm-el-sheikh.jpg"
     },
@@ -9188,7 +9209,7 @@ export const tours: Tour[] = [
     "category": "kair",
     "departure": "Sharm el Sheikh",
     "shortDescription": "Całodniowa wycieczka samolotem z Sharm el Sheikh do Kairu, która w jeden dzień łączy piramidy w Gizie, Sfinksa i Wielkie Muzeum Egipskie (GEM). Dla tych, którzy chcą zobaczyć najważniejsze zabytki bez wielogodzinnej jazdy autokarem.",
-    "overview": "Zamiast długiej trasy autokarem do stolicy lecisz do Kairu samolotem, dzięki czemu cały program mieści się w jednym dniu. Przelot odbywa się na trasie Sharm el Sheikh-Kair-Sharm el Sheikh, a transfery między hotelem, lotniskiem i zwiedzanymi miejscami są po stronie organizatora.\n\nW programie znajdują się piramidy w Gizie i Sfinks oraz Wielkie Muzeum Egipskie (GEM) - najnowsza duża placówka gromadząca zbiory starożytnego Egiptu. Do tego dochodzi obiad w lokalnej restauracji (bez napojów).\n\nOpcjonalnie, jeśli pozwoli na to czas, można doliczyć rejs po Nilu i zakupy pamiątek. Opieka nad grupą należy do licencjonowanego przewodnika anglojęzycznego.",
+    "overview": "Zamiast długiej trasy autokarem do stolicy lecisz do Kairu samolotem, dzięki czemu cały program mieści się w jednym dniu. Przelot odbywa się na trasie Sharm el Sheikh-Kair-Sharm el Sheikh, a transfery między hotelem, lotniskiem i zwiedzanymi miejscami są po stronie organizatora.\n\nW programie znajdują się piramidy w Gizie i Sfinks oraz Wielkie Muzeum Egipskie (GEM) - najnowsza duża placówka gromadząca zbiory starożytnego Egiptu. Do tego dochodzi obiad w lokalnej restauracji (bez napojów).\n\nOpcjonalnie, jeśli pozwoli na to czas, można doliczyć rejs po Nilu i zakupy pamiątek. Opieka nad grupą należy do licencjonowanego przewodnika - anglojęzycznego (w cenie 305 USD za osobę) lub polskojęzycznego (w cenie 340 USD za osobę).",
     "heroImage": {
       "src": "/media/tours/s-kair-samolotem",
       "alt": "Wycieczka samolotem do Kairu z Sharm el Sheikh - zdjęcie poglądowe",
@@ -9205,29 +9226,35 @@ export const tours: Tour[] = [
     ],
     "price": {
       "mode": "perPerson",
-      "amount": 299,
+      "amount": 305,
       "unit": "os.",
       "currency": "USD",
       "from": true,
+      "choiceLabel": "Język przewodnika",
       "options": [
         {
-          "label": "Dorosły",
-          "amount": 299,
+          "label": "Przewodnik anglojęzyczny (dorosły lub dziecko)",
+          "amount": 305,
+          "currency": "USD"
+        },
+        {
+          "label": "Przewodnik polskojęzyczny (dorosły lub dziecko)",
+          "amount": 340,
           "currency": "USD"
         }
       ]
     },
     "availabilityLabel": "Soboty, poniedziałki i środy",
     "availabilityDays": [
+      "Sobota",
       "Poniedziałek",
-      "Środa",
-      "Sobota"
+      "Środa"
     ],
     "durationLabel": "Całodniowa",
     "pickupLabel": "Wczesny poranek (zależnie od godziny lotu)",
     "transport": "Przelot samolotem Sharm el Sheikh-Kair-Sharm el Sheikh, transfery busem hotel-lotnisko",
     "guide": {
-      "label": "Potwierdzamy przed rezerwacją",
+      "label": "Polski lub angielski (do wyboru)",
       "polishConfirmed": false
     },
     "highlights": [
@@ -9272,7 +9299,7 @@ export const tours: Tour[] = [
       "Wstęp do Wielkiego Muzeum Egipskiego (GEM)",
       "Wstęp na płaskowyż piramid w Gizie",
       "Obiad w lokalnej restauracji (bez napojów)",
-      "Opieka licencjonowanego przewodnika anglojęzycznego"
+      "Opieka licencjonowanego przewodnika - anglojęzycznego (w cenie 305 USD) lub polskojęzycznego (w cenie 340 USD)"
     ],
     "excluded": [
       "Napoje do obiadu",
@@ -9306,7 +9333,7 @@ export const tours: Tour[] = [
       },
       {
         "question": "Co dokładnie obejmuje cena?",
-        "answer": "W cenie 299 USD za osobę jest lot na trasie Sharm el Sheikh-Kair-Sharm el Sheikh, transfery, wstęp do GEM, wejście na płaskowyż w Gizie, obiad bez napojów oraz opieka licencjonowanego przewodnika anglojęzycznego."
+        "answer": "Cena za osobę zależy od języka przewodnika: 305 USD z przewodnikiem anglojęzycznym lub 340 USD z polskojęzycznym; dziecko płaci tyle samo co dorosły. W cenie jest lot na trasie Sharm el Sheikh-Kair-Sharm el Sheikh, transfery, wstęp do GEM, wejście na płaskowyż w Gizie oraz obiad bez napojów."
       },
       {
         "question": "Czy potrzebny jest paszport?",
@@ -9320,7 +9347,7 @@ export const tours: Tour[] = [
     "relatedPostSlug": "co-zabrac-na-wycieczke-do-kairu",
     "seo": {
       "title": "Kair samolotem z Sharm el Sheikh - piramidy i GEM",
-      "description": "Całodniowa wycieczka samolotem do Kairu z Sharm el Sheikh: piramidy w Gizie, Sfinks i Wielkie Muzeum GEM. Cena 299 USD/os.",
+      "description": "Całodniowa wycieczka samolotem do Kairu z Sharm el Sheikh: piramidy w Gizie, Sfinks i Wielkie Muzeum GEM. Cena od 305 USD/os. (przewodnik angielski) lub 340 USD (polski).",
       "canonicalPath": "/wycieczki-z-sharm-el-sheikh/kair-samolotem/",
       "ogImage": "/media/og/sharm-el-sheikh.jpg"
     },

@@ -123,6 +123,13 @@ export interface PriceTier {
   infantFree?: boolean;
   /** Optional short note under the price table (e.g. transfer/season caveat). */
   note?: string;
+  /**
+   * When set, `options` are user-SELECTABLE purchase choices (e.g. guide-language
+   * tiers), not an adult/child breakdown. Presence turns on a booking selector
+   * labelled with this string and carries the chosen option into the WhatsApp
+   * request. Leave unset for ordinary adult/child/free tiers.
+   */
+  choiceLabel?: string;
 }
 
 export interface TransferSupplement {

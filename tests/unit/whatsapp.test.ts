@@ -49,6 +49,18 @@ describe("buildBookingMessage", () => {
     expect(buildBookingMessage(base)).not.toContain("Dzieci");
   });
 
+  it("carries the selected price option (e.g. guide-language tier) when one is chosen", () => {
+    const msg = buildBookingMessage({
+      ...base,
+      choice: { label: "Przewodnik polskojęzyczny (dorosły lub dziecko)", amount: 340, currency: "USD" },
+    });
+    expect(msg).toContain("Wybrana opcja: Przewodnik polskojęzyczny (dorosły lub dziecko) - 340 USD/os.");
+  });
+
+  it("omits the price-option line for ordinary single-fare tours", () => {
+    expect(buildBookingMessage(base)).not.toContain("Wybrana opcja");
+  });
+
   it("omits notes when none were provided (no empty/placeholder rows)", () => {
     const msg = buildBookingMessage({ ...base, notes: "   " });
     expect(msg).not.toContain("Uwagi:");

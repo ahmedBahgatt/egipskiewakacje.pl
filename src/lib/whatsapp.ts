@@ -18,6 +18,12 @@ export interface BookingMessageInput {
   adults: number;
   /** Paying children aged 5-11. Under-5s are free and never collected here. */
   children?: number;
+  /**
+   * Selected price option when the tour offers selectable purchase choices
+   * (e.g. a guide-language tier). Carries the exact fare the customer picked so
+   * the operator can confirm it. Omitted for ordinary single-fare tours.
+   */
+  choice?: { label: string; amount: number; currency: string };
   notes?: string;
   /** Canonical URL of the page the booking was started from. */
   pageUrl: string;
@@ -43,6 +49,10 @@ export function buildBookingMessage(input: BookingMessageInput): string {
 
   if (typeof input.children === "number" && input.children > 0) {
     lines.push(`Dzieci 5–11 lat: ${input.children}`);
+  }
+
+  if (input.choice) {
+    lines.push(`Wybrana opcja: ${input.choice.label} - ${input.choice.amount} ${input.choice.currency}/os.`);
   }
 
   const notes = input.notes?.trim();

@@ -163,3 +163,44 @@ describe("tour inventory integrity", () => {
     }
   });
 });
+
+describe("Cairo excursions - November 2026 pricing", () => {
+  const find = (dest: string, slug: string) => {
+    const t = tours.find((x) => x.destination === dest && x.slug === slug);
+    if (!t) throw new Error(`fixture tour not found: ${dest}/${slug}`);
+    return t;
+  };
+
+  it("bus adult fares reflect the Nov 2026 increases (fixed, not 'from')", () => {
+    const hrg = find("hurghada", "kair-wielkie-muzeum-gem");
+    expect(hrg.price.amount).toBe(95);
+    expect(hrg.price.from).toBe(false);
+    expect(hrg.price.options.find((o) => /poniżej 5/i.test(o.label))?.free).toBe(true);
+
+    const marsa = find("marsa-alam", "kair-wielkie-muzeum-gem");
+    expect(marsa.price.amount).toBe(135);
+
+    const sharm = find("sharm-el-sheikh", "kair-gem-piramidy");
+    expect(sharm.price.amount).toBe(98);
+    expect(sharm.price.from).toBe(false);
+    expect(sharm.guide.polishConfirmed).toBe(true);
+  });
+
+  it("plane base fares are unchanged (optional GEM add-on is NOT in the base price)", () => {
+    expect(find("hurghada", "kair-samolotem").price.amount).toBe(300);
+    expect(find("marsa-alam", "kair-samolotem").price.amount).toBe(345);
+  });
+
+  it("Sharm Cairo plane uses two guide-language tiers (305/340), no child discount", () => {
+    const t = find("sharm-el-sheikh", "kair-samolotem");
+    expect(t.price.amount).toBe(305); // lowest = English-guide tier
+    expect(t.price.from).toBe(true);
+    expect(t.price.choiceLabel).toBeTruthy();
+    const amounts = t.price.options.map((o) => o.amount).sort((a, b) => a - b);
+    expect(amounts).toEqual([305, 340]);
+    // the retired 299/279 single+child fares must be gone from the price model
+    const blob = JSON.stringify(t.price);
+    expect(blob).not.toContain("299");
+    expect(blob).not.toContain("279");
+  });
+});

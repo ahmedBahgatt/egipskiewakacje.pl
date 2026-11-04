@@ -291,6 +291,15 @@ export const tour = defineType({
       validation: (rule) => rule.max(200),
     }),
     defineField({
+      name: "priceChoiceLabel",
+      title: "Price-option selector label (optional)",
+      type: "string",
+      group: "pricing",
+      description:
+        'Set ONLY when the price options are selectable purchase choices (e.g. guide-language tiers like "Język przewodnika"), not an adult/child breakdown. Turns the price options into a booking selector that carries the chosen fare into the WhatsApp request.',
+      validation: (rule) => rule.max(60),
+    }),
+    defineField({
       name: "transferSupplements",
       title: "Transfer Supplements",
       type: "array",
