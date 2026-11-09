@@ -232,7 +232,7 @@ export const categories: TourCategory[] = [
     shortLabel: "Safari i quady",
     description: "Quady, buggy, jeep safari, zachód słońca na pustyni i wieczór w wiosce beduińskiej.",
     intro:
-      "Pustynia to druga twarz Egiptu - tuż za pasem hoteli zaczyna się przestrzeń wydm i skał. Na tych wyprawach prowadzisz quada lub buggy, jedziesz jeepem przez bezdroża, oglądasz zachód słońca i odwiedzasz wioskę beduińską z herbatą i pokazami. Mamy warianty krótsze i dłuższe, rodzinne oraz z jazdą na wielbłądzie i koniu.",
+      "Pustynia to druga twarz Egiptu - tuż za pasem hoteli zaczyna się przestrzeń wydm i skał. Na tych wyprawach prowadzisz quada lub buggy, jedziesz jeepem przez bezdroża, oglądasz zachód słońca i odwiedzasz wioskę beduińską z herbatą i pokazami. Mamy warianty krótsze i dłuższe, rodzinne oraz z jazdą na wielbłądzie i koniu. Safari quadami i buggy organizujemy z Hurghady, Marsa Alam i Sharm el Sheikh.",
     faqs: [
       {
         question: "Czy trzeba mieć prawo jazdy na quada?",

@@ -13,8 +13,8 @@ export const tours: Tour[] = [
   {
     "slug": "kair-piramidy-muzeum-egipskie",
     "route": "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie",
-    "title": "Wycieczka z Hurghady do Kairu",
-    "h1": "Wycieczka z Hurghady do Kairu autokarem",
+    "title": "Wycieczka z Hurghady do Kairu i piramid",
+    "h1": "Wycieczka z Hurghady do Kairu i piramid autokarem",
     "destination": "hurghada",
     "category": "kair",
     "departure": "Hurghada",
