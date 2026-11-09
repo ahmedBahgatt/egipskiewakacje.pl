@@ -7938,7 +7938,7 @@ export const tours: Tour[] = [
     "title": "Wycieczka łodzią Seascope z Marsa Alam",
     "h1": "Wycieczka łodzią Seascope z Marsa Alam",
     "destination": "marsa-alam",
-    "category": "atrakcje",
+    "category": "rejsy-wyspy",
     "departure": "Marsa Alam",
     "shortDescription": "Rejs półzanurzalną łodzią Seascope z Marsa Alam z podwodnym pokładem i panoramicznymi oknami. Dobra opcja dla rodzin i osób, które chcą zobaczyć rafy Morza Czerwonego bez nurkowania.",
     "overview": "Seascope to półzanurzalna łódź z przeszklonym pokładem położonym około 3 metrów pod powierzchnią wody. Podczas rejsu z Marsa Alam obserwujesz rafy koralowe i życie Morza Czerwonego zza panoramicznych okien, bez zakładania sprzętu i wchodzenia do wody.\n\nRejs trwa około dwóch godzin i odbywa się codziennie. Cena obejmuje transfer z hotelu i z powrotem oraz miejsce przy oknie na podwodnym pokładzie, dzięki czemu wyprawa sprawdzi się także dla dzieci i osób, które nie nurkują.",
@@ -8032,7 +8032,6 @@ export const tours: Tour[] = [
     "transferSupplements": [],
     "extras": [],
     "whatToBring": [
-      "Strój kąpielowy i ręcznik",
       "Okulary przeciwsłoneczne",
       "Krem z filtrem i nakrycie głowy",
       "Gotówka na drobne wydatki"

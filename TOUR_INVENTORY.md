@@ -54,7 +54,7 @@ Wakacje. Source checked: 2026-08-09. Prices are the CURRENT selling prices
 | 39 | Hurghada | Snorkeling i delfiny | `/wycieczki-z-hurghady/sharm-el-naga-snorkeling` | od 50 USD / os. | /tour/wycieczka-z-hurghady-do-sharm-el-naga/ |
 | 40 | Hurghada | Snorkeling i delfiny | `/wycieczki-z-hurghady/dom-delfinow-snorkeling` | 25 USD / os. | /tour/wycieczka-z-hurghady-do-domu-delfinow/ |
 | 41 | Hurghada | Snorkeling i delfiny | `/wycieczki-z-hurghady/abu-dabbab-snorkeling` | 62 USD / os. | /tour/wycieczka-z-hurghady-do-abu-dabbab/ |
-| 42 | Marsa Alam | Atrakcje i rozrywka | `/wycieczki-z-marsa-alam/lodz-seascope` | 62 USD / os. | /tour/wycieczka-z-marsa-alam-lodzia-seascope/ |
+| 42 | Marsa Alam | Rejsy i wyspy na Morzu Czerwonym | `/wycieczki-z-marsa-alam/lodz-seascope` | 62 USD / os. | /tour/wycieczka-z-marsa-alam-lodzia-seascope/ |
 | 43 | Marsa Alam | Kair i piramidy | `/wycieczki-z-marsa-alam/kair-stary-kair-piramidy` | 80 USD / os. | /tour/wycieczka-z-marsa-alam-kair-stary-kair/ |
 | 44 | Marsa Alam | Kair i piramidy | `/wycieczki-z-marsa-alam/kair-wielkie-muzeum-gem` | 135 USD / os. | /tour/kair-i-grand-egyptian-museum-gem-z-marsa-alam/ |
 | 45 | Marsa Alam | Kair i piramidy | `/wycieczki-z-marsa-alam/kair-samolotem` | 345 USD / os. | /tour/wycieczka-z-marsa-alam-do-kairu-samolotem/ |
