@@ -1,30 +1,124 @@
+/* Blog index grid: 1 col (mobile) -> 2 (>=640) -> 3 (>=1024). Cards are equal
+   height (footer pinned to the bottom) so rows align regardless of title length. */
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.6rem;
 }
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 1.8rem 1.6rem; }
+}
+
 .card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   background: var(--bg-paper);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
-  max-width: 640px;
 }
 .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-.media { display: block; aspect-ratio: 16 / 9; overflow: hidden; }
+.card:focus-within { box-shadow: var(--shadow-lg); }
+
+.media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--line); /* subtle placeholder before the image paints */
+}
 .img { transition: transform 0.5s ease; }
 .card:hover .img { transform: scale(1.03); }
-.body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
-.cat { font-size: 0.76rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
-.title { font-size: var(--step-2); }
+
+.body {
+  flex: 1 1 auto;
+  padding: 1.35rem 1.4rem 1.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.cat {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+.title {
+  font-size: var(--step-1);
+  line-height: 1.22;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
 .titleLink { color: var(--text); text-decoration: none; }
 .titleLink:hover { color: var(--accent-strong); }
-.excerpt { color: var(--text-muted); }
-.foot { display: flex; align-items: center; justify-content: space-between; color: var(--ink-400); font-size: 0.88rem; }
-.more { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--accent-strong); }
+.titleLink:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+/* Excerpt clamped to 3 lines so cards stay balanced; the full text stays in the DOM. */
+.excerpt {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.foot {
+  margin-top: auto; /* pins footer to the card bottom -> rows align */
+  padding-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-400);
+  font-size: 0.86rem;
+}
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
 
-@media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+/* Compact strip to the 3 destination hubs - gives a reader who finished an article
+   a clear path to the commercial excursion pages. Secondary, not keyword-stuffed. */
+.hubs {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.hubsTitle { font-size: var(--step-1); margin: 0 0 1.1rem; }
+.hubsGrid { display: grid; grid-template-columns: 1fr; gap: 0.8rem; }
+@media (min-width: 640px) { .hubsGrid { grid-template-columns: repeat(3, 1fr); } }
+.hub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg-paper);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.hub:hover { color: var(--accent-strong); border-color: var(--accent-strong); transform: translateY(-1px); }
+.hub:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
+.hub svg { flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .img, .hub { transition: none; }
+  .card:hover, .hub:hover { transform: none; }
+  .card:hover .img { transform: none; }
+}
