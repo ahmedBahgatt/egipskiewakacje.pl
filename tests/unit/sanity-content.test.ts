@@ -81,7 +81,7 @@ describe("mapBlocks (safe rich blocks)", () => {
         headers: ["A", "B"],
         rows: [{ cells: ["1", "2"] }],
       },
-      { _type: "blockRelatedTour", tourSlug: "kair-piramidy-muzeum-egipskie" },
+      { _type: "blockRelatedTour", tourRoute: "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie" },
       { _type: "somethingEvil", text: "<script>" },
     ]);
     const types = blocks.map((b) => b.type);

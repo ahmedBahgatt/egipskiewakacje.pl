@@ -28,6 +28,22 @@ export function PostBody({ blocks, tours = [] }: { blocks: PostBlock[]; tours?: 
                 {block.text}
               </p>
             );
+          case "linkedText":
+            // Paragraph with inline contextual links. Only root-relative in-site
+            // links render as anchors; anything else degrades to plain text.
+            return (
+              <p key={i} className={styles.p}>
+                {block.segments.map((s, j) =>
+                  s.href && s.href.startsWith("/") ? (
+                    <Link key={j} href={s.href} className={styles.inlineLink}>
+                      {s.text}
+                    </Link>
+                  ) : (
+                    <span key={j}>{s.text}</span>
+                  ),
+                )}
+              </p>
+            );
           case "list":
             return block.ordered ? (
               <ol key={i} className={styles.ol}>
@@ -107,7 +123,10 @@ export function PostBody({ blocks, tours = [] }: { blocks: PostBlock[]; tours?: 
             );
           }
           case "relatedTour": {
-            const tour = tours.find((t) => t.slug === block.tourSlug);
+            // Resolve by unique `route` - tour slugs are NOT unique across
+            // destinations (e.g. kair-wielkie-muzeum-gem exists for Hurghada
+            // AND Marsa Alam), so slug lookup would render the wrong city.
+            const tour = tours.find((t) => t.route === block.tourRoute);
             if (!tour) return null;
             return (
               <Link key={i} href={`${tour.route}/`} className={styles.relatedTour}>
@@ -135,9 +154,9 @@ export function tableOfContents(blocks: PostBlock[]): { id: string; text: string
     .map((b) => ({ id: b.id, text: b.text }));
 }
 
-/** Slugs of tours referenced by relatedTour blocks (so pages can resolve them). */
-export function relatedTourSlugsInBody(blocks: PostBlock[]): string[] {
+/** Routes of tours referenced by relatedTour blocks (so pages can resolve them). */
+export function relatedTourRoutesInBody(blocks: PostBlock[]): string[] {
   return blocks
     .filter((b): b is Extract<PostBlock, { type: "relatedTour" }> => b.type === "relatedTour")
-    .map((b) => b.tourSlug);
+    .map((b) => b.tourRoute);
 }

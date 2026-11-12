@@ -10,7 +10,7 @@ import {
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { OptimizedImage } from "@/components/ui/OptimizedImage";
-import { PostBody, tableOfContents, relatedTourSlugsInBody } from "@/components/content/PostBody";
+import { PostBody, tableOfContents, relatedTourRoutesInBody } from "@/components/content/PostBody";
 import { ToursGrid } from "@/components/tour/ToursGrid";
 import { Button } from "@/components/ui/Button";
 import { WhatsAppContextSetter } from "@/components/booking/WhatsAppContextSetter";
@@ -43,13 +43,16 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   if (!post) notFound();
 
   // Resolve tours referenced both in the related list AND inline in the body blocks.
-  const referencedSlugs = Array.from(
-    new Set([...post.relatedTourSlugs, ...relatedTourSlugsInBody(post.body)]),
+  // Resolve by unique `route`: tour slugs collide across destinations, so a slug
+  // lookup would silently return the wrong departure city's tour.
+  const referencedRoutes = Array.from(
+    new Set([...post.relatedTourRoutes, ...relatedTourRoutesInBody(post.body)]),
   );
-  const resolvedTours = (
-    await Promise.all(referencedSlugs.map((s) => content.getTour(s)))
-  ).filter((t): t is Tour => Boolean(t));
-  const relatedTours = resolvedTours.filter((t) => post.relatedTourSlugs.includes(t.slug));
+  const toursByRoute = new Map((await content.getTours()).map((t) => [t.route, t]));
+  const resolvedTours = referencedRoutes
+    .map((r) => toursByRoute.get(r))
+    .filter((t): t is Tour => Boolean(t));
+  const relatedTours = resolvedTours.filter((t) => post.relatedTourRoutes.includes(t.route));
 
   const toc = tableOfContents(post.body);
   const crumbs = [

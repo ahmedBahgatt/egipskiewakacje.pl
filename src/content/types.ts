@@ -238,7 +238,7 @@ export interface BlogPost {
   author: string;
   category: string;
   relatedDestination?: DestinationSlug;
-  relatedTourSlugs: string[];
+  relatedTourRoutes: string[];
   publishedAt: string;
   updatedAt: string;
   /** Structured, sanitised body. No raw HTML from untrusted sources. */
@@ -253,6 +253,7 @@ export interface BlogPost {
 export type PostBlock =
   | { type: "heading"; id: string; text: string }
   | { type: "paragraph"; text: string }
+  | { type: "linkedText"; segments: { text: string; href?: string }[] }
   | { type: "list"; ordered: boolean; items: string[] }
   | { type: "callout"; tone: "info" | "warning"; text: string }
   | { type: "image"; image: MediaImage; caption?: string }
@@ -260,7 +261,7 @@ export type PostBlock =
   | { type: "quote"; text: string; cite?: string }
   | { type: "table"; caption?: string; headers: string[]; rows: string[][] }
   | { type: "linkButton"; label: string; href: string; external: boolean }
-  | { type: "relatedTour"; tourSlug: string };
+  | { type: "relatedTour"; tourRoute: string };
 
 export interface SeoMeta {
   title: string;

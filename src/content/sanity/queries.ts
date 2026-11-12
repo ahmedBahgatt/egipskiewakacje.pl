@@ -21,8 +21,9 @@ const BODY = `body[]{
   "images": images[]${IMG},
   cite,
   headers, "rows": rows[]{ cells },
+  "segments": segments[]{ text, href },
   label, href, external,
-  "tourSlug": tour->slug.current
+  "tourRoute": tour->route
 }`;
 
 const TOUR_SEO = `"seo": { "title": seoTitle, "description": seoDescription, "canonicalPath": canonicalPath, "ogImage": ogImage.asset->url, "ogImageAlt": ogImage.alt, "type": ogType }`;
@@ -83,7 +84,7 @@ export const GROQ = {
     "author": author->name,
     category,
     "relatedDestination": relatedDestination->slug.current,
-    "relatedTourSlugs": relatedTours[]->slug.current,
+    "relatedTourRoutes": relatedTours[]->route,
     "publishedAt": publishedAt, "updatedAt": updatedAt,
     ${BODY},
     "faqs": faqs[]{ question, answer },

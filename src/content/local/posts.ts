@@ -24,10 +24,10 @@ export const posts: BlogPost[] = [
     author: "Zespół Egipskie Wakacje",
     category: "Przed wyjazdem",
     relatedDestination: undefined,
-    relatedTourSlugs: [
-      "kair-piramidy-muzeum-egipskie",
-      "kair-stary-kair-piramidy",
-      "kair-gem-piramidy",
+    relatedTourRoutes: [
+      "/wycieczki-z-hurghady/kair-piramidy-muzeum-egipskie",
+      "/wycieczki-z-marsa-alam/kair-stary-kair-piramidy",
+      "/wycieczki-z-sharm-el-sheikh/kair-gem-piramidy",
     ],
     publishedAt: "2026-08-08",
     updatedAt: "2026-08-08",

@@ -383,6 +383,68 @@ export const blockRelatedTour = defineType({
   },
 });
 
+// --- paragraph with inline links -------------------------------------------
+// A paragraph modelled as a list of segments: each is plain text, or text that
+// links to an in-site path. This gives genuine inline <a> anchors inside body
+// copy WITHOUT a full Portable Text pipeline or any raw HTML - the frontend maps
+// each segment to a string or a Next <Link>, so no untrusted markup can render.
+
+export const inlineSegment = defineType({
+  name: "inlineSegment",
+  title: "Text segment",
+  type: "object",
+  fields: [
+    defineField({
+      name: "text",
+      title: "Text",
+      type: "string",
+      description: "Polish text for this fragment.",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "href",
+      title: "Internal link (optional)",
+      type: "string",
+      description:
+        'Leave empty for plain text. For a link, use an in-site path, e.g. "/wycieczki-z-marsa-alam/sataya-dom-delfinow/".',
+      validation: (rule) =>
+        rule.custom((value) =>
+          !value || /^\/[A-Za-z0-9/_-]*$/.test(value)
+            ? true
+            : 'Use a root-relative in-site path, e.g. "/wycieczki-z-hurghady/orange-bay/"',
+        ),
+    }),
+  ],
+  preview: {
+    select: { text: "text", href: "href" },
+    prepare: ({ text, href }) => ({ title: text || "(empty)", subtitle: href ? `-> ${href}` : "plain text" }),
+  },
+});
+
+export const blockLinkedText = defineType({
+  name: "blockLinkedText",
+  title: "Paragraph with links",
+  type: "object",
+  fields: [
+    defineField({
+      name: "segments",
+      title: "Segments",
+      type: "array",
+      of: [defineArrayMember({ type: "inlineSegment" })],
+      description:
+        "A paragraph split into fragments. Give a fragment an internal path to turn it into a contextual link; leave it empty for plain text.",
+      validation: (rule) => rule.required().min(1),
+    }),
+  ],
+  preview: {
+    select: { segments: "segments" },
+    prepare: ({ segments }) => ({
+      title: Array.isArray(segments) ? segments.map((s) => s?.text ?? "").join("") : "(empty)",
+      subtitle: "Paragraph with links",
+    }),
+  },
+});
+
 // --- the `of:` lists -------------------------------------------------------
 // Functions, not shared constants: each `body` field gets its own member
 // definitions so no two fields can share (and mutate) one object.
@@ -391,6 +453,7 @@ export const blockRelatedTour = defineType({
 export const postBodyMembers = () => [
   defineArrayMember({ type: "blockHeading" }),
   defineArrayMember({ type: "blockParagraph" }),
+  defineArrayMember({ type: "blockLinkedText" }),
   defineArrayMember({ type: "blockList" }),
   defineArrayMember({ type: "blockCallout" }),
   defineArrayMember({ type: "blockImage" }),
@@ -416,6 +479,8 @@ export const legalBodyMembers = () => [
 export const postBlockTypes = [
   blockHeading,
   blockParagraph,
+  inlineSegment,
+  blockLinkedText,
   blockList,
   blockCallout,
   blockImage,

@@ -52,7 +52,8 @@ interface RawBlock {
   label?: string;
   href?: string;
   external?: boolean;
-  tourSlug?: string;
+  tourRoute?: string;
+  segments?: { text?: string; href?: string }[];
 }
 
 function mapSeo(raw: RawSeo | undefined): SeoMeta {
@@ -119,8 +120,15 @@ export function mapBlocks(raw: RawBlock[] | undefined): PostBlock[] {
         if (b.label && b.href)
           out.push({ type: "linkButton", label: b.label, href: b.href, external: b.external ?? true });
         break;
+      case "blockLinkedText": {
+        const segments = (b.segments ?? [])
+          .filter((s): s is { text: string; href?: string } => Boolean(s?.text))
+          .map((s) => (s.href ? { text: s.text, href: s.href } : { text: s.text }));
+        if (segments.length) out.push({ type: "linkedText", segments });
+        break;
+      }
       case "blockRelatedTour":
-        if (b.tourSlug) out.push({ type: "relatedTour", tourSlug: b.tourSlug });
+        if (b.tourRoute) out.push({ type: "relatedTour", tourRoute: b.tourRoute });
         break;
       default:
         break;
@@ -336,7 +344,7 @@ interface RawPost {
   author?: string;
   category?: string;
   relatedDestination?: string;
-  relatedTourSlugs?: string[];
+  relatedTourRoutes?: string[];
   publishedAt?: string;
   updatedAt?: string;
   body?: RawBlock[];
@@ -359,7 +367,7 @@ export function mapPost(raw: RawPost): BlogPost | null {
     author: raw.author ?? "Zespół Egipskie Wakacje",
     category: raw.category ?? "",
     relatedDestination: (raw.relatedDestination as DestinationSlug) || undefined,
-    relatedTourSlugs: (raw.relatedTourSlugs ?? []).filter(Boolean),
+    relatedTourRoutes: (raw.relatedTourRoutes ?? []).filter(Boolean),
     publishedAt: String(raw.publishedAt ?? ""),
     updatedAt: String(raw.updatedAt ?? raw.publishedAt ?? ""),
     body: mapBlocks(raw.body),
